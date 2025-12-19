@@ -1,7 +1,14 @@
 import { readdir } from 'node:fs/promises'
 import path from 'node:path'
-import type { RecipeFields } from '../src/types/recipe.interface'
+import type {
+  IngredientGroup,
+  RecipeFields,
+} from '../src/types/recipe.interface'
 import { isPlainObject, isString } from '../src/utils'
+import {
+  createIngredientGroup,
+  createIngredientItem,
+} from '../src/utils/ingredients'
 import { removeInstructionHeading } from '../src/utils/instructions'
 import { normalizeString, splitToList } from '../src/utils/parsing'
 
@@ -38,7 +45,10 @@ const LIST_FIELDS = [
 
 // Per-site overrides for known bad data
 // These are keyed by hostname, then by the JSON file name without extension
-const OVERRIDE_VALUES = {
+const OVERRIDE_VALUES: Record<
+  string,
+  Record<string, Partial<Record<keyof RecipeFields, unknown>>>
+> = {
   'cooking.nytimes.com': {
     nytimes: {
       yields: '5 cups (about 120 to 160 crackers)',
@@ -50,10 +60,7 @@ const OVERRIDE_VALUES = {
         'https://www.epicurious.com/recipes/food/views/ramen-noodle-bowl-with-escarole-and-spicy-tofu-crumbles',
     },
   },
-} as const satisfies Record<
-  string,
-  Record<string, Partial<Record<keyof RecipeFields, unknown>>>
->
+}
 
 /**
  * Returns true if the given path exists and is a directory
@@ -72,33 +79,34 @@ function toCamelCase(str: string) {
   return str.replace(/[_-](\w)/g, (_, v) => (v ? v.toUpperCase() : ''))
 }
 
-type IngredientGroup = { ingredients: string[]; purpose: string | null }
+type RawIngredientGroup = { ingredients: string[]; purpose: string | null }
 
-const isIngredientGroup = (v: unknown): v is IngredientGroup =>
+const isRawIngredientGroup = (v: unknown): v is RawIngredientGroup =>
   isPlainObject(v) && 'ingredients' in v && 'purpose' in v
 
 /**
- * Converts an array of ingredient‐group objects into a plain map of
- * purpose → ingredients. Groups without a defined or non‐empty purpose
- * are collected under the key "Ingredients".
+ * Converts an array of raw ingredient-group objects into the new
+ * IngredientGroup[] format. Groups without a defined or non-empty purpose
+ * are given null as the name.
  *
  * @param input The raw ingredients value (expected shape:
  *   Array<{ ingredients: string[]; purpose: string | null }>)
- * @returns A Record mapping each group title to its list of ingredient strings,
- *   or undefined if the input is not in the expected shape.
+ * @returns An array of IngredientGroup objects with the new format
  */
 export function groupIngredientItems(
-  input: IngredientGroup[],
-): Record<string, string[]> {
-  const result: Record<string, string[]> = {}
+  input: RawIngredientGroup[],
+): IngredientGroup[] {
+  const result: IngredientGroup[] = []
 
   for (const { ingredients, purpose } of input) {
-    const title = isString(purpose) ? purpose.trim() : 'Ingredients'
+    const name = isString(purpose) && purpose.trim() ? purpose.trim() : null
     const items = Array.isArray(ingredients)
-      ? ingredients.filter(isString).map(normalizeString)
+      ? ingredients.filter(isString).map((value) =>
+          createIngredientItem(normalizeString(value)),
+        )
       : []
 
-    result[title] = items
+    result.push(createIngredientGroup(name, items))
   }
 
   return result
@@ -139,10 +147,14 @@ function normalizeData(
 
   // Clean & group ingredients
   if (Array.isArray(result.ingredients)) {
-    if (result.ingredients.every(isIngredientGroup)) {
+    if (result.ingredients.every(isRawIngredientGroup)) {
       result.ingredients = groupIngredientItems(result.ingredients)
-    } else {
-      result.ingredients = result.ingredients.map(normalizeString)
+    } else if (result.ingredients.every(isString)) {
+      // Convert flat string array to single group with null name
+      const items = result.ingredients.map((value) =>
+        createIngredientItem(normalizeString(value)),
+      )
+      result.ingredients = [createIngredientGroup(null, items)]
     }
   }
 
