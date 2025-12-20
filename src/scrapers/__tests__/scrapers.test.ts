@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 import path from 'node:path'
+import z from 'zod'
 import { AbstractScraper } from '@/abstract-scraper'
 import { LogLevel } from '@/logger'
 import { scrapers } from '@/scrapers/_index'
@@ -70,12 +71,24 @@ function runTestSuite(host: string, htmlFiles: string[], jsonFiles: string[]) {
       const expectedData: RecipeObject = await Bun.file(jsonFile).json()
 
       describe(fileName, () => {
-        it('should correctly parse the recipe', async () => {
+        it('should correctly parse and validate the recipe', async () => {
           const scraper = new Scraper(htmlContent, host, {
             logLevel: LogLevel.WARN,
           })
-          const data: RecipeObject = await scraper.toObject()
+          const data: RecipeObject = await scraper.toRecipeObject()
           expect(data).toEqual(expectedData)
+
+          const parsedResult = await scraper.safeParse()
+
+          if (!parsedResult.success) {
+            console.error(z.prettifyError(parsedResult.error))
+          }
+
+          expect(parsedResult.success).toBe(true)
+
+          if (parsedResult.success) {
+            expect(parsedResult.data).toMatchObject(expectedData)
+          }
         })
       })
     }

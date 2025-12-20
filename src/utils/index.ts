@@ -2,6 +2,10 @@ export function isDefined<T>(value: T | undefined): value is T {
   return value !== undefined
 }
 
+export function isNull<T>(value: T | null): value is null {
+  return value === null
+}
+
 // biome-ignore lint/complexity/noBannedTypes: allowed here
 export function isFunction(value: unknown): value is Function {
   return typeof value === 'function'

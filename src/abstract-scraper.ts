@@ -1,4 +1,7 @@
 import * as cheerio from 'cheerio'
+import type z from 'zod'
+import type { RecipeObjectValidated } from '@/schemas/recipe.schema'
+import { RecipeObjectSchema } from '@/schemas/recipe.schema'
 import type { ExtractorPlugin } from './abstract-extractor-plugin'
 import type { PostProcessorPlugin } from './abstract-postprocessor-plugin'
 import { NotImplementedException } from './exceptions'
@@ -191,7 +194,7 @@ export abstract class AbstractScraper {
   /**
    * Converts the scraper's data into a JSON-serializable object.
    */
-  public async toObject(): Promise<RecipeObject> {
+  public async toRecipeObject(): Promise<RecipeObject> {
     const {
       category,
       cuisine,
@@ -213,5 +216,38 @@ export abstract class AbstractScraper {
       nutrients: Object.fromEntries(nutrients),
       reviews: Object.fromEntries(reviews),
     }
+  }
+
+  /**
+   * Get the Zod schema to use for validation.
+   * Subclasses can override to provide custom schemas.
+   */
+  protected getSchema() {
+    return RecipeObjectSchema
+  }
+
+  /**
+   * Extract and validate recipe data.
+   * Throws ZodError if validation fails.
+   *
+   * @returns Validated recipe object
+   * @throws {ZodError} If validation fails
+   */
+  async parse(): Promise<RecipeObjectValidated> {
+    const raw = await this.toRecipeObject()
+    const schema = this.getSchema()
+    return schema.parse(raw)
+  }
+
+  /**
+   * Extract and validate recipe data without throwing.
+   * Returns a result object indicating success or failure.
+   *
+   * @returns Result object with either data or error
+   */
+  async safeParse(): Promise<z.ZodSafeParseResult<RecipeObjectValidated>> {
+    const raw = await this.toRecipeObject()
+    const schema = this.getSchema()
+    return schema.safeParse(raw)
   }
 }

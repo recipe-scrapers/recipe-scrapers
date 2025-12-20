@@ -104,7 +104,7 @@ describe('AbstractScraper utility methods', () => {
 // Test subclass overriding extract, canonicalUrl, language, links, and host
 class TestScraper extends AbstractScraper {
   static host(): string {
-    return 'hostVal'
+    return 'host.test'
   }
 
   // Provide no real HTML parsing
@@ -134,49 +134,50 @@ class TestScraper extends AbstractScraper {
   }
 }
 
-describe('AbstractScraper.toObject', () => {
-  it('returns a fully serialized RecipeObject', async () => {
-    // Prepare mock values
-    const mockValues: Partial<Record<keyof RecipeFields, unknown>> = {
-      siteName: 'site',
-      author: 'auth',
-      title: 'ttl',
-      image: 'img',
-      description: 'desc',
-      yields: '4 servings',
-      totalTime: 30,
-      cookTime: 10,
-      prepTime: 20,
-      cookingMethod: 'bake',
-      ratings: 4.2,
-      ratingsCount: 100,
-      category: new Set(['cat1', 'cat2']),
-      cuisine: new Set(['cui']),
-      dietaryRestrictions: new Set(['veg']),
-      equipment: new Set(['pan']),
-      ingredients: stringsToIngredients(['ing1', 'ing2']),
-      instructions: stringsToInstructions(['step1', 'step2']),
-      keywords: new Set(['kw1']),
-      nutrients: new Map([['cal', '200kcal']]),
-      reviews: new Map([['rev1', 'Good']]),
-      canonicalUrl: 'http://can.url',
-      language: 'en-US',
-      links: [{ href: 'http://link', text: 'LinkText' }],
-    }
+describe('AbstractScraper.toRecipeObject', () => {
+  const createMockValues = (): Partial<
+    Record<keyof RecipeFields, unknown>
+  > => ({
+    siteName: 'site',
+    author: 'auth',
+    title: 'ttl',
+    image: 'https://host.test/image.jpg',
+    description: 'desc',
+    yields: '4 servings',
+    totalTime: 30,
+    cookTime: 10,
+    prepTime: 20,
+    cookingMethod: 'bake',
+    ratings: 4.2,
+    ratingsCount: 100,
+    category: new Set(['cat1', 'cat2']),
+    cuisine: new Set(['cui']),
+    dietaryRestrictions: new Set(['veg']),
+    equipment: new Set(['pan']),
+    ingredients: stringsToIngredients(['ing1', 'ing2']),
+    instructions: stringsToInstructions(['step1', 'step2']),
+    keywords: new Set(['kw1']),
+    nutrients: new Map([['cal', '200kcal']]),
+    reviews: new Map([['rev1', 'Good']]),
+    canonicalUrl: 'https://host.test/recipe',
+    language: 'en-US',
+    links: [{ href: 'https://host.test/link', text: 'LinkText' }],
+  })
 
-    const scraper = new TestScraper(mockValues)
-    const result = await scraper.toObject()
+  it('returns a fully serialized RecipeObject', async () => {
+    const scraper = new TestScraper(createMockValues())
+    const result = await scraper.toRecipeObject()
 
     // Basic scalar fields
     const expectedRest = {
-      host: 'hostVal',
+      host: 'host.test',
       siteName: 'site',
       author: 'auth',
       title: 'ttl',
-      image: 'img',
-      canonicalUrl: 'http://can.url',
+      image: 'https://host.test/image.jpg',
+      canonicalUrl: 'https://host.test/recipe',
       language: 'en-US',
-      links: [{ href: 'http://link', text: 'LinkText' }],
+      links: [{ href: 'https://host.test/link', text: 'LinkText' }],
       description: 'desc',
       yields: '4 servings',
       totalTime: 30,
@@ -209,5 +210,32 @@ describe('AbstractScraper.toObject', () => {
       nutrients: { cal: '200kcal' },
       reviews: { rev1: 'Good' },
     })
+  })
+
+  it('validates and normalizes recipe data via parse()', async () => {
+    const scraper = new TestScraper(createMockValues())
+    const parsed = await scraper.parse()
+
+    expect(parsed.host).toBe('host.test')
+    expect(parsed.canonicalUrl).toBe('https://host.test/recipe')
+    expect(parsed.image).toBe('https://host.test/image.jpg')
+    expect(parsed.links).toEqual([
+      { href: 'https://host.test/link', text: 'LinkText' },
+    ])
+  })
+
+  it('returns a failed safeParse result when validation fails', async () => {
+    const scraper = new TestScraper({
+      ...createMockValues(),
+      image: 'invalid-url',
+    })
+
+    const result = await scraper.safeParse()
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(
+        result.error.issues.some((issue) => issue.path[0] === 'image'),
+      ).toBe(true)
+    }
   })
 })

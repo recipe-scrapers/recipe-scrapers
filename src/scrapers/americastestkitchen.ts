@@ -1,4 +1,4 @@
-import z from 'zod/v4'
+import z from 'zod'
 import { AbstractScraper } from '@/abstract-scraper'
 import type { Ingredients, RecipeFields } from '@/types/recipe.interface'
 import {
