@@ -212,7 +212,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Schema.org Recipe specification](https://schema.org/Recipe)
 - [Cheerio](https://cheerio.js.org/) for HTML parsing
 - [Zod](https://zod.dev/) for schema validation
-- [parse-ingredient](https://github.com/jakeboone02/parse-ingredient)] for ingredient parsing
+- [parse-ingredient](https://github.com/jakeboone02/parse-ingredient) for ingredient parsing
 
 ## Copyright and Usage
 
