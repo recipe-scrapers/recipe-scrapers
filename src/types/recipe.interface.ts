@@ -1,43 +1,48 @@
+import type { z } from 'zod'
+import type {
+  IngredientGroupSchema,
+  IngredientItemSchema,
+  InstructionGroupSchema,
+  InstructionItemSchema,
+  LinkSchema,
+} from '@/schemas/recipe.schema'
+
 export type List = Set<string>
 
-export interface IngredientItem {
-  /** The ingredient value/text */
-  value: string
-}
+/**
+ * A single ingredient item
+ */
+export type IngredientItem = z.infer<typeof IngredientItemSchema>
 
-export interface IngredientGroup {
-  /**
-   * Display name (e.g., "For the dough", "For the filling"),
-   * or null for ungrouped ingredients
-   */
-  name: string | null
-  /** List of ingredients in this group */
-  items: IngredientItem[]
-}
+/**
+ * A group of ingredients with an optional group name
+ */
+export type IngredientGroup = z.infer<typeof IngredientGroupSchema>
 
+/**
+ * All recipe ingredients as an array of groups
+ */
 export type Ingredients = IngredientGroup[]
 
-export interface InstructionItem {
-  /** The instruction step text */
-  value: string
-}
+/**
+ * A single instruction step
+ */
+export type InstructionItem = z.infer<typeof InstructionItemSchema>
 
-export interface InstructionGroup {
-  /**
-   * Display name (e.g., "For the dough", "For the filling"),
-   * or null for ungrouped instructions
-   */
-  name: string | null
-  /** List of instruction steps in this group */
-  items: InstructionItem[]
-}
+/**
+ * A group of instruction steps with an optional group name
+ */
+export type InstructionGroup = z.infer<typeof InstructionGroupSchema>
 
+/**
+ * All recipe instructions as an array of groups
+ */
 export type Instructions = InstructionGroup[]
 
-export interface Link {
-  href: string
-  text: string
-}
+/**
+ * A link with href and display text
+ */
+export type Link = z.infer<typeof LinkSchema>
 
 export interface RecipeData {
   /**
@@ -263,6 +268,10 @@ export type OptionalRecipeFields = Pick<
   | 'keywords'
 >
 
+/**
+ * The validated recipe object output from the schema.
+ * This represents a recipe that has passed all validation rules.
+ */
 export interface RecipeObject
   extends Omit<
     RecipeData,
