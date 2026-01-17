@@ -49,16 +49,11 @@ export class IngredientParserPlugin extends PostProcessorPlugin {
 
     // parseIngredient returns an array, we take the first result
     // since we're parsing one ingredient at a time
-    const result = parsed[0]
-
-    if (!result) {
-      // If parsing failed, return the item unchanged
-      return item
-    }
+    const parsedIngredient = parsed[0] ?? null
 
     return {
       value: item.value,
-      parsed: result,
+      parsed: parsedIngredient,
     }
   }
 }

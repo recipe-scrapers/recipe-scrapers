@@ -46,7 +46,7 @@ export const IngredientItemSchema = z.object({
    * Parsed ingredient data from the parse-ingredient library.
    * Only present when parsing is enabled via `parseIngredients` option.
    */
-  parsed: ParsedIngredientSchema.optional(),
+  parsed: ParsedIngredientSchema.optional().nullable(),
 })
 
 /**
