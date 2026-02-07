@@ -1,3 +1,4 @@
+import * as cheerio from 'cheerio'
 import { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isString } from '@/utils'
@@ -59,16 +60,13 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
   }
 
   private stripHtml(html: string): string {
-    // Simple regex approach (could use a proper HTML parser)
-    return html
-      .replace(/<[^>]*>/g, '') // Remove HTML tags
-      .replace(/&amp;/g, '&') // Decode common entities
-      .replace(/&nbsp;/g, ' ')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"')
-      .replace(/&#34;/g, '"')
-      .replace(/&#39;/g, "'")
-      .trim()
+    const $ = cheerio.load(html, null, false)
+    return (
+      $.root()
+        .text()
+        // Cheerio decodes &nbsp; as non-breaking space (U+00A0), normalize to regular space
+        .replace(/\u00a0/g, ' ')
+        .trim()
+    )
   }
 }

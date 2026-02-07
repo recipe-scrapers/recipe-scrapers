@@ -80,6 +80,14 @@ describe('HtmlStripperPlugin', () => {
     expect(output[1].items.map((i) => i.value)).toEqual(['3 apples'])
   })
 
+  it('decodes all HTML entities', () => {
+    expect(plugin.process('title', 'Cr&egrave;me br&ucirc;l&eacute;e')).toBe(
+      'Crème brûlée',
+    )
+    expect(plugin.process('title', '&#x27;quoted&#x27;')).toBe("'quoted'")
+    expect(plugin.process('title', '100&deg;C')).toBe('100°C')
+  })
+
   it('returns value unchanged for non-target fields', () => {
     expect(plugin.process('category', new Set(['<b>cat</b>']))).toEqual(
       new Set(['<b>cat</b>']),
