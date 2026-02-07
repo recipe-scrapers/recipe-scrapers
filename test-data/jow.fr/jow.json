@@ -1,0 +1,124 @@
+{
+  "author": "Jow",
+  "canonicalUrl": "https://jow.fr/recipes/tartine-a-la-provencale-et-oeuf-mollet-8xrr5dkz6fc002uv0ihv",
+  "cookTime": 6,
+  "cookingMethod": null,
+  "description": "Un petit goût de Provence pour un repas sur le pouce !",
+  "host": "jow.fr",
+  "image": "https://static.jow.fr/550x550/patterns/raddish-01-202309.png_merge_recipes/Ub9KZwLRZ8GsVA.png.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 tran. Pain de campagne (tranché)"
+        },
+        {
+          "value": "30 g Fromage frais"
+        },
+        {
+          "value": "80 g Ratatouille"
+        },
+        {
+          "value": "1 Œuf"
+        },
+        {
+          "value": "1 poignée Salade (Mélange)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Faites cuire les œufs pendant 6 minutes dans une casserole d'eau bouillante. Une fois cuits, plongez-les dans de l'eau froide pour stopper la cuisson. Enlevez la coquille délicatement. Réservez."
+        },
+        {
+          "value": "Pendant ce temps, réchauffez la ratatouille à la casserole ou au micro-ondes. Mélangez."
+        },
+        {
+          "value": "Faites toaster les tranches de pain au grille-pain ou à la poêle."
+        },
+        {
+          "value": "Tartinez les tranches de pain de fromage frais, puis ajoutez la ratatouille par-dessus."
+        },
+        {
+          "value": "Servez les tartines avec une salade verte et l'œuf mollet par-dessus. Salez, poivrez et ajoutez un filet d'huile d'olive. C'est prêt !"
+        }
+      ]
+    }
+  ],
+  "language": "fr",
+  "prepTime": 1,
+  "ratings": 4.8,
+  "ratingsCount": 1210,
+  "siteName": "Jow",
+  "title": "Tartine à la provençale & œuf mollet",
+  "totalTime": 7,
+  "yields": "1 serving",
+  "category": ["Sandwich/Toast/Tartines (froid)"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "sandwich",
+    "tartine",
+    "toast",
+    "bruschetta",
+    "brunch",
+    "ratatouille",
+    "fromage frais",
+    "œuf",
+    "salade",
+    "rapide",
+    "facile",
+    "express",
+    "pain",
+    "philadelphia",
+    "st morêt",
+    "fromage à tartiner",
+    "fromage cottage",
+    "cottage",
+    "madame loïk",
+    "madame loïc",
+    "Ratatouille",
+    "œufs",
+    "blanc d'oeuf",
+    "jaune d'oeuf",
+    "oeuf",
+    "jeunes pousses",
+    "mesclun",
+    "casse-croûte",
+    "picnic",
+    "pique-nique",
+    "wrap",
+    "lunchbox",
+    "#positivefood",
+    "Positive Food",
+    "PositiveFood",
+    "Positivefood",
+    "enfant",
+    "familial",
+    "famille",
+    "enfants",
+    "à emporter",
+    "streetfood",
+    "street food",
+    "sans-porc",
+    "végé",
+    "veggie",
+    "vegie",
+    "végétarien",
+    "fast"
+  ],
+  "nutrients": {
+    "calories": "316 kcal",
+    "fatContent": "15 g",
+    "proteinContent": "14 g",
+    "carbohydrateContent": "25 g",
+    "fiberContent": "4 g"
+  },
+  "reviews": {}
+}

@@ -1,0 +1,73 @@
+{
+  "author": "Cuisine AZ",
+  "canonicalUrl": "https://www.cuisineaz.com/recettes/filet-de-saumon-au-four-63049.aspx",
+  "cookTime": 10,
+  "cookingMethod": null,
+  "description": "Toujours savoureux, jamais décevant, le filet de saumon au four est le succès assuré ! Bon pour la santé avec ses oméga-3, il marque de sacrés points côté nutrition. Et avec lui, pas besoin de fioritures, il se suffit à lui-même : un filet d'huile d'olive, de l'origan, du sel, du poivre, et hop, on enfourne ! Un délice légèrement croustillant sur le dessus, carrément fondant à l'intérieur, à servir avec une salade verte bien assaisonnée et du riz basmati.",
+  "host": "cuisineaz.com",
+  "image": "https://img.cuisineaz.com/660x660/2014/02/24/i78436-filet-de-saumon-au-four.jpeg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "600 g Filet de saumon"
+        },
+        {
+          "value": "30 ml Huile d'olive"
+        },
+        {
+          "value": "4 g Origan séché"
+        },
+        {
+          "value": "1 pincée(s) Sel"
+        },
+        {
+          "value": "1 pincée(s) Poivre"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Etape 1"
+        },
+        {
+          "value": "Préchauffez le four th.7 (210°C). Coupez le filet en pavés de saumon de même taille, correspondant au nombre de parts désirées, et déposez-les sur une plaque huilée ou dans un plat à four. Arrosez-les d'huile d'olive. Salez et poivrez à votre convenance et parsemez d'origan."
+        },
+        {
+          "value": "Etape 2"
+        },
+        {
+          "value": "Disposez le plat ou la plaque au centre du four. Comptez environ 10 min pour un filet de 2 à 2,5 cm d'épaisseur. Le temps nécessaire à la bonne cuisson du saumon dépend non seulement de l'épaisseur des pavés mais aussi de la température réelle de votre four, c'est pourquoi il est important de vérifier régulièrement la cuisson du saumon à l'aide d'une fourchette."
+        },
+        {
+          "value": "Etape 3"
+        },
+        {
+          "value": "Lorsque vos pavés de saumon sont cuits, servez-les immédiatement, accompagnés d'une bonne salade bien assaisonnée, et éventuellement d'une belle timbale de riz basmati."
+        }
+      ]
+    }
+  ],
+  "language": "fr",
+  "prepTime": 5,
+  "ratings": 4.9,
+  "ratingsCount": 18,
+  "siteName": "Cuisine AZ",
+  "title": "Filet de saumon au four",
+  "totalTime": 15,
+  "yields": "4 servings",
+  "category": ["Viandes"],
+  "cuisine": ["French"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [],
+  "nutrients": {
+    "calories": "339 calories"
+  },
+  "reviews": {}
+}
