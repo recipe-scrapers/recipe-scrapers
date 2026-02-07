@@ -1,0 +1,95 @@
+{
+  "author": "JackieOhNo!",
+  "canonicalUrl": "https://www.food.com/recipe/chicken-noodle-soup-with-carrots-parsnips-and-dill-454415",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "This is a variation on my family's favorite chicken soup that I have already posted here. Lots of carrots and parsnips give it more of a sweet savor. The parsley actually balances the sweetness, though. To balance this effect, use the optional parsley, which is just slightly bitter. Sometimes I also add a diced turnip if I have one. For the noodles, I like to use tagliolini nests, which you can usually find in the imported pasta section. I prefer a thin noodle for this soup, but you can certainly use whatever is your preference.",
+  "host": "food.com",
+  "image": "https://img.sndimg.com/food/image/upload/q_92,fl_progressive,w_1200,c_scale/v1/img/recipes/45/44/15/IoYo06IEQoD16Ti6nVPV_parsnip-chicken-noodle-soup-5210.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "8 cups low sodium chicken broth"
+        },
+        {
+          "value": "1 onion, chopped"
+        },
+        {
+          "value": "4 carrots, halved lengthwise and cut crosswise into 1-inch pieces"
+        },
+        {
+          "value": "4 parsnips, halved lengthwise and cut crosswise into 1-inch pieces"
+        },
+        {
+          "value": "1 1/2 teaspoons salt"
+        },
+        {
+          "value": "1/4 teaspoon fresh ground black pepper"
+        },
+        {
+          "value": "1 split chicken breast"
+        },
+        {
+          "value": "1 cup noodles (about 2 ounces)"
+        },
+        {
+          "value": "1/4 cup chopped fresh dill"
+        },
+        {
+          "value": "1/4 cup chopped fresh parsley"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a large pot, combine the broth, onion, carrots, parsnips, salt, and pepper and bring to a simmer. Add the chicken breasts to the pot and simmer until jfor about 20 minutes, until cooked. Remove the chicken and let rest. When cool enough to handle, remove skin and bones and chop or shred intobite-size pieces."
+        },
+        {
+          "value": "While chicken is cooling, bring the soup back to a simmer and stir the noodles into the soup. Simmer until the vegetables are tender and the noodles are done, about 5 minutes. Return the chicken pieces to the pot and then stir in the dill and the parsley."
+        }
+      ]
+    }
+  ],
+  "language": "en",
+  "prepTime": 45,
+  "ratings": 5,
+  "ratingsCount": 2,
+  "siteName": "Food.com",
+  "title": "Chicken Noodle Soup With Carrots, Parsnips and Dill",
+  "totalTime": 45,
+  "yields": "4 servings",
+  "category": ["Chicken Breast"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "Chicken",
+    "Poultry",
+    "Vegetable",
+    "Meat",
+    "Spring",
+    "Winter",
+    "Weeknight",
+    "< 60 Mins",
+    "Beginner Cook",
+    "Easy"
+  ],
+  "nutrients": {
+    "calories": "213.6",
+    "fatContent": "6.9",
+    "saturatedFatContent": "2",
+    "cholesterolContent": "31.2",
+    "sodiumContent": "1086.5",
+    "carbohydrateContent": "21.3",
+    "fiberContent": "2.7",
+    "sugarContent": "4.9",
+    "proteinContent": "19.5"
+  },
+  "reviews": {}
+}

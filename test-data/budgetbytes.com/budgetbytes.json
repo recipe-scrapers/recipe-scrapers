@@ -1,0 +1,88 @@
+{
+  "author": "Monti - Budget Bytes",
+  "canonicalUrl": "https://www.budgetbytes.com/smash-burger/",
+  "cookTime": 30,
+  "cookingMethod": null,
+  "description": "If you love a meaty, juicy burger patty with loads of crispy edges and tons of smoky crooks and crannies for your favorite sauce or cheese to sink into, this Smash Burger recipe is for you!",
+  "host": "budgetbytes.com",
+  "image": "https://www.budgetbytes.com/wp-content/uploads/2023/05/Smash-Burger-plated.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 lb ground beef ($6.99)"
+        },
+        {
+          "value": "4 Tbsp frozen salted butter, divided ($0.56)"
+        },
+        {
+          "value": "3 tsp Homemade Burger Seasoning ($0.33)"
+        },
+        {
+          "value": "4 burger buns ($2.99)"
+        },
+        {
+          "value": "4 leaves iceberg lettuce ($0.37)"
+        },
+        {
+          "value": "1 tomato, sliced into thin rounds ($0.45)"
+        },
+        {
+          "value": "1/4 small red onion, sliced into thin rounds ($0.16)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Separate the ground beef into four equal portions."
+        },
+        {
+          "value": "Grate 1/2 tablespoon of frozen butter onto each portion. Wrap the meat around the butter and shape it into a ball. Chill the beef until you are ready to cook. Place an ungreased cast iron skillet over high heat. Turn on your exhaust fan. Open a window."
+        },
+        {
+          "value": "When the skillet is smoking hot, sprinkle a 3/4 teaspoon of burger seasoning all over the beef ball, then place it in the pan."
+        },
+        {
+          "value": "Smash down with a spatula and keep the spatula on the burger as it cooks. When you see the top of the patty change color (about 2 minutes), carefully work the spatula under the patty. Take your time with this step, as the patty will be stuck to the pan.*"
+        },
+        {
+          "value": "When you have loosened the patty, flip it and smash it again. Cook for 2 minutes more, remove the patty from the pan, and rest it on a cooling rack. Wipe the pan down with a paper towel and cook the remaining patties."
+        },
+        {
+          "value": "While the patties rest, place a rack in the top third of your oven and put it on broil. Melt the remaining 2 tablespoons of butter and brush it onto the inside of the buns. Place them buttered side up on a sheet pan and toast in the oven for a few minutes until golden."
+        },
+        {
+          "value": "Assemble the burgers. Place the burger on the bottom bun and top with onion rounds, tomato slices, and lettuce. Add the top bun and enjoy the crispiest, smokiest, burger ever!"
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 10,
+  "ratings": 4.5,
+  "ratingsCount": 20,
+  "siteName": "Budget Bytes",
+  "title": "Smash Burgers",
+  "totalTime": 40,
+  "yields": "4 servings",
+  "category": ["Dinner", "Lunch"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Burger Seasoning", "Cheese Burger", "Smash Burger"],
+  "nutrients": {
+    "servingSize": "1 burger",
+    "calories": "516 kcal",
+    "carbohydrateContent": "23 g",
+    "proteinContent": "24 g",
+    "fatContent": "36 g",
+    "sodiumContent": "453 mg",
+    "fiberContent": "1 g"
+  },
+  "reviews": {}
+}

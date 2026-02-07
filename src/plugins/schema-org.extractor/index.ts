@@ -408,23 +408,23 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public author(): RecipeFields['author'] {
-    let author = this.recipe.author
-    let authorName: string | undefined
+    let author: unknown = this.recipe.author
 
     if (Array.isArray(author) && author.length > 0) {
       author = author[0]
     }
 
-    if (isBaseType(author)) {
-      const key = this.getIdOrUrl(author)
+    if (isPlainObject(author)) {
+      const key = this.pickFromObject(author, ['@id', 'url'])
+
       if (key && this.people[key]) {
         author = this.people[key]
       }
 
-      authorName = author.name?.toString()
+      author = (author as { name?: unknown }).name?.toString()
     }
 
-    authorName = normalizeString(authorName)
+    const authorName = normalizeString(isString(author) ? author : undefined)
 
     if (!authorName) {
       throw new SchemaOrgException('author')
