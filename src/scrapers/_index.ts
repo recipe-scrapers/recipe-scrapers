@@ -6,6 +6,7 @@ import { BBCGoodFood } from './bbcgoodfood'
 import { CuisineAZ } from './cuisineaz'
 import { EatingWell } from './eatingwell'
 import { Epicurious } from './epicurious'
+import { G750g } from './g750g'
 import { Jow } from './jow'
 import { NYTimes } from './nytimes'
 import { SeriousEats } from './seriouseats'
@@ -23,6 +24,7 @@ export const scrapers = {
   [CuisineAZ.host()]: CuisineAZ,
   [EatingWell.host()]: EatingWell,
   [Epicurious.host()]: Epicurious,
+  [G750g.host()]: G750g,
   [Jow.host()]: Jow,
   [SeriousEats.host()]: SeriousEats,
   [SimplyRecipes.host()]: SimplyRecipes,

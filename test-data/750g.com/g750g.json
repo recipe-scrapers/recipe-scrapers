@@ -1,0 +1,95 @@
+{
+  "author": "750g La Table",
+  "canonicalUrl": "https://750g.com/",
+  "cookTime": 15,
+  "cookingMethod": null,
+  "description": "La petite salade détox parfaite pour un déjeuner vitaminé au coeur de l'hiver",
+  "host": "750g.com",
+  "image": "https://static.750g.com/images/600-600/72dcbbdc4c59e14ea2e93632904fc482/salade-de-carottes-cuites-et-crues-a-l-orange.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "500g de carottes"
+        },
+        {
+          "value": "3 jus d'orange"
+        },
+        {
+          "value": "1 c.c de coriandre en grain"
+        },
+        {
+          "value": "1 branche de thym"
+        },
+        {
+          "value": "30g d'huile d'olive"
+        },
+        {
+          "value": "2 oranges"
+        },
+        {
+          "value": "1 fenouil"
+        },
+        {
+          "value": "10 cl de vinaigrette citron"
+        },
+        {
+          "value": "500 g de carottes"
+        },
+        {
+          "value": "1/4 de botte de coriandre hachée"
+        },
+        {
+          "value": "Sel"
+        },
+        {
+          "value": "Piment d'Espelette"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Étape 1 : Cuisson des carottes Découpez les carottes en rondelles et faites-les revenir à feu moyen à l'huile d'olive avec les graines de coriandre grossièrement concassées."
+        },
+        {
+          "value": "Déglacez au jus d'orange."
+        },
+        {
+          "value": "Ajoutez la branche de thym ainsi que l'assaisonnement."
+        },
+        {
+          "value": "Laissez cuire avec un couvercle une dizaine de minutes puis laissez refroidir. Étape 2 : Préparation de la salade Râpez les carottes."
+        },
+        {
+          "value": "Dans un saladier, mélangez les carottes râpées, les carottes cuites, le fenouil et les oranges en cubes."
+        },
+        {
+          "value": "Ajoutez la vinaigrette et mélangez."
+        },
+        {
+          "value": "Ajoutez la coriandre ciselée et le piment d'espelette."
+        }
+      ]
+    }
+  ],
+  "language": "fr",
+  "prepTime": 20,
+  "ratings": 4,
+  "ratingsCount": 1,
+  "siteName": "750 Grammes",
+  "title": "Salade de carottes cuites et crues à l'orange",
+  "totalTime": 35,
+  "yields": "6 servings",
+  "category": ["Salades"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["salade de carottes", "salade de carottes cuites"],
+  "nutrients": {},
+  "reviews": {}
+}

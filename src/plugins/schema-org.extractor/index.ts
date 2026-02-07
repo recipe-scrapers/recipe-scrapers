@@ -1,4 +1,5 @@
 import type { CheerioAPI } from 'cheerio'
+import { jsonrepair } from 'jsonrepair'
 import type { AggregateRating } from 'schema-dts'
 import { ExtractorPlugin } from '@/abstract-extractor-plugin'
 import {
@@ -116,7 +117,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
         const json = this.$(el).html()?.trim()
 
         if (json) {
-          const data = JSON.parse(json)
+          const data = this.parseJsonLd(json)
 
           if (Array.isArray(data)) {
             for (const item of data) {
@@ -132,6 +133,14 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
         this.logger.warn('Failed to parse JSON-LD', error)
       }
     })
+  }
+
+  private parseJsonLd(json: string): unknown {
+    try {
+      return JSON.parse(json)
+    } catch {
+      return JSON.parse(jsonrepair(json))
+    }
   }
 
   /**
