@@ -16,16 +16,14 @@ A TypeScript/JavaScript library for scraping recipe data from various cooking we
 
 ## Installation
 
-Add the `recipe-scrapers-js` package and its peer dependencies.
-
 ```bash
-npm install recipe-scrapers-js cheerio zod
+npm install recipe-scrapers-js
 # or
-yarn add recipe-scrapers-js cheerio zod
+yarn add recipe-scrapers-js
 # or
-pnpm add recipe-scrapers-js cheerio zod
+pnpm add recipe-scrapers-js
 # or
-bun add recipe-scrapers-js cheerio zod
+bun add recipe-scrapers-js
 ```
 
 ## Usage
