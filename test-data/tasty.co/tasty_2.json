@@ -1,0 +1,174 @@
+{
+  "author": "Scott Loitsch",
+  "canonicalUrl": "https://tasty.co/recipe/homemade-cinnamon-rolls",
+  "cookTime": 30,
+  "cookingMethod": null,
+  "description": "There's nothing better than waking up to a fresh batch of ooey, gooey cinnamon rolls straight from the oven. This recipe starts with a soft, pillowy dough enriched with butter and milk. The dough is generously sprinkled with a mixture of butter, brown sugar, and cinnamon for a sweet and aromatic filling that will fill your kitchen as it bakes. Once out of the oven, these golden-brown beauties are crowned with a luscious cream cheese icing, adding a tanginess that balances the sweetness perfectly. Homemade cinnamon rolls are a nostalgic indulgence that brings joy to any breakfast or brunch table.",
+  "host": "tasty.co",
+  "image": "https://img.buzzfeed.com/video-api-prod/assets/9d589367531e4c12a4937e30e521c865/fbthumb.jpg?resize=1200:*",
+  "ingredients": [
+    {
+      "name": "Dough",
+      "items": [
+        {
+          "value": "½ cup unsalted butter, melted"
+        },
+        {
+          "value": "2 cups whole milk, warm to the touch"
+        },
+        {
+          "value": "½ cup granulated sugar"
+        },
+        {
+          "value": "2 ¼ teaspoons active dry yeast"
+        },
+        {
+          "value": "5 cups flour, divided"
+        },
+        {
+          "value": "1 teaspoon baking powder"
+        },
+        {
+          "value": "2 teaspoons salt"
+        }
+      ]
+    },
+    {
+      "name": "Filling",
+      "items": [
+        {
+          "value": "¾ cup butter, softened"
+        },
+        {
+          "value": "¾ cup light brown sugar"
+        },
+        {
+          "value": "2 tablespoons ground cinnamon"
+        }
+      ]
+    },
+    {
+      "name": "Frosting",
+      "items": [
+        {
+          "value": "4 oz cream cheese, softened"
+        },
+        {
+          "value": "2 tablespoons butter, melted"
+        },
+        {
+          "value": "2 tablespoons whole milk"
+        },
+        {
+          "value": "1 teaspoon vanilla extract"
+        },
+        {
+          "value": "1 cup powdered sugar"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Generously butter two disposable foil pie/cake pans."
+        },
+        {
+          "value": "In a large bowl, whisk together warm milk, melted butter, and granulated sugar. The mixture should be just warm, registering between 100-110˚F (37-43˚C). If it is hotter, allow to cool slightly."
+        },
+        {
+          "value": "Sprinkle the yeast evenly over the warm mixture and let set for 1 minute."
+        },
+        {
+          "value": "Add 4 cups (500g) of all-purpose flour to the milk mixture and mix with a wooden spoon until just combined."
+        },
+        {
+          "value": "Cover the bowl with a towel or plastic wrap and set in a warm place to rise for 1 hour."
+        },
+        {
+          "value": "After 1 hour, the dough should have nearly doubled in size."
+        },
+        {
+          "value": "Remove the towel and add an additional ¾ cup (95g) of flour, the baking powder, and salt. Stir well, then turn out onto a well-floured surface."
+        },
+        {
+          "value": "Knead the dough lightly, adding additional flour as necessary, until the dough just loses its stickiness and does not stick to the surface."
+        },
+        {
+          "value": "Roll the dough out into a large rectangle, about ½-inch (1 cm) thick. Fix corners to make sure they are sharp and even."
+        },
+        {
+          "value": "Spread the softened butter evenly over the dough."
+        },
+        {
+          "value": "Sprinkle evenly with brown sugar and a generous sprinkling of cinnamon."
+        },
+        {
+          "value": "Press the mixture into the butter."
+        },
+        {
+          "value": "Roll up the dough, forming a log, and pinch the seam closed. Place seam-side down. Trim off any unevenness on either end."
+        },
+        {
+          "value": "Cut the log in half, then divide each half into 7 evenly sized pieces. About 1½ inches (8cm) thick each."
+        },
+        {
+          "value": "Place 7 cinnamon rolls in each cake pan, one in the center, six around the sides. Cover with plastic wrap and place in a warm place to rise for 30 minutes."
+        },
+        {
+          "value": "Preheat oven to 350˚F (180˚C)."
+        },
+        {
+          "value": "To prepare the frosting. In a medium-size mixing bowl, whisk together cream cheese, butter, whole milk, vanilla, and powdered sugar, until smooth."
+        },
+        {
+          "value": "Remove plastic wrap. Bake the cinnamon rolls in a preheated oven for 25-30 minutes, until golden brown."
+        },
+        {
+          "value": "While still warm, drizzle evenly with frosting."
+        },
+        {
+          "value": "Enjoy!"
+        }
+      ]
+    }
+  ],
+  "language": "en",
+  "prepTime": 30,
+  "ratings": 4.9,
+  "ratingsCount": 19961,
+  "siteName": "Tasty",
+  "title": "Homemade Cinnamon Rolls Recipe by Tasty",
+  "totalTime": 151,
+  "yields": "14 servings",
+  "category": ["Desserts"],
+  "cuisine": ["Cuisine"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "bake sale",
+    "breakfast",
+    "cinnamon buns",
+    "cinnamon rolls",
+    "dessert",
+    "frosting",
+    "homemade",
+    "recipe",
+    "tasty",
+    "tasty_vegetarian",
+    "today food",
+    "video",
+    "yeast"
+  ],
+  "nutrients": {
+    "calories": "479 calories",
+    "carbohydrateContent": "63 grams",
+    "fatContent": "22 grams",
+    "fiberContent": "1 gram",
+    "proteinContent": "7 grams",
+    "sugarContent": "24 grams"
+  },
+  "reviews": {}
+}

@@ -1,0 +1,119 @@
+{
+  "author": "Riley Wofford",
+  "canonicalUrl": "https://www.delish.com/cooking/recipe-ideas/a40272839/apple-cookie-recipe/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "Apple cookies are packed with grated Granny Smith apples and topped with lemony apple pie spice icing.",
+  "host": "delish.com",
+  "image": "https://hips.hearstapps.com/hmg-prod/images/apple-cookies1-1656349038.jpg?crop=0.681xw:1.00xh;0.0696xw,0&resize=1200:*",
+  "ingredients": [
+    {
+      "name": "Cookie Dough",
+      "items": [
+        {
+          "value": "1 1/2 c. (180 g.) all-purpose flour"
+        },
+        {
+          "value": "1 tsp. apple pie spice"
+        },
+        {
+          "value": "3/4 tsp. baking soda"
+        },
+        {
+          "value": "1/2 tsp. kosher salt"
+        },
+        {
+          "value": "6 tbsp. (3/4 stick) butter, softened"
+        },
+        {
+          "value": "1/2 c. (100 g.) granulated sugar"
+        },
+        {
+          "value": "1/2 c. (107 g.) packed light brown sugar"
+        },
+        {
+          "value": "1 large egg"
+        },
+        {
+          "value": "1/2 tsp. pure vanilla extract"
+        },
+        {
+          "value": "1 medium tart apple (about 8 oz.; such as Granny Smith), cored, peeled, and grated (about 1 c.)"
+        }
+      ]
+    },
+    {
+      "name": "Icing",
+      "items": [
+        {
+          "value": "3/4 c. powdered sugar"
+        },
+        {
+          "value": "4 tsp. fresh lemon juice"
+        },
+        {
+          "value": "Pinch of apple pie spice"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "Cookie Dough",
+      "items": [
+        {
+          "value": "Preheat oven to 350°. Line 2 large baking sheets with parchment paper."
+        },
+        {
+          "value": "In a medium bowl, whisk flour, apple pie spice, baking soda, and salt."
+        },
+        {
+          "value": "In the bowl of a stand mixer fitted with the whisk attachment, beat butter, granulated sugar, and brown sugar on medium speed until light and fluffy, about 2 minutes. Add egg and mix until incorporated, then mix in vanilla. Add dry ingredients to butter mixture and beat until well combined. Stir in apples until just combined. Cover and chill dough until cold, about 30 minutes."
+        },
+        {
+          "value": "Scoop 2-tablespoon balls of dough (about 20 balls) and arrange 2\" apart on prepared sheets. Bake until cookies are just set and light golden brown, 14 to 18 minutes. Let cool completely."
+        }
+      ]
+    },
+    {
+      "name": "Icing",
+      "items": [
+        {
+          "value": "In a small bowl, whisk powdered sugar and lemon juice. Add water, 1 teaspoon at a time, until icing is thick but pourable."
+        },
+        {
+          "value": "Spoon icing over cooled cookies. Let stand until icing sets, about 15 minutes."
+        },
+        {
+          "value": "Make Ahead: Cookies can be made 2 days ahead. Store in an airtight container at room temperature."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 20,
+  "ratings": 3,
+  "ratingsCount": 3,
+  "siteName": "Delish",
+  "title": "Apple Cookies",
+  "totalTime": 100,
+  "yields": "20 servings",
+  "category": ["nut-free", "vegetarian", "autumn", "baking", "dessert"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["autumn", "baking", "dessert", "nut-free", "vegetarian"],
+  "nutrients": {
+    "calories": "128 Calories",
+    "fatContent": "4 g",
+    "saturatedFatContent": "2 g",
+    "transFatContent": "0 g",
+    "cholesterolContent": "18 mg",
+    "sodiumContent": "87 mg",
+    "carbohydrateContent": "22 g",
+    "fiberContent": "0 g",
+    "sugarContent": "15 g",
+    "proteinContent": "1 g"
+  },
+  "reviews": {}
+}
