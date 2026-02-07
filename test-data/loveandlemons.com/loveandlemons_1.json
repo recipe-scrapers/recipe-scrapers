@@ -1,0 +1,69 @@
+{
+  "author": "Jeanine Donofrio",
+  "canonicalUrl": "https://www.loveandlemons.com/green-smoothie/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "Our best green smoothie recipe! It's creamy, frosty, and refreshing. Adjust the amount of fruit to taste depending on how sweet you want your smoothie to be.",
+  "host": "loveandlemons.com",
+  "image": "https://cdn.loveandlemons.com/wp-content/uploads/2022/12/green-smoothie-recipes-500x500.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 cup frozen spinach or kale"
+        },
+        {
+          "value": "½ frozen banana"
+        },
+        {
+          "value": "½ tablespoon almond butter"
+        },
+        {
+          "value": "1 to 2 cups peeled and frozen orange segments (or frozen pineapple or mango chunks)"
+        },
+        {
+          "value": "½ teaspoon chia seeds (optional)"
+        },
+        {
+          "value": "1 cup almond milk (plus more as needed to blend)"
+        },
+        {
+          "value": "Handful of ice"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a blender, place the spinach, banana, almond butter, 1 cup frozen fruit, and chia seeds, if using. Add the almond milk and blend until smooth, adding more almond milk as needed to blend. Add the ice and blend again."
+        },
+        {
+          "value": "Taste and add more frozen fruit if you’d like your smoothie to be sweeter. Blend until smooth, adding more almond milk as needed."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 5,
+  "ratingsCount": 30,
+  "siteName": "Love and Lemons",
+  "title": "Green Smoothie",
+  "totalTime": 5,
+  "yields": "1 serving",
+  "category": ["Breakfast", "Snack"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "Green smoothie",
+    "Green smoothie recipe",
+    "Green smoothie recipes"
+  ],
+  "nutrients": {},
+  "reviews": {}
+}
