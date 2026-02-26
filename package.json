@@ -43,7 +43,7 @@
     "cooking"
   ],
   "scripts": {
-    "build": "tsdown src/index.ts --outdir dist",
+    "build": "tsdown",
     "test": "bun test",
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
