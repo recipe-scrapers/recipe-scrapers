@@ -6,6 +6,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/recipe-scrapers-1.0.2...recipe-scrapers-1.1.0) (2026-02-26)
+
+
+### Features
+
+* add allrecipes scraper ([43b480f](https://github.com/recipe-scrapers/recipe-scrapers/commit/43b480f4abf528bce9f4d26290a134f85cf490dc))
+* add AmericasTestKitchen & EatingWell scrapers ([d4062ef](https://github.com/recipe-scrapers/recipe-scrapers/commit/d4062ef5c89f6b8614122c46f2c11375c02621ed))
+* add BBCGoodFoods scraper ([35c7df3](https://github.com/recipe-scrapers/recipe-scrapers/commit/35c7df3ee6b6a560ae26fda24456a49cd23ef7dd))
+* add description to html stripper ([cddcc85](https://github.com/recipe-scrapers/recipe-scrapers/commit/cddcc85b99c96177f176f901ae90ddbccb9f3aab))
+* add seriouseats.com scraper ([395b852](https://github.com/recipe-scrapers/recipe-scrapers/commit/395b85265b205f53adae14fe5d1b2cdfbde27adc))
+* Add SimplyRecipes scraper ([3ec78f0](https://github.com/recipe-scrapers/recipe-scrapers/commit/3ec78f0f7104f673da3ea99fe4d635af27fbade2))
+* implement html stripper post processor ([a5b6690](https://github.com/recipe-scrapers/recipe-scrapers/commit/a5b6690c0ac5d735f2d6a2c829adf1b6a6fccb96))
+* ingredient parsing ([6147a8e](https://github.com/recipe-scrapers/recipe-scrapers/commit/6147a8e1d2bc42220d17653f1e0986730fe3e055))
+* recipe schema ([30dcf71](https://github.com/recipe-scrapers/recipe-scrapers/commit/30dcf717d60a4c54061fdf1ec4f7100064258d09))
+* schemaVersion; refactor optional links ([fbfc6a2](https://github.com/recipe-scrapers/recipe-scrapers/commit/fbfc6a2ef6260e9ee18b3ce9638f45246ca93539))
+
+
+### Bug Fixes
+
+* **americastestkitchen:** image extraction ([c3e9751](https://github.com/recipe-scrapers/recipe-scrapers/commit/c3e975187a29ad2bd68fe9d9e363b12e1818b870))
+* failed ingredient parse returns null ([0b19c65](https://github.com/recipe-scrapers/recipe-scrapers/commit/0b19c65946cd653132d10ae1d2dd671f4f8481fe))
+* ingredient group; text normalization ([9334484](https://github.com/recipe-scrapers/recipe-scrapers/commit/9334484839f869bc97aa48f0cf9bc9d42c9bd903))
+* instruction parsing ([afedfed](https://github.com/recipe-scrapers/recipe-scrapers/commit/afedfedd91763f78b3ea0385c61de85abfcd8c1d))
+* parse-yields edge case ([c78860b](https://github.com/recipe-scrapers/recipe-scrapers/commit/c78860b71f8018631c660c00010cd89f2ce17c5b))
+* remove www from hostname; strip &nbsp ([981cac1](https://github.com/recipe-scrapers/recipe-scrapers/commit/981cac1b99ee95ffb4a46cc4b70877f20494f0b4))
+* **SchemaOrgPlugin:** isThingType array check; handle JSON-LD arrays ([77bd3f2](https://github.com/recipe-scrapers/recipe-scrapers/commit/77bd3f2d8617add2b79f1ef471543898d2280ac2))
+* **SimplyRecipes:** instruction extraction ([4a17c2c](https://github.com/recipe-scrapers/recipe-scrapers/commit/4a17c2cfc17af6ae6d61b6b6bd2fc28ad88468f2))
+* zNonEmptyArray typing ([66c09b5](https://github.com/recipe-scrapers/recipe-scrapers/commit/66c09b57dd353856931802c37a09b1b8deb69cc7))
+
 ## [1.0.2] - 2026-02-26
 
 ### Changed
