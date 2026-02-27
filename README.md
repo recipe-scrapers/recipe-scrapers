@@ -131,6 +131,10 @@ interface ScraperOptions {
 
 This library supports recipe extraction from various popular cooking websites. The scraper automatically detects the appropriate parser based on the URL.
 
+## Copyright and Usage
+
+_**This library is for educational and personal use. Please respect the robots.txt files and terms of service of the websites you scrape.**_
+
 ## Development
 
 Project policy documents:
@@ -218,12 +222,6 @@ export class NewSiteScraper extends AbstractScraper {
 }
 ```
 
-## Contributing
-
-Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
-
-Project direction and maintainer decision rules are documented in [GOVERNANCE.md](./GOVERNANCE.md).
-
 ## Testing
 
 The project uses test data from the original Python recipe-scrapers repository to ensure compatibility and accuracy. Tests are written using Bun's built-in test runner.
@@ -236,10 +234,6 @@ bun test
 bun test:coverage
 ```
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - Original [recipe-scrapers](https://github.com/hhursev/recipe-scrapers) Python library by [hhursev](https://github.com/hhursev)
@@ -248,6 +242,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Zod](https://zod.dev/) for schema validation
 - [Standard Schema](https://github.com/standard-schema/standard-schema) for schema interoperability
 - [parse-ingredient](https://github.com/jakeboone02/parse-ingredient) for ingredient parsing
+
+## Contributing
+
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
+
+Project direction and maintainer decision rules are documented in [GOVERNANCE.md](./GOVERNANCE.md).
 
 ## Contributors
 
@@ -260,6 +260,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-## Copyright and Usage
+## License
 
-_**This library is for educational and personal use. Please respect the robots.txt files and terms of service of the websites you scrape.**_
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
