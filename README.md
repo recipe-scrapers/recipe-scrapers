@@ -186,9 +186,11 @@ bun run build
     bun process-test-data <host>
     ```
 
-3. Create a new scraper class extending `AbstractScraper`
-4. Implement the required methods for data extraction
-5. Add the scraper to the scrapers [registry](./src/scrapers/_index.ts)
+3. Choose the scraper type:
+   - **Schema.org-only host** (no site-specific extraction needed): add the hostname to `SCHEMA_ORG_ONLY_HOSTS` in [src/scrapers/_index.ts](./src/scrapers/_index.ts)
+   - **Custom scraper** (site-specific extraction needed): create a new scraper class extending `AbstractScraper`
+4. If using a custom scraper, add it to `customScraperClasses` in [src/scrapers/_index.ts](./src/scrapers/_index.ts)
+5. Add optional host aliases to `scraperAliases` in [src/scrapers/_index.ts](./src/scrapers/_index.ts) when needed
 6. Run tests to ensure the extraction works as expected
 7. Update documentation as needed
 

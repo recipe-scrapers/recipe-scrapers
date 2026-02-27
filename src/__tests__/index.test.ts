@@ -1,8 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import { getScraper, scrapeRecipe } from '@/index'
+import { getScraper, scrapeRecipe, scrapers } from '@/index'
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
-import { Food } from '@/scrapers/food'
 import { GenericScraper } from '@/scrapers/generic'
 import type { RecipeObject } from '@/types/recipe.interface'
 
@@ -57,7 +56,7 @@ const INVALID_SCHEMA_HTML = `
 describe('getScraper', () => {
   it('returns the site scraper for supported hosts', () => {
     const scraper = getScraper('https://food.com/recipe/1')
-    expect(scraper).toBe(Food)
+    expect(scraper).toBe(scrapers['food.com'])
   })
 
   it('throws for unsupported hosts by default', () => {
