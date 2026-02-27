@@ -1,363 +1,200 @@
 # Ingredients Architecture
 
-> **Note**: This document focuses specifically on the ingredients extraction system. For overall project architecture, see [Architecture](./architecture.md).
+This document focuses on ingredient extraction. For full system architecture, see
+[Architecture](./architecture.md).
 
 ## Overview
 
-The ingredients extraction system is designed to extract and structure recipe ingredients from various cooking websites. The system uses a multi-layered approach combining generic extraction plugins with site-specific scrapers to produce a consistent data structure.
+Ingredient extraction combines:
 
-## Data Structure
+1. generic structured-data extraction (Schema.org JSON-LD and microdata),
+2. optional site-specific regrouping in scrapers, and
+3. optional parsing into structured quantities/units via `parse-ingredient`.
 
-### Core Types
+## Data Model
+
+Core ingredient types live in `src/types/recipe.interface.ts` and are validated
+by schemas in `src/schemas/recipe.schema.ts`.
 
 ```typescript
 type ParsedIngredient = {
-  quantity: number | null         // Primary quantity (e.g., 2)
-  quantity2: number | null        // Secondary quantity for ranges (e.g., 1-2 cups)
-  unitOfMeasureID: string | null  // Normalized unit key (e.g., "cup")
-  unitOfMeasure: string | null    // Unit as written (e.g., "cups")
-  description: string             // Ingredient name (e.g., "flour")
-  isGroupHeader: boolean          // True if this is a section header
+  quantity: number | null
+  quantity2: number | null
+  unitOfMeasureID: string | null
+  unitOfMeasure: string | null
+  description: string
+  isGroupHeader: boolean
 }
 
 type IngredientItem = {
-  value: string              // The ingredient text, e.g., "1 1/2 cups flour"
-  parsed?: ParsedIngredient  // Structured data (optional, via parseIngredients option)
+  value: string
+  parsed?: ParsedIngredient | null
 }
 
 type IngredientGroup = {
-  name: string | null       // Group name, e.g., "For the dough" or null for default
-  items: IngredientItem[]   // Array of ingredients in this group
+  name: string | null
+  items: IngredientItem[]
 }
 
-type Ingredients = IngredientGroup[]  // Array of groups
+type Ingredients = IngredientGroup[]
 ```
-
-### Design Decisions
-
-**Why no IDs?**
-
-- Initially had `id` fields on both items and groups
-- Removed for simplicity - IDs added complexity without providing value
-- Groups and items are identified by their position in arrays
-
-**Why groups?**
-
-- Many recipes organize ingredients into sections (e.g., "For the crust", "For the filling")
-- Default group name is `null` for ungrouped ingredients
-- Preserves recipe structure and improves readability
 
 ## Extraction Flow
 
-### 1. Plugin-Based Extraction
+### 1) Structured Data Extraction
 
-The `RecipeExtractor` runs multiple extraction plugins in priority order:
+`SchemaOrgPlugin` extracts ingredients from schema.org content and converts them
+with `stringsToIngredients(...)`, which creates a single default group (`name: null`).
 
-```txt
-1. Schema.org Plugin (priority: 90)
-   ├─> Extracts from <script type="application/ld+json">
-   └─> Returns: Ingredients with clean, normalized text
+This gives clean, normalized ingredient text, but not section grouping.
 
-2. OpenGraph Plugin (priority: 50)
-   └─> Fallback for basic metadata
+### 2) Optional Site-Specific Regrouping
 
-3. PostProcessor Plugins (in priority order)
-   ├─> HtmlStripperPlugin (100): Removes HTML tags from text values
-   └─> IngredientParserPlugin (50): Parses ingredients into structured data*
+A site scraper can override `ingredients(prevValue)` and use `prevValue` as the
+input from plugins.
 
-*Only active when `parseIngredients` option is enabled
-```
+Common pattern:
 
-**Key Insight**: Schema.org JSON-LD provides **clean, well-formatted text**:
+1. flatten plugin ingredients with `flattenIngredients(prevValue)`
+2. parse page structure with selectors
+3. rebuild grouped ingredients with `groupIngredients(...)`
 
-- Proper spacing: `"1 1/2 cups flour"`
-- Normalized fractions: `"1/2"` instead of `"½"`
-- No HTML artifacts or concatenation issues
+### 3) Optional Ingredient Parsing
 
-### 2. Site-Specific Scrapers
+If scraper option `parseIngredients` is enabled, `IngredientParserPlugin`
+post-processes ingredient items and adds `item.parsed`.
 
-Scrapers extend `AbstractScraper` and can override any field extractor:
+Post-processor order:
+
+1. `HtmlStripperPlugin` (priority 100)
+2. `IngredientParserPlugin` (priority 50)
+
+## Flatten -> Regroup Pattern
+
+This pattern is useful when:
+
+- Schema.org text quality is high
+- HTML carries useful section structure (headings + list layout)
+
+Example skeleton:
 
 ```typescript
-class NYTimes extends AbstractScraper {
-  extractors = {
-    ingredients: this.ingredients.bind(this),
+import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
+import type { RecipeFields } from '@/types/recipe.interface'
+
+protected ingredients(
+  prevValue: RecipeFields['ingredients'] | undefined,
+): RecipeFields['ingredients'] {
+  if (!prevValue || prevValue.length === 0) {
+    throw new Error('No ingredients found')
   }
 
-  protected ingredients(prevValue: Ingredients | undefined): Ingredients {
-    // Custom logic here
-  }
+  const values = flattenIngredients(prevValue)
+
+  return groupIngredients(
+    this.$,
+    values,
+    'h3.some-group-heading',
+    'li.some-ingredient',
+  )
 }
 ```
 
-**The `prevValue` Parameter**:
+## `groupIngredients(...)` Behavior
 
-- Contains the result from plugin extraction (usually Schema.org)
-- Provides clean text that scrapers can restructure
-- Optional - scrapers can extract from scratch if needed
+`groupIngredients($, ingredientValues, headingSelector?, itemSelector?)`:
 
-## The Flatten→Regroup Pattern
+1. resolves selectors:
+   - if custom selectors are provided and both match DOM elements, they are used
+   - if custom selectors are provided but missing in the DOM, returns ungrouped fallback
+   - if no custom selectors are provided, tries built-in selector sets (WPRM/Tasty)
+   - if none match, returns ungrouped fallback
+2. checks ingredient count:
+   - compares unique, non-empty found HTML ingredient text count to `ingredientValues.length`
+   - on mismatch, returns ungrouped fallback
+3. walks headings and items in document order
+4. normalizes heading/item text with `normalizeString(...)`
+5. matches each HTML item to best candidate from `ingredientValues` using
+   fuzzy bigram similarity (`bestMatch`)
+6. returns grouped `Ingredients`
 
-### Why This Pattern Exists
+Notes:
 
-Many recipe websites have **structure in HTML** but **clean text in JSON-LD**:
+- matching is fuzzy, not exact
+- normalization trims and collapses whitespace (it does not lowercase)
+- fallback to ungrouped output is intentional for resilience
 
-**HTML Structure** (NYTimes example):
+## Current Utility Functions
 
-```html
-<h3>For the dough</h3>
-<li>1½cups flour</li>          <!-- ❌ No space, unicode fraction -->
-<li>½teaspoon salt</li>        <!-- ❌ Concatenated -->
+Defined in `src/utils/ingredients.ts`:
 
-<h3>For the filling</h3>
-<li>2cups sugar</li>           <!-- ❌ No space -->
-```
+- `flattenIngredients(ingredients): string[]`
+- `stringsToIngredients(values, groupName?): Ingredients`
+- `groupIngredients($, values, headingSelector?, itemSelector?): Ingredients`
+- `bestMatch(testString, targetStrings): string`
+- `scoreSentenceSimilarity(first, second): number`
 
-**JSON-LD Text** (from Schema.org):
+## Site-Specific Example
 
-```json
-[
-  "1 1/2 cups flour",           // ✅ Clean, spaced, normalized
-  "1/2 teaspoon salt",          // ✅ Perfect formatting
-  "2 cups sugar"                // ✅ No issues
-]
-```
+Current scraper implementations like NYTimes and BBC Good Food use:
 
-**The Problem**:
+- `flattenIngredients(prevValue)` for clean text input
+- `groupIngredients(...)` with site selectors for grouping restoration
 
-- JSON-LD has **perfect text** but **loses grouping** (all ingredients in flat array)
-- HTML has **accurate grouping** but **poor text quality** (no spaces, unicode chars, etc.)
+Simply Recipes additionally removes group-header-like values from structured
+data before regrouping.
 
-**The Solution**: Use BOTH!
+## When to Override Ingredients
 
-1. Extract clean text from JSON-LD (via Schema.org plugin)
-2. Flatten it to strings for matching
-3. Parse HTML structure for grouping
-4. Match HTML elements to JSON-LD text
-5. Rebuild grouped structure with clean text
+Override `ingredients(prevValue)` when:
 
-### Implementation
+- grouping in final output matters for the site
+- HTML structure has reliable ingredient sections
+- plugin output is clean but not grouped as desired
 
-```typescript
-protected ingredients(prevValue: Ingredients | undefined): Ingredients {
-  const headingSelector = 'h3.ingredient-group'
-  const ingredientSelector = 'li.ingredient'
-
-  if (prevValue && prevValue.length > 0) {
-    // Step 1: Flatten prevValue (from Schema.org) to get clean text
-    const values = flattenIngredients(prevValue)
-    // values = ["1 1/2 cups flour", "1/2 teaspoon salt", "2 cups sugar"]
-
-    // Step 2: Parse HTML and match text to rebuild groups
-    return groupIngredients(
-      this.$,           // Cheerio instance
-      values,           // Clean text from JSON-LD
-      headingSelector,  // Where to find group names
-      ingredientSelector, // Where to find ingredient items
-    )
-  }
-
-  throw new NoIngredientsFoundException()
-}
-```
-
-### Utility Functions
-
-#### `flattenIngredients(ingredients: Ingredients): string[]`
-
-Converts grouped structure to flat array of strings:
-
-```typescript
-// Input:
-[
-  { name: "For the dough", items: [{ value: "1 cup flour" }] },
-  { name: "", items: [{ value: "Salt to taste" }] }
-]
-
-// Output:
-["1 cup flour", "Salt to taste"]
-```
-
-**Why flatten?** To get an ordered list of clean text values for matching against HTML elements.
-
-#### `groupIngredients($, values, headingSelector, ingredientSelector): Ingredients`
-
-Rebuilds grouped structure by:
-
-1. Parsing HTML to find headings and items
-2. Matching HTML text (normalized) to `values` array (normalized)
-3. Creating groups based on HTML structure
-4. Using matched text from `values` (preserving clean formatting)
-
-**Normalization**: Both HTML text and values are normalized before matching (trim, lowercase, collapse whitespace) to ensure reliable matches despite formatting differences.
-
-#### `stringsToIngredients(values: string[]): Ingredients`
-
-Converts flat string array to default group structure:
-
-```typescript
-// Input:
-["1 cup flour", "Salt to taste"]
-
-// Output:
-[
-  { 
-    name: null,  // Default group
-    items: [
-      { value: "1 cup flour" },
-      { value: "Salt to taste" }
-    ]
-  }
-]
-```
-
-Used by Schema.org plugin when converting `recipeIngredient` array.
-
-## When to Use Each Approach
-
-### Use Flatten→Regroup When
-
-- ✅ JSON-LD provides clean text but lacks grouping
-- ✅ HTML has visible grouping structure (headings, sections)
-- ✅ Text quality in HTML is poor (spacing, unicode, concatenation issues)
-- **Example**: NYTimes, BBC Good Food, Simply Recipes
-
-### Parse HTML Directly When
-
-- ✅ JSON-LD is missing or unreliable
-- ✅ HTML text quality is good
-- ✅ Complex custom structure that doesn't fit standard pattern
-- **Example**: Sites without proper Schema.org markup
-
-### Use Default (No Override) When
-
-- ✅ Schema.org JSON-LD provides both good text AND grouping
-- ✅ No special processing needed
-- **Example**: Sites with perfect Schema.org implementation
+Skip override when plugin output is already sufficient.
 
 ## Common Pitfalls
 
-### ❌ Don't Parse HTML Text Directly If You Have JSON-LD
+- parsing raw HTML ingredient text directly when `prevValue` already has cleaner text
+- forgetting fallback behavior for selector/count mismatches
+- changing normalized source text unnecessarily before matching
+- using Bun-only APIs in `src/**` runtime code
+
+## Ingredient Parsing Details
+
+Enable parsed ingredient objects with:
 
 ```typescript
-// BAD: HTML text has formatting issues
-protected ingredients(): Ingredients {
-  const items = this.$('li.ingredient').map((_, el) => 
-    this.$(el).text()  // "1½cups" - no space!
-  ).get()
-  // ...
-}
-```
-
-```typescript
-// GOOD: Use JSON-LD text with HTML structure
-protected ingredients(prevValue: Ingredients | undefined): Ingredients {
-  const values = flattenIngredients(prevValue)  // Clean text from JSON-LD
-  return groupIngredients(this.$, values, headingSelector, itemSelector)
-}
-```
-
-### ❌ Don't Modify Text After Flattening
-
-```typescript
-// BAD: Modifying clean text
-const values = flattenIngredients(prevValue)
-  .map(v => v.toUpperCase())  // Don't do this!
-```
-
-The text from JSON-LD is already clean and normalized. Preserve it.
-
-### ❌ Don't Flatten If You're Not Regrouping
-
-```typescript
-// BAD: Unnecessary work
-const values = flattenIngredients(prevValue)
-return stringsToIngredients(values)  // Just return prevValue!
-```
-
-If Verify test passes with both HTML and JSON-LD extraction
-
-## Ingredient Parsing
-
-### Parsing Overview
-
-The library supports optional structured parsing of ingredient strings using the [parse-ingredient](https://github.com/jakeboone02/parse-ingredient) library. When enabled via the `parseIngredients` option, each ingredient item includes a `parsed` field with extracted data.
-
-### Enabling Parsing
-
-```typescript
-// Enable with defaults
-const scraper = new MyScraper(html, url, { parseIngredients: true })
-
-// Enable with options
-const scraper = new MyScraper(html, url, {
-  parseIngredients: {
-    normalizeUOM: true,      // "tbsp" → "tablespoon"
-    ignoreUOMs: ['small'],   // Treat as description, not unit
-  }
+const recipe = await scrapeRecipe(html, url, {
+  parseIngredients: true,
 })
 ```
 
-### Parsing Pipeline
-
-The `IngredientParserPlugin` runs as a PostProcessor (priority 50), after HTML stripping:
-
-```txt
-1. HtmlStripperPlugin (100)
-   └─> "2 cups <b>flour</b>" → "2 cups flour"
-
-2. IngredientParserPlugin (50)
-   └─> "2 cups flour" → { value: "2 cups flour", parsed: {...} }
-```
-
-### Parsed Data Structure
+Or pass parser options:
 
 ```typescript
-{
-  value: "1-2 tablespoons olive oil",
-  parsed: {
-    quantity: 1,                    // Primary quantity
-    quantity2: 2,                   // Secondary (range) quantity
-    unitOfMeasure: "tablespoons",   // As written
-    unitOfMeasureID: "tablespoon",  // Normalized key
-    description: "olive oil",       // Ingredient name
-    isGroupHeader: false            // True for "For the sauce:" etc.
-  }
-}
+const recipe = await scrapeRecipe(html, url, {
+  parseIngredients: {
+    normalizeUOM: true,
+    ignoreUOMs: ['small'],
+  },
+})
 ```
 
-### Use Cases
+Each `IngredientItem` may then include:
 
-- **Scaling recipes**: Multiply quantities by a factor
-- **Shopping lists**: Aggregate same ingredients across recipes
-- **Nutritional lookup**: Search by normalized ingredient name
-- **Unit conversion**: Convert between measurement systems
-
-## Future Considerations
-
-### Potential Improvements
-
-1. **Text Normalization Pipeline**: Configurable normalization steps (fraction conversion, unit standardization, etc.)
-
-2. **Fuzzy Matching**: Handle cases where HTML text diverges significantly from JSON-LD (currently uses exact normalized matching)
-
-3. **Fallback Strategies**: Graceful degradation when JSON-LD is partial or HTML structure is ambiguous
-
-4. **Schema.org Validation**: Detect and handle malformed JSON-LD more robustly
-
-### Non-Goals
-
-- **Unit Conversion**: Converting between measurement systems (use parsed data with external tools)
-- **Substitutions**: Handling ingredient alternatives or substitutions
-- **Nutritional Analysis**: Calculating nutrition facts from ingredients
+- `quantity` / `quantity2`
+- `unitOfMeasure` / `unitOfMeasureID`
+- `description`
+- `isGroupHeader`
 
 ## Summary
 
-The ingredients system balances **text quality** (from JSON-LD) with **structural accuracy** (from HTML):
+Ingredients are extracted in layers:
 
-1. **Schema.org Plugin** extracts clean text → `Ingredients` with default grouping
-2. **Scrapers** flatten text → parse HTML structure → rebuild groups with clean text
-3. **IngredientParserPlugin** (optional) → adds structured `parsed` data
-4. **Result**: Accurate grouping with high-quality, normalized ingredient text and optional structured data
+1. structured-data extraction for reliable text,
+2. optional scraper regrouping for site-aware structure,
+3. optional parser enrichment for machine-friendly ingredient fields.
 
-This architecture leverages the strengths of both JSON-LD (clean data) and HTML (visual structure) to produce the best possible output.
+This keeps default behavior robust while allowing targeted scraper overrides.
