@@ -3,7 +3,8 @@
 You are helping with a TypeScript project that scrapes recipe data from various cooking websites. The project extracts structured recipe information from HTML pages using multiple extraction methods.
 
 ## Project Structure
-```
+
+```txt
 recipe-scrapers/
 ├── src/
 │   ├── __tests__/       # Core test files
@@ -84,6 +85,7 @@ Reference `RecipeObject` from `src/types/recipe.interface.ts`
 - Handle errors gracefully with try/catch
 
 When suggesting code changes:
+
 - Prioritize maintainability and readability
 - Include error handling
 - Add tests for new functionality
