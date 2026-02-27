@@ -6,6 +6,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.0.2...1.1.0) (2026-02-27)
+
+
+### Features
+
+* add food.com scraper ([ec73413](https://github.com/recipe-scrapers/recipe-scrapers/commit/ec73413f2d2e16d48a66491eb18fd736b06538ad))
+
+
+### Bug Fixes
+
+* string author extraction ([c35a10e](https://github.com/recipe-scrapers/recipe-scrapers/commit/c35a10e1dad772c84b5ce6e7100341cae505bee2))
+
 ## [1.0.2] - 2026-02-26
 
 ### Changed
