@@ -1,9 +1,7 @@
 const SERVE_REGEX_NUMBER = /(?:\D*(?<items>\d+(?:\.\d*)?)\D*)/
 
 const SERVE_REGEX_ITEMS =
-  /\bsandwiches\b|\btacquitos\b|\bmakes\b|\bcups\b|\bappetizer\b|\bporzioni\b|\bcookies\b|\b(large |small )?buns\b/gi
-
-const SERVE_REGEX_TO = /\d+(\s+to\s+|-)\d+/gi
+  /\bsandwiches\b|\btacquitos\b|\bmakes\b|\bcups\b|\bappetizer\b|\bporzioni\b|\bcookies\b|\b(large |small )?buns\b/i
 
 const RECIPE_YIELD_TYPES: [string, string][] = [
   ['dozen', 'dozen'],
@@ -46,18 +44,11 @@ const RECIPE_YIELD_TYPES: [string, string][] = [
  * @returns The number of servings, items, dozen, batches, etc...
  */
 export function parseYields(element: string): string {
-  if (!element) throw new Error('Element is required')
-
-  let serveText = element
-
-  if (SERVE_REGEX_TO.test(serveText)) {
-    const splitMatch = serveText.match(SERVE_REGEX_TO)
-    if (splitMatch && splitMatch.index !== undefined) {
-      serveText = serveText
-        .slice(splitMatch.index + splitMatch[0].length)
-        .trim()
-    }
+  if (!element) {
+    throw new Error('Element is required')
   }
+
+  const serveText = element
 
   const match = serveText.match(SERVE_REGEX_NUMBER)
   const matched = match?.groups?.items || '0'
