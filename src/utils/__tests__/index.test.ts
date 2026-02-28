@@ -104,8 +104,18 @@ describe('getHostName', () => {
     )
   })
 
+  it('should not remove "www." when it is not the leading hostname label', () => {
+    expect(getHostName('https://sub.www.example.com/path')).toBe(
+      'sub.www.example.com',
+    )
+  })
+
   it('should return the host for a URL without a path', () => {
     expect(getHostName('https://anothersite.org')).toBe('anothersite.org')
+  })
+
+  it('should ignore URL ports when returning host name', () => {
+    expect(getHostName('https://www.example.com:8443/path')).toBe('example.com')
   })
 
   it('should throw an error for an invalid URL string', () => {
