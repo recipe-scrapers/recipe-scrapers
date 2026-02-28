@@ -3,9 +3,26 @@
   "projectOwner": "recipe-scrapers",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "contributorsPerLine": 7,
   "commit": false,
-  "contributors": []
+  "contributors": [
+    {
+      "login": "nerdstep",
+      "name": "Justin Williams",
+      "avatar_url": "https://avatars.githubusercontent.com/u/535021?v=4",
+      "profile": "https://nerdstep.com",
+      "contributions": [
+        "code",
+        "maintenance",
+        "doc",
+        "test"
+      ]
+    }
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular"
 }

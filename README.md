@@ -256,6 +256,13 @@ Project direction and maintainer decision rules are documented in [GOVERNANCE.md
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://nerdstep.com"><img src="https://avatars.githubusercontent.com/u/535021?v=4?s=100" width="100px;" alt="Justin Williams"/><br /><sub><b>Justin Williams</b></sub></a><br /><a href="https://github.com/recipe-scrapers/recipe-scrapers/commits?author=nerdstep" title="Code">💻</a> <a href="#maintenance-nerdstep" title="Maintenance">🚧</a> <a href="https://github.com/recipe-scrapers/recipe-scrapers/commits?author=nerdstep" title="Documentation">📖</a> <a href="https://github.com/recipe-scrapers/recipe-scrapers/commits?author=nerdstep" title="Tests">⚠️</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
