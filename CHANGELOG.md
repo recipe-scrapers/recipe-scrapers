@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.3.0...1.3.1) (2026-02-28)
+
+
+### Bug Fixes
+
+* **extractor:** avoid shared mutable defaults for optional recipe fields ([53239e0](https://github.com/recipe-scrapers/recipe-scrapers/commit/53239e08771f10b991bdc6aea26d0ddc7f6eb7b5))
+* **ingredients:** avoid false fallback when grouped ingredients contain duplicates ([46695cb](https://github.com/recipe-scrapers/recipe-scrapers/commit/46695cb675d564bd6f37ca4bd1931a8c4b574de5))
+* **schema:** use effective max length in zString error messages ([c782cfe](https://github.com/recipe-scrapers/recipe-scrapers/commit/c782cfe727caff69bba3044b17202882744f401f))
+* **url:** parse hostname safely and only strip leading www ([cfe4185](https://github.com/recipe-scrapers/recipe-scrapers/commit/cfe4185de611e5a2f01cb426fc53da029f4657d9))
+* **yields:** make parseYields deterministic across repeated calls ([63c19d2](https://github.com/recipe-scrapers/recipe-scrapers/commit/63c19d23b631da43d3d3590570afe0f381b74271))
+
 ## [1.3.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.2.0...1.3.0) (2026-02-27)
 
 
