@@ -1,4 +1,11 @@
 {
   "projectName": "recipe-scrapers",
-  "projectOwner": "recipe-scrapers"
+  "projectOwner": "recipe-scrapers",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": ["README.md"],
+  "imageSize": 100,
+  "contributorsPerLine": 7,
+  "commit": false,
+  "contributors": []
 }
