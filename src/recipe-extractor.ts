@@ -1,5 +1,8 @@
 import type { ExtractorPlugin } from './abstract-extractor-plugin'
-import { OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES } from './constants'
+import {
+  getOptionalRecipeFieldDefault,
+  isOptionalRecipeField,
+} from './constants'
 import {
   ExtractionFailedException,
   ExtractorNotFoundException,
@@ -79,9 +82,9 @@ export class RecipeExtractor {
     }
 
     // 3. Fallback to default values
-    if (!result && field in OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES) {
+    if (!result && isOptionalRecipeField(field)) {
       this.logger.debug(`Using default value for: ${field}`)
-      result = (OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES as RecipeFields)[field]
+      result = getOptionalRecipeFieldDefault(field) as RecipeFields[Key]
     }
 
     if (isDefined(result)) {

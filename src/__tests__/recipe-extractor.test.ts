@@ -100,4 +100,37 @@ describe('RecipeExtractor', () => {
       'No extractor found for field: title',
     )
   })
+
+  it('returns fresh instances for mutable optional defaults', async () => {
+    const plugin = {
+      name: 'None',
+      priority: 0,
+      $: load('<html><body></body></html>'),
+      supports: () => false,
+      extract: () => 'X',
+    } as ExtractorPlugin
+
+    const extractor = new RecipeExtractor([plugin], scraperName)
+
+    const firstCategory = await extractor.extract('category')
+    const secondCategory = await extractor.extract('category')
+    firstCategory.add('leak')
+
+    expect(firstCategory).not.toBe(secondCategory)
+    expect(secondCategory.has('leak')).toBe(false)
+
+    const firstEquipment = await extractor.extract('equipment')
+    const secondEquipment = await extractor.extract('equipment')
+    firstEquipment.add('leak')
+
+    expect(firstEquipment).not.toBe(secondEquipment)
+    expect(secondEquipment.has('leak')).toBe(false)
+
+    const firstReviews = await extractor.extract('reviews')
+    const secondReviews = await extractor.extract('reviews')
+    firstReviews.set('user', 'text')
+
+    expect(firstReviews).not.toBe(secondReviews)
+    expect(secondReviews.has('user')).toBe(false)
+  })
 })
