@@ -1,0 +1,120 @@
+{
+  "author": "Mirabelle",
+  "canonicalUrl": "https://www.marmiton.org/recettes/recette_ratatouille_23223.aspx",
+  "cookTime": 55,
+  "cookingMethod": null,
+  "description": "aubergine, courgette, poivron, oignon, tomate, huile d'olive, thym, feuille de laurier, poivre, sel, ail",
+  "host": "marmiton.org",
+  "image": "https://assets.afcdn.com/recipe/20160624/36724_w1024h576c1cx2248cy1500.webp",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "350 g d'aubergine"
+        },
+        {
+          "value": "350 g de courgette"
+        },
+        {
+          "value": "350 g de poivron de couleur rouge et vert"
+        },
+        {
+          "value": "350 g d'oignon"
+        },
+        {
+          "value": "500 g de tomate bien mûres"
+        },
+        {
+          "value": "6 c.à.s d'huile d'olive"
+        },
+        {
+          "value": "1 brin de thym"
+        },
+        {
+          "value": "1 feuille de laurier"
+        },
+        {
+          "value": "poivre"
+        },
+        {
+          "value": "sel"
+        },
+        {
+          "value": "3 gousses d'ail"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Coupez les tomates pelées en quartiers,"
+        },
+        {
+          "value": "les aubergines et les courgettes en rondelles."
+        },
+        {
+          "value": "Emincez les poivrons en lamelles"
+        },
+        {
+          "value": "et l'oignon en rouelles."
+        },
+        {
+          "value": "Chauffez 2 cuillères à soupe d'huile dans une poêle"
+        },
+        {
+          "value": "et faites-y fondre les oignons et les poivrons."
+        },
+        {
+          "value": "Lorsqu'ils sont tendres, ajoutez les tomates, l'ail haché, le thym et le laurier."
+        },
+        {
+          "value": "Salez, poivrez et laissez mijoter doucement à couvert durant 45 minutes."
+        },
+        {
+          "value": "Pendant ce temps, préparez les aubergines et les courgettes. Faites les cuire séparemment ou non dans l'huile d'olive pendant 15 minutes."
+        },
+        {
+          "value": "Vérifiez la cuisson des légumes pour qu'ils ne soient plus fermes. Ajoutez les alors au mélange de tomates et prolongez la cuisson sur tout petit feu pendant 10 min."
+        },
+        {
+          "value": "Salez et poivrez si besoin."
+        }
+      ]
+    }
+  ],
+  "language": "fr",
+  "prepTime": 25,
+  "ratings": 4.8,
+  "ratingsCount": 413,
+  "siteName": "Marmiton",
+  "title": "Ratatouille",
+  "totalTime": 80,
+  "yields": "4 servings",
+  "category": ["ratatouille"],
+  "cuisine": ["Plat principal"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "Ratatouille",
+    "aubergine",
+    "courgette",
+    "poivron",
+    "oignon",
+    "tomate",
+    "huile d'olive",
+    "thym",
+    "feuille de laurier",
+    "poivre",
+    "sel",
+    "ail",
+    "ratatouille",
+    "facile",
+    "moyen"
+  ],
+  "nutrients": {},
+  "reviews": {}
+}
