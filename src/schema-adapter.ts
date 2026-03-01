@@ -15,12 +15,28 @@ export type ValidationIssue = StandardSchemaV1.Issue & {
   dotPath?: string | null
 }
 
+export type SafeParseErrorType = 'validation' | 'extraction'
+
+export type SafeParseErrorCode =
+  | 'validation_failed'
+  | 'extractor_not_found'
+  | 'extraction_runtime_error'
+  | 'extraction_failed'
+
+export interface SafeParseErrorContext {
+  field?: string
+  source?: string
+}
+
 /**
  * Validation error payload returned by `safeParse`.
  */
 export interface SafeParseError {
+  type: SafeParseErrorType
+  code: SafeParseErrorCode
   issues: ReadonlyArray<ValidationIssue>
   cause?: unknown
+  context?: SafeParseErrorContext
 }
 
 /**
@@ -63,16 +79,24 @@ const normalizeIssuePath = (
 const createFailureResult = (
   issues: readonly StandardSchemaV1.Issue[],
   cause?: unknown,
+  options?: {
+    type?: SafeParseErrorType
+    code?: SafeParseErrorCode
+    context?: SafeParseErrorContext
+  },
 ): SafeParseResult<never> => {
   return {
     success: false,
     error: {
+      type: options?.type ?? 'validation',
+      code: options?.code ?? 'validation_failed',
       issues: issues.map((issue) => ({
         message: issue.message,
         path: normalizeIssuePath(issue.path),
         dotPath: getDotPath(issue),
       })),
       cause,
+      context: options?.context,
     },
   }
 }

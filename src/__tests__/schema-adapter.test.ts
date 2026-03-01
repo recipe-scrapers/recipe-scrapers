@@ -46,6 +46,8 @@ describe('safeParseWithStandardSchema', () => {
     expect(result.success).toBe(false)
 
     if (!result.success) {
+      expect(result.error.type).toBe('validation')
+      expect(result.error.code).toBe('validation_failed')
       expect(result.error.issues).toHaveLength(1)
       expect(result.error.issues[0]?.path?.[0]).toBe('title')
       expect(result.error.issues[0]?.message).toBe('Title is required')
@@ -68,6 +70,8 @@ describe('safeParseWithStandardSchema', () => {
 
     expect(result.success).toBe(false)
     if (!result.success) {
+      expect(result.error.type).toBe('validation')
+      expect(result.error.code).toBe('validation_failed')
       expect(result.error.issues[0]?.message).toBe('Thrown issue')
       expect(result.error.issues[0]?.path).toBeUndefined()
       expect(result.error.issues[0]?.dotPath).toBeNull()

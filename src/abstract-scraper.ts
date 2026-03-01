@@ -4,7 +4,13 @@ import type { ParseIngredientOptions } from 'parse-ingredient'
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
 import type { ExtractorPlugin } from './abstract-extractor-plugin'
 import type { PostProcessorPlugin } from './abstract-postprocessor-plugin'
-import { NotImplementedException, ValidationException } from './exceptions'
+import {
+  ExtractionFailedException,
+  ExtractionRuntimeException,
+  ExtractorNotFoundException,
+  NotImplementedException,
+  ValidationException,
+} from './exceptions'
 import { Logger, LogLevel } from './logger'
 import { PluginManager } from './plugin-manager'
 import { HtmlStripperPlugin } from './plugins/html-stripper.processor'
@@ -316,11 +322,70 @@ export abstract class AbstractScraper {
       const raw = await this.toRecipeObject()
       return safeParseWithStandardSchema(this.getValidationSchema(), raw)
     } catch (error) {
+      if (error instanceof ExtractorNotFoundException) {
+        return {
+          success: false,
+          error: {
+            type: 'extraction',
+            code: 'extractor_not_found',
+            context: { field: error.field },
+            issues: [
+              {
+                message: error.message,
+                path: [error.field],
+                dotPath: error.field,
+              },
+            ],
+            cause: error,
+          },
+        }
+      }
+
+      if (error instanceof ExtractionRuntimeException) {
+        return {
+          success: false,
+          error: {
+            type: 'extraction',
+            code: 'extraction_runtime_error',
+            context: { field: error.field, source: error.source },
+            issues: [
+              {
+                message: error.message,
+                path: [error.field],
+                dotPath: error.field,
+              },
+            ],
+            cause: error.extractionCause ?? error,
+          },
+        }
+      }
+
+      if (error instanceof ExtractionFailedException) {
+        return {
+          success: false,
+          error: {
+            type: 'extraction',
+            code: 'extraction_failed',
+            context: { field: error.field },
+            issues: [
+              {
+                message: error.message,
+                path: [error.field],
+                dotPath: error.field,
+              },
+            ],
+            cause: error,
+          },
+        }
+      }
+
       const message = resolveErrorMessage(error, 'Recipe extraction failed')
 
       return {
         success: false,
         error: {
+          type: 'extraction',
+          code: 'extraction_failed',
           issues: [{ message }],
           cause: error,
         },

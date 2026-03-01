@@ -2,7 +2,7 @@ import type { ValidationIssue } from '@/schema-adapter'
 import { isDefined, resolveErrorMessage } from '@/utils'
 
 export class ExtractorNotFoundException extends Error {
-  constructor(field: string) {
+  constructor(public readonly field: string) {
     super(`No extractor found for field: ${field}`)
     this.name = 'ExtractorNotFoundException'
   }
@@ -23,7 +23,10 @@ export class UnsupportedFieldException extends Error {
 }
 
 export class ExtractionFailedException extends Error {
-  constructor(field: string, value?: unknown) {
+  constructor(
+    public readonly field: string,
+    public readonly value?: unknown,
+  ) {
     const msg = isDefined(value)
       ? `Invalid value for "${field}": ${String(value)}`
       : `No value found for "${field}"`

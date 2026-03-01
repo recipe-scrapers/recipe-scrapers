@@ -174,8 +174,25 @@ Current validation includes:
 `AbstractScraper` exposes:
 
 - `toRecipeObject()` (no schema validation)
-- `parse()` (throws on validation failure)
+- `parse()` (throws on extraction or validation failure)
 - `safeParse()` (returns a normalized success/error result)
+
+`safeParse()` failure payloads include structured metadata:
+
+- `error.type`: `'validation' | 'extraction'`
+- `error.code`: one of
+  - `'validation_failed'`
+  - `'extractor_not_found'`
+  - `'extraction_runtime_error'`
+  - `'extraction_failed'`
+- `error.context` (optional): `{ field?: string; source?: string }`
+
+Code mapping:
+
+- `extractor_not_found`: a required field had no successful extractor
+- `extraction_runtime_error`: unexpected runtime error in plugin/site extractor
+- `extraction_failed`: non-runtime extraction failure
+- `validation_failed`: schema validation rejected extracted data
 
 ## Internal Data Shape Conversion
 

@@ -1,7 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, spyOn } from 'bun:test'
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import { AbstractScraper } from '@/abstract-scraper'
-import { NotImplementedException, ValidationException } from '@/exceptions'
+import {
+  ExtractionRuntimeException,
+  ExtractorNotFoundException,
+  NotImplementedException,
+  ValidationException,
+} from '@/exceptions'
 import { Logger } from '@/logger'
 import type { RecipeFields, RecipeObject } from '@/types/recipe.interface'
 import type { ScraperOptions } from '@/types/scraper.interface'
@@ -147,6 +152,34 @@ class ThrowingScraper extends AbstractScraper {
   }
 }
 
+class MissingFieldScraper extends AbstractScraper {
+  static host(): string {
+    return 'missing.test'
+  }
+
+  override async extract<Key extends keyof RecipeFields>(
+    _field: Key,
+  ): Promise<RecipeFields[Key]> {
+    throw new ExtractorNotFoundException('author')
+  }
+}
+
+class RuntimeErrorScraper extends AbstractScraper {
+  static host(): string {
+    return 'runtime.test'
+  }
+
+  override async extract<Key extends keyof RecipeFields>(
+    _field: Key,
+  ): Promise<RecipeFields[Key]> {
+    throw new ExtractionRuntimeException(
+      'totalTime',
+      'plugin "SchemaOrgPlugin"',
+      new RangeError('invalid duration: 35 minutes'),
+    )
+  }
+}
+
 describe('AbstractScraper.toRecipeObject', () => {
   const createMockValues = (): Partial<
     Record<keyof RecipeFields, unknown>
@@ -246,6 +279,8 @@ describe('AbstractScraper.toRecipeObject', () => {
     const result = await scraper.safeParse()
     expect(result.success).toBe(false)
     if (!result.success) {
+      expect(result.error.type).toBe('validation')
+      expect(result.error.code).toBe('validation_failed')
       expect(
         result.error.issues.some((issue) => issue.path?.[0] === 'image'),
       ).toBe(true)
@@ -267,8 +302,37 @@ describe('AbstractScraper.toRecipeObject', () => {
 
     expect(result.success).toBe(false)
     if (!result.success) {
+      expect(result.error.type).toBe('extraction')
+      expect(result.error.code).toBe('extraction_failed')
       expect(result.error.issues[0]?.message).toBe('Extraction exploded')
       expect(result.error.cause).toBeInstanceOf(Error)
+    }
+  })
+
+  it('returns extractor_not_found metadata when required field is missing', async () => {
+    const scraper = new MissingFieldScraper('', 'https://missing.test')
+    const result = await scraper.safeParse()
+
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error.type).toBe('extraction')
+      expect(result.error.code).toBe('extractor_not_found')
+      expect(result.error.context?.field).toBe('author')
+      expect(result.error.issues[0]?.path?.[0]).toBe('author')
+    }
+  })
+
+  it('returns extraction_runtime_error metadata with source context', async () => {
+    const scraper = new RuntimeErrorScraper('', 'https://runtime.test')
+    const result = await scraper.safeParse()
+
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error.type).toBe('extraction')
+      expect(result.error.code).toBe('extraction_runtime_error')
+      expect(result.error.context?.field).toBe('totalTime')
+      expect(result.error.context?.source).toBe('plugin "SchemaOrgPlugin"')
+      expect(result.error.issues[0]?.path?.[0]).toBe('totalTime')
     }
   })
 
@@ -298,6 +362,8 @@ describe('AbstractScraper.toRecipeObject', () => {
 
     expect(result.success).toBe(false)
     if (!result.success) {
+      expect(result.error.type).toBe('validation')
+      expect(result.error.code).toBe('validation_failed')
       expect(result.error.issues[0]?.message).toBe('Forced failure')
     }
   })

@@ -60,6 +60,47 @@ const parsed = await scrapeRecipe(html, url)
 const safeResult = await scrapeRecipe(html, url, { safeParse: true })
 ```
 
+### Safe Parse Error Shape
+
+When `safeParse: true` is used, failures return a structured error object:
+
+```typescript
+type SafeParseError = {
+  type: 'validation' | 'extraction'
+  code:
+    | 'validation_failed'
+    | 'extractor_not_found'
+    | 'extraction_runtime_error'
+    | 'extraction_failed'
+  issues: Array<{
+    message: string
+    path?: PropertyKey[]
+    dotPath?: string | null
+  }>
+  cause?: unknown
+  context?: {
+    field?: string
+    source?: string
+  }
+}
+```
+
+This makes it easy to branch in UI code:
+
+```typescript
+const result = await scrapeRecipe(html, url, { safeParse: true })
+
+if (!result.success) {
+  if (result.error.code === 'extractor_not_found') {
+    // missing required field (result.error.context?.field)
+  } else if (result.error.code === 'extraction_runtime_error') {
+    // plugin/site extractor crashed (result.error.context?.source)
+  } else if (result.error.code === 'validation_failed') {
+    // schema validation failed after extraction
+  }
+}
+```
+
 ### Validation Schema
 
 By default, recipe data is validated with the built-in Zod schema.
