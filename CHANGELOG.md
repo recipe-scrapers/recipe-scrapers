@@ -6,6 +6,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.4.0...1.5.0) (2026-03-01)
+
+
+### Features
+
+* add inspiredtaste.net scraper ([d5ed8c3](https://github.com/recipe-scrapers/recipe-scrapers/commit/d5ed8c3ae4e84e7fe420141bd86f83263e8fa878))
+* Add structured safeParse extraction errors for UI-level branching ([51f775c](https://github.com/recipe-scrapers/recipe-scrapers/commit/51f775c41e7f9001ae3b44b3070ba4c898a1164c))
+* **scrapers:** add bonappetit.com ([52facef](https://github.com/recipe-scrapers/recipe-scrapers/commit/52facefc100f98ccd705b92150e37d30ed5b19a0))
+
+
+### Code Refactoring
+
+* Improve extraction error handling and make safeParse resilient ([e824d39](https://github.com/recipe-scrapers/recipe-scrapers/commit/e824d3946b5832a5cf665fdc5bfcd386de87c521))
+
 ## [1.4.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.3.1...1.4.0) (2026-03-01)
 
 
