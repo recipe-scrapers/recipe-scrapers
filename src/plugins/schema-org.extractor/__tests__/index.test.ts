@@ -73,6 +73,30 @@ describe('SchemaOrgPlugin', () => {
     expect(plugin.extract('cookingMethod')).toBe('Bake')
   })
 
+  it('resolves author references by @id', () => {
+    const jsonWithAuthorReference = `
+      <script type="application/ld+json">
+      {
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://example.com/#author",
+            "name": "Reference Author"
+          },
+          {
+            "@type": "Recipe",
+            "name": "Recipe With Referenced Author",
+            "author": { "@id": "https://example.com/#author" }
+          }
+        ]
+      }
+      </script>`
+
+    const refPlugin = new SchemaOrgPlugin(load(jsonWithAuthorReference))
+
+    expect(refPlugin.extract('author')).toBe('Reference Author')
+  })
+
   it('extracts image and validates URL', () => {
     expect(plugin.extract('image')).toBe('https://img.jpg')
   })
@@ -135,6 +159,49 @@ describe('SchemaOrgPlugin', () => {
     expect(nutrients.get('calories')).toBe('100')
     const diets = Array.from(plugin.extract('dietaryRestrictions'))
     expect(diets).toEqual(['Vegetarian'])
+  })
+
+  it('groups WPRM ingredients', () => {
+    const wprmHtml = `
+      <script type="application/ld+json">
+      {
+        "@type": "Recipe",
+        "name": "Grouped Recipe",
+        "recipeIngredient": [
+          "1 cup flour",
+          "2 eggs",
+          "1 cup milk"
+        ]
+      }
+      </script>
+      <div class="wprm-recipe-ingredients-container">
+        <div class="wprm-recipe-ingredient-group">
+          <h4 class="wprm-recipe-group-name">Batter</h4>
+          <ul class="wprm-recipe-ingredients">
+            <li class="wprm-recipe-ingredient">1 cup flour</li>
+            <li class="wprm-recipe-ingredient">2 eggs</li>
+          </ul>
+        </div>
+        <div class="wprm-recipe-ingredient-group">
+          <h4 class="wprm-recipe-group-name">Sauce</h4>
+          <ul class="wprm-recipe-ingredients">
+            <li class="wprm-recipe-ingredient">1 cup milk</li>
+          </ul>
+        </div>
+      </div>`
+
+    const wprmPlugin = new SchemaOrgPlugin(load(wprmHtml))
+
+    expect(wprmPlugin.extract('ingredients')).toEqual([
+      {
+        name: 'Batter',
+        items: [{ value: '1 cup flour' }, { value: '2 eggs' }],
+      },
+      {
+        name: 'Sauce',
+        items: [{ value: '1 cup milk' }],
+      },
+    ])
   })
 
   it('throws UnsupportedFieldException for unsupported field', () => {

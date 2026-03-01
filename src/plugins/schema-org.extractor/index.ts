@@ -24,7 +24,6 @@ import type {
   Thing,
 } from './schema-org.interface'
 import {
-  hasId,
   isAggregateRating,
   isBaseType,
   isGraphType,
@@ -213,8 +212,20 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     return null
   }
 
-  private getIdOrUrl(obj: Thing): string | null {
-    return hasId(obj) ? obj['@id'] : isString(obj.url) ? obj.url : null
+  private getIdOrUrl(value: unknown): string | null {
+    if (!isPlainObject(value)) {
+      return null
+    }
+
+    if (isString(value['@id'])) {
+      return value['@id']
+    }
+
+    if (isString(value.url)) {
+      return value.url
+    }
+
+    return null
   }
 
   private processSchemaData() {
@@ -414,11 +425,10 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       author = author[0]
     }
 
-    if (isBaseType(author)) {
-      const key = this.getIdOrUrl(author)
-      if (key && this.people[key]) {
-        author = this.people[key]
-      }
+    const key = this.getIdOrUrl(author)
+
+    if (key && this.people[key]) {
+      author = this.people[key]
     }
 
     const authorName = this.getSchemaTextValue(author, ['name'])
