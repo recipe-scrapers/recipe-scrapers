@@ -1,15 +1,10 @@
 {
   "siteName": "Inspired Taste - Easy Recipes for Home Cooks",
-  "category": [
-    "Dessert",
-    "Sauce"
-  ],
+  "category": ["Dessert", "Sauce"],
   "cookTime": 25,
   "prepTime": 10,
   "totalTime": 35,
-  "cuisine": [
-    "American"
-  ],
+  "cuisine": ["American"],
   "cookingMethod": null,
   "ratings": 0,
   "ratingsCount": 0,
@@ -28,10 +23,7 @@
     "cholesterolContent": "0mg"
   },
   "dietaryRestrictions": [],
-  "keywords": [
-    "instant pot applesauce",
-    "pressure cooker applesauce"
-  ],
+  "keywords": ["instant pot applesauce", "pressure cooker applesauce"],
   "author": "Joanne Gallagher",
   "canonicalUrl": "https://www.inspiredtaste.net/51500/pressure-cooker-applesauce/",
   "host": "inspiredtaste.net",

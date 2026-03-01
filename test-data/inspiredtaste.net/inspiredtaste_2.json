@@ -1,14 +1,10 @@
 {
   "siteName": "Inspired Taste - Easy Recipes for Home Cooks",
-  "category": [
-    "Dessert"
-  ],
+  "category": ["Dessert"],
   "cookTime": 15,
   "prepTime": 20,
   "totalTime": 35,
-  "cuisine": [
-    "American"
-  ],
+  "cuisine": ["American"],
   "cookingMethod": null,
   "ratings": 5,
   "ratingsCount": 4,
@@ -27,9 +23,7 @@
     "cholesterolContent": "81mg"
   },
   "dietaryRestrictions": [],
-  "keywords": [
-    "strawberry shortcake recipe"
-  ],
+  "keywords": ["strawberry shortcake recipe"],
   "author": "Joanne Gallagher",
   "canonicalUrl": "https://www.inspiredtaste.net/76710/strawberry-shortcake-recipe/",
   "host": "inspiredtaste.net",

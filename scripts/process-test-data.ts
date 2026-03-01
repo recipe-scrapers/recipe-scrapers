@@ -254,7 +254,7 @@ function normalizeData(
   data: Record<string, unknown>,
 ) {
   // start with default values
-  let result: Record<string, unknown> = {
+  const result: Record<string, unknown> = {
     ...DEFAULT_VALUES,
   }
 
