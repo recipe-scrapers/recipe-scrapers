@@ -36,6 +36,7 @@ const customScraperClasses = [
  */
 const SCHEMA_ORG_ONLY_HOSTS = [
   'allrecipes.com',
+  'bonappetit.com',
   'budgetbytes.com',
   'damndelicious.net',
   'eatingwell.com',
