@@ -5,6 +5,7 @@ import { BBCGoodFood } from './bbcgoodfood'
 import { Epicurious } from './epicurious'
 import { NYTimes } from './nytimes'
 import { SimplyRecipes } from './simplyrecipes'
+import { Skinnytaste } from './skinnytaste'
 
 /**
  * Constructor type for scraper classes.
@@ -24,6 +25,7 @@ const customScraperClasses = [
   Epicurious,
   SimplyRecipes,
   NYTimes,
+  Skinnytaste,
 ] as const satisfies readonly ScraperClass[]
 
 /**
@@ -32,8 +34,13 @@ const customScraperClasses = [
  */
 const SCHEMA_ORG_ONLY_HOSTS = [
   'allrecipes.com',
+  'budgetbytes.com',
+  'damndelicious.net',
   'eatingwell.com',
   'food.com',
+  'halfbakedharvest.com',
+  'marmiton.org',
+  'recipetineats.com',
   'seriouseats.com',
 ] as const satisfies readonly string[]
 

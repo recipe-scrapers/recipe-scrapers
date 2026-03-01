@@ -1,0 +1,88 @@
+{
+  "author": "Gina",
+  "canonicalUrl": "https://www.skinnytaste.com/grilled-chicken-with-spinach-and-melted/",
+  "cookTime": 15,
+  "cookingMethod": null,
+  "description": "Grilled chicken topped with sauteed garlicky spinach, mozzarella and roasted peppers – a quick and easy chicken dish your family will love!",
+  "host": "skinnytaste.com",
+  "image": "https://www.skinnytaste.com/wp-content/uploads/2011/03/Grilled-Chicken-with-Spinach-and-Melted-Mozzarella-10.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "24 oz 3 large chicken breasts sliced in half lengthwise to make 6"
+        },
+        {
+          "value": "kosher salt and pepper to taste"
+        },
+        {
+          "value": "1 tsp olive oil"
+        },
+        {
+          "value": "3 cloves garlic (crushed)"
+        },
+        {
+          "value": "10 oz frozen spinach (drained)"
+        },
+        {
+          "value": "3 oz shredded part skim mozzarella"
+        },
+        {
+          "value": "1/2 cup roasted red pepper (sliced in strips (packed in water))"
+        },
+        {
+          "value": "olive oil spray"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 400°F. Season chicken with salt and pepper. Lightly spray a grill or grill pan with oil. Cook chicken until no longer pink, about 2 to 3 minutes per side."
+        },
+        {
+          "value": "Heat a skillet over medium heat. Add oil and garlic, sauté a 30 seconds, add spinach, salt and pepper. Cook until heated through, 2 to 3 minutes."
+        },
+        {
+          "value": "Place chicken on a baking sheet, divide spinach evenly between the 6 pieces and place on top. Top each with 1/2 oz mozzarella, roasted peppers and bake until melted, about 3 minutes."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 2,
+  "ratings": 4.8,
+  "ratingsCount": 24,
+  "siteName": "Skinnytaste",
+  "title": "Grilled Chicken with Spinach and Melted Mozzarella",
+  "totalTime": 17,
+  "yields": "6 servings",
+  "category": ["Dinner"],
+  "cuisine": ["Italian"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "chicken breast recipes",
+    "grilled chicken",
+    "grilled chicken breast",
+    "grilled chicken recipe",
+    "Grilled Chicken with Spinach and Melted Mozzarella"
+  ],
+  "nutrients": {
+    "servingSize": "1 piece",
+    "calories": "195 kcal",
+    "carbohydrateContent": "3.5 g",
+    "proteinContent": "31 g",
+    "fatContent": "6 g",
+    "saturatedFatContent": "2 g",
+    "cholesterolContent": "91 mg",
+    "sodiumContent": "183 mg",
+    "fiberContent": "1.5 g",
+    "sugarContent": "0.5 g"
+  },
+  "reviews": {}
+}
