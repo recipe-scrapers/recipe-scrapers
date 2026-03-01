@@ -8,7 +8,7 @@ import {
 import { Logger, type LogLevel } from '@/logger'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isFunction, isNumber, isPlainObject, isString } from '@/utils'
-import { stringsToIngredients } from '@/utils/ingredients'
+import { groupIngredients } from '@/utils/ingredients'
 import {
   createInstructionGroup,
   createInstructionItem,
@@ -473,7 +473,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       }
     }
 
-    return stringsToIngredients([...uniqueIngredients])
+    return groupIngredients(this.$, [...uniqueIngredients])
   }
 
   public instructions(): RecipeFields['instructions'] {
