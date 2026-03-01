@@ -35,7 +35,6 @@ const DEFAULT_VALUES = {
   nutrients: {},
   dietaryRestrictions: [],
   keywords: [],
-  links: [],
 } as const
 
 const LIST_FIELDS = [
@@ -155,6 +154,100 @@ export function groupInstructionItems(
   return result
 }
 
+const HEADING_CONNECTOR_WORDS = new Set([
+  'a',
+  'an',
+  'and',
+  'as',
+  'at',
+  'for',
+  'in',
+  'of',
+  'on',
+  'or',
+  'the',
+  'to',
+  'with',
+])
+
+function isLikelyInstructionSectionHeading(value: string): boolean {
+  const trimmed = value.trim()
+  if (!trimmed) return false
+
+  // Recipe step text usually ends with punctuation or includes commas.
+  // Section headings tend to be short title-style phrases.
+  if (/[.:!?]$/.test(trimmed) || trimmed.includes(',')) return false
+  if (trimmed.length > 80 || /\d/.test(trimmed)) return false
+
+  const words = trimmed.split(/\s+/).filter(Boolean)
+  if (words.length < 2 || words.length > 8) return false
+
+  return words.every((word, index) => {
+    const cleaned = word.replace(/^[("'`]+|[)"'`]+$/g, '')
+    if (!cleaned) return false
+
+    const lower = cleaned.toLowerCase()
+    if (index > 0 && HEADING_CONNECTOR_WORDS.has(lower)) return true
+
+    return /^[A-Z][A-Za-z'-]*$/.test(cleaned)
+  })
+}
+
+function groupFlatInstructionList(values: string[]): InstructionGroup[] {
+  const cleanedValues = values
+    .map((value) => removeInstructionHeading(normalizeString(value)))
+    .filter((value) => value !== '')
+
+  const headingIndexes = cleanedValues
+    .map((value, index) =>
+      isLikelyInstructionSectionHeading(value) ? index : null,
+    )
+    .filter((index): index is number => index !== null)
+
+  // Require at least two heading markers to avoid over-grouping normal steps.
+  if (headingIndexes.length < 2) {
+    return [
+      createInstructionGroup(
+        null,
+        cleanedValues.map((value) => createInstructionItem(value)),
+      ),
+    ]
+  }
+
+  const groups: InstructionGroup[] = []
+  let currentName: string | null = null
+  let currentItems: ReturnType<typeof createInstructionItem>[] = []
+
+  for (const value of cleanedValues) {
+    if (isLikelyInstructionSectionHeading(value)) {
+      if (currentItems.length > 0 || currentName !== null) {
+        groups.push(createInstructionGroup(currentName, currentItems))
+      }
+      currentName = value
+      currentItems = []
+      continue
+    }
+
+    currentItems.push(createInstructionItem(value))
+  }
+
+  if (currentItems.length > 0 || currentName !== null) {
+    groups.push(createInstructionGroup(currentName, currentItems))
+  }
+
+  // If any parsed group has no steps, fall back to a single group.
+  if (groups.some((group) => group.items.length === 0)) {
+    return [
+      createInstructionGroup(
+        null,
+        cleanedValues.map((value) => createInstructionItem(value)),
+      ),
+    ]
+  }
+
+  return groups
+}
+
 function normalizeData(
   host: string,
   filename: string,
@@ -186,15 +279,7 @@ function normalizeData(
     if (result.instructions.every(isRawInstructionGroup)) {
       result.instructions = groupInstructionItems(result.instructions)
     } else if (result.instructions.every(isString)) {
-      // Convert flat string array to single group with null name
-      const items = result.instructions
-        .map((value) =>
-          createInstructionItem(
-            removeInstructionHeading(normalizeString(value)),
-          ),
-        )
-        .filter((item) => item.value !== '')
-      result.instructions = [createInstructionGroup(null, items)]
+      result.instructions = groupFlatInstructionList(result.instructions)
     }
   }
 
@@ -221,13 +306,17 @@ function normalizeData(
   }
 
   // Apply per-site overrides
+  return applyOverrides(host, filename, result)
+}
+
+function applyOverrides(
+  host: string,
+  filename: string,
+  data: Record<string, unknown>,
+): Record<string, unknown> {
   const overrides = OVERRIDE_VALUES[host]?.[filename]
-
-  if (overrides) {
-    result = { ...result, ...overrides }
-  }
-
-  return result
+  if (!overrides) return data
+  return { ...data, ...overrides }
 }
 
 /**

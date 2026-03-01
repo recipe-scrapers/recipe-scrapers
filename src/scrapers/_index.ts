@@ -3,6 +3,7 @@ import type { ScraperOptions } from '@/types/scraper.interface'
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BBCGoodFood } from './bbcgoodfood'
 import { Epicurious } from './epicurious'
+import { InspiredTaste } from './inspiredtaste'
 import { NYTimes } from './nytimes'
 import { SimplyRecipes } from './simplyrecipes'
 import { Skinnytaste } from './skinnytaste'
@@ -23,6 +24,7 @@ const customScraperClasses = [
   AmericasTestKitchen,
   BBCGoodFood,
   Epicurious,
+  InspiredTaste,
   SimplyRecipes,
   NYTimes,
   Skinnytaste,
