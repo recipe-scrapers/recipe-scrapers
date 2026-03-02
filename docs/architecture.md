@@ -94,6 +94,22 @@ Built-in extractors:
 - JSON-LD (`<script type="application/ld+json">`)
 - microdata extraction (via `extractRecipeMicrodata(...)`)
 
+### JSON-LD Parse Resilience
+
+`SchemaOrgPlugin` parses JSON-LD with a two-step strategy:
+
+1. parse raw script content with `JSON.parse(...)`
+2. if parsing fails, run a repair pass that escapes unescaped control
+   characters inside JSON string literals, then parse again
+
+If repair succeeds, extraction continues and a debug log is emitted.
+If parsing still fails, parse errors are retained by the plugin.
+
+When a required Schema.org field is later requested and no `Recipe` entity was
+successfully extracted, the plugin throws `SchemaOrgJsonLdParseException` so the
+failure surfaces as an extraction runtime error instead of silently degrading to
+`extractor_not_found`.
+
 ## Post-Processor Plugins
 
 Post-processors extend `PostProcessorPlugin` and run per-field:
@@ -191,6 +207,7 @@ Code mapping:
 
 - `extractor_not_found`: a required field had no successful extractor
 - `extraction_runtime_error`: unexpected runtime error in plugin/site extractor
+  (for example, unrecoverable `SchemaOrgJsonLdParseException`)
 - `extraction_failed`: non-runtime extraction failure
 - `validation_failed`: schema validation rejected extracted data
 

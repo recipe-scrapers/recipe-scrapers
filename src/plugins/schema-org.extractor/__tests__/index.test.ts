@@ -7,7 +7,11 @@ import {
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
-import { SchemaOrgException, SchemaOrgPlugin } from '../index'
+import {
+  SchemaOrgException,
+  SchemaOrgJsonLdParseException,
+  SchemaOrgPlugin,
+} from '../index'
 
 const minimalJsonLd = `
 <script type="application/ld+json">
@@ -225,5 +229,60 @@ describe('SchemaOrgPlugin', () => {
     expect(() => badPlugin.extract('image')).toThrow(
       'Invalid value for "image": nope',
     )
+  })
+
+  it('recovers malformed JSON-LD when control chars are inside string values', () => {
+    const recoverableMalformedJsonLd = `
+      <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Recipe","name":"Broken","author":{"@type":"Person","name":"A","description":"line1
+line2"}}
+      </script>
+      <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Article","headline":"Fallback Article"}
+      </script>
+    `
+
+    const plugin = new SchemaOrgPlugin(load(recoverableMalformedJsonLd))
+    expect(plugin.extract('author')).toBe('A')
+  })
+
+  it('throws SchemaOrgJsonLdParseException when malformed JSON-LD is irreparable and blocks recipe extraction', () => {
+    const irreparableMalformedJsonLd = `
+      <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Recipe","name":"Broken"
+      </script>
+      <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Article","headline":"Fallback Article"}
+      </script>
+    `
+
+    const plugin = new SchemaOrgPlugin(load(irreparableMalformedJsonLd))
+
+    expect(() => plugin.extract('author')).toThrow(
+      SchemaOrgJsonLdParseException,
+    )
+    expect(() => plugin.extract('author')).toThrow(
+      'Failed to parse JSON-LD while extracting "author"',
+    )
+  })
+
+  it('does not throw SchemaOrgJsonLdParseException if another valid Recipe exists', () => {
+    const mixedJsonLd = `
+      <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Recipe","name":"Broken","author":{"@type":"Person","name":"A","description":"line1
+line2"}}
+      </script>
+      <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"Recipe",
+        "name":"Working Recipe",
+        "author":{"@type":"Person","name":"Good Author"}
+      }
+      </script>
+    `
+
+    const plugin = new SchemaOrgPlugin(load(mixedJsonLd))
+    expect(plugin.extract('author')).toBe('Good Author')
   })
 })

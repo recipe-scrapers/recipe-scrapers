@@ -7,13 +7,20 @@ import {
 } from '@/exceptions'
 import { Logger, type LogLevel } from '@/logger'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { isFunction, isNumber, isPlainObject, isString } from '@/utils'
+import {
+  isFunction,
+  isNumber,
+  isPlainObject,
+  isString,
+  resolveErrorMessage,
+} from '@/utils'
 import { groupIngredients } from '@/utils/ingredients'
 import {
   createInstructionGroup,
   createInstructionItem,
   splitInstructions,
 } from '@/utils/instructions'
+import { parseJsonWithRepair } from '@/utils/json'
 import { extractRecipeMicrodata } from '@/utils/microdata'
 import { parseYields } from '@/utils/parse-yields'
 import { normalizeString, parseMinutes, splitToList } from '@/utils/parsing'
@@ -45,6 +52,24 @@ export class SchemaOrgException extends ExtractionFailedException {
   }
 }
 
+export class SchemaOrgJsonLdParseException extends Error {
+  constructor(
+    public readonly field: keyof RecipeFields,
+    public readonly parseErrors: readonly unknown[],
+  ) {
+    const firstError = parseErrors[0]
+    const parseMessage = resolveErrorMessage(
+      firstError,
+      'Failed to parse JSON-LD',
+    )
+
+    super(
+      `Failed to parse JSON-LD while extracting "${field}": ${parseMessage}`,
+    )
+    this.name = 'SchemaOrgJsonLdParseException'
+  }
+}
+
 export class SchemaOrgPlugin extends ExtractorPlugin {
   name = SchemaOrgPlugin.name
 
@@ -57,6 +82,8 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   private people: Record<string, Person> = {}
   private ratingsData: Record<string, AggregateRating> = {}
   private websiteName: string | null = null
+  private jsonLdParseErrors: unknown[] = []
+  private hasRecipeEntity = false
 
   private extractors: {
     [K in keyof RecipeFields]?: () => RecipeFields[K]
@@ -103,7 +130,18 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       throw new UnsupportedFieldException(field)
     }
 
-    return extractor()
+    try {
+      return extractor()
+    } catch (error) {
+      if (
+        error instanceof SchemaOrgException &&
+        this.shouldThrowJsonLdParseException(field)
+      ) {
+        throw new SchemaOrgJsonLdParseException(field, this.jsonLdParseErrors)
+      }
+
+      throw error
+    }
   }
 
   /**
@@ -115,7 +153,13 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
         const json = this.$(el).html()?.trim()
 
         if (json) {
-          const data = JSON.parse(json)
+          const { data, repaired } = parseJsonWithRepair(json)
+
+          if (repaired) {
+            this.logger.debug(
+              'Recovered malformed JSON-LD by escaping control characters in string values',
+            )
+          }
 
           if (Array.isArray(data)) {
             for (const item of data) {
@@ -129,6 +173,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
         }
       } catch (error) {
         this.logger.warn('Failed to parse JSON-LD', error)
+        this.jsonLdParseErrors.push(error)
       }
     })
   }
@@ -249,10 +294,21 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   private processRecipe(obj: SchemaRecipe) {
-    // @TODO is this needed?
-    const recipe = this.findEntity<SchemaRecipe>(obj, 'Recipe')
+    this.recipe = { ...this.recipe, ...obj }
+    this.hasRecipeEntity = true
+  }
 
-    this.recipe = { ...this.recipe, ...recipe }
+  private shouldThrowJsonLdParseException(field: keyof RecipeFields): boolean {
+    if (this.jsonLdParseErrors.length === 0) {
+      return false
+    }
+
+    // siteName can come from WebSite schema without a Recipe entity.
+    if (field === 'siteName') {
+      return false
+    }
+
+    return !this.hasRecipeEntity
   }
 
   private processNonRecipeThing(obj: Thing) {

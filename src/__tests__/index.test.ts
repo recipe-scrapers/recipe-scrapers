@@ -53,6 +53,44 @@ const INVALID_SCHEMA_HTML = `
   </html>
 `
 
+const MALFORMED_RECIPE_JSON_LD_HTML = `
+  <html lang="en">
+    <head>
+      <script type="application/ld+json">
+        {"@context":"https://schema.org","@type":"Recipe","name":"Broken"
+      </script>
+      <script type="application/ld+json">
+        {"@context":"https://schema.org","@type":"Article","headline":"Fallback Article"}
+      </script>
+    </head>
+    <body></body>
+  </html>
+`
+
+const RECOVERABLE_MALFORMED_RECIPE_JSON_LD_HTML = `
+  <html lang="en">
+    <head>
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Recipe",
+          "name": "Wild Mode Soup",
+          "author": { "@type": "Person", "name": "Test Cook", "description": "line1
+line2" },
+          "description": "Simple soup recipe",
+          "image": "https://unsupported.example/images/soup.jpg",
+          "recipeIngredient": ["1 cup water", "1 tsp salt"],
+          "recipeInstructions": ["Boil water", "Add salt"],
+          "recipeYield": "2 servings",
+          "prepTime": "PT5M",
+          "cookTime": "PT10M"
+        }
+      </script>
+    </head>
+    <body></body>
+  </html>
+`
+
 describe('getScraper', () => {
   it('returns the site scraper for supported hosts', () => {
     const scraper = getScraper('https://food.com/recipe/1')
@@ -114,6 +152,42 @@ describe('scrapeRecipe', () => {
       expect(
         result.error.issues.some((issue) => issue.path?.[0] === 'title'),
       ).toBe(true)
+    }
+  })
+
+  it('returns extraction_runtime_error when malformed JSON-LD blocks recipe extraction', async () => {
+    const result = await scrapeRecipe(
+      MALFORMED_RECIPE_JSON_LD_HTML,
+      UNSUPPORTED_URL,
+      {
+        safeParse: true,
+      },
+    )
+
+    expect(result.success).toBe(false)
+
+    if (!result.success) {
+      expect(result.error.type).toBe('extraction')
+      expect(result.error.code).toBe('extraction_runtime_error')
+      expect(result.error.context?.field).toBe('author')
+      expect(result.error.context?.source).toBe('plugin "SchemaOrgPlugin"')
+    }
+  })
+
+  it('repairs recoverable malformed JSON-LD and still parses', async () => {
+    const result = await scrapeRecipe(
+      RECOVERABLE_MALFORMED_RECIPE_JSON_LD_HTML,
+      UNSUPPORTED_URL,
+      {
+        safeParse: true,
+      },
+    )
+
+    expect(result.success).toBe(true)
+
+    if (result.success) {
+      expect(result.data.author).toBe('Test Cook')
+      expect(result.data.totalTime).toBe(15)
     }
   })
 

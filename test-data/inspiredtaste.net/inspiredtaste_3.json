@@ -1,0 +1,91 @@
+{
+  "siteName": "Inspired Taste - Easy Recipes for Home Cooks",
+  "category": ["Appetizer"],
+  "cookTime": null,
+  "prepTime": 10,
+  "totalTime": 10,
+  "cuisine": ["Middle Eastern"],
+  "cookingMethod": null,
+  "ratings": 4.9,
+  "ratingsCount": 1917,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "155",
+    "carbohydrateContent": "11.8g",
+    "cholesterolContent": "0mg",
+    "fatContent": "11g",
+    "fiberContent": "2.9g",
+    "proteinContent": "4.5g",
+    "saturatedFatContent": "1.5g",
+    "servingSize": "1/4 cup",
+    "sodiumContent": "278.3mg",
+    "sugarContent": "1.8g"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["how to make hummus", "best homemade hummus"],
+  "author": "Joanne Gallagher",
+  "canonicalUrl": "https://www.inspiredtaste.net/15938/easy-and-smooth-hummus-recipe/",
+  "host": "inspiredtaste.net",
+  "language": "en-US",
+  "title": "Easy Hummus (Better than Store-Bought)",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 (15-ounce) can chickpeas, drained or 1 ½ cups cooked chickpeas (250g)"
+        },
+        {
+          "value": "¼ cup fresh lemon juice, from 1 large lemon (60ml)"
+        },
+        {
+          "value": "¼ cup well-stirred tahini, try our tahini recipe (60ml)"
+        },
+        {
+          "value": "1 small garlic clove, minced"
+        },
+        {
+          "value": "2 tablespoons extra-virgin olive oil, plus more for serving (30ml)"
+        },
+        {
+          "value": "½ teaspoon ground cumin"
+        },
+        {
+          "value": "Salt to taste"
+        },
+        {
+          "value": "2 to 3 tablespoons cold water or aquafaba (45ml)"
+        },
+        {
+          "value": "Dash ground paprika, sumac, or Za’atar for serving"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Whip the tahini and lemon juice: In the bowl of a food processor, combine the tahini and lemon juice and process for 1 minute. Scrape the sides and bottom of the bowl, then process for 30 seconds more. This extra time helps “whip” or “cream” the tahini, making the hummus smooth and creamy."
+        },
+        {
+          "value": "Add olive oil and spices: Add the olive oil, minced garlic, cumin, and 1/2 teaspoon of salt to the whipped tahini and lemon juice. Process for 30 seconds, scrape the sides and bottom of the bowl, and then process for another 30 seconds or until well blended."
+        },
+        {
+          "value": "Add the chickpeas: Drain the chickpeas. Then add half of the chickpeas to the food processor and process for 1 minute. Scrape the sides and bottom of the bowl, then add the remaining chickpeas and process them until thick and relatively smooth, 1 to 2 minutes."
+        },
+        {
+          "value": "Thin with water: The hummus will likely be too thick and still have tiny bits of chickpea. To fix this, slowly add 2 to 3 tablespoons of cold water or aquafaba with the food processor turned on until you reach the perfect consistency."
+        },
+        {
+          "value": "To finish: Taste and adjust as needed with more salt or lemon. Serve with a drizzle of olive oil and a sprinkle of paprika, sumac, or Za’atar over the top."
+        }
+      ]
+    }
+  ],
+  "yields": "6 cups (Makes 1 1/2 cups)",
+  "description": "How to make hummus with chickpeas, garlic, tahini and olive oil. This is the best hummus recipe, just read all the happy reviews. Tahini is a paste made from sesame seeds. Buy it or make it yourself. Here’s our tahini recipe, which I highly recommend for this recipe! To leave it out, add more olive oil.",
+  "image": "https://www.inspiredtaste.net/wp-content/uploads/2019/07/The-Best-Homemade-Hummus-Recipe-1200.jpg"
+}
