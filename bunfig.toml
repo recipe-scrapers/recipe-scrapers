@@ -1,6 +1,7 @@
 [test]
+root = "src"
 preload = ["./src/__tests__/setup.ts"]
+coverage = false
 coverageSkipTestFiles = true
-coverageIgnoreSourcemaps = true
 # https://github.com/oven-sh/bun/issues/7662
 coverageThreshold = { functions = 0, lines = 0.5 }
