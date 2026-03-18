@@ -89,6 +89,29 @@ export const InstructionsSchema = z
   .min(1, 'Recipe must have at least one instruction group')
 
 /**
+ * Schema for a single recipe note
+ */
+export const NoteItemSchema = z.object({
+  value: zString('Note value'),
+})
+
+/**
+ * Schema for a group of recipe notes
+ */
+export const NoteGroupSchema = z.object({
+  name: zString('Note group name').nullable(),
+  items: zNonEmptyArray(NoteItemSchema, 'Note'),
+})
+
+/**
+ * Schema for all recipe notes
+ * Must have at least one group with at least one note
+ */
+export const NotesSchema = z
+  .array(NoteGroupSchema, 'Notes must be an array')
+  .min(1, 'Recipe must have at least one note group')
+
+/**
  * Schema for a link object
  */
 export const LinkSchema = z.object({
@@ -128,6 +151,7 @@ export const RecipeObjectBaseSchema = z.object({
 
   ingredients: IngredientsSchema,
   instructions: InstructionsSchema,
+  notes: NotesSchema.optional(),
 
   // URL fields
   canonicalUrl: zHttpUrl('Canonical URL'),

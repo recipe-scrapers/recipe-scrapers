@@ -16,6 +16,10 @@ function fixtureHasParsedIngredients(fixture: RecipeFixture): boolean {
   )
 }
 
+function fixtureHasNotes(fixture: RecipeFixture): boolean {
+  return 'notes' in fixture
+}
+
 async function getTestDataFiles() {
   // Use Bun.glob to find all .testhtml files
   const glob = new Bun.Glob('**/*.testhtml')
@@ -78,12 +82,14 @@ function runTestSuite(host: string, htmlFiles: string[], jsonFiles: string[]) {
       const htmlContent = await Bun.file(htmlFile).text()
       const expectedData: RecipeFixture = await Bun.file(jsonFile).json()
       const parseIngredients = fixtureHasParsedIngredients(expectedData)
+      const parseNotes = fixtureHasNotes(expectedData)
 
       describe(fileName, () => {
         it('should correctly parse and validate the recipe', async () => {
           const scraper = new Scraper(htmlContent, host, {
             logLevel: LogLevel.WARN,
             parseIngredients,
+            parseNotes,
           })
           const data = await scraper.toRecipeObject()
           expect(data).toEqual(expectedData)

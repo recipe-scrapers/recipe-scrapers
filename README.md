@@ -58,6 +58,9 @@ const parsed = await scrapeRecipe(html, url)
 
 // One-shot helper with a safe parse result
 const safeResult = await scrapeRecipe(html, url, { safeParse: true })
+
+// Opt in to recipe notes when supported by the source HTML
+const recipeWithNotes = await scrapeRecipe(html, url, { parseNotes: true })
 ```
 
 ### Safe Parse Error Shape
@@ -161,12 +164,43 @@ interface ScraperOptions {
    */
   parseIngredients?: boolean | ParseIngredientOptions
   /**
+   * Enable recipe note parsing from supported HTML recipe blocks.
+   * When enabled, recipes may include a `notes` field containing
+   * grouped note items when the source markup supports it.
+   * @default false
+   */
+  parseNotes?: boolean
+  /**
    * Standard Schema-compatible schema used for validation.
    * Useful when validating with libraries such as Valibot.
    */
   schema?: StandardSchemaV1<unknown, RecipeObject>
 }
 ```
+
+### Recipe Notes
+
+Recipe notes are opt-in and currently extracted from supported WP Recipe Maker
+HTML note blocks.
+
+```typescript
+const recipe = await scrapeRecipe(html, url, {
+  parseNotes: true,
+})
+
+console.log(recipe.notes)
+// [
+//   {
+//     name: null,
+//     items: [
+//       { value: 'Store in an airtight container for up to 3 weeks.' },
+//     ],
+//   },
+// ]
+```
+
+When note parsing is disabled, or when no supported note block is found,
+the `notes` field is omitted.
 
 ## Supported Sites
 

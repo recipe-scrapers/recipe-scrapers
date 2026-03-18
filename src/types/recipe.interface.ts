@@ -5,6 +5,9 @@ import type {
   InstructionGroupSchema,
   InstructionItemSchema,
   LinkSchema,
+  NoteGroupSchema,
+  NoteItemSchema,
+  NotesSchema,
   ParsedIngredientSchema,
   RecipeObjectSchema,
 } from '@/schemas/recipe.schema'
@@ -45,6 +48,21 @@ export type InstructionGroup = z.infer<typeof InstructionGroupSchema>
  * All recipe instructions as an array of groups
  */
 export type Instructions = InstructionGroup[]
+
+/**
+ * A single recipe note
+ */
+export type NoteItem = z.infer<typeof NoteItemSchema>
+
+/**
+ * A group of recipe notes with an optional group name
+ */
+export type NoteGroup = z.infer<typeof NoteGroupSchema>
+
+/**
+ * All recipe notes as an array of groups
+ */
+export type Notes = z.infer<typeof NotesSchema>
 
 /**
  * The complete recipe object
@@ -156,6 +174,24 @@ export interface RecipeData {
    * ]
    */
   instructions: Instructions
+  /**
+   * Optional recipe notes supplied by the recipe author.
+   * This is usually extra guidance, substitutions, or storage tips.
+   *
+   * This is an array of note groups, where each group has a name
+   * and a list of note items. When there are no groups, the group name is null.
+   *
+   * @example
+   * [
+   *   {
+   *     name: null,
+   *     items: [
+   *       { value: 'Store in an airtight container for up to 3 weeks.' },
+   *     ]
+   *   }
+   * ]
+   */
+  notes?: Notes
   /**
    * The category or categories that the recipe belongs to.
    * This can contain a mix of cuisine type (for example, country names),
@@ -280,4 +316,5 @@ export type OptionalRecipeFields = Pick<
   | 'dietaryRestrictions'
   | 'keywords'
   | 'links'
+  | 'notes'
 >

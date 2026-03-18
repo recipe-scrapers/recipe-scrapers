@@ -12,6 +12,7 @@ import type { RecipeFields, RecipeObject } from '@/types/recipe.interface'
 import type { ScraperOptions } from '@/types/scraper.interface'
 import { stringsToIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
+import { stringsToNotes } from '@/utils/notes'
 
 class DummyScraper extends AbstractScraper {
   // implement required static host
@@ -180,10 +181,8 @@ class RuntimeErrorScraper extends AbstractScraper {
   }
 }
 
-describe('AbstractScraper.toRecipeObject', () => {
-  const createMockValues = (): Partial<
-    Record<keyof RecipeFields, unknown>
-  > => ({
+function createMockValues(): Partial<Record<keyof RecipeFields, unknown>> {
+  return {
     siteName: 'site',
     author: 'auth',
     title: 'ttl',
@@ -208,8 +207,33 @@ describe('AbstractScraper.toRecipeObject', () => {
     canonicalUrl: 'https://host.test/recipe',
     language: 'en-US',
     links: [{ href: 'https://host.test/link', text: 'LinkText' }],
-  })
+  }
+}
 
+class NotesOverrideScraper extends TestScraper {
+  constructor(
+    private readonly noteValue: RecipeFields['notes'],
+    options: ScraperOptions = {},
+  ) {
+    super(createMockValues(), options)
+  }
+
+  protected override notes(): RecipeFields['notes'] {
+    return this.noteValue
+  }
+}
+
+class WprmNotesScraper extends AbstractScraper {
+  static host(): string {
+    return 'notes.test'
+  }
+
+  public readNotes(): RecipeFields['notes'] {
+    return this.notes()
+  }
+}
+
+describe('AbstractScraper.toRecipeObject', () => {
   it('returns a fully serialized RecipeObject', async () => {
     const scraper = new TestScraper(createMockValues())
     const result = await scraper.toRecipeObject()
@@ -256,6 +280,44 @@ describe('AbstractScraper.toRecipeObject', () => {
       nutrients: { cal: '200kcal' },
       reviews: { rev1: 'Good' },
     })
+  })
+
+  it('omits notes when parseNotes is disabled', async () => {
+    const scraper = new NotesOverrideScraper(
+      stringsToNotes(['Keep chilled.']),
+      {
+        parseNotes: false,
+      },
+    )
+
+    const result = await scraper.toRecipeObject()
+    expect(result.notes).toBeUndefined()
+  })
+
+  it('includes notes when parseNotes is enabled', async () => {
+    const scraper = new NotesOverrideScraper(
+      stringsToNotes(['Keep chilled.']),
+      {
+        parseNotes: true,
+      },
+    )
+
+    const result = await scraper.toRecipeObject()
+    expect(result.notes).toEqual([
+      {
+        name: null,
+        items: [{ value: 'Keep chilled.' }],
+      },
+    ])
+  })
+
+  it('does not fail when parseNotes is enabled but no notes are found', async () => {
+    const scraper = new NotesOverrideScraper(undefined, {
+      parseNotes: true,
+    })
+
+    const result = await scraper.toRecipeObject()
+    expect(result.notes).toBeUndefined()
   })
 
   it('validates and normalizes recipe data via parse()', async () => {
@@ -366,5 +428,68 @@ describe('AbstractScraper.toRecipeObject', () => {
       expect(result.error.code).toBe('validation_failed')
       expect(result.error.issues[0]?.message).toBe('Forced failure')
     }
+  })
+})
+
+describe('AbstractScraper.notes', () => {
+  it('parses WPRM notes from list items', () => {
+    const scraper = new WprmNotesScraper(
+      `
+        <div class="wprm-recipe-container">
+          <div class="wprm-recipe-notes-container">
+            <div class="wprm-recipe-notes">
+              <ol>
+                <li>Store in an airtight container.</li>
+                <li>Cool completely before storing.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      `,
+      'https://notes.test',
+    )
+
+    expect(scraper.readNotes()).toEqual([
+      {
+        name: null,
+        items: [
+          { value: 'Store in an airtight container.' },
+          { value: 'Cool completely before storing.' },
+        ],
+      },
+    ])
+  })
+
+  it('parses span-based WPRM notes and ignores spacer blocks', () => {
+    const scraper = new WprmNotesScraper(
+      `
+        <div class="wprm-recipe-container">
+          <div class="wprm-recipe-notes-container">
+            <div class="wprm-recipe-notes">
+              <span style="display:block;">Use within 3 days.&nbsp;</span>
+              <div class="wprm-spacer"></div>
+              <span style="display:block;"><strong>Tip:</strong> Serve warm.</span>
+            </div>
+          </div>
+        </div>
+      `,
+      'https://notes.test',
+    )
+
+    expect(scraper.readNotes()).toEqual([
+      {
+        name: null,
+        items: [{ value: 'Use within 3 days.' }, { value: 'Tip: Serve warm.' }],
+      },
+    ])
+  })
+
+  it('returns undefined when no supported WPRM notes block exists', () => {
+    const scraper = new WprmNotesScraper(
+      '<div class="recipe"><p>No notes here.</p></div>',
+      'https://notes.test',
+    )
+
+    expect(scraper.readNotes()).toBeUndefined()
   })
 })

@@ -55,6 +55,14 @@ export interface ScraperOptions {
    */
   parseIngredients?: boolean | ParseIngredientOptions
   /**
+   * Enable recipe note parsing from supported HTML recipe blocks.
+   * When enabled, recipes may include a `notes` field containing
+   * grouped note items when the source markup supports it.
+   *
+   * @default false
+   */
+  parseNotes?: boolean
+  /**
    * Standard Schema-compatible recipe schema.
    * Use this to validate with libraries such as Zod, Valibot, ArkType, etc.
    */

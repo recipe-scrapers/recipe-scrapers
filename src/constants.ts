@@ -19,6 +19,7 @@ const OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES = {
   nutrients: new Map<string, string>(),
   dietaryRestrictions: new Set<string>(),
   keywords: new Set<string>(),
+  notes: undefined,
 } as const satisfies OptionalRecipeFields
 
 type OptionalRecipeFieldDefaultValues =

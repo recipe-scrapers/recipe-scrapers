@@ -8,6 +8,9 @@ import {
   InstructionItemSchema,
   InstructionsSchema,
   LinkSchema,
+  NoteGroupSchema,
+  NoteItemSchema,
+  NotesSchema,
   RECIPE_SCHEMA_VERSION,
   RecipeObjectSchema,
 } from '../recipe.schema'
@@ -229,6 +232,67 @@ describe('InstructionsSchema', () => {
   })
 })
 
+describe('NoteItemSchema', () => {
+  it('should validate a valid note item', () => {
+    const valid = { value: 'Store in an airtight container.' }
+    const result = NoteItemSchema.parse(valid)
+    expect(result.value).toBe('Store in an airtight container.')
+  })
+
+  it('should trim whitespace from value', () => {
+    const withWhitespace = { value: '  Chill before serving.  ' }
+    const result = NoteItemSchema.parse(withWhitespace)
+    expect(result.value).toBe('Chill before serving.')
+  })
+
+  it('should reject empty note value', () => {
+    expect(() => NoteItemSchema.parse({ value: '' })).toThrow(
+      'Note value cannot be empty',
+    )
+  })
+})
+
+describe('NoteGroupSchema', () => {
+  it('should validate a valid note group', () => {
+    const valid = {
+      name: null,
+      items: [{ value: 'Store in an airtight container.' }],
+    }
+    const result = NoteGroupSchema.parse(valid)
+    expect(result.name).toBeNull()
+    expect(result.items).toHaveLength(1)
+  })
+
+  it('should reject group with empty items array', () => {
+    expect(() =>
+      NoteGroupSchema.parse({
+        name: null,
+        items: [],
+      }),
+    ).toThrow('Note group must have at least one item')
+  })
+})
+
+describe('NotesSchema', () => {
+  it('should validate valid notes with one group', () => {
+    const valid = [
+      {
+        name: null,
+        items: [{ value: 'Use within 3 days.' }],
+      },
+    ]
+    const result = NotesSchema.parse(valid)
+    expect(result).toHaveLength(1)
+    expect(result[0].items[0]?.value).toBe('Use within 3 days.')
+  })
+
+  it('should reject empty notes array', () => {
+    expect(() => NotesSchema.parse([])).toThrow(
+      'Recipe must have at least one note group',
+    )
+  })
+})
+
 describe('LinkSchema', () => {
   it('should validate a valid link', () => {
     const valid = {
@@ -273,6 +337,12 @@ describe('RecipeObjectSchema', () => {
         items: [{ value: 'Mix ingredients' }, { value: 'Bake at 350F' }],
       },
     ],
+    notes: [
+      {
+        name: null,
+        items: [{ value: 'Cool completely before storing.' }],
+      },
+    ],
     totalTime: 45,
     cookTime: 30,
     prepTime: 15,
@@ -306,6 +376,22 @@ describe('RecipeObjectSchema', () => {
     const recipeWithoutLinks = { ...validRecipe }
     const result = RecipeObjectSchema.parse(recipeWithoutLinks)
     expect(result.links).toBeUndefined()
+  })
+
+  it('should allow omitting notes field', () => {
+    const { notes: _notes, ...recipeWithoutNotes } = validRecipe
+    const result = RecipeObjectSchema.parse(recipeWithoutNotes)
+    expect(result.notes).toBeUndefined()
+  })
+
+  it('should accept notes when provided', () => {
+    const result = RecipeObjectSchema.parse(validRecipe)
+    expect(result.notes).toEqual([
+      {
+        name: null,
+        items: [{ value: 'Cool completely before storing.' }],
+      },
+    ])
   })
 
   it('should accept links when provided', () => {

@@ -30,6 +30,7 @@ import type {
 } from './types/recipe.interface'
 import type { ScraperOptions } from './types/scraper.interface'
 import { isPlainObject, resolveErrorMessage } from './utils'
+import { extractWprmNotes } from './utils/extract-wprm-notes'
 
 export type RecipeFieldExtractor<Key extends keyof RecipeFields> = (
   prevValue: RecipeFields[Key] | undefined,
@@ -190,6 +191,10 @@ export abstract class AbstractScraper {
       .filter(Boolean)
   }
 
+  protected notes(): RecipeData['notes'] {
+    return extractWprmNotes(this.$)
+  }
+
   /**
    * Scrape's the recipe and caches the data.
    */
@@ -197,6 +202,8 @@ export abstract class AbstractScraper {
     if (this.recipeData) {
       return this.recipeData
     }
+
+    const notes = this.options.parseNotes ? this.notes() : undefined
 
     this.recipeData = {
       author: await this.extract('author'),
@@ -212,6 +219,7 @@ export abstract class AbstractScraper {
       image: await this.extract('image'),
       ingredients: await this.extract('ingredients'),
       instructions: await this.extract('instructions'),
+      ...(notes ? { notes } : {}),
       keywords: await this.extract('keywords'),
       language: this.language(),
       links: this.links(),

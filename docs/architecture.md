@@ -62,6 +62,8 @@ For each RecipeFields key:
   ->
 RecipeData (internal)
   ->
+optional note extraction (`parseNotes`) from supported HTML recipe blocks
+  ->
 toRecipeObject() converts Set/Map internals to arrays/objects
   ->
 parse() or safeParse() via validation schema
@@ -72,6 +74,8 @@ Important ordering behavior:
 - extractor plugins are sorted by `priority` descending
 - the first plugin that returns a defined value "wins"
 - site-specific extractor receives that value as `prevValue`
+- recipe notes are currently handled outside the plugin field pipeline and are
+  added only when `parseNotes` is enabled
 
 ## Plugin System
 
@@ -123,6 +127,27 @@ Built-in post-processors:
 
 - `HtmlStripperPlugin` (priority `100`)
 - `IngredientParserPlugin` (priority `50`, enabled when `parseIngredients` is set)
+
+## Optional Notes Extraction
+
+Recipe notes are currently extracted by `AbstractScraper.notes()` via
+`extractWprmNotes(...)` in `src/utils/extract-wprm-notes.ts`.
+
+This path is intentionally separate from extractor plugins because:
+
+- notes are opt-in (`parseNotes`)
+- absence of notes is a normal outcome, not an extraction failure
+- current support is HTML-pattern-specific (WP Recipe Maker), not a generic
+  schema/OpenGraph field source
+
+Current behavior:
+
+- enabled with `parseNotes: true`
+- prefers the first `.wprm-recipe-notes-container` inside the first
+  `.wprm-recipe-container`
+- falls back to the first standalone `.wprm-recipe-notes-container`
+- returns a single unnamed note group
+- omits `notes` entirely when no supported note block exists
 
 ## Registration Model
 
@@ -183,6 +208,7 @@ Current validation includes:
 - required/optional field checks
 - URL and hostname checks
 - non-empty ingredient/instruction group arrays
+- optional note group validation when `notes` is present
 - ratings range and ratings count consistency
 - `totalTime >= cookTime + prepTime` refinement
 - transform to fill `totalTime` when missing and both `cookTime` + `prepTime` exist
@@ -218,6 +244,8 @@ Inside `RecipeData`, some fields use `Set`/`Map` for extraction ergonomics.
 
 - `Set<string>` -> `string[]`
 - `Map<string, string>` -> `Record<string, string>`
+
+Optional note groups are already JSON-serializable and flow through unchanged.
 
 ## Project Structure
 
