@@ -8,6 +8,14 @@ import type { RecipeObject } from '@/types/recipe.interface'
 
 const DATA_DIR = './test-data'
 
+type RecipeFixture = Omit<RecipeObject, 'schemaVersion'>
+
+function fixtureHasParsedIngredients(fixture: RecipeFixture): boolean {
+  return fixture.ingredients.some((group) =>
+    group.items.some((item) => 'parsed' in item),
+  )
+}
+
 async function getTestDataFiles() {
   // Use Bun.glob to find all .testhtml files
   const glob = new Bun.Glob('**/*.testhtml')
@@ -68,12 +76,14 @@ function runTestSuite(host: string, htmlFiles: string[], jsonFiles: string[]) {
       const jsonFile = jsonFiles[i]
       const { base: fileName } = path.parse(htmlFile)
       const htmlContent = await Bun.file(htmlFile).text()
-      const expectedData: RecipeObject = await Bun.file(jsonFile).json()
+      const expectedData: RecipeFixture = await Bun.file(jsonFile).json()
+      const parseIngredients = fixtureHasParsedIngredients(expectedData)
 
       describe(fileName, () => {
         it('should correctly parse and validate the recipe', async () => {
           const scraper = new Scraper(htmlContent, host, {
             logLevel: LogLevel.WARN,
+            parseIngredients,
           })
           const data = await scraper.toRecipeObject()
           expect(data).toEqual(expectedData)

@@ -1,0 +1,177 @@
+{
+  "host": "brasspine.com",
+  "title": "Maple Spiced Homemade Granola with Nuts",
+  "author": "Jessica",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "10 cups Old Fashioned Rolled Oats",
+          "parsed": {
+            "quantity": 10,
+            "quantity2": null,
+            "unitOfMeasureID": "cup",
+            "unitOfMeasure": "cups",
+            "description": "Old Fashioned Rolled Oats",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 cup Almonds (whole or halved)",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "cup",
+            "unitOfMeasure": "cup",
+            "description": "Almonds (whole or halved)",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 cup Pecans (whole or halved)",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "cup",
+            "unitOfMeasure": "cup",
+            "description": "Pecans (whole or halved)",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 cup Walnuts (whole or halved)",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "cup",
+            "unitOfMeasure": "cup",
+            "description": "Walnuts (whole or halved)",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "3/4 cup Coconut Oil (melted)",
+          "parsed": {
+            "quantity": 0.75,
+            "quantity2": null,
+            "unitOfMeasureID": "cup",
+            "unitOfMeasure": "cup",
+            "description": "Coconut Oil (melted)",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 cup Pure Maple Syrup",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "cup",
+            "unitOfMeasure": "cup",
+            "description": "Pure Maple Syrup",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 tsp Pure Vanilla Extract",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "teaspoon",
+            "unitOfMeasure": "tsp",
+            "description": "Pure Vanilla Extract",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 tsp Cinnamon",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "teaspoon",
+            "unitOfMeasure": "tsp",
+            "description": "Cinnamon",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 tsp Ginger",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "teaspoon",
+            "unitOfMeasure": "tsp",
+            "description": "Ginger",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 tsp Clove",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "teaspoon",
+            "unitOfMeasure": "tsp",
+            "description": "Clove",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "1 tsp Nutmeg",
+          "parsed": {
+            "quantity": 1,
+            "quantity2": null,
+            "unitOfMeasureID": "teaspoon",
+            "unitOfMeasure": "tsp",
+            "description": "Nutmeg",
+            "isGroupHeader": false
+          }
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 300°F"
+        },
+        {
+          "value": "Add the melted coconut oil, maple syrup and vanilla to a small bowl or 1qt measuring cup and stir to combine."
+        },
+        {
+          "value": "Add the oats, nuts and spices to a large bowl and stir to combine."
+        },
+        {
+          "value": "Pour the syrup mixture over the oats and mix to coat everything evenly."
+        },
+        {
+          "value": "Spread evenly on parchment lined baking sheet. It will be very full!"
+        },
+        {
+          "value": "Bake for 1 hour, stirring after 30 minutes. Cool completely before serving."
+        }
+      ]
+    }
+  ],
+  "canonicalUrl": "https://brasspine.com/homemade-granola/",
+  "image": "https://brasspine.com/wp-content/uploads/2025/12/Holiday-Spiced-Granola-13-min-scaled.jpg",
+  "totalTime": 65,
+  "cookTime": 60,
+  "prepTime": 5,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "yields": "14 servings",
+  "description": "A crunchy homemade granola made with oats, nuts, warm spices, and real maple syrup. Naturally sweetened, easy to make, and perfect for Christmas mornings or everyday breakfasts.",
+  "language": "en-US",
+  "siteName": "Brass Pine",
+  "cookingMethod": null,
+  "category": ["Breakfast", "Dessert", "Snack"],
+  "cuisine": ["American"],
+  "keywords": ["granola with nuts"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "nutrients": {},
+  "reviews": {}
+}
