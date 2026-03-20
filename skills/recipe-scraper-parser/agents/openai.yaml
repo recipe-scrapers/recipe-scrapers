@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recipe Scraper Parser"
+  short_description: "Add recipe hosts and fixtures"
+  default_prompt: "Use $recipe-scraper-parser to add or update recipe host support, including schema.org-only registration or custom scraper logic, aliases, fixture setup, and tests."

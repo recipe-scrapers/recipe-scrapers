@@ -1,4 +1,4 @@
-# Copilot Instructions for Recipe Scrapers
+# Instructions for Recipe Scrapers
 
 You are helping with a TypeScript project that scrapes recipe data from various cooking websites. The project extracts structured recipe information from HTML pages using multiple extraction methods.
 
@@ -63,15 +63,21 @@ Reference `RecipeObject` from `src/types/recipe.interface.ts`
 - Test data goes in `test-data/[sitename]/` with `.testhtml` and `.json` files
 - Mock external dependencies when needed
 - Bun globals/APIs are allowed in tests and scripts, but should not leak into `src/**`
+- `scripts/process-test-data.ts` is the default entry point for converting raw fixture files from `.temp/[host]/` into `test-data/[host]/`
+- The shared scraper test harness discovers `test-data/**/*.testhtml` and expects a sibling `.json` fixture
 
 ## Common Tasks
 
-### Adding New Site Scraper
+### Adding New Supported Host
 
-1. Create `src/scrapers/[sitename].ts`
-2. Export class extending `AbstractScraper`
-3. Register the scraper in `src/scrapers/_index.ts`
-4. Add test data in `test-data/[sitename]/`
+1. Decide whether the host can use generic schema.org extraction or needs site-specific logic
+2. If schema.org-only support is enough, add the hostname to `SCHEMA_ORG_ONLY_HOSTS` in `src/scrapers/_index.ts`
+3. If site-specific logic is needed, create `src/scrapers/[name].ts` using the repo's normalized scraper naming convention rather than the literal hostname
+4. Export a class extending `AbstractScraper`
+5. Register custom scrapers in `customScraperClasses` in `src/scrapers/_index.ts`
+6. Add host aliases to `scraperAliases` in `src/scrapers/_index.ts` when the same scraper should support alternate hostnames
+7. Add test data in `test-data/[host]/`
+8. If fixture output is difficult to reconcile, compare with the original Python scraper implementation at `https://github.com/hhursev/recipe-scrapers/tree/main/recipe_scrapers` before changing shared extraction behavior
 
 ## Code Style
 
