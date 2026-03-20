@@ -1,0 +1,88 @@
+{
+  "author": "Natalya Drozhzhin",
+  "canonicalUrl": "https://natashaskitchen.com/sugar-cookies-recipe/",
+  "cookTime": 10,
+  "cookingMethod": null,
+  "description": "Everyone needs an Easy Sugar Cookies Recipe! These are literally melt-in-your-mouth delicious. I am positive these Christmas cookies will win you over.",
+  "host": "natashaskitchen.com",
+  "image": "https://natashaskitchen.com/wp-content/uploads/2019/12/Sugar-Cookies-8.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 cup unsalted butter (softened at room temperature)"
+        },
+        {
+          "value": "1 cup granulated sugar"
+        },
+        {
+          "value": "1 egg ((large))"
+        },
+        {
+          "value": "1 tsp vanilla extract"
+        },
+        {
+          "value": "3 cups all-purpose flour ((measured correctly))"
+        },
+        {
+          "value": "1 Tbsp baking powder"
+        },
+        {
+          "value": "1/4 tsp salt"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 350 °F with a rack in the center. Whisk together flour with baking powder and salt in a small bowl and set aside."
+        },
+        {
+          "value": "Using a stand-up or handheld mixer, beat the butter together with sugar. To the mixture add vanilla extract and egg and beat to combine."
+        },
+        {
+          "value": "To the butter mixture, add flour in 3 parts until fully incorporated."
+        },
+        {
+          "value": "Divide the dough into two equal parts. On a lightly floured surface, roll into ¼-inch thickness. Use a cookie cutter to cut out your favorite shapes."
+        },
+        {
+          "value": "Bake cookies on a parchment or silicone-lined baking sheet at 350˚F for 10 minutes, or until the edges are just beginning to turn golden."
+        },
+        {
+          "value": "Let the cookies cool for about 5 minutes on the baking sheet before moving them to a wire rack to cool completely and decorating with cookie icing."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 20,
+  "ratings": 4.99,
+  "ratingsCount": 575,
+  "siteName": "NatashasKitchen.com",
+  "title": "Christmas Sugar Cookies Recipe",
+  "totalTime": 30,
+  "yields": "40 servings",
+  "category": ["Cookies", "Dessert"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["sugar cookies"],
+  "nutrients": {
+    "calories": "96 kcal",
+    "carbohydrateContent": "12 g",
+    "proteinContent": "1 g",
+    "fatContent": "5 g",
+    "saturatedFatContent": "3 g",
+    "cholesterolContent": "16 mg",
+    "sodiumContent": "17 mg",
+    "fiberContent": "1 g",
+    "sugarContent": "5 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

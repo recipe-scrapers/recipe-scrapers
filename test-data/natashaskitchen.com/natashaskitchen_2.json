@@ -1,0 +1,128 @@
+{
+  "author": "Natasha Kravchuk",
+  "canonicalUrl": "https://natashaskitchen.com/cranberry-bread/",
+  "cookTime": 50,
+  "cookingMethod": null,
+  "description": "Orange Glazed Cranberry bread is loaded with juicy cranberries with a moist and tender crumb. This stays moist for a few days after it’s made so it’s perfect as a homemade Christmas gift.",
+  "host": "natashaskitchen.com",
+  "image": "https://natashaskitchen.com/wp-content/uploads/2021/12/Cranberry-Bread-SQ.jpg",
+  "ingredients": [
+    {
+      "name": "Cranberry Bread Ingredients",
+      "items": [
+        {
+          "value": "1 1/2 cups all-purpose flour"
+        },
+        {
+          "value": "1 tsp baking powder"
+        },
+        {
+          "value": "1/4 tsp salt"
+        },
+        {
+          "value": "1/4 cup milk (room temperature)"
+        },
+        {
+          "value": "Zest of 1 large orange (divided)"
+        },
+        {
+          "value": "1/4 cup orange juice (freshly squeezed)"
+        },
+        {
+          "value": "6 Tbsp unsalted butter (softened)"
+        },
+        {
+          "value": "3/4 cup granulated sugar"
+        },
+        {
+          "value": "2 large eggs (room temperature)"
+        },
+        {
+          "value": "1 1/2 cups fresh cranberries (rinsed and patted dry)"
+        },
+        {
+          "value": "1/2 Tbsp all-purpose flour"
+        }
+      ]
+    },
+    {
+      "name": "Orange Glaze Ingredients",
+      "items": [
+        {
+          "value": "1 cup powdered sugar"
+        },
+        {
+          "value": "1 1/2 Tbsp freshly squeezed orange juice (or to reach desired consistency)"
+        },
+        {
+          "value": "1 tsp orange zest (reserved from the orange above)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "How to Make Cranberry Orange Bread:",
+      "items": [
+        {
+          "value": "Prep: Preheat oven to 350˚F. Butter a 6 cup (8 1/2 by 4 1/2 bread loaf pan) then dust with flour, tapping out the excess flour."
+        },
+        {
+          "value": "In a medium mixing bowl, whisk together: flour, baking powder, and salt. Set aside."
+        },
+        {
+          "value": "In a measuring cup, combine together milk, zest of 1 orange (Reserve 1 tsp zest for the glaze), and orange juice. Set aside."
+        },
+        {
+          "value": "In a large mixing bowl, cream together butter and granulated sugar on medium/high speed (2-3 minutes on high speed). It won’t be smooth, just combined. Beat in 2 large eggs, mixing until well incorporated."
+        },
+        {
+          "value": "Add flour mixture in 2 parts, alternating with the milk mixture and mixing on medium/low speed just until incorporated with each addition. Scrape the sides of the bowl with a spatula as needed."
+        },
+        {
+          "value": "Toss cranberries with 1/2 Tbsp flour then fold them into the batter just until incorporated. Spread the batter into your prepared pan and bake for 45-50 min at 350˚F until golden on top and a toothpick inserted into the center comes out clean. Let cool in pan 10-15 minutes then run a cake release tool or knife around the edges and transfer the loaf to a wire rack to cool completely before glazing."
+        }
+      ]
+    },
+    {
+      "name": "To Make the Glaze:",
+      "items": [
+        {
+          "value": "In a separate bowl, stir together powdered sugar, orange juice and reserved teaspoon of zest. Stir until smooth. It should have a drizzling consistency. Add more orange juice to thin it out or powdered sugar to make it thicker."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 10,
+  "ratings": 4.99,
+  "ratingsCount": 867,
+  "siteName": "NatashasKitchen.com",
+  "title": "Cranberry Bread with Orange Glaze",
+  "totalTime": 60,
+  "yields": "8 servings",
+  "category": ["Breakfast", "Dessert"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "Cranberry Bread",
+    "Cranberry Orange Bread",
+    "Orange Cranberry Bread"
+  ],
+  "nutrients": {
+    "calories": "326 kcal",
+    "carbohydrateContent": "56 g",
+    "proteinContent": "4 g",
+    "fatContent": "10 g",
+    "saturatedFatContent": "6 g",
+    "transFatContent": "1 g",
+    "cholesterolContent": "64 mg",
+    "sodiumContent": "95 mg",
+    "fiberContent": "2 g",
+    "sugarContent": "36 g",
+    "unsaturatedFatContent": "4 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

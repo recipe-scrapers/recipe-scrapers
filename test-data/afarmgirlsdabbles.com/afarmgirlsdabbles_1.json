@@ -1,0 +1,108 @@
+{
+  "author": "Brenda | A Farmgirl's Dabbles",
+  "canonicalUrl": "https://www.afarmgirlsdabbles.com/italian-chopped-salad/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "This Italian Chopped Salad is loaded with fresh veggies, salami, provolone, pepperoncini, and olives for a flavorful, satisfying meal!",
+  "host": "afarmgirlsdabbles.com",
+  "image": "https://www.afarmgirlsdabbles.com/wp-content/uploads/2025/05/Italian-chopped-salad-afarmgirlsdabbles-01s.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 large heads romaine lettuce, (prepared according to Notes below )"
+        },
+        {
+          "value": "½ medium red onion, peeled and then sliced into very thin rings ((I like to use a mandoline for quick, easy, uniform slices.))"
+        },
+        {
+          "value": "½ cup sliced pepperoncini rings"
+        },
+        {
+          "value": "½ cup sliced black olives"
+        },
+        {
+          "value": "½ pound provolone, sliced ⅛\" thick and then cut into ¼\" ribbons"
+        },
+        {
+          "value": "½ pound good quality salami, sliced ⅛\" thick and then cut into ¼\" ribbons"
+        },
+        {
+          "value": "12 ounces cherry or grape tomatoes, sliced in half"
+        },
+        {
+          "value": "freshly ground black pepper"
+        },
+        {
+          "value": "Italian Vinaigrette"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "To serve the salad already dressed",
+      "items": [
+        {
+          "value": "In a large salad bowl, gently fold together lettuce, red onion, pepperoncini, black olives, provolone, salami, and tomatoes."
+        },
+        {
+          "value": "Drizzle about ½ cup of the Italian Vinaigrette over these ingredients, and then gently fold again."
+        },
+        {
+          "value": "Taste for seasoning and add a touch of salt and/or more of the vinaigrette, if desired. Sprinkle freshly ground black pepper over the top and serve immediately."
+        }
+      ]
+    },
+    {
+      "name": "To serve the salad with dressing on the side",
+      "items": [
+        {
+          "value": "Just combine all salad ingredients in a large salad bowl and offer the dressing on the side."
+        }
+      ]
+    },
+    {
+      "name": "To prepare in advance",
+      "items": [
+        {
+          "value": "Up to 1 day in advance, prepare Italian Vinaigrette and store in the refrigerator."
+        },
+        {
+          "value": "Up to a few hours ahead of time, prep all Italian Chopped Salad ingredients. Store lettuce and sliced tomatoes in their own separate covered containers in the refrigerator. Store red onion, pepperoncini, black olives, provolone, and salami together in a covered container in the refrigerator."
+        },
+        {
+          "value": "When ready to serve, assemble salad as directed in the Instructions above."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 35,
+  "ratings": 4.43,
+  "ratingsCount": 185,
+  "siteName": "A Farmgirl&#039;s Dabbles",
+  "title": "Italian Chopped Salad",
+  "totalTime": 35,
+  "yields": "8 servings",
+  "category": ["Salads &amp; Dressings"],
+  "cuisine": ["Italian"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Italian chopped salad"],
+  "nutrients": {
+    "servingSize": "1",
+    "calories": "275 kcal",
+    "carbohydrateContent": "15 g",
+    "proteinContent": "16 g",
+    "fatContent": "18 g",
+    "saturatedFatContent": "8 g",
+    "cholesterolContent": "50 mg",
+    "sodiumContent": "993 mg",
+    "fiberContent": "5 g",
+    "sugarContent": "8 g",
+    "unsaturatedFatContent": "9 g"
+  },
+  "reviews": {}
+}

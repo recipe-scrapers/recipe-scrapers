@@ -1,0 +1,81 @@
+{
+  "author": "Suzy Karadsheh",
+  "canonicalUrl": "https://www.themediterraneandish.com/savory-yogurt-bowl/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "This savory breakfast bowl is everything I want for busy weekdays: healthy, easy, keeps me satisfied until lunchtime, and I can prep the night before. Make on repeat all year round! Swap with seasonal vegetables and what you have on hand, and trade out the yogurt for hummus if you're looking for a dairy-free option.",
+  "host": "themediterraneandish.com",
+  "image": "https://www.themediterraneandish.com/wp-content/uploads/2024/10/SAVORY-YOG-BOWL-20208.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 cup Greek yogurt"
+        },
+        {
+          "value": "1/2 cup cooked chickpeas ((cooked from scratch or drained and rinsed canned chickpeas), patted dry)"
+        },
+        {
+          "value": "2 hard boiled eggs, (grated)"
+        },
+        {
+          "value": "2 Persian cucumbers, (chopped)"
+        },
+        {
+          "value": "2 Roma tomatoes, (chopped)"
+        },
+        {
+          "value": "Extra virgin olive oil"
+        },
+        {
+          "value": "Kosher salt"
+        },
+        {
+          "value": "Za’atar (and/or Dukkah, for serving)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Build the breakfast bowl. Divide the yogurt into the bottom of two serving bowls. Top with the chickpeas, egg, and veggies."
+        },
+        {
+          "value": "Finish and serve. Add a drizzle of good extra virgin olive oil, pinch of salt, and a good sprinkle of za’atar or dukkah. Serve or cover and refrigerate for up to 1 night."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 10,
+  "ratings": 5,
+  "ratingsCount": 2,
+  "siteName": "The Mediterranean Dish",
+  "title": "Savory Yogurt Bowls",
+  "totalTime": 10,
+  "yields": "2 servings",
+  "category": ["Breakfast"],
+  "cuisine": ["Mediterranean"],
+  "dietaryRestrictions": ["GlutenFreeDiet", "VegetarianDiet"],
+  "equipment": [],
+  "keywords": ["breakfast recipe", "greek yogurt", "savory yogurt"],
+  "nutrients": {
+    "calories": "255.1 kcal",
+    "carbohydrateContent": "24.9 g",
+    "proteinContent": "22.7 g",
+    "fatContent": "7.4 g",
+    "saturatedFatContent": "1.9 g",
+    "transFatContent": "0.01 g",
+    "cholesterolContent": "191.5 mg",
+    "sodiumContent": "106.4 mg",
+    "fiberContent": "5.5 g",
+    "sugarContent": "9.2 g",
+    "unsaturatedFatContent": "4 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

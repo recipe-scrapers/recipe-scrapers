@@ -1,0 +1,100 @@
+{
+  "author": "Addison LaBonte",
+  "canonicalUrl": "https://organicallyaddison.com/whole30_pork_chops_with_garlic_ghee_sauce/",
+  "cookTime": 30,
+  "cookingMethod": null,
+  "description": "These Whole30 Pork Chops are smothered in a garlic ghee sauce! They are tender, flavorful and hearty. These pork chops are anything but boring and dry. They are melt in your mouth delicious!",
+  "host": "organicallyaddison.com",
+  "image": "https://organicallyaddison.com/wp-content/uploads/2020/08/PORK-CHOPS-2-e1597103156988.jpeg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "4 pork chops"
+        },
+        {
+          "value": "2 tbsp olive oil"
+        },
+        {
+          "value": "1/2 tsp ground pepper"
+        },
+        {
+          "value": "1/2 tsp sea salt"
+        }
+      ]
+    },
+    {
+      "name": "Garlic Ghee Sauce",
+      "items": [
+        {
+          "value": "2 tbsp ghee (or grass fed butter)"
+        },
+        {
+          "value": "1 tsp olive oil"
+        },
+        {
+          "value": "1 tsp minced garlic"
+        },
+        {
+          "value": "chopped basil (for garnish (optional))"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "First, preheat oven to 350 degrees Fahrenheit."
+        },
+        {
+          "value": "Pat pork chops dry with paper towels. Season both sides with salt and pepper."
+        },
+        {
+          "value": "Add olive oil to a large cast iron or oven safe skillet. Once oil is hot, place pork chops in skillet. Sear for 4 to 5 minutes over medium heat on each side."
+        },
+        {
+          "value": "Then, remove from heat. Place skillet in the oven. Bake for 15 to 20 minutes or until internal temperature of pork reaches at least 145 degrees Fahrenheit."
+        },
+        {
+          "value": "Remove skillet from oven."
+        },
+        {
+          "value": "Meanwhile, melt ghee in a small microwave safe dish. Stir in olive oil and minced garlic. Spoon this sauce over each pork chop."
+        },
+        {
+          "value": "Finally, garnish with chopped basil if desired."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 5,
+  "ratingsCount": 1,
+  "siteName": "Organically Addison",
+  "title": "Whole30 Pork Chops with Garlic Ghee Sauce",
+  "totalTime": 35,
+  "yields": "4 servings",
+  "category": ["Main Course"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [],
+  "nutrients": {
+    "calories": "346 kcal",
+    "carbohydrateContent": "1 g",
+    "proteinContent": "29 g",
+    "fatContent": "25 g",
+    "saturatedFatContent": "9 g",
+    "transFatContent": "1 g",
+    "cholesterolContent": "109 mg",
+    "sodiumContent": "355 mg",
+    "fiberContent": "1 g",
+    "sugarContent": "1 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

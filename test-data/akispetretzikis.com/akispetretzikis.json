@@ -1,0 +1,115 @@
+{
+  "author": "Akis Petretzikis",
+  "canonicalUrl": "https://akispetretzikis.com/en/recipe/5453/kotopoylo-lemonato-me-agkinares",
+  "cookTime": 25,
+  "cookingMethod": null,
+  "description": "Lemon chicken with artichokes by the Greek chef Akis Petretzikis. A quick and easy recipe for a hearty lemon chicken with tender artichokes!",
+  "host": "akispetretzikis.com",
+  "image": "https://akispetretzikis.com/photos/akisrecipes/15973/aginares-lemonates-me-kotopoulo.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 1/2 kilo chicken breast fillet"
+        },
+        {
+          "value": "4-5 tablespoon(s) olive oil"
+        },
+        {
+          "value": "salt"
+        },
+        {
+          "value": "pepper"
+        },
+        {
+          "value": "50 g all-purpose flour"
+        },
+        {
+          "value": "2 onions"
+        },
+        {
+          "value": "2 clove(s) of garlic"
+        },
+        {
+          "value": "750 g artichokes"
+        },
+        {
+          "value": "80 g white wine"
+        },
+        {
+          "value": "lemon juice"
+        },
+        {
+          "value": "400 g water"
+        },
+        {
+          "value": "1 tablespoon(s) chicken stock pot"
+        },
+        {
+          "value": "2 tablespoon(s) tarragon"
+        },
+        {
+          "value": "olive oil"
+        },
+        {
+          "value": "lemon"
+        },
+        {
+          "value": "parsley"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Place a frying pan over high heat and add 2-3 tablespoons olive oil."
+        },
+        {
+          "value": "Cut the chicken into 2-3 cm pieces and add them into a bowl. Add salt, pepper, the flour, and mix."
+        },
+        {
+          "value": "Transfer the chicken to the hot pan and sauté for 3-4 minutes until golden."
+        },
+        {
+          "value": "Place a pot over high heat and add 2 tablespoons olive oil."
+        },
+        {
+          "value": "Finely chop the onions and the garlic, add them to the pot, and sauté."
+        },
+        {
+          "value": "Add the artichokes, the chicken, and deglaze the pot with the wine."
+        },
+        {
+          "value": "Add the lemon juice, the water, the chicken stock pot, the tarragon, and mix."
+        },
+        {
+          "value": "Cover with the lid and simmer over medium heat for 20-25 minutes."
+        },
+        {
+          "value": "Serve with pepper, olive oil, lemon slices, and parsley."
+        }
+      ]
+    }
+  ],
+  "language": "en",
+  "prepTime": 15,
+  "ratings": 4.91,
+  "ratingsCount": 216,
+  "siteName": "Akis Petretzikis",
+  "title": "Lemon chicken with artichokes",
+  "totalTime": 40,
+  "yields": "8 servings",
+  "category": [],
+  "cuisine": ["Greek"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Lemon", "chicken", "with", "artichokes"],
+  "nutrients": {
+    "calories": "231 calories"
+  },
+  "reviews": {}
+}

@@ -1,0 +1,130 @@
+{
+  "author": "Becky Hardin",
+  "canonicalUrl": "https://www.thecookierookie.com/brown-sugar-glazed-ham/",
+  "cookTime": 150,
+  "cookingMethod": null,
+  "description": "A whole ham, baked and brushed with the sweetest, tangiest glaze, makes the juicy, tender, and delicious ham your family craves for the holidays.Step-by-step photos can be seen below the recipe card.",
+  "host": "thecookierookie.com",
+  "image": "https://www.thecookierookie.com/wp-content/uploads/2022/12/featured-brown-sugar-glazed-ham-recipe.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "14-16 pound bone-in ham"
+        },
+        {
+          "value": "3 cups water"
+        },
+        {
+          "value": "1 cup brown sugar"
+        },
+        {
+          "value": "½ cup honey"
+        },
+        {
+          "value": "⅓ cup Dijon mustard"
+        },
+        {
+          "value": "¼ cup unsalted butter ((½ stick))"
+        },
+        {
+          "value": "¼ cup apple cider vinegar"
+        },
+        {
+          "value": "3 cloves garlic (minced)"
+        },
+        {
+          "value": "¼ teaspoon ground cinnamon"
+        },
+        {
+          "value": "¼ teaspoon ground ginger"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 325°F."
+        },
+        {
+          "value": "Score"
+        },
+        {
+          "value": "Place the ham on a cutting board. Score the ham by using a sharp knife to cut parallel lines about ½-inch deep and 1 inch apart across the entire ham. Turn the ham, and then repeat this process, cutting lines across the previous lines to create small diamond shapes."
+        },
+        {
+          "value": "Cook"
+        },
+        {
+          "value": "Place the ham, flat side down, in a roasting pan. Pour 3 cups of water into the pan. Cover with foil. The ham should cook for about 12 minutes per pound."
+        },
+        {
+          "value": "Prepare"
+        },
+        {
+          "value": "After 1 hour, prepare the glaze. Add the brown sugar, honey, dijon mustard, butter, apple cider vinegar, garlic, cinnamon, and ginger to a saucepan over medium heat. Once it starts bubbling, turn down the heat to low and continue cooking for a couple more minutes. The glaze may seem runny at first, but that’s okay. It will thicken up as it sits."
+        },
+        {
+          "value": "Spread"
+        },
+        {
+          "value": "Remove the ham from the oven and spread ⅓ of the glaze over the ham and return to the oven without the foil. Continue cooking for another hour."
+        },
+        {
+          "value": "Repeat"
+        },
+        {
+          "value": "Remove the ham from the oven again, and spread another ⅓ of the glaze over the ham. Cook for the remaining time based the weight of your ham."
+        },
+        {
+          "value": "Remove the ham from the oven and spread the remaining glaze over the ham."
+        },
+        {
+          "value": "Rest"
+        },
+        {
+          "value": "Let the ham rest for at least 15 minutes before carving."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": null,
+  "ratings": 4.64,
+  "ratingsCount": 33,
+  "siteName": "The Cookie Rookie®",
+  "title": "Brown Sugar Glazed Ham Recipe",
+  "totalTime": 150,
+  "yields": "20 servings",
+  "category": ["Dinner"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "brown sugar glaze for ham",
+    "brown sugar glazed ham",
+    "brown sugar ham glaze",
+    "brown sugar ham glaze recipe",
+    "glaze for ham with brown sugar",
+    "how to make brown sugar glaze for ham"
+  ],
+  "nutrients": {
+    "servingSize": "0.75 pounds",
+    "calories": "565 kcal",
+    "carbohydrateContent": "18 g",
+    "proteinContent": "60 g",
+    "fatContent": "27 g",
+    "saturatedFatContent": "7 g",
+    "transFatContent": "0.1 g",
+    "cholesterolContent": "238 mg",
+    "sodiumContent": "3719 mg",
+    "fiberContent": "0.2 g",
+    "sugarContent": "18 g",
+    "unsaturatedFatContent": "12 g"
+  },
+  "reviews": {}
+}

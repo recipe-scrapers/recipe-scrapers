@@ -1,0 +1,124 @@
+{
+  "author": "Jen Hansard",
+  "canonicalUrl": "https://simplegreensmoothies.com/gluten-free-crepes/",
+  "cookTime": 20,
+  "cookingMethod": null,
+  "description": "Get ready to experience the best gluten-free crepe recipe. The nutty, earthy taste of the quinoa marries well with the homemade chocolate hazelnut spread (hello, healthy nutella!), and fresh fruit. Feel free to use pre-made chocolate hazelnut spread from the store to save time.",
+  "host": "simplegreensmoothies.com",
+  "image": "https://simplegreensmoothies.com/wp-content/uploads/2020/08/Gluten-Free-Crepes-Recipe-Simple-Green-Smoothies-8114.jpg",
+  "ingredients": [
+    {
+      "name": "For Chocolate Hazelnut Spread",
+      "items": [
+        {
+          "value": "2 cups hazelnuts (toasted and skins removed)"
+        },
+        {
+          "value": "2-4 tbsp coconut sugar"
+        },
+        {
+          "value": "2 tbsp cacao powder"
+        },
+        {
+          "value": "1/4 tsp sea salt, unrefined"
+        }
+      ]
+    },
+    {
+      "name": "For Quinoa Crepes",
+      "items": [
+        {
+          "value": "1 cup quinoa (rinsed)"
+        },
+        {
+          "value": "2 cups almond milk"
+        },
+        {
+          "value": "1 tbsp coconut sugar"
+        },
+        {
+          "value": "3 eggs (room temperature)"
+        },
+        {
+          "value": "1 tsp vanilla extract"
+        },
+        {
+          "value": "1/4 tsp sea salt, unrefined"
+        },
+        {
+          "value": "coconut oil, unrefined (as needed)"
+        },
+        {
+          "value": "2 cups chocolate hazelnut spread"
+        },
+        {
+          "value": "2 cups fresh berries (any variety)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "For Chocolate Hazelnut Spread:",
+      "items": [
+        {
+          "value": "Place toasted hazelnuts into a food processor or blender. Pulse/process until hazelnuts are finely chopped."
+        },
+        {
+          "value": "Add remaining spread ingredients and process or blend, stopping periodically to scrape down the sides, until smooth. This could take up to 10 minutes depending on the appliance you're using. If the motor becomes too hot, turn off and cool a few minutes before starting again."
+        },
+        {
+          "value": "Transfer spread to an airtight jar or container. It will keep at room temperature for several weeks, or several months if kept refrigerated. Bring spread to room temperature for easier spreading."
+        }
+      ]
+    },
+    {
+      "name": "For Quinoa Crepes:",
+      "items": [
+        {
+          "value": "Place dry quinoa into the jar of a blender or food processor. Blend on high speed until finely ground and powdery."
+        },
+        {
+          "value": "Add remaining crepe ingredients. Blend again until smooth. The batter may be a tiny bit grainy, but should be fairly smooth. Let sit for 5-10 minutes as the quinoa absorbs the liquid."
+        },
+        {
+          "value": "To cook, heat a crepe pan or small non stick skillet (an 8-inch works well) over medium high heat. Add a small amount of coconut oil to the pan and gently tilt to coat. Cook for 1-2 minutes, or until the crepe looks set, then carefully flip over using a thin spatula. Cook for another 1-2 minutes, then transfer to a plate to keep warm. Repeat until all the batter has been used. Should yield 9-12 crepes."
+        },
+        {
+          "value": "Spread a small amount of chocolate hazelnut spread on the plate to help the crepes stick. Lay down one crepe, and apply the spread again. Add a layer of berries. Repeat until the stack is the desired height."
+        },
+        {
+          "value": "Eat crepes immediately, or store tightly wrapped in the refrigerator for up to 2 days. To reheat, place in a warm skillet to make them pliable again."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 20,
+  "ratings": 5,
+  "ratingsCount": 6,
+  "siteName": "Simple Green Smoothies",
+  "title": "Ultimate Gluten-Free Crepes",
+  "totalTime": 40,
+  "yields": "10 servings",
+  "category": ["Breakfast"],
+  "cuisine": ["French-Inspired", "Plant-Based"],
+  "dietaryRestrictions": ["GlutenFreeDiet", "VeganDiet"],
+  "equipment": [],
+  "keywords": ["banana free recipe", "gluten free recipe"],
+  "nutrients": {
+    "calories": "255 kcal",
+    "sugarContent": "4 g",
+    "sodiumContent": "267 mg",
+    "fatContent": "18 g",
+    "saturatedFatContent": "2 g",
+    "transFatContent": "0.01 g",
+    "carbohydrateContent": "19 g",
+    "fiberContent": "4 g",
+    "proteinContent": "8 g",
+    "cholesterolContent": "49 mg",
+    "unsaturatedFatContent": "15 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

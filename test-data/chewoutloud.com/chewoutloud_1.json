@@ -1,0 +1,125 @@
+{
+  "author": "Amy Dong",
+  "canonicalUrl": "https://www.chewoutloud.com/perfectly-creamy-mac-n-cheese/",
+  "cookTime": 30,
+  "cookingMethod": null,
+  "description": "This creamy white cheddar mac and cheese is cozy, warm, and comforting. Your family, both kids and grownups alike, will adore this baked and cheese recipe.",
+  "host": "chewoutloud.com",
+  "image": "https://www.chewoutloud.com/wp-content/uploads/2024/03/White-Cheddar-Mac-and-Cheese-Square.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 lb elbow macaroni (dry)"
+        },
+        {
+          "value": "6 TB butter (regular )"
+        },
+        {
+          "value": "5 1/2 cups whole milk"
+        },
+        {
+          "value": "1/2 cup all purpose flour"
+        },
+        {
+          "value": "1/2 tsp garlic powder"
+        },
+        {
+          "value": "1/2 tsp onion powder"
+        },
+        {
+          "value": "1/4 tsp ground nutmeg"
+        },
+        {
+          "value": "1/4 tsp black pepper (fresh ground )"
+        },
+        {
+          "value": "1/4 tsp dry mustard"
+        },
+        {
+          "value": "4 1/2 cups white cheddar (sharp, freshly grated, from a good quality block)"
+        },
+        {
+          "value": "1 1/4 cups Pecorino Romano (freshly grated, from a good quality block)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat"
+        },
+        {
+          "value": "Heat oven to 375F with rack in middle position. Grease a 9x13 casserole dish and set aside."
+        },
+        {
+          "value": "Boil"
+        },
+        {
+          "value": "Fill large pot with salted water. Bring to boil, add macaroni and cook 2 minutes less than the package states for al dente. You want the pasta a bit undercooked, as it will continue to cook in oven. Transfer macaroni to colander, rinse well with cool water, and set aside to drain."
+        },
+        {
+          "value": "Cook Roux"
+        },
+        {
+          "value": "In saucepan, heat milk until hot and set aside - watch that it doesn't spill over. In a large pot, melt butter over medium heat. When butter starts bubbling, add flour and cook 1-2 minutes, constantly stirring."
+        },
+        {
+          "value": "Whisk"
+        },
+        {
+          "value": "Add hot milk into flour-butter mixture, whisking constantly. Continue cooking/whisking on medium heat until mixture bubbles and becomes thick, about 10 min."
+        },
+        {
+          "value": "Add"
+        },
+        {
+          "value": "Turn heat off. Stir in garlic and onion powder, nutmeg, black pepper, and dry mustard. Add 3 cups of the white cheddar and 1 cup of the Pecorino Romano. Mix thoroughly until cheeses are melted and sauce is smooth and creamy."
+        },
+        {
+          "value": "Combine"
+        },
+        {
+          "value": "Add cooked macaroni into cheese sauce and stir to combine well. Pour mixture into greased casserole dish, distributing evenly."
+        },
+        {
+          "value": "Bake"
+        },
+        {
+          "value": "Sprinkle top with remaining 1 1/2 cups white cheddar and 1/4 cup Pecorino Romano. Bake until top is golden brown, about 30 min. If needed, set under broiler for 1-2 minutes for more browning. Let rest 5 minutes and serve."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 20,
+  "ratings": 4.94,
+  "ratingsCount": 16,
+  "siteName": "Chew Out Loud",
+  "title": "White Cheddar Mac and Cheese",
+  "totalTime": 50,
+  "yields": "12 servings",
+  "category": ["Main", "Side Dish"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": ["VegetarianDiet"],
+  "equipment": [],
+  "keywords": ["Mac and Cheese", "Macaroni and Cheese"],
+  "nutrients": {
+    "calories": "450 kcal",
+    "sugarContent": "7 g",
+    "sodiumContent": "373.7 mg",
+    "fatContent": "23 g",
+    "saturatedFatContent": "13.1 g",
+    "transFatContent": "0.5 g",
+    "carbohydrateContent": "39.6 g",
+    "fiberContent": "1.4 g",
+    "proteinContent": "20.7 g",
+    "cholesterolContent": "66.5 mg",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

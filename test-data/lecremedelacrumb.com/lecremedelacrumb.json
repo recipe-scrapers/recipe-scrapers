@@ -1,0 +1,89 @@
+{
+  "author": "Tiffany",
+  "canonicalUrl": "https://www.lecremedelacrumb.com/instant-pot-shredded-chicken-tacos/",
+  "cookTime": 20,
+  "cookingMethod": null,
+  "description": "These are the BEST Instant Pot Shredded Chicken Tacos, hands down. You'll love how quick, easy, and healthy this recipe is!",
+  "host": "lecremedelacrumb.com",
+  "image": "https://www.lecremedelacrumb.com/wp-content/uploads/2019/01/instant-pot-shredded-chicken-tacos-5.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "3-4 medium to large boneless skinless chicken breasts"
+        },
+        {
+          "value": "1 cup chicken broth (or water)"
+        },
+        {
+          "value": "1 teaspoon salt"
+        },
+        {
+          "value": "1 teaspoon ground cumin"
+        },
+        {
+          "value": "1 teaspoon chili powder"
+        },
+        {
+          "value": "1 teaspoon garlic powder"
+        },
+        {
+          "value": "1 15-ounce can fire roasted tomatoes"
+        },
+        {
+          "value": "corn or flour taco-size tortillas"
+        },
+        {
+          "value": "avocado, tomatoes, cheese, cilantro, sour cream (for serving)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In your instant pot/pressure cooker combine chicken, broth or water, cumin, chili powder, garlic powder, and fire roasted tomatoes (with liquid)."
+        },
+        {
+          "value": "Cover and set to PRESSURE COOK or MANUAL for 20 minutes. (30 minutes if using frozen chicken breasts)"
+        },
+        {
+          "value": "Do a quick release (turn vent knob to the VENT position and allow to de-pressurize until the float valve drops down) then uncover and shred chicken with two forks."
+        },
+        {
+          "value": "Serve chicken in tortillas topped with cheese, tomatoes, avocado, cilantro, or any other favorite toppings."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 15,
+  "ratings": 4.85,
+  "ratingsCount": 165,
+  "siteName": "Creme De La Crumb",
+  "title": "Instant Pot Shredded Chicken Tacos",
+  "totalTime": 35,
+  "yields": "4 servings",
+  "category": ["Main Course"],
+  "cuisine": ["Mexican"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Chicken", "healthy", "instant pot", "slow cooker"],
+  "nutrients": {
+    "calories": "202 kcal",
+    "carbohydrateContent": "1 g",
+    "proteinContent": "37 g",
+    "fatContent": "5 g",
+    "saturatedFatContent": "1 g",
+    "transFatContent": "1 g",
+    "cholesterolContent": "108 mg",
+    "sodiumContent": "1003 mg",
+    "fiberContent": "1 g",
+    "sugarContent": "1 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

@@ -1,0 +1,142 @@
+{
+  "author": "Nora",
+  "canonicalUrl": "https://www.noracooks.com/vegan-chocolate-cake/",
+  "cookTime": 35,
+  "cookingMethod": null,
+  "description": "The Best Vegan Chocolate Cake- A quick and easy recipe, made in 1 bowl! This really is the best chocolate cake ever, vegan or otherwise. It's super moist, rich and full of chocolate.",
+  "host": "noracooks.com",
+  "image": "https://www.noracooks.com/wp-content/uploads/2018/07/IMG_8885.jpg",
+  "ingredients": [
+    {
+      "name": "Chocolate Cake",
+      "items": [
+        {
+          "value": "1 cup unsweetened almond milk"
+        },
+        {
+          "value": "1 tablespoon apple cider vinegar"
+        },
+        {
+          "value": "2 cups all purpose flour"
+        },
+        {
+          "value": "1 3/4 cups granulated sugar"
+        },
+        {
+          "value": "3/4 cup cocoa powder"
+        },
+        {
+          "value": "2 teaspoons baking powder"
+        },
+        {
+          "value": "1 1/2 teaspoons baking soda"
+        },
+        {
+          "value": "1 teaspoon salt"
+        },
+        {
+          "value": "1/2 cup canola oil OR melted coconut oil"
+        },
+        {
+          "value": "2/3 cup unsweetened applesauce"
+        },
+        {
+          "value": "1 tablespoon pure vanilla extract"
+        },
+        {
+          "value": "1 cup boiling water"
+        }
+      ]
+    },
+    {
+      "name": "Chocolate Buttercream Frosting",
+      "items": [
+        {
+          "value": "1 cup cocoa powder"
+        },
+        {
+          "value": "1 1/2 cups vegan butter, softened (baking sticks preferred)"
+        },
+        {
+          "value": "4-5 cups powdered sugar"
+        },
+        {
+          "value": "2 teaspoons pure vanilla extract"
+        },
+        {
+          "value": "1/4-1/2 cup unsweetened almond milk"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "For the Chocolate Cake",
+      "items": [
+        {
+          "value": "Preheat oven to 350 degrees F and grease two 9-inch cake pans. I also line them with parchment rounds and lightly flour for easy removal of the cakes later."
+        },
+        {
+          "value": "Measure 1 cup unsweetened almond milk and add the tablespoon of vinegar to it. Stir slightly and set aside to curdle."
+        },
+        {
+          "value": "In a large bowl, add the flour, sugar, cocoa powder, baking powder, baking soda and salt. Whisk well to combine."
+        },
+        {
+          "value": "Now add the oil, applesauce, vanilla and almond milk/vinegar mixture. Mix on medium speed with a hand mixer (or stand mixer with the paddle attachment) until well combined."
+        },
+        {
+          "value": "Lower the speed and carefully pour in the boiling water, continuing to mix into the cake batter until combined. The batter will seem very runny at this point; that is how it should be, trust me!"
+        },
+        {
+          "value": "Divide the batter evenly between your cake pans. Bake for 30-35 minutes, or until a toothpick inserted in the center comes out clean. After 10 minutes of cooling in the pan, carefully remove the cakes from the pans and let cool completely before frosting."
+        }
+      ]
+    },
+    {
+      "name": "For the Chocolate Buttercream Frosting",
+      "items": [
+        {
+          "value": "Add the cocoa powder to a large bowl (I just wipe out the cake bowl and use it for the frosting). Whisk well to remove any clumps."
+        },
+        {
+          "value": "Add the softened vegan butter and mix with a hand mixer until creamed and well combined."
+        },
+        {
+          "value": "Add half of the powdered sugar and half of the almond milk, and mix until combined. Add the rest of the powdered sugar and vanilla extract. Mix starting on low, and turn to high. Mix until fluffy and combined."
+        },
+        {
+          "value": "If the frosting seems too dry, add more milk, a tablespoon or two at a time. If the frosting seems too wet and doesn't hold it's shape, add more powdered sugar until it thickens up."
+        },
+        {
+          "value": "Frost the cake using an icing spatula or just a butter knife."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 20,
+  "ratings": 4.96,
+  "ratingsCount": 1806,
+  "siteName": "Nora Cooks",
+  "title": "The Best Vegan Chocolate Cake",
+  "totalTime": 55,
+  "yields": "16 servings",
+  "category": ["Dessert"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["vegan chocolate cake"],
+  "nutrients": {
+    "calories": "496 kcal",
+    "servingSize": "1 serving",
+    "carbohydrateContent": "71 g",
+    "proteinContent": "4 g",
+    "fatContent": "25 g",
+    "saturatedFatContent": "4 g",
+    "sodiumContent": "408 mg",
+    "fiberContent": "4 g",
+    "sugarContent": "53 g"
+  },
+  "reviews": {}
+}

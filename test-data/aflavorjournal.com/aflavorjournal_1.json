@@ -1,0 +1,90 @@
+{
+  "author": "Sara",
+  "canonicalUrl": "https://aflavorjournal.com/small-batch-restaurant-ranch-dressing-recipe/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "A creamy homemade ranch dressing recipe that rivals your favorite restaurant style ranch!",
+  "host": "aflavorjournal.com",
+  "image": "https://aflavorjournal.com/wp-content/uploads/2022/06/Small-Batch-Ranch-Dressing-Featured.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "3 tbsp. Buttermilk"
+        },
+        {
+          "value": "2 tbsp. Mayonnaise (best quality)"
+        },
+        {
+          "value": "2 tbsp. Sour Cream"
+        },
+        {
+          "value": "1 tsp. dried Minced Onion"
+        },
+        {
+          "value": "1 tsp. dried Parsley Flakes"
+        },
+        {
+          "value": "1/2 tsp. dried Chives"
+        },
+        {
+          "value": "1/4 tsp. Garlic Powder"
+        },
+        {
+          "value": "1/4 tsp. Onion Powder"
+        },
+        {
+          "value": "1/4 tsp. dried Dill"
+        },
+        {
+          "value": "1/4 tsp. Sea Salt"
+        },
+        {
+          "value": "1/4 tsp. freshly cracked Black Pepper"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Whisk the 3 tbsp. buttermilk, 2 tbsp. mayonnaise, and 2 tbsp. sour cream together in a medium bowl."
+        },
+        {
+          "value": "Stir in the dried herbs (1 tsp. dried minced onion, 1 tsp. dried parsley flakes, 1/2 tsp. dried chives, 1/4 tsp. each of onion powder, garlic powder, and dried dill)."
+        },
+        {
+          "value": "Stir in a pinch each of salt and pepper, taste, and add more of either if preferred. For a thinner dressing, stir in more buttermilk (1 tsp. at a time) until the dressing is the consistency you like."
+        },
+        {
+          "value": "Cover and chill for an hour in the refrigerator for the best flavor, or serve immediately!"
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 4.87,
+  "ratingsCount": 499,
+  "siteName": "A Flavor Journal",
+  "title": "Restaurant Ranch Dressing Recipe",
+  "totalTime": 5,
+  "yields": "2 servings",
+  "category": ["Salad"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "homemade ranch dressing",
+    "restaurant ranch dressing recipe",
+    "restaurant style ranch"
+  ],
+  "nutrients": {
+    "calories": "107 kcal",
+    "servingSize": "2 tbsp."
+  },
+  "reviews": {}
+}

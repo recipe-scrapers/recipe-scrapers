@@ -1,0 +1,100 @@
+{
+  "author": "Addison LaBonte",
+  "canonicalUrl": "https://organicallyaddison.com/baked-halibut-recipe/",
+  "cookTime": 12,
+  "cookingMethod": null,
+  "description": "This baked halibut recipe is quick, easy and so flavorful! The garlic butter sauce adds so much flavor to the flaky fish. This halibut is great for holidays, birthdays, and more!",
+  "host": "organicallyaddison.com",
+  "image": "https://organicallyaddison.com/wp-content/uploads/2022/05/2022-05-07_19-11-48_910-2022-05-08T17_48_13.449.jpeg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 pound halibut fillet"
+        },
+        {
+          "value": "2 tbsp melted butter"
+        },
+        {
+          "value": "1 tsp minced garlic"
+        },
+        {
+          "value": "¼ tsp paprika"
+        },
+        {
+          "value": "½ tsp sea salt"
+        },
+        {
+          "value": "½ tsp black pepper"
+        },
+        {
+          "value": "sliced lemon"
+        },
+        {
+          "value": "chopped parsley"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "First, preheat oven to 400 degrees Fahrenheit."
+        },
+        {
+          "value": "Place halibut in baking dish."
+        },
+        {
+          "value": "In a small bowl, combine melted butter, minced garlic, paprika, sea salt and black pepper. Pour this mixture over halibut."
+        },
+        {
+          "value": "Bake for 12 to 13 minutes or until fish is opaque and no longer transparent."
+        },
+        {
+          "value": "Finally, remove from oven. Garnish with sliced lemon and chopped parsley if desired."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 4.98,
+  "ratingsCount": 223,
+  "siteName": "Organically Addison",
+  "title": "Baked Halibut Recipe",
+  "totalTime": 17,
+  "yields": "2 servings",
+  "category": ["Main Course"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": ["GlutenFreeDiet"],
+  "equipment": [],
+  "keywords": [
+    "baked halibut",
+    "fish",
+    "gluten free",
+    "halibut",
+    "keto",
+    "low carb",
+    "low sugar",
+    "paleo",
+    "whole30"
+  ],
+  "nutrients": {
+    "calories": "310 kcal",
+    "carbohydrateContent": "1 g",
+    "proteinContent": "42 g",
+    "fatContent": "14 g",
+    "saturatedFatContent": "8 g",
+    "transFatContent": "1 g",
+    "cholesterolContent": "141 mg",
+    "sodiumContent": "826 mg",
+    "fiberContent": "1 g",
+    "sugarContent": "1 g",
+    "unsaturatedFatContent": "5 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

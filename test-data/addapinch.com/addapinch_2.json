@@ -1,0 +1,120 @@
+{
+  "author": "Robyn Stone",
+  "canonicalUrl": "https://addapinch.com/citrus-scones-with-orange-glaze/",
+  "cookTime": 20,
+  "cookingMethod": null,
+  "description": "Citrus Scones with Orange Glaze are wonderful for breakfast, brunch, or dessert. Bright and delicious, this scones recipe is like a slice of sunshine and is ready in 30 minutes!",
+  "host": "addapinch.com",
+  "image": "https://addapinch.com/wp-content/uploads/2015/03/citrus-scones-recipe-DSC_12521-2.jpg",
+  "ingredients": [
+    {
+      "name": "Citrus Scone Recipe",
+      "items": [
+        {
+          "value": "2 cups all-purpose flour"
+        },
+        {
+          "value": "1/2 cup sugar (+ more for topping)"
+        },
+        {
+          "value": "3 teaspoons baking powder"
+        },
+        {
+          "value": "1/2 teaspoon kosher salt"
+        },
+        {
+          "value": "1/2 cup cold butter (+ more for topping)"
+        },
+        {
+          "value": "3/4 - 1 cup heavy cream"
+        },
+        {
+          "value": "1 teaspoon lemon juice"
+        },
+        {
+          "value": "2 teaspoons orange zest"
+        },
+        {
+          "value": "2 teaspoons lemon zest"
+        }
+      ]
+    },
+    {
+      "name": "Orange Glaze",
+      "items": [
+        {
+          "value": "1 cup confectioner's sugar"
+        },
+        {
+          "value": "3-4 tablespoons orange juice"
+        },
+        {
+          "value": "1 tablespoon orange zest"
+        },
+        {
+          "value": "coarse sugar for topping (optional)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Prep. Preheat oven to 400º F. Line a rimmed baking sheet pan with parchment paper or a nonstick baking sheet."
+        }
+      ]
+    },
+    {
+      "name": "For the scones:",
+      "items": [
+        {
+          "value": "Make the Dough. Whisk together flour, sugar, baking powder, and salt in a large bowl. Add butter to the bowl and cut into the flour with a pastry blender until the largest pieces of butter are about the size of a pea and the flour mixture resembles coarse meal. Stir in 3/4 cup of heavy cream, lemon juice, and orange and lemon zests.. Press dough together between the palms of your hands. If it doesn't just hold together, add more heavy cream until is just holds together."
+        },
+        {
+          "value": "Prepare the Dough. Pour dough onto a lightly floured countertop or a pastry board. Pat dough into a large round disc, about an inch thick. Cut dough into equal sized wedges and place onto prepared baking sheet pan. Melt about 2 tablespoons butter and brush on top of dough."
+        },
+        {
+          "value": "Bake. Bake scones for 20-25 minutes or until they are just beginning to turn lightly brown. Remove from the oven."
+        }
+      ]
+    },
+    {
+      "name": "Orange Glaze:",
+      "items": [
+        {
+          "value": "Make the Glaze. Whisk all of the glaze ingredients together in a medium sized bowl until smooth and then drizzle on top of each scone after it has cooled for a few five minutes. Sprinkle with coarse sugar, if desired."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 10,
+  "ratings": 5,
+  "ratingsCount": 4,
+  "siteName": "Add a Pinch",
+  "title": "Citrus Scones Recipe with Orange Glaze",
+  "totalTime": 30,
+  "yields": "8 servings",
+  "category": ["Breakfast"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["citrus scones"],
+  "nutrients": {
+    "calories": "361 kcal",
+    "carbohydrateContent": "56 g",
+    "proteinContent": "5 g",
+    "fatContent": "14 g",
+    "saturatedFatContent": "8 g",
+    "transFatContent": "1 g",
+    "cholesterolContent": "36 mg",
+    "sodiumContent": "272 mg",
+    "fiberContent": "1 g",
+    "sugarContent": "31 g",
+    "unsaturatedFatContent": "4 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

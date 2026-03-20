@@ -1,0 +1,142 @@
+{
+  "author": "Brenda | A Farmgirl's Dabbles",
+  "canonicalUrl": "https://www.afarmgirlsdabbles.com/apple-cake-with-fluffy-brown-sugar-buttercream-recipe/",
+  "cookTime": 50,
+  "cookingMethod": null,
+  "description": "This easy apple cake is a moist, fluffy cake recipe filled with warm spice and fresh apples. Frost this cake with homemade brown sugar buttercream for the perfect fall dessert!",
+  "host": "afarmgirlsdabbles.com",
+  "image": "https://www.afarmgirlsdabbles.com/wp-content/uploads/2015/09/apple-cake_afarmgirlsdabbles_01s.jpg",
+  "ingredients": [
+    {
+      "name": "for the apple cake",
+      "items": [
+        {
+          "value": "1 cup unsalted butter (at room temperature)"
+        },
+        {
+          "value": "1 tablespoon freshly squeezed lemon juice"
+        },
+        {
+          "value": "1 cup white sugar (divided)"
+        },
+        {
+          "value": "3 cups wheat flour"
+        },
+        {
+          "value": "1 tablespoon baking powder"
+        },
+        {
+          "value": "1 tablespoon cinnamon"
+        },
+        {
+          "value": "1/2 teaspoon mace"
+        },
+        {
+          "value": "1/4 teaspoon nutmeg"
+        },
+        {
+          "value": "1/2 teaspoon kosher salt"
+        },
+        {
+          "value": "1 cup light brown sugar"
+        },
+        {
+          "value": "1/2 cup vegetable oil"
+        },
+        {
+          "value": "1/2 cup applesauce"
+        },
+        {
+          "value": "4 large eggs"
+        },
+        {
+          "value": "2 teaspoons pure vanilla extract"
+        }
+      ]
+    },
+    {
+      "name": "for the fluffy brown sugar buttercream",
+      "items": [
+        {
+          "value": "1 cup unsalted butter (at room temperature)"
+        },
+        {
+          "value": "3 cups powdered sugar"
+        },
+        {
+          "value": "1 cup light brown sugar"
+        },
+        {
+          "value": "2 teaspoons cinnamon"
+        },
+        {
+          "value": "pinch of kosher salt"
+        },
+        {
+          "value": "2 tablespoons half and half"
+        },
+        {
+          "value": "2 teaspoons pure vanilla extract"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "For the apple cake: Preheat oven to 350° F. Lightly spray a 9\" x 13\" pan and set aside."
+        },
+        {
+          "value": "In a medium bowl, stir together the shredded apple with lemon juice and 1/4 cup of the white sugar. Set aside."
+        },
+        {
+          "value": "In another medium bowl, whisk together the flour, baking powder, cinnamon, mace, nutmeg, and salt. Set aside."
+        },
+        {
+          "value": "In the bowl of a stand mixer, combine the remaining 3/4 cup of white sugar, brown sugar, oil, applesauce, eggs, and vanilla. Mix to combine. Then add the flour mixture and combine once again. Add the apples and mix until the apples are evenly distributed."
+        },
+        {
+          "value": "Pour into prepared pan and bake for about 50 minutes, or until the cake is nicely browned and a toothpick comes out of the cake clean. Let cake cool on a rack."
+        },
+        {
+          "value": "For the fluffy brown sugar buttercream: In the bowl of a stand mixer fitted with a paddle attachment, whip butter on medium-high speed until very fluffy, about 8 minutes, occasionally scraping down the sides and bottom of the bowl."
+        },
+        {
+          "value": "Add powdered sugar, brown sugar, cinnamon, and salt, and beat on low to incorporate. Add half and half and vanilla, mixing on low until combined. Increase mixer speed to medium-high and beat until very light and fluffy, about 5 to 6 minutes, occasionally scraping down the sides and bottom of the bowl."
+        },
+        {
+          "value": "Spread buttercream onto cooled cake."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 30,
+  "ratings": 4.75,
+  "ratingsCount": 4,
+  "siteName": "A Farmgirl&#039;s Dabbles",
+  "title": "Apple Cake with Fluffy Brown Sugar Buttercream",
+  "totalTime": 80,
+  "yields": "15 servings",
+  "category": ["Cake"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["apple cake", "apple cake recipe", "easy apple cake"],
+  "nutrients": {
+    "servingSize": "1",
+    "calories": "839 kcal",
+    "carbohydrateContent": "130 g",
+    "proteinContent": "11 g",
+    "fatContent": "33 g",
+    "saturatedFatContent": "15 g",
+    "cholesterolContent": "119 mg",
+    "sodiumContent": "312 mg",
+    "fiberContent": "8 g",
+    "sugarContent": "86 g",
+    "unsaturatedFatContent": "16 g"
+  },
+  "reviews": {}
+}

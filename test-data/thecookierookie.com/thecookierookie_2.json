@@ -1,0 +1,120 @@
+{
+  "author": "Becky Hardin",
+  "canonicalUrl": "https://www.thecookierookie.com/salmon-with-avocado/",
+  "cookTime": 5,
+  "cookingMethod": null,
+  "description": "My favorite recipes are the ones that are easy, yet incredibly delicious. This healthy salmon recipe is not only one of the best salmon recipes I’ve tried, but it’s easy, delicious and good for you. That’s a grand-slam homerun recipe, in my book.Step-by-step photos can be seen below the recipe card.",
+  "host": "thecookierookie.com",
+  "image": "https://www.thecookierookie.com/wp-content/uploads/2014/01/featured-grilled-salmon-with-avocado-salsa-recipe.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 pounds salmon fillets (skin on or off)"
+        },
+        {
+          "value": "1 tablespoon olive oil"
+        },
+        {
+          "value": "1 teaspoon kosher salt"
+        },
+        {
+          "value": "½ teaspoon ancho chili powder"
+        },
+        {
+          "value": "1 teaspoon ground cumin"
+        },
+        {
+          "value": "1 teaspoon ground paprika"
+        },
+        {
+          "value": "1 teaspoon onion powder"
+        },
+        {
+          "value": "1 teaspoon ground black pepper"
+        }
+      ]
+    },
+    {
+      "name": "For the Avocado Salsa",
+      "items": [
+        {
+          "value": "1 avocado (cubed)"
+        },
+        {
+          "value": "½ red onion (sliced or diced)"
+        },
+        {
+          "value": "2 limes (juiced)"
+        },
+        {
+          "value": "1 tablespoon chopped fresh cilantro"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Prep"
+        },
+        {
+          "value": "Mix the salt, chili powder, cumin, paprika, onion powder, and black pepper together. Rub the salmon fillets with olive oil and this seasoning mix."
+        },
+        {
+          "value": "Chill"
+        },
+        {
+          "value": "Refrigerate for at least 30 minutes."
+        },
+        {
+          "value": "Combine the avocado, onion, lime juice, and cilantro. Chill until serving time."
+        },
+        {
+          "value": "Preheat the grill to medium (350-375°F)."
+        },
+        {
+          "value": "Grill the salmon to desired doneness (about 3-4 minutes per side)."
+        },
+        {
+          "value": "Top with avocado salsa and enjoy!"
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 4.68,
+  "ratingsCount": 331,
+  "siteName": "The Cookie Rookie®",
+  "title": "Grilled Salmon with Avocado Salsa Recipe",
+  "totalTime": 10,
+  "yields": "4 servings",
+  "category": ["Main Course"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "grilled salmon",
+    "healthy salmon",
+    "healthy salmon recipe",
+    "salmon with avocado"
+  ],
+  "nutrients": {
+    "calories": "456 kcal",
+    "carbohydrateContent": "10 g",
+    "proteinContent": "47 g",
+    "fatContent": "26 g",
+    "saturatedFatContent": "4 g",
+    "cholesterolContent": "125 mg",
+    "sodiumContent": "692 mg",
+    "fiberContent": "5 g",
+    "sugarContent": "2 g",
+    "servingSize": "1 fillet",
+    "unsaturatedFatContent": "19 g"
+  },
+  "reviews": {}
+}

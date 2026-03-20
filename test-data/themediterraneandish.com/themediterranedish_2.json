@@ -1,0 +1,127 @@
+{
+  "author": "Suzy Karadsheh",
+  "canonicalUrl": "https://www.themediterraneandish.com/baked-chicken-thighs/",
+  "cookTime": 40,
+  "cookingMethod": null,
+  "description": "Juicy bone-in chicken thighs baked with tomatoes and onions will become your new weeknight go-to for a hearty and healthy meal. A wet rub of tomato paste, garlic, and spices rub gives this easy recipe a deep savory flavor, no marinating time required!",
+  "host": "themediterraneandish.com",
+  "image": "https://www.themediterraneandish.com/wp-content/uploads/2024/10/Baked-Chicken-Thighs-Cropped-1.jpg",
+  "ingredients": [
+    {
+      "name": "For the chicken",
+      "items": [
+        {
+          "value": "8 bone-in chicken thighs, (trimmed of excess fat)"
+        },
+        {
+          "value": "Kosher salt"
+        },
+        {
+          "value": "Extra virgin olive oil"
+        },
+        {
+          "value": "3 medium yellow onions, (halved and thinly sliced)"
+        },
+        {
+          "value": "1 vine ripe tomato, (halved and sliced)"
+        },
+        {
+          "value": "¼ cup water"
+        }
+      ]
+    },
+    {
+      "name": "For the spiced tomato rub",
+      "items": [
+        {
+          "value": "5 tablespoons tomato paste"
+        },
+        {
+          "value": "1/3 cup extra virgin olive oil, (more as needed)"
+        },
+        {
+          "value": "1 lemon, (juiced)"
+        },
+        {
+          "value": "4 garlic cloves, (minced)"
+        },
+        {
+          "value": "1 teaspoon dried oregano"
+        },
+        {
+          "value": "1 teaspoon smoked paprika"
+        },
+        {
+          "value": "1 teaspoon ground cumin"
+        },
+        {
+          "value": "1 teaspoon ground black pepper"
+        },
+        {
+          "value": "Fresh parsley, (chopped)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Get ready. Arrange one rack in the center of your oven and another about 6 inches from the broiler. Preheat oven to 425°F"
+        },
+        {
+          "value": "Season the chicken. Sprinkle the chicken thighs with kosher salt on both sides and underneath the skins. Set aside briefly while you make the wet rub."
+        },
+        {
+          "value": "Make the Spiced Tomato Rub. In a small bowl or measuring cup, combine the tomato paste, extra virgin olive oil, lemon juice, minced garlic, oregano, smoked paprika, cumin, and black pepper. Whisk until everything is well-incorporated."
+        },
+        {
+          "value": "Add the rub to the chicken. Coat the chicken with the tomato rub on both sides, including underneath the skins."
+        },
+        {
+          "value": "Layer the chicken and vegetables in a baking dish. Brush the bottom of a 9\" X 13\" baking dish with a splash of extra virgin olive oil. Arrange three quarters of the sliced onions on the bottom. Arrange the chicken on top of the onions. Tuck the remaining onions and the sliced tomatoes into the spaces in between the chicken thighs. Pour the water into the corners of the baking dish, taking care not to disturb the rub on the chicken pieces."
+        },
+        {
+          "value": "Bake the chicken. Bake until chicken is cooked through, about 40 minutes."
+        },
+        {
+          "value": "Broil the chicken. Place the pan on the top rack and turn the broiler to high. Broil for 1 to 3 minutes, or just until the top of the chicken browns lightly. Watch closely to avoid overcooking and burning the chicken skin. Remove the chicken from the oven."
+        },
+        {
+          "value": "Serve. Let the chicken rest for 5 to 10 minutes, garnish with chopped fresh parsley, and serve."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 20,
+  "ratings": 4.8,
+  "ratingsCount": 263,
+  "siteName": "The Mediterranean Dish",
+  "title": "Baked Chicken Thighs Recipe",
+  "totalTime": 60,
+  "yields": "8 servings",
+  "category": ["Dinner"],
+  "cuisine": ["Mediterranean"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "Baked chicken thighs",
+    "chicken thigh recipe",
+    "oven baked chicken thighs"
+  ],
+  "nutrients": {
+    "calories": "312.9 kcal",
+    "carbohydrateContent": "8.1 g",
+    "proteinContent": "20.1 g",
+    "fatContent": "28.1 g",
+    "saturatedFatContent": "6.3 g",
+    "transFatContent": "0.1 g",
+    "cholesterolContent": "110.7 mg",
+    "sodiumContent": "323.2 mg",
+    "fiberContent": "2 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

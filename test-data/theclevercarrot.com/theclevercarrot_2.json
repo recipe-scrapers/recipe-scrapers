@@ -1,0 +1,102 @@
+{
+  "author": "The Clever Carrot",
+  "canonicalUrl": "https://theclevercarrot.com/",
+  "cookTime": 20,
+  "cookingMethod": null,
+  "description": "What's for dinner tonight? Try making a sweet chili shrimp stir-fry. It's quick & easy, and a lot cheaper than ordering in!",
+  "host": "theclevercarrot.com",
+  "image": "https://www.theclevercarrot.com/wp-content/uploads/2012/12/IMG_1824-225x225.jpg",
+  "ingredients": [
+    {
+      "name": "Stir-fry",
+      "items": [
+        {
+          "value": "1 lb. shrimp, cleaned and deveined"
+        },
+        {
+          "value": "1 garlic clove"
+        },
+        {
+          "value": "1/3 c. sweet chili sauce"
+        },
+        {
+          "value": "1 1/4 c. snow peas"
+        },
+        {
+          "value": "1 tbsp. olive oil"
+        },
+        {
+          "value": "1/2 tsp. sesame oil"
+        }
+      ]
+    },
+    {
+      "name": "Garnish",
+      "items": [
+        {
+          "value": "1/3 c. cashews, roughly chopped"
+        },
+        {
+          "value": "1 lime"
+        }
+      ]
+    },
+    {
+      "name": "On the side",
+      "items": [
+        {
+          "value": "1 1/2 c. jasmine rice, uncooked (or another quick cooking variety)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Grab a medium size pot and cook the rice according to the package instructions. Set aside."
+        },
+        {
+          "value": "In a large, wide skillet warm the olive oil over moderate heat."
+        },
+        {
+          "value": "Using a microplane, grate the garlic clove directly into the pan. Alternatively, you can mince the garlic instead. Saute until fragrant, about 30 seconds."
+        },
+        {
+          "value": "Add the shrimp and saute until pink and cooked though, about 5 minutes depending on size. Remove from the pan."
+        },
+        {
+          "value": "While the shrimp is cooking, trim the ends off of the snow peas. Cut each one into thirds, on a diagonal."
+        },
+        {
+          "value": "Add the sesame oil to the pan and saute the snow peas until crisp tender, about 1-2 minutes."
+        },
+        {
+          "value": "Return the shrimp to the pan and add the sweet chili sauce. Cook until warmed through. Add more chili sauce if necessary."
+        },
+        {
+          "value": "Top each plate with some chopped cashews and fresh lime wedges to taste."
+        },
+        {
+          "value": "Serve with jasmine rice."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": null,
+  "ratings": 4.3,
+  "ratingsCount": 3,
+  "siteName": "The Clever Carrot",
+  "title": "dinner tonight: sweet chili shrimp stir-fry",
+  "totalTime": 20,
+  "yields": "3 servings",
+  "category": [],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [],
+  "nutrients": {},
+  "reviews": {}
+}

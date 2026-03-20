@@ -1,0 +1,82 @@
+{
+  "author": "MyPlate",
+  "canonicalUrl": "https://www.myplate.gov/recipes/asparagus-mandarin-orange-chicken-and-rice",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "Fresh California asparagus, mandarin oranges, chicken, and brown rice make perfect compliments in this Asian-influenced salad.",
+  "host": "myplate.gov",
+  "image": "https://myplate-prod.azureedge.us/sites/default/files/styles/medium/public/recipe-images/Asparagus%20Manderin%20Salad.jpg?itok=Kpd19Hqu",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 tablespoons extra virgin olive oil"
+        },
+        {
+          "value": "2 tablespoons rice vinegar"
+        },
+        {
+          "value": "3 tablespoons mandarin orange juice (reserved from oranges)"
+        },
+        {
+          "value": "1 tablespoon soy sauce, reduced sodium"
+        },
+        {
+          "value": "3 1/3 cups fresh asparagus (trimmed)"
+        },
+        {
+          "value": "2 cans 11 oz cans mandarin oranges (drained, reserve juice)"
+        },
+        {
+          "value": "12 ounces cooked chicken breast (cut into chunks)"
+        },
+        {
+          "value": "3 cups cooked instant brown rice"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a small bowl, whisk vinaigrette ingredients, set aside."
+        },
+        {
+          "value": "Cook rice according to package directions."
+        },
+        {
+          "value": "Place whole trimmed asparagus in a large skillet with 1 1/2 inches of water."
+        },
+        {
+          "value": "Bring to a boil, reduce heat and simmer, uncovered, for 2-5 minutes."
+        },
+        {
+          "value": "Rinse with cool water and cut into 1-inch pieces."
+        },
+        {
+          "value": "In a medium size bowl, toss all ingredients."
+        }
+      ]
+    }
+  ],
+  "language": "en",
+  "prepTime": 30,
+  "ratings": 3.46,
+  "ratingsCount": 164,
+  "siteName": null,
+  "title": "Asparagus, Mandarin Orange, Chicken, and Rice",
+  "totalTime": 30,
+  "yields": "4 servings",
+  "category": [],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [],
+  "nutrients": {
+    "calories": "440.00"
+  },
+  "reviews": {}
+}

@@ -1,0 +1,157 @@
+{
+  "author": "Sara",
+  "canonicalUrl": "https://aflavorjournal.com/salmon-kale-salad-with-greek-yogurt-caesar-dressing/",
+  "cookTime": 15,
+  "cookingMethod": null,
+  "description": "A small batch recipe for two salmon kale salads with massaged kale, flavorful baked salmon, crunchy everything bagel croutons, and a creamy, garlicky Caesar dressing made with Greek yogurt.",
+  "host": "aflavorjournal.com",
+  "image": "https://aflavorjournal.com/wp-content/uploads/2024/02/Salmon-Kale-Salad-Ftd.jpg",
+  "ingredients": [
+    {
+      "name": "For the Baked Salmon & Kale Salad",
+      "items": [
+        {
+          "value": "2 Salmon Fillets (about 4 oz. each)"
+        },
+        {
+          "value": "1 tsp. Dijon Mustard"
+        },
+        {
+          "value": "1 tsp. Everything Bagel Seasoning"
+        },
+        {
+          "value": "1/2 tsp. Smoked Paprika"
+        },
+        {
+          "value": "6 cups chopped Kale Leaves (packed cups)"
+        },
+        {
+          "value": "2 tsp. Extra Virgin Olive Oil"
+        },
+        {
+          "value": "pinch Salt"
+        },
+        {
+          "value": "2 tsp. fresh Lemon Juice"
+        },
+        {
+          "value": "1/4 cup chopped Red Onion (or Green Onion)"
+        },
+        {
+          "value": "finely grated Parmesan Cheese (to taste, for topping)"
+        },
+        {
+          "value": "1 medium Avocado (sliced, for topping)"
+        }
+      ]
+    },
+    {
+      "name": "For Everything Bagel Croutons",
+      "items": [
+        {
+          "value": "1/2 Everything Bagel"
+        },
+        {
+          "value": "1 tbsp. Extra Virgin Olive Oil"
+        },
+        {
+          "value": "1 tsp. Everything Bagel Seasoning"
+        }
+      ]
+    },
+    {
+      "name": "For Greek Yogurt Caesar Dressing",
+      "items": [
+        {
+          "value": "1/3 cup plain Greek Yogurt"
+        },
+        {
+          "value": "3 tbsp. Mayonnaise (like Duke's or Hellmann's)"
+        },
+        {
+          "value": "1 clove Garlic (minced, grated, or pressed)"
+        },
+        {
+          "value": "1 tsp. Worcestershire Sauce"
+        },
+        {
+          "value": "2 tsp. fresh Lemon Juice"
+        },
+        {
+          "value": "1 tsp. White Miso Paste"
+        },
+        {
+          "value": "1/4 cup finely grated Parmesan (use the good stuff :))"
+        },
+        {
+          "value": "1 tsp. Dijon Mustard"
+        },
+        {
+          "value": "1/4 tsp. Salt (plus more to taste)"
+        },
+        {
+          "value": "1/4 tsp. freshly cracked Black Pepper"
+        },
+        {
+          "value": "1 tbsp. Extra Virgin Olive Oil"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Set Out the Salmon Fillets. Set the salmon fillets out on to rest at room temperature for about 15 minutes while you make the dressing."
+        },
+        {
+          "value": "Make the Greek Yogurt Caesar Dressing and Mix the garlic, lemon juice, and salt together in a small bowl. Let those ingredients rest for about ten minutes, then mash in the white miso paste and Worcestershire sauce until well blended. Whisk in the Dijon mustard, Greek yogurt, mayonnaise, olive oil, and a healthy pinch of salt and freshly cracked pepper. (1/4 tsp. is a good start for both, but I always add more). Stir to thoroughly combine everything together, then cover and refrigerate until you're ready to serve the salad."
+        },
+        {
+          "value": "Prep the Salmon. Preheat the oven to 350 F. Place the salmon fillets on a small rimmed baking sheet and pat them very dry, then spread 1/2 teaspoon of Dijon mustard over the top of each fillet. Mix one teaspoon of everything bagel seasoning and 1/2 teaspoon of smoked paprika together in a small bowl. Divide the seasoning over the tops of the salmon. Set aside for a moment."
+        },
+        {
+          "value": "Prep the Bagel Croutons. Cut half of an everything bagel into bite-sized pieces, about 1/2\" in size. Toss the bagel pieces in a small mixing bowl with a tablespoon of olive oil and a teaspoon of everything bagel seasoning, then spread them out onto a small rimmed baking sheet and set aside. (The everything bagel seasoning is in addition to the seasoning that is already on the bagel)."
+        },
+        {
+          "value": "Bake the Croutons and Salmon. Place both baking sheets (of salmon and croutons) in the oven. Bake the bagel croutons at 350 F for 8-10 minutes until golden brown and crunchy. Bake the salmon at 350 F for about 11-14 minutes, depending on thickness, until it is cooked to your preference."
+        },
+        {
+          "value": "Massage the Kale. Place the chopped kale leaves in a large bowl. Add 2 tsp. olive oil, 2 tsp. fresh lemon juice, and a pinch of salt. Use your hands to massage the kale for about a minute until it is tender."
+        },
+        {
+          "value": "Build Your Salmon Kale Salads. Divide the massaged kale between two bowls, followed by the salmon filets, everything bagel croutons, sliced avocado, chopped red onions, and Greek yogurt Caesar dressing. Use a microplane to grate a little more Parmesan cheese over the salads, then serve."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 20,
+  "ratings": 5,
+  "ratingsCount": 1,
+  "siteName": "A Flavor Journal",
+  "title": "Salmon Kale Salad with Greek Yogurt Caesar Dressing",
+  "totalTime": 35,
+  "yields": "2 servings",
+  "category": ["Salad"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["salmon caesar salad", "salmon kale salad"],
+  "nutrients": {
+    "servingSize": "1 salad",
+    "calories": "665 kcal",
+    "carbohydrateContent": "16 g",
+    "proteinContent": "49 g",
+    "fatContent": "46 g",
+    "saturatedFatContent": "8 g",
+    "transFatContent": "0.04 g",
+    "cholesterolContent": "113 mg",
+    "sodiumContent": "1347 mg",
+    "fiberContent": "9 g",
+    "sugarContent": "5 g",
+    "unsaturatedFatContent": "35 g"
+  },
+  "reviews": {}
+}

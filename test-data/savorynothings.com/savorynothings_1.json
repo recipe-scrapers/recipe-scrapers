@@ -1,0 +1,92 @@
+{
+  "author": "Nora",
+  "canonicalUrl": "https://www.savorynothings.com/chewy-chocolate-crinkle-cookies/",
+  "cookTime": 30,
+  "cookingMethod": null,
+  "description": "Try these soft and chewy Chocolate Crinkle Cookies for Christmas this year - my simple recipe makes these the best easy treat for your holiday baking!",
+  "host": "savorynothings.com",
+  "image": "https://www.savorynothings.com/wp-content/uploads/2018/12/chewy-chocolate-crinkle-cookies-image-hero.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 cup unsweetened cocoa powder (I recommend sifting it if it is very lumpy)"
+        },
+        {
+          "value": "2 cups all-purpose flour"
+        },
+        {
+          "value": "1.5 teaspoons baking powder"
+        },
+        {
+          "value": "1/4 teaspoon salt"
+        },
+        {
+          "value": "1/3 cup butter (softened)"
+        },
+        {
+          "value": "1 1/2 cups white sugar"
+        },
+        {
+          "value": "2 teaspoons vanilla"
+        },
+        {
+          "value": "4 large eggs"
+        },
+        {
+          "value": "1/2 cup powdered sugar"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Dry ingredients"
+        },
+        {
+          "value": "Combine dry ingredients: Combine cocoa powder, flour, baking powder and salt in a medium bowl. Set aside."
+        },
+        {
+          "value": "Wet ingredients"
+        },
+        {
+          "value": "Cream wet ingredients: Place butter, sugar and vanilla in a large mixing bowl and beat with an electric mixer until combined. Add the eggs, one at a time, and mix on medium-low speed just until combined - about 10 seconds each."
+        },
+        {
+          "value": "Make dough"
+        },
+        {
+          "value": "Make cookie dough: Add the dry ingredients to the egg mixture and mix on low speed until incorporated."
+        },
+        {
+          "value": "Chill cookie dough: Cover the bowl and chill the dough for at least 1 hour or up to overnight (the longer you chill, the thicker the cookies will be)."
+        },
+        {
+          "value": "Roll cookies: When ready to bake, preheat the oven to 350°F. Place the powdered sugar in a medium bowl. Roll the dough into tablespoon-sized balls and cover them well with the sugar."
+        },
+        {
+          "value": "Bake cookies: Place on a lined baking sheet with enough space between them (bake in batches) and bake for 10-15 minutes, or until spread and crackled. Cookies will still be soft, so let them cool on the baking sheet for 5 minutes before removing them to a cooling rack to cool completely."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 15,
+  "ratings": 4.8,
+  "ratingsCount": 387,
+  "siteName": "Savory Nothings",
+  "title": "Chewy Chocolate Crinkle Cookies",
+  "totalTime": 105,
+  "yields": "32 servings",
+  "category": ["Dessert"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["chocolate", "christmas", "cookies"],
+  "nutrients": {},
+  "reviews": {}
+}

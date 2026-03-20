@@ -1,0 +1,152 @@
+{
+  "author": "Chef Jean-Pierre",
+  "canonicalUrl": "https://chefjeanpierre.com/dinner-ideas/duck-a-lorange/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "A Classic French dish Duck A L'Orange combines the rich, savory flavor of roasted duck with a bright, tangy orange sauce. This elegant recipe is perfect for festive occasions or a gourmet dinner at home. Follow these step-by-step instructions to create a beautiful and delicious meal that will impress your guests.",
+  "host": "chefjeanpierre.com",
+  "image": "https://eadn-wc02-12309146.nxedge.io/wp-content/uploads/2023/11/Duck-a-l-Orange-Recipe-Chef-Jean-Pierre.jpg",
+  "ingredients": [
+    {
+      "name": "For the Duck and Stock",
+      "items": [
+        {
+          "value": "1 Whole Duck (approximately 4 - 5 pounds )"
+        },
+        {
+          "value": "3 tablespoons Salt"
+        },
+        {
+          "value": "1 large Onion, roughly chopped"
+        },
+        {
+          "value": "4 Carrots, chopped (about 2 cups)"
+        },
+        {
+          "value": "4 Celery Stalks, chopped (about 1.5 cups)"
+        },
+        {
+          "value": "1 large Leek, sliced (about 1 cup)"
+        },
+        {
+          "value": "2 Star Anise"
+        },
+        {
+          "value": "4 Garlic Cloves, peeled"
+        },
+        {
+          "value": "1 tablespoon Black Peppercorns"
+        }
+      ]
+    },
+    {
+      "name": "For the Glaze",
+      "items": [
+        {
+          "value": "1/2 cup Acacia Honey"
+        },
+        {
+          "value": "2 tablespoons Soy Sauce"
+        },
+        {
+          "value": "1 Star Anise"
+        }
+      ]
+    },
+    {
+      "name": "For the Orange Sauce",
+      "items": [
+        {
+          "value": "1/2 cup Sugar"
+        },
+        {
+          "value": "1/2 cup Red Wine Vinegar"
+        },
+        {
+          "value": "2 cups Duck Stock (see instructions)"
+        },
+        {
+          "value": "2 tablespoons Orange Juice Concentrate"
+        },
+        {
+          "value": "2 tablespoons Fresh Orange Juice"
+        },
+        {
+          "value": "1 tablespoons Cornstarch mixed with 2 tablespoons (30ml) Water"
+        },
+        {
+          "value": "Zest of 1 Orange"
+        },
+        {
+          "value": "2 tablespoon Butter"
+        }
+      ]
+    },
+    {
+      "name": "For the Garnish",
+      "items": [
+        {
+          "value": "Orange Segments"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Prepare the duck by trimming excess skin, removing giblets, and patting it dry. Poke small holes in the skin to help render fat during cooking. Dry-brine the duck by generously salting the skin and inside cavity, then place it uncovered in the refrigerator for 24 hours."
+        },
+        {
+          "value": "While the duck brines, prepare the duck stock. In a large pot, combine chopped duck neck, wings, onion, carrots, celery, leek, star anise, garlic, and peppercorns. Add water to cover, bring to a boil, reduce the heat and simmer for 3-4 hours. Strain the stock and set reserve."
+        }
+      ]
+    },
+    {
+      "name": "Preheat Oven to 375°F (190°C)",
+      "items": [
+        {
+          "value": "Rinse the duck in ice water to remove excess salt, pat it dry, and score the skin without cutting into the meat. Place it in a roasting pan or a drying rack on a bed of onion. Roast for 2 hours or until the internal temperature reaches 155°F (68°C)."
+        },
+        {
+          "value": "While the duck roasts, make the glaze. Combine honey, soy sauce, and star anise in a small saucepan and simmer until slightly thickened. Brush the glaze over the duck during the last 10 minutes of roasting and increase the oven temperature to 500°F (260°C) to achieve a golden brown finish."
+        },
+        {
+          "value": "For the Orange Sauce, combine sugar and vinegar in a saucepan over medium heat to create a caramel. Carefully add the duck stock, orange juices, and orange zest. Simmer until reduced, then thicken with cornstarch slurry. Stir in butter off heat until smooth and glossy."
+        },
+        {
+          "value": "Carve the duck by removing the legs and slicing the breast meat. Serve with orange sauce drizzled on top or on the side. Garnish with orange segments if desired."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "siteName": "Chef Jean-Pierre",
+  "title": "Duck A L'Orange Recipe",
+  "totalTime": null,
+  "yields": "4 servings",
+  "category": ["Dinner", "Main Course"],
+  "cuisine": ["French"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Duck A L'Orange", "Duck A L'Orange Recipe"],
+  "nutrients": {
+    "calories": "1190.98 kcal",
+    "carbohydrateContent": "85.55 g",
+    "proteinContent": "28.28 g",
+    "fatContent": "82.86 g",
+    "saturatedFatContent": "29.33 g",
+    "transFatContent": "0.23 g",
+    "cholesterolContent": "163.81 mg",
+    "sodiumContent": "6129.5 mg",
+    "fiberContent": "3.88 g",
+    "sugarContent": "70.15 g",
+    "unsaturatedFatContent": "48.33 g",
+    "servingSize": "1 serving"
+  },
+  "reviews": {}
+}

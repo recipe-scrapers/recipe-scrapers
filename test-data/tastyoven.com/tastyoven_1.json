@@ -1,0 +1,88 @@
+{
+  "author": "Kristina Tipps",
+  "canonicalUrl": "https://tastyoven.com/air-fryer-baby-potatoes/",
+  "cookTime": 15,
+  "cookingMethod": null,
+  "description": "Air Fryer Baby Potatoes are mixed with fresh rosemary and a blend of spices, then roasted in the air fryer until crisp and creamy. This easy recipe is made in 15 minutes and is packed with flavor.",
+  "host": "tastyoven.com",
+  "image": "https://tastyoven.com/wp-content/uploads/2021/04/air-fryer-baby-potatoes-image.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1.5 lbs baby potatoes (washed, dried and sliced in half)"
+        },
+        {
+          "value": "2 tbsp olive oil"
+        },
+        {
+          "value": "1 tbsp garlic powder"
+        },
+        {
+          "value": "3 tbsp fresh rosemary (or 3 tsp dried rosemary)"
+        },
+        {
+          "value": "1 tsp salt"
+        },
+        {
+          "value": "1/2 tsp paprika"
+        },
+        {
+          "value": "1/8 tsp black pepper"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a mixing bowl, rub the sliced baby potatoes in olive oil. Add the garlic powder, chopped rosemary, paprika, salt and pepper. Mix until potatoes are evenly coated."
+        },
+        {
+          "value": "Spray the air fryer basket lightly with oil and place potatoes inside. Set to 400°F/204°C for 15 minutes. Shake basket or toss potatoes half way through. Test for doneness by piercing with a fork. If more time is needed, cook in 2 minute increments until potatoes are tender inside."
+        },
+        {
+          "value": "Remove potatoes from basket and serve with your favorite meat or fish."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 4.43,
+  "ratingsCount": 466,
+  "siteName": "Tasty Oven",
+  "title": "Air Fryer Baby Potatoes",
+  "totalTime": 20,
+  "yields": "4 servings",
+  "category": ["Side Dish"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [
+    "LowCalorieDiet",
+    "LowFatDiet",
+    "LowLactoseDiet",
+    "VeganDiet",
+    "VegetarianDiet"
+  ],
+  "equipment": [],
+  "keywords": [
+    "air fried baby potatoes",
+    "air fryer mini potatoes",
+    "little potatoes air fryer"
+  ],
+  "nutrients": {
+    "servingSize": "6 oz",
+    "calories": "202 kcal",
+    "carbohydrateContent": "32 g",
+    "proteinContent": "4 g",
+    "fatContent": "7 g",
+    "saturatedFatContent": "1 g",
+    "sodiumContent": "593 mg",
+    "fiberContent": "4 g",
+    "sugarContent": "1 g"
+  },
+  "reviews": {}
+}

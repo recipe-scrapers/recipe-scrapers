@@ -1,0 +1,109 @@
+{
+  "author": "Arman Liew",
+  "canonicalUrl": "https://thebigmansworld.com/coconut-cake/",
+  "cookTime": 30,
+  "cookingMethod": null,
+  "description": "My coconut cake is moist and fluffy in texture and rich in coconut flavor. It's a simple recipe that requires no eggs and very little prep work.",
+  "host": "thebigmansworld.com",
+  "image": "https://thebigmansworld.com/wp-content/uploads/2025/02/coconut-cake-recipe.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 cups all-purpose flour"
+        },
+        {
+          "value": "1 1/2 cups sugar"
+        },
+        {
+          "value": "2 teaspoons baking soda"
+        },
+        {
+          "value": "1/2 teaspoon salt"
+        },
+        {
+          "value": "1 1/2 cups water"
+        },
+        {
+          "value": "1 tablespoon vinegar"
+        },
+        {
+          "value": "1/2 cup oil"
+        },
+        {
+          "value": "1 tablespoon vanilla extract"
+        },
+        {
+          "value": "1 cup shredded coconut"
+        }
+      ]
+    },
+    {
+      "name": "Frosting",
+      "items": [
+        {
+          "value": "8 ounces cream cheese (softened)"
+        },
+        {
+          "value": "1 cup confectioners sugar"
+        },
+        {
+          "value": "3/4 cup heavy cream"
+        },
+        {
+          "value": "1 teaspoon coconut extract (or vanilla extract)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat the oven to 190C/375F."
+        },
+        {
+          "value": "In a mixing bowl, whisk together the flour, sugar, baking soda, and salt. Add the water, oil, vanilla, and vinegar and whisk until smooth. Fold through the coconut flakes."
+        },
+        {
+          "value": "Grease two 8-inch cake pans and divide the batter between the two."
+        },
+        {
+          "value": "Bake the cakes for 30-35 minutes or until a skewer comes out clean."
+        },
+        {
+          "value": "Let the cakes cool completely before frosting."
+        },
+        {
+          "value": "To make the frosting, beat the cream cheese until smooth and creamy. Slowly add in the powdered sugar until combined. Add the cream and coconut extract and beat until stiff peaks form."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 5,
+  "ratingsCount": 297,
+  "siteName": "The Big Man's World ®",
+  "title": "Coconut Cake Recipe",
+  "totalTime": 35,
+  "yields": "12 servings",
+  "category": ["Dessert"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["coconut cake recipe"],
+  "nutrients": {
+    "servingSize": "1 serving",
+    "calories": "295 kcal",
+    "carbohydrateContent": "43 g",
+    "proteinContent": "3 g",
+    "fatContent": "15 g",
+    "sodiumContent": "284 mg",
+    "fiberContent": "2 g",
+    "sugarContent": "12 g"
+  },
+  "reviews": {}
+}
