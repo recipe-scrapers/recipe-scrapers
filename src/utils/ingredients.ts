@@ -256,5 +256,13 @@ export function groupIngredients(
     result.push(createIngredientGroup(name, items.map(createIngredientItem)))
   }
 
-  return result
+  const nonEmptyGroups = result.filter((group) => group.items.length > 0)
+
+  if (nonEmptyGroups.length > 0) {
+    return nonEmptyGroups
+  }
+
+  return ingredientValues.length > 0
+    ? stringsToIngredients(ingredientValues)
+    : []
 }

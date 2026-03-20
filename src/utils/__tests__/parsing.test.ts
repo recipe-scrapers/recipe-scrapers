@@ -63,6 +63,14 @@ describe('parseMinutes', () => {
     expect(parseMinutes('P1DT2H')).toBe(1560)
   })
 
+  it('parses human-readable minutes', () => {
+    expect(parseMinutes('Cooks in 15 M')).toBe(15)
+  })
+
+  it('parses human-readable mixed units', () => {
+    expect(parseMinutes('1 hour 30 minutes')).toBe(90)
+  })
+
   it('throws on invalid input', () => {
     expect(() => parseMinutes('')).toThrow('invalid duration')
   })

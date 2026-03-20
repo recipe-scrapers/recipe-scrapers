@@ -158,6 +158,29 @@ describe('SchemaOrgPlugin', () => {
     expect(plugin.extract('ratingsCount')).toBe(10)
   })
 
+  it('normalizes percentage-style ratings to a 5-point scale', () => {
+    const percentageRatingJson = `
+      <script type="application/ld+json">
+      {
+        "@type": "Recipe",
+        "name": "Percentage Rated Recipe",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "97.9",
+          "ratingCount": "2053",
+          "bestRating": "100",
+          "worstRating": "0"
+        }
+      }
+      </script>`
+
+    const percentageRatingPlugin = new SchemaOrgPlugin(
+      load(percentageRatingJson),
+    )
+
+    expect(percentageRatingPlugin.extract('ratings')).toBe(4.9)
+  })
+
   it('extracts nutrients and dietary restrictions', () => {
     const nutrients = plugin.extract('nutrients')
     expect(nutrients.get('calories')).toBe('100')

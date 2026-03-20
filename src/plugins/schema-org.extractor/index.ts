@@ -539,6 +539,10 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       }
     }
 
+    if (uniqueIngredients.size === 0) {
+      throw new SchemaOrgException('ingredients', ingredients)
+    }
+
     return groupIngredients(this.$, [...uniqueIngredients])
   }
 
@@ -638,7 +642,27 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       throw new SchemaOrgException('ratings')
     }
 
-    return Math.round(Number.parseFloat(ratingValue) * 100) / 100
+    let value = Number.parseFloat(ratingValue)
+
+    if (isAggregateRating(ratings) && value > 5) {
+      const bestRating = Number.parseFloat(
+        this.getSchemaTextValue(ratings.bestRating),
+      )
+      const worstRating = Number.parseFloat(
+        this.getSchemaTextValue(ratings.worstRating),
+      )
+
+      if (!Number.isNaN(bestRating) && bestRating > 5) {
+        const lowerBound = Number.isNaN(worstRating) ? 0 : worstRating
+        const range = bestRating - lowerBound
+
+        if (range > 0) {
+          value = ((value - lowerBound) / range) * 5
+        }
+      }
+    }
+
+    return Math.round(value * 100) / 100
   }
 
   public ratingsCount(): RecipeFields['ratingsCount'] {
