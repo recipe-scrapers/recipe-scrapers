@@ -2,11 +2,15 @@ import { AbstractScraper } from '@/abstract-scraper'
 import type { ScraperOptions } from '@/types/scraper.interface'
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BBCGoodFood } from './bbcgoodfood'
+import { BongEats } from './bongeats'
 import { Epicurious } from './epicurious'
 import { InspiredTaste } from './inspiredtaste'
+import { MyPlate } from './myplate'
 import { NYTimes } from './nytimes'
+import { OnceUponAChef } from './onceuponachef'
 import { SimplyRecipes } from './simplyrecipes'
 import { Skinnytaste } from './skinnytaste'
+import { TheCleverCarrot } from './theclevercarrot'
 
 /**
  * Constructor type for scraper classes.
@@ -23,11 +27,15 @@ type ScraperClass = {
 const customScraperClasses = [
   AmericasTestKitchen,
   BBCGoodFood,
+  BongEats,
   Epicurious,
   InspiredTaste,
+  MyPlate,
   SimplyRecipes,
   NYTimes,
+  OnceUponAChef,
   Skinnytaste,
+  TheCleverCarrot,
 ] as const satisfies readonly ScraperClass[]
 
 /**
@@ -35,17 +43,54 @@ const customScraperClasses = [
  * and do not need dedicated scraper classes.
  */
 const SCHEMA_ORG_ONLY_HOSTS = [
+  'addapinch.com',
+  'afarmgirlsdabbles.com',
+  'aflavorjournal.com',
+  'akispetretzikis.com',
+  'altonbrown.com',
   'allrecipes.com',
+  'archanaskitchen.com',
+  'bestrecipes.com.au',
+  'blueapron.com',
   'bonappetit.com',
+  'bowlofdelicious.com',
   'brasspine.com',
   'budgetbytes.com',
   'damndelicious.net',
   'eatingwell.com',
+  'chefjeanpierre.com',
+  'chewoutloud.com',
+  'familyfoodonthetable.com',
   'food.com',
   'halfbakedharvest.com',
+  'howtofeedaloon.com',
+  'inbloombakery.com',
+  'indianhealthyrecipes.com',
+  'joyfoodsunshine.com',
+  'lecremedelacrumb.com',
+  'maangchi.com',
   'marmiton.org',
+  'marthastewart.com',
+  'natashaskitchen.com',
+  'noracooks.com',
+  'norecipes.com',
+  'organicallyaddison.com',
   'recipetineats.com',
+  'savorynothings.com',
   'seriouseats.com',
+  'simplegreensmoothies.com',
+  'sunbasket.com',
+  'sweetcsdesigns.com',
+  'tastesbetterfromscratch.com',
+  'tasty.co',
+  'tastyoven.com',
+  'thebigmansworld.com',
+  'thecookierookie.com',
+  'themediterraneandish.com',
+  'therecipecritic.com',
+  'unsophisticook.com',
+  'wellplated.com',
+  'zestfulkitchen.com',
 ] as const satisfies readonly string[]
 
 function createSchemaOrgOnlyScraper(host: string): ScraperClass {
