@@ -1,0 +1,124 @@
+{
+  "host": "cooking.nytimes.com",
+  "title": "Smash Burgers",
+  "author": "J. Kenji López-Alt",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "4 soft hamburger buns",
+          "parsed": {
+            "quantity": 4,
+            "quantity2": null,
+            "unitOfMeasureID": null,
+            "unitOfMeasure": null,
+            "description": "soft hamburger buns",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "Condiments and toppings, as desired, such as mayonnaise, mustard, shredded lettuce, onions, tomatoes and pickles",
+          "parsed": {
+            "quantity": null,
+            "quantity2": null,
+            "unitOfMeasureID": null,
+            "unitOfMeasure": null,
+            "description": "Condiments and toppings, as desired, such as mayonnaise, mustard, shredded lettuce, onions, tomatoes and pickles",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "16 ounces freshly ground beef chuck, 80-20 beef",
+          "parsed": {
+            "quantity": 16,
+            "quantity2": null,
+            "unitOfMeasureID": "ounce",
+            "unitOfMeasure": "ounces",
+            "description": "freshly ground beef chuck, 80-20 beef",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "Salt and freshly ground black pepper",
+          "parsed": {
+            "quantity": null,
+            "quantity2": null,
+            "unitOfMeasureID": null,
+            "unitOfMeasure": null,
+            "description": "Salt and freshly ground black pepper",
+            "isGroupHeader": false
+          }
+        },
+        {
+          "value": "4 slices good melting cheese, such as American or Cheddar",
+          "parsed": {
+            "quantity": 4,
+            "quantity2": null,
+            "unitOfMeasureID": null,
+            "unitOfMeasure": null,
+            "description": "slices good melting cheese, such as American or Cheddar",
+            "isGroupHeader": false
+          }
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Toast and dress the burger buns and have them nearby and ready as you cook the burgers (they cook very quickly). Using your hands, form the ground beef into 4 equal balls. Season them generously on all sides with salt and pepper. Cut a sheet of parchment paper into 4 (4-inch) squares and have them ready."
+        },
+        {
+          "value": "Heat a large stainless-steel sauté pan or skillet over high for 2 minutes. Place two patties in the pan and place the parchment on top. Using a stiff metal spatula or the bottom of a small saucepan, press down on the patties, focusing on thinning out the edges, until they are at least an inch wider than the burger bun. You can use a second spatula to add pressure, if necessary."
+        },
+        {
+          "value": "Remove the parchment. Allow to cook until the patties are well browned and the tops begin to turn a pale pink-gray in spots, about 1 minute. Using a bench scraper or the back side of a stiff metal spatula, carefully scrape the patties from the pan, working around them to release all the edges before scraping up the center and flipping."
+        },
+        {
+          "value": "Immediately place the cheese on top of the patties. Let it cook for about 15 seconds on the second side, then transfer to the waiting burger buns. Serve. Repeat with any remaining patties."
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "To make a double smash burger, form the same 16 ounces of beef into eight 2-ounce balls. Cook them side by side, two at a time, in the same skillet. Repeat with any remaining patties. During Step 4, place a slice of cheese on top of each patty and stack them before transferring to the burger bun."
+        }
+      ]
+    }
+  ],
+  "canonicalUrl": "https://cooking.nytimes.com/recipes/1027099-smash-burgers",
+  "image": "https://static01.nyt.com/images/2025/07/25/multimedia/kla-smashburger-lfhg/kla-smashburger-lfhg-videoSixteenByNineJumbo1600.jpg",
+  "totalTime": 25,
+  "cookTime": 15,
+  "prepTime": 10,
+  "ratings": 5,
+  "ratingsCount": 505,
+  "yields": "4 servings",
+  "description": "The perfect smash burger should have edges that are lacy and crisp, smashed out until they are so thin that they shatter when you bite into them. The key is using beef with around an 80-20 lean-to-fat ratio (ground chuck works well), forming it into balls and smashing it onto an unoiled steel surface (you want the meat to stick when you smash it), and using a stiff, thin metal spatula to scrape up the edges of the cooked meat.",
+  "language": "en-US",
+  "siteName": "NYT Cooking",
+  "cookingMethod": null,
+  "category": ["dinner", "lunch", "quick", "burgers", "main course"],
+  "cuisine": ["american"],
+  "keywords": [
+    "american cheese",
+    "cheddar",
+    "cooking 101",
+    "ground beef",
+    "stovetop",
+    "fourth of july",
+    "labor day",
+    "memorial day"
+  ],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "nutrients": {},
+  "reviews": {}
+}
