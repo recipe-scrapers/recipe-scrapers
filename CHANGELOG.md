@@ -6,6 +6,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.6.0...1.7.0) (2026-03-20)
+
+
+### Features
+
+* extract NYT recipe tips as notes ([5e5213b](https://github.com/recipe-scrapers/recipe-scrapers/commit/5e5213b7ec1e99035afc97d4a83760e29a3eb06f))
+* **scrapers:** add custom support for bongeats, myplate, onceuponachef, and theclevercarrot ([f20c0e2](https://github.com/recipe-scrapers/recipe-scrapers/commit/f20c0e28c9df760044511a4bd120823cce2127b0))
+* **scrapers:** register 43 new schema.org-only recipe hosts ([f20c0e2](https://github.com/recipe-scrapers/recipe-scrapers/commit/f20c0e28c9df760044511a4bd120823cce2127b0))
+
+
+### Bug Fixes
+
+* **schema-org:** handle human-readable durations, empty ingredient groups, and percentage ratings ([a7b20ab](https://github.com/recipe-scrapers/recipe-scrapers/commit/a7b20abfcdfce4df372421a221e4c5a08f0827bd))
+
 ## [1.6.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.5.1...1.6.0) (2026-03-18)
 
 
