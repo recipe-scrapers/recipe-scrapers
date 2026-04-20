@@ -10,6 +10,7 @@ export class InspiredTaste extends AbstractScraper {
 
   protected override readonly extractors = {
     ingredients: this.ingredients.bind(this),
+    siteName: this.siteName.bind(this),
   } satisfies ScraperExtractors
 
   protected ingredients(
@@ -30,5 +31,11 @@ export class InspiredTaste extends AbstractScraper {
     }
 
     throw new NoIngredientsFoundException()
+  }
+
+  protected siteName(
+    _prevValue: RecipeFields['siteName'] | undefined,
+  ): RecipeFields['siteName'] {
+    return 'Inspired Taste'
   }
 }

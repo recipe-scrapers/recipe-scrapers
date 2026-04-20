@@ -1,0 +1,77 @@
+{
+  "author": "Chungah",
+  "canonicalUrl": "https://damndelicious.net/2026/04/17/the-best-guacamole-simple-fresh-restaurant-quality/",
+  "category": [],
+  "cookTime": null,
+  "cookingMethod": null,
+  "cuisine": [],
+  "description": "The only guacamole recipe you'll need, using ripe avocados, onion, cilantro, lime zest + juice, jalapeño, garlic + tomato. So fresh, so good!",
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "host": "damndelicious.net",
+  "image": "https://damndelicious.net/wp-content/uploads/2026/02/251218_DD_Guacamole_135.jpg",
+  "ingredients": [
+    {
+      "items": [
+        {
+          "value": "4 medium ripe avocados (halved, seeded and peeled)"
+        },
+        {
+          "value": "1/3 cup finely chopped red or white onion"
+        },
+        {
+          "value": "1/2 bunch fresh cilantro leaves (finely chopped)"
+        },
+        {
+          "value": "2 teaspoons lime zest"
+        },
+        {
+          "value": "3 tablespoons freshly squeezed lime juice"
+        },
+        {
+          "value": "1 medium jalapeño pepper (finely diced, optional)"
+        },
+        {
+          "value": "1 clove garlic (finely grated)"
+        },
+        {
+          "value": "Kosher salt and freshly ground black pepper (to taste)"
+        },
+        {
+          "value": "1 firm Roma tomato (seeded and diced, optional)"
+        }
+      ],
+      "name": null
+    }
+  ],
+  "instructions": [
+    {
+      "items": [
+        {
+          "value": "Place avocados in a medium bowl; using a large fork, mash until chunky or desired consistency is reached."
+        },
+        {
+          "value": "Stir in onion, cilantro, lime zest, lime juice, jalapeño and garlic; season with salt and pepper, to taste."
+        },
+        {
+          "value": "Stir in tomatoes, if using."
+        },
+        {
+          "value": "Serve immediately."
+        }
+      ],
+      "name": null
+    }
+  ],
+  "keywords": [],
+  "language": "en-US",
+  "nutrients": {},
+  "prepTime": 20,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "reviews": {},
+  "siteName": "Damn Delicious",
+  "title": "The Best Guacamole",
+  "totalTime": 20,
+  "yields": "8 servings"
+}

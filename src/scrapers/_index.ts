@@ -3,6 +3,7 @@ import type { ScraperOptions } from '@/types/scraper.interface'
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BBCGoodFood } from './bbcgoodfood'
 import { BongEats } from './bongeats'
+import { DamnDelicious } from './damndelicious'
 import { Epicurious } from './epicurious'
 import { InspiredTaste } from './inspiredtaste'
 import { MyPlate } from './myplate'
@@ -28,6 +29,7 @@ const customScraperClasses = [
   AmericasTestKitchen,
   BBCGoodFood,
   BongEats,
+  DamnDelicious,
   Epicurious,
   InspiredTaste,
   MyPlate,
@@ -56,7 +58,6 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'bowlofdelicious.com',
   'brasspine.com',
   'budgetbytes.com',
-  'damndelicious.net',
   'eatingwell.com',
   'chefjeanpierre.com',
   'chewoutloud.com',
