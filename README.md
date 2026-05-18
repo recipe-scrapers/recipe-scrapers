@@ -10,9 +10,8 @@ A TypeScript library for scraping recipe data from various cooking websites. Thi
 ## Features
 
 - Extract structured recipe data from cooking websites
-- Support for multiple popular recipe sites
+- Support for many popular recipe sites
 - Built with TypeScript for better developer experience
-- Fast and lightweight using the Bun runtime for development and testing
 - Comprehensive test coverage
 
 ## Installation
@@ -204,7 +203,9 @@ the `notes` field is omitted.
 
 ## Supported Sites
 
-This library supports recipe extraction from various popular cooking websites. The scraper automatically detects the appropriate parser based on the URL.
+This library supports recipe extraction from various popular cooking websites. The scraper automatically detects the appropriate scraper based on the URL.
+
+Supported hosts are registered in [src/scrapers/_index.ts](./src/scrapers/_index.ts), split between custom scrapers and Schema.org-only hosts.
 
 ## Copyright and Usage
 
@@ -212,10 +213,27 @@ _**This library is for educational and personal use. Please respect the robots.t
 
 ## Development
 
-Project policy documents:
+### Documentation
+
+#### Project policy documents
 
 - [Contributing guide](./CONTRIBUTING.md)
 - [Governance](./GOVERNANCE.md)
+
+#### Architecture documents
+
+- [Architecture overview](./docs/architecture.md)
+- [Ingredients architecture](./docs/ingredients-architecture.md)
+
+### AI-assisted development
+
+If you use AI coding agents on this repo, install Matt Pocock's agent skills so the agent can follow the repo's issue, triage, and domain-documentation conventions:
+
+```bash
+npx skills@latest add mattpocock/skills
+```
+
+The repo-specific configuration lives in [AGENTS.md](./AGENTS.md), [CONTEXT.md](./CONTEXT.md), and [docs/agents/](./docs/agents/).
 
 ### Prerequisites
 
@@ -267,7 +285,7 @@ bun run build
 4. If using a custom scraper, add it to `customScraperClasses` in [src/scrapers/_index.ts](./src/scrapers/_index.ts)
 5. Add optional host aliases to `scraperAliases` in [src/scrapers/_index.ts](./src/scrapers/_index.ts) when needed
 6. Run tests to ensure the extraction works as expected
-7. Update documentation as needed
+7. Update documentation as needed, using [CONTEXT.md](./CONTEXT.md) for the project's domain language
 
 ```typescript
 import { AbstractScraper } from './abstract-scraper'
