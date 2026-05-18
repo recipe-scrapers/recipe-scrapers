@@ -14,6 +14,10 @@ export function normalizeString(str: string | null | undefined): string {
   )
 }
 
+export function stripLeadingBullet(value: string): string {
+  return normalizeString(value.replace(/^[\u2022\u25aa*-]\s*/, ''))
+}
+
 export function splitToList(
   value: string,
   separator: string | RegExp,

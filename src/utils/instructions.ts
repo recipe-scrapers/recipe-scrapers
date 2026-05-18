@@ -4,7 +4,7 @@ import type {
   Instructions,
 } from '@/types/recipe.interface'
 import { isPlainObject, isString } from './index'
-import { splitToList } from './parsing'
+import { normalizeString, splitToList } from './parsing'
 
 /**
  * List of possible headings to remove from instructions.
@@ -94,6 +94,9 @@ export function removeInstructionHeading(value: string) {
   return value
 }
 
+const NEW_LINE_REGEX = /\n\s*\n+/
+const SENTENCE_BOUNDARY_REGEX = /(?<=\.)\s+(?=[A-Z])/
+
 /**
  * Splits a recipe instructions string into an array of steps.
  * Removes known headings and trims whitespace.
@@ -104,11 +107,55 @@ export function splitInstructions(value: string) {
   const cleaned = removeInstructionHeading(value).trim()
 
   // Split on double newlines or paragraph breaks
-  let steps = splitToList(cleaned, /\n\s*\n+/)
+  let steps = splitToList(cleaned, NEW_LINE_REGEX)
 
   // If only one step, try splitting on sentence boundaries as fallback
   if (steps.length === 1) {
-    steps = splitToList(cleaned, /(?<=\.)\s+(?=[A-Z])/)
+    steps = splitToList(cleaned, SENTENCE_BOUNDARY_REGEX)
+  }
+
+  return steps
+}
+
+const NUMBERED_STEP_REGEX = /(?:^|\s)(\d+)\.\s+/g
+
+/**
+ * Splits text containing inline numbered steps such as
+ * "1. Heat oil. 2. Add onions." into individual instruction strings.
+ */
+export function splitNumberedInstructions(value: string): string[] {
+  const normalized = normalizeString(value)
+  const matches = Array.from(normalized.matchAll(NUMBERED_STEP_REGEX))
+
+  if (matches.length === 0) {
+    return normalized ? [normalized] : []
+  }
+
+  const steps: string[] = []
+  const firstMatch = matches[0]
+
+  if (firstMatch && firstMatch.index > 0) {
+    const prefix = normalizeString(normalized.slice(0, firstMatch.index))
+    if (prefix) {
+      steps.push(prefix)
+    }
+  }
+
+  for (let i = 0; i < matches.length; i++) {
+    const match = matches[i]
+    const nextMatch = matches[i + 1]
+
+    if (!match) {
+      continue
+    }
+
+    const start = match.index + match[0].length
+    const end = nextMatch ? nextMatch.index : normalized.length
+    const step = normalizeString(normalized.slice(start, end))
+
+    if (step) {
+      steps.push(step)
+    }
   }
 
   return steps

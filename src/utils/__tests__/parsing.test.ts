@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'bun:test'
-import { normalizeString, parseMinutes, splitToList } from '../parsing'
+import {
+  normalizeString,
+  parseMinutes,
+  splitToList,
+  stripLeadingBullet,
+} from '../parsing'
 
 describe('normalizeString', () => {
   it('trims leading and trailing whitespace', () => {
@@ -38,6 +43,19 @@ describe('splitToList', () => {
   it('ignores items that normalize to empty strings', () => {
     const input = 'a,, ,b'
     expect(splitToList(input, ',')).toEqual(['a', 'b'])
+  })
+})
+
+describe('stripLeadingBullet', () => {
+  it('removes common leading bullet markers', () => {
+    expect(stripLeadingBullet('\u25aa 1 cup flour')).toBe('1 cup flour')
+    expect(stripLeadingBullet('\u2022 1 cup flour')).toBe('1 cup flour')
+    expect(stripLeadingBullet('* 1 cup flour')).toBe('1 cup flour')
+    expect(stripLeadingBullet('- 1 cup flour')).toBe('1 cup flour')
+  })
+
+  it('leaves non-bulleted values normalized', () => {
+    expect(stripLeadingBullet('  1   cup flour  ')).toBe('1 cup flour')
   })
 })
 

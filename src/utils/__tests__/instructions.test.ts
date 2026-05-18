@@ -7,6 +7,7 @@ import {
   isInstructionItem,
   isInstructions,
   splitInstructions,
+  splitNumberedInstructions,
   stringsToInstructions,
 } from '../instructions'
 
@@ -162,5 +163,29 @@ describe('splitInstructions', () => {
 
   it('returns empty array for empty input', () => {
     expect(splitInstructions('')).toEqual([])
+  })
+})
+
+describe('splitNumberedInstructions', () => {
+  it('splits inline numbered steps', () => {
+    expect(
+      splitNumberedInstructions('1. Heat oil. 2. Add onions. 3. Serve.'),
+    ).toEqual(['Heat oil.', 'Add onions.', 'Serve.'])
+  })
+
+  it('preserves text before the first numbered step', () => {
+    expect(splitNumberedInstructions('Sauce: 1. Simmer. 2. Season.')).toEqual([
+      'Sauce:',
+      'Simmer.',
+      'Season.',
+    ])
+  })
+
+  it('returns normalized text when no numbered markers are present', () => {
+    expect(splitNumberedInstructions('  Mix   well.  ')).toEqual(['Mix well.'])
+  })
+
+  it('returns an empty array for empty input', () => {
+    expect(splitNumberedInstructions('')).toEqual([])
   })
 })
