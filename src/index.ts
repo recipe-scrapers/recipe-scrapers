@@ -12,6 +12,7 @@ export * from './abstract-extractor-plugin'
 export * from './abstract-postprocessor-plugin'
 export * from './logger'
 export * from './schema-adapter'
+export * from './utils/parse-yields'
 export { GenericScraper, scrapers }
 
 export interface GetScraperOptions {
