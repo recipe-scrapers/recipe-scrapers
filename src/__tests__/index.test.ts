@@ -30,6 +30,11 @@ const html = `
   </html>
 `
 
+const HTML_WITHOUT_YIELD = html.replace(
+  '          "recipeYield": "2 servings",\n',
+  '',
+)
+
 const INVALID_SCHEMA_HTML = `
   <html lang="en">
     <head>
@@ -110,6 +115,36 @@ describe('getScraper', () => {
 })
 
 describe('scrapeRecipe', () => {
+  it('uses the consumer fallback when a recipe omits recipeYield', async () => {
+    const recipe = await scrapeRecipe(
+      HTML_WITHOUT_YIELD,
+      'https://food.com/recipe/1',
+      {
+        fallbackYield: 'Yield not specified',
+        wildMode: true,
+      },
+    )
+
+    expect(recipe.yields).toBe('Yield not specified')
+  })
+
+  it('does not replace a yield extracted from the recipe', async () => {
+    const recipe = await scrapeRecipe(html, 'https://food.com/recipe/1', {
+      fallbackYield: 'Yield not specified',
+      wildMode: true,
+    })
+
+    expect(recipe.yields).toBe('2 servings')
+  })
+
+  it('still fails when recipeYield is omitted without a fallback', async () => {
+    await expect(
+      scrapeRecipe(HTML_WITHOUT_YIELD, 'https://food.com/recipe/1', {
+        wildMode: true,
+      }),
+    ).rejects.toThrow('No extractor found for field: yields')
+  })
+
   it('parses unsupported hosts in wild mode by default', async () => {
     const recipe = await scrapeRecipe(html, UNSUPPORTED_URL)
 

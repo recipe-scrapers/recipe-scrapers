@@ -24,6 +24,13 @@ export interface ScraperOptions {
    */
   extraPostProcessors?: PostProcessorPlugin[]
   /**
+   * Non-empty value to use when no extractor can find a recipe yield.
+   * Extracted yield values always take precedence.
+   *
+   * When omitted, a missing yield remains an extraction failure.
+   */
+  fallbackYield?: string
+  /**
    * Whether link scraping is enabled.
    * @default false
    */

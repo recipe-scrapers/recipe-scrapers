@@ -195,6 +195,20 @@ export abstract class AbstractScraper {
     return extractWprmNotes(this.$)
   }
 
+  private async extractYields(): Promise<RecipeFields['yields']> {
+    try {
+      return await this.extract('yields')
+    } catch (error) {
+      const fallbackYield = this.options.fallbackYield?.trim()
+
+      if (error instanceof ExtractorNotFoundException && fallbackYield) {
+        return fallbackYield
+      }
+
+      throw error
+    }
+  }
+
   /**
    * Scrape's the recipe and caches the data.
    */
@@ -231,7 +245,7 @@ export abstract class AbstractScraper {
       siteName: await this.extract('siteName'),
       title: await this.extract('title'),
       totalTime: await this.extract('totalTime'),
-      yields: await this.extract('yields'),
+      yields: await this.extractYields(),
     }
 
     return this.recipeData
