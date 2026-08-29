@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recipe Scraper Parser"
+  short_description: "Implement recipe host support and fixtures"
+  default_prompt: "Use $recipe-scraper-parser to add or update support for a recipe website with the narrowest registry, scraper, alias, fixture, and test changes."
