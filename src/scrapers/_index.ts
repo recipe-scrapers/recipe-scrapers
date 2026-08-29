@@ -89,6 +89,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'tastyoven.com',
   'thebigmansworld.com',
   'thecookierookie.com',
+  'theincrediblebulks.com',
   'themediterraneandish.com',
   'therecipecritic.com',
   'unsophisticook.com',
