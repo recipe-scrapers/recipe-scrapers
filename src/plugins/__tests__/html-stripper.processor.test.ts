@@ -13,8 +13,10 @@ import { HtmlStripperPlugin } from '../html-stripper.processor'
 describe('HtmlStripperPlugin', () => {
   const plugin = new HtmlStripperPlugin()
 
-  it('should process only title, instructions, and ingredients fields', () => {
+  it('processes text-bearing fields that may contain HTML', () => {
     expect(plugin.shouldProcess('title')).toBe(true)
+    expect(plugin.shouldProcess('description')).toBe(true)
+    expect(plugin.shouldProcess('siteName')).toBe(true)
     expect(plugin.shouldProcess('instructions')).toBe(true)
     expect(plugin.shouldProcess('ingredients')).toBe(true)
     expect(plugin.shouldProcess('category')).toBe(false)
@@ -92,5 +94,8 @@ describe('HtmlStripperPlugin', () => {
     )
     expect(plugin.process('title', '&#x27;quoted&#x27;')).toBe("'quoted'")
     expect(plugin.process('title', '100&deg;C')).toBe('100°C')
+    expect(plugin.process('siteName', 'Mamá Maggie&#039;s Kitchen')).toBe(
+      "Mamá Maggie's Kitchen",
+    )
   })
 })

@@ -13,6 +13,7 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
   private fieldsToProcess: (keyof RecipeFields)[] = [
     'title',
     'description',
+    'siteName',
     'instructions',
     'ingredients',
   ]
