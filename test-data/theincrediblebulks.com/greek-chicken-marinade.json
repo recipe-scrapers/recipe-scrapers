@@ -1,0 +1,70 @@
+{
+  "author": "Emily",
+  "canonicalUrl": "https://www.theincrediblebulks.com/greek-chicken-marinade/",
+  "cookTime": 12,
+  "cookingMethod": null,
+  "description": "Greek Chicken Marinade is so easy and bursting with fresh Mediterranean Flavors, like lemon, garlic and dill.",
+  "host": "theincrediblebulks.com",
+  "image": "https://www.theincrediblebulks.com/wp-content/uploads/2024/06/greek-chicken-marinade-7.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "4 boneless skinless chicken breasts"
+        },
+        {
+          "value": "1/3 cup olive oil"
+        },
+        {
+          "value": "1/3 cup lemon juice"
+        },
+        {
+          "value": "2 cloves garlic ((or 1/2 tsp garlic powder))"
+        },
+        {
+          "value": "2 tsp dried dill ((or 2 tablespoon fresh dill leaves) )"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a large bowl, combine the olive oil, lemon juice, garlic and dill. Stir to combine. Add in chicken breasts and toss to completely coat."
+        },
+        {
+          "value": "Cook chicken on the grill for about 10 minutes, turning once half way through. (Actual time will depend on the thickness of chicken. Chicken is done when internal temperature reaches 165°)."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 5,
+  "ratings": 4.73,
+  "ratingsCount": 11,
+  "siteName": "The Incredible Bulks",
+  "title": "Greek Chicken Marinade",
+  "totalTime": 17,
+  "yields": "4 servings",
+  "category": ["Dessert"],
+  "cuisine": ["Greek"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["chicken", "greek", "grill", "marinade"],
+  "nutrients": {
+    "servingSize": "1 chicken breast",
+    "calories": "178 kcal",
+    "carbohydrateContent": "0.3 g",
+    "proteinContent": "21.3 g",
+    "fatContent": "9.6 g",
+    "saturatedFatContent": "1.1 g",
+    "cholesterolContent": "64 mg",
+    "sodiumContent": "54 mg",
+    "fiberContent": "0.1 g",
+    "sugarContent": "0.3 g"
+  },
+  "reviews": {}
+}
