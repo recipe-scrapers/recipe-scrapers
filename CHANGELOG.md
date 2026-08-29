@@ -6,6 +6,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.11.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.10.0...1.11.0) (2026-08-29)
+
+
+### Features
+
+* **scraper:** add theincrediblebulks.com ([f3a0aa1](https://github.com/recipe-scrapers/recipe-scrapers/commit/f3a0aa17c774fc160895482667720c8a7eefd42e))
+
+
+### Bug Fixes
+
+* decode HTML entities in site names ([f3a0aa1](https://github.com/recipe-scrapers/recipe-scrapers/commit/f3a0aa17c774fc160895482667720c8a7eefd42e))
+
 ## [1.10.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.9.0...1.10.0) (2026-07-23)
 
 
