@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'bun:test'
+
 import * as cheerio from 'cheerio'
+
 import type { Ingredients } from '@/types/recipe.interface'
+
 import {
   bestMatch,
   createIngredientGroup,

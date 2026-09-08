@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'bun:test'
+
 import type { StandardSchemaV1 } from '@standard-schema/spec'
+
 import { getScraper, scrapeRecipe, scrapers } from '@/index'
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
 import { GenericScraper } from '@/scrapers/generic'

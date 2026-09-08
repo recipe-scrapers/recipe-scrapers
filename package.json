@@ -48,8 +48,10 @@
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",
-    "lint": "oxlint --deny-warnings && oxfmt --check && bun run ts:check",
+    "lint": "oxlint --deny-warnings && bun fmt:check && bun run ts:check",
     "lint:fix": "oxlint --fix && oxfmt",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "ts:check": "tsc --noEmit",
     "prepublishOnly": "bun run lint && bun run build"
   },

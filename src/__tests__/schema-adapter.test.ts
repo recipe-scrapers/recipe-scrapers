@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'bun:test'
+
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import * as v from 'valibot'
 import { z } from 'zod'
+
 import {
   isStandardSchemaV1,
   safeParseWithStandardSchema,

@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'bun:test'
+
 import { load } from 'cheerio'
+
 import { extractWprmNotes } from '../extract-wprm-notes'
 
 describe('extractWprmNotes', () => {

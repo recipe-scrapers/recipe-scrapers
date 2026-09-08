@@ -1,4 +1,5 @@
 import type { CheerioAPI } from 'cheerio'
+
 import { stringsToNotes } from './notes'
 import { normalizeString } from './parsing'
 

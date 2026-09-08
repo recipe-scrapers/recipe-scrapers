@@ -1,16 +1,17 @@
 import type { CheerioAPI } from 'cheerio'
 import type { AggregateRating } from 'schema-dts'
+
 import { ExtractorPlugin } from '@/abstract-extractor-plugin'
 import {
   ExtractionFailedException,
   UnsupportedFieldException,
 } from '@/exceptions'
 import { Logger, type LogLevel } from '@/logger'
-import type { RecipeFields } from '@/types/recipe.interface'
 import type {
   RecipeEvidence,
   RecipeEvidenceReason,
 } from '@/types/recipe-evidence.interface'
+import type { RecipeFields } from '@/types/recipe.interface'
 import {
   isFunction,
   isNumber,
@@ -28,6 +29,7 @@ import { parseJsonWithRepair } from '@/utils/json'
 import { extractRecipeMicrodata } from '@/utils/microdata'
 import { parseYields } from '@/utils/parse-yields'
 import { normalizeString, parseMinutes, splitToList } from '@/utils/parsing'
+
 import type {
   Person,
   SchemaOrgData,

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test'
+
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { inspectRecipeEvidence } from '@/index'
 import { GenericScraper } from '@/scrapers/generic'

@@ -1,11 +1,14 @@
 import { beforeEach, describe, expect, it } from 'bun:test'
+
 import { load } from 'cheerio'
+
 import {
   NotImplementedException,
   UnsupportedFieldException,
 } from '@/exceptions'
 import { stringsToIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
+
 import { ExtractorPlugin } from '../abstract-extractor-plugin'
 import type { RecipeFields } from '../types/recipe.interface'
 

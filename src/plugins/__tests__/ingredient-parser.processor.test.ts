@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'bun:test'
+
 import type { Ingredients } from '@/types/recipe.interface'
+
 import { IngredientParserPlugin } from '../ingredient-parser.processor'
 
 describe('IngredientParserPlugin', () => {

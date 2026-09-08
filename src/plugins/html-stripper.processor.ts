@@ -1,9 +1,11 @@
 import { load } from 'cheerio'
+
 import { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isString } from '@/utils'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
+
 import type { Ingredients, Instructions } from '../types/recipe.interface'
 
 export class HtmlStripperPlugin extends PostProcessorPlugin {

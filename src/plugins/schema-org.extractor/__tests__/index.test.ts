@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'bun:test'
+
 import { load } from 'cheerio'
+
 import {
   ExtractionFailedException,
   UnsupportedFieldException,
@@ -7,6 +9,7 @@ import {
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
+
 import {
   SchemaOrgException,
   SchemaOrgJsonLdParseException,

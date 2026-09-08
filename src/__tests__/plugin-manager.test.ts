@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test'
+
 import type { ExtractorPlugin } from '../abstract-extractor-plugin'
 import type { PostProcessorPlugin } from '../abstract-postprocessor-plugin'
 import { PluginManager } from '../plugin-manager'

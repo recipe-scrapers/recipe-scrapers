@@ -1,5 +1,6 @@
 import { AbstractScraper } from '@/abstract-scraper'
 import type { ScraperOptions } from '@/types/scraper.interface'
+
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BBCGoodFood } from './bbcgoodfood'
 import { BongEats } from './bongeats'

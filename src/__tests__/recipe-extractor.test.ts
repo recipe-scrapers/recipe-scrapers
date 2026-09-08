@@ -1,5 +1,7 @@
 import { describe, expect, it, spyOn } from 'bun:test'
+
 import { load } from 'cheerio'
+
 import type { ExtractorPlugin } from '../abstract-extractor-plugin'
 import {
   ExtractionFailedException,

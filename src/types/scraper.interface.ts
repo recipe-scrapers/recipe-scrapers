@@ -1,8 +1,10 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { ParseIngredientOptions } from 'parse-ingredient'
+
 import type { ExtractorPlugin } from '@/abstract-extractor-plugin'
 import type { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
 import type { LogLevel } from '@/logger'
+
 import type { RecipeFields, RecipeObject } from './recipe.interface'
 
 export interface ScraperOptions {

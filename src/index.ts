@@ -1,8 +1,8 @@
 import type { SafeParseResult } from './schema-adapter'
 import { scrapers } from './scrapers/_index'
 import { GenericScraper } from './scrapers/generic'
-import type { RecipeObject } from './types/recipe.interface'
 import type { RecipeEvidence } from './types/recipe-evidence.interface'
+import type { RecipeObject } from './types/recipe.interface'
 import type { ScraperOptions } from './types/scraper.interface'
 import { getHostName } from './utils'
 

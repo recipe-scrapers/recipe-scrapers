@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'bun:test'
 import path from 'node:path'
+
 import z from 'zod'
+
 import { AbstractScraper } from '@/abstract-scraper'
 import { LogLevel } from '@/logger'
 import { scrapers } from '@/scrapers/_index'

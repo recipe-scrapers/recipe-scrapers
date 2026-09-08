@@ -1,7 +1,9 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import * as cheerio from 'cheerio'
 import type { ParseIngredientOptions } from 'parse-ingredient'
+
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
+
 import type { ExtractorPlugin } from './abstract-extractor-plugin'
 import type { PostProcessorPlugin } from './abstract-postprocessor-plugin'
 import {
@@ -27,14 +29,14 @@ import {
   safeParseWithStandardSchema,
 } from './schema-adapter'
 import type {
+  RecipeEvidence,
+  RecipeEvidenceReason,
+} from './types/recipe-evidence.interface'
+import type {
   RecipeData,
   RecipeFields,
   RecipeObject,
 } from './types/recipe.interface'
-import type {
-  RecipeEvidence,
-  RecipeEvidenceReason,
-} from './types/recipe-evidence.interface'
 import type { ScraperOptions } from './types/scraper.interface'
 import { isPlainObject, isString } from './utils'
 import { extractWprmNotes } from './utils/extract-wprm-notes'

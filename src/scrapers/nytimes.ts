@@ -1,4 +1,5 @@
 import z from 'zod'
+
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeData, RecipeFields } from '@/types/recipe.interface'

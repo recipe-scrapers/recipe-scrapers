@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, spyOn } from 'bun:test'
+
 import type { StandardSchemaV1 } from '@standard-schema/spec'
+
 import { AbstractScraper } from '@/abstract-scraper'
 import {
   ExtractionRuntimeException,
