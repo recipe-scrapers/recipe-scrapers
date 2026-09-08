@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.12.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.11.0...1.12.0) (2026-09-08)
+
+
+### Features
+
+* add optional author fallback ([0695af3](https://github.com/recipe-scrapers/recipe-scrapers/commit/0695af30ee2199d5b7b5ce590629efae65c6a1fc))
+* add recipe evidence inspection ([0695af3](https://github.com/recipe-scrapers/recipe-scrapers/commit/0695af30ee2199d5b7b5ce590629efae65c6a1fc))
+
+
+### Performance Improvements
+
+* compile the finalized recipe schema ([0695af3](https://github.com/recipe-scrapers/recipe-scrapers/commit/0695af30ee2199d5b7b5ce590629efae65c6a1fc))
+
 ## [1.11.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.10.0...1.11.0) (2026-08-29)
 
 
