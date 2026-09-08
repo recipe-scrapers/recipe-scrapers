@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test'
+
 import {
   createNoteGroup,
   createNoteItem,
@@ -66,9 +67,7 @@ describe('isNoteGroup', () => {
 
 describe('isNotes', () => {
   it('returns true for valid notes array', () => {
-    expect(
-      isNotes([{ name: null, items: [{ value: 'Step away from heat.' }] }]),
-    ).toBe(true)
+    expect(isNotes([{ name: null, items: [{ value: 'Step away from heat.' }] }])).toBe(true)
     expect(isNotes([])).toBe(true)
   })
 

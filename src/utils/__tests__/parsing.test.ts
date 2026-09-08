@@ -1,10 +1,6 @@
 import { describe, expect, it } from 'bun:test'
-import {
-  normalizeString,
-  parseMinutes,
-  splitToList,
-  stripLeadingBullet,
-} from '../parsing'
+
+import { normalizeString, parseMinutes, splitToList, stripLeadingBullet } from '../parsing'
 
 describe('normalizeString', () => {
   it('trims leading and trailing whitespace', () => {

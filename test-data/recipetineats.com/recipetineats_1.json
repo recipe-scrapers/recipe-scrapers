@@ -65,12 +65,7 @@
   "cuisine": ["French"],
   "dietaryRestrictions": [],
   "equipment": [],
-  "keywords": [
-    "matchstick fries",
-    "pommes pailles",
-    "potato straws",
-    "shoestring fries"
-  ],
+  "keywords": ["matchstick fries", "pommes pailles", "potato straws", "shoestring fries"],
   "nutrients": {},
   "reviews": {}
 }

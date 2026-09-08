@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'bun:test'
 import path from 'node:path'
+
 import z from 'zod'
+
 import { AbstractScraper } from '@/abstract-scraper'
 import { LogLevel } from '@/logger'
 import { scrapers } from '@/scrapers/_index'
@@ -11,9 +13,7 @@ const DATA_DIR = './test-data'
 type RecipeFixture = Omit<RecipeObject, 'schemaVersion'>
 
 function fixtureHasParsedIngredients(fixture: RecipeFixture): boolean {
-  return fixture.ingredients.some((group) =>
-    group.items.some((item) => 'parsed' in item),
-  )
+  return fixture.ingredients.some((group) => group.items.some((item) => 'parsed' in item))
 }
 
 function fixtureHasNotes(fixture: RecipeFixture): boolean {
@@ -37,9 +37,7 @@ async function getTestDataFiles() {
     const jsonFileExists = await Bun.file(testJsonPath).exists()
 
     if (!jsonFileExists) {
-      console.warn(
-        `Skipping ${testHtmlPath}: corresponding JSON file not found`,
-      )
+      console.warn(`Skipping ${testHtmlPath}: corresponding JSON file not found`)
       continue
     }
 

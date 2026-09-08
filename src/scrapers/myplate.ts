@@ -1,13 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
-import {
-  createIngredientGroup,
-  createIngredientItem,
-} from '@/utils/ingredients'
-import {
-  createInstructionGroup,
-  createInstructionItem,
-} from '@/utils/instructions'
+import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
+import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString, parseMinutes } from '@/utils/parsing'
 
 export class MyPlate extends AbstractScraper {
@@ -63,27 +57,21 @@ export class MyPlate extends AbstractScraper {
     return [createInstructionGroup(null, items)]
   }
 
-  protected cookTime(
-    prevValue: RecipeFields['cookTime'] | undefined,
-  ): RecipeFields['cookTime'] {
+  protected cookTime(prevValue: RecipeFields['cookTime'] | undefined): RecipeFields['cookTime'] {
     return this.readDuration(
       '.mp-recipe-full__detail--cook-time .mp-recipe-full__detail--data',
       prevValue,
     )
   }
 
-  protected prepTime(
-    prevValue: RecipeFields['prepTime'] | undefined,
-  ): RecipeFields['prepTime'] {
+  protected prepTime(prevValue: RecipeFields['prepTime'] | undefined): RecipeFields['prepTime'] {
     return this.readDuration(
       '.mp-recipe-full__detail--prep-time .mp-recipe-full__detail--data',
       prevValue,
     )
   }
 
-  protected totalTime(
-    prevValue: RecipeFields['totalTime'] | undefined,
-  ): RecipeFields['totalTime'] {
+  protected totalTime(prevValue: RecipeFields['totalTime'] | undefined): RecipeFields['totalTime'] {
     const cookTime = this.readDuration(
       '.mp-recipe-full__detail--cook-time .mp-recipe-full__detail--data',
       null,
@@ -100,10 +88,7 @@ export class MyPlate extends AbstractScraper {
     return prevValue ?? null
   }
 
-  private readDuration(
-    selector: string,
-    fallback: number | null | undefined,
-  ): number | null {
+  private readDuration(selector: string, fallback: number | null | undefined): number | null {
     const value = normalizeString(this.$(selector).first().text())
 
     if (!value) {

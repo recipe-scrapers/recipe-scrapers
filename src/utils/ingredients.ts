@@ -1,34 +1,20 @@
 import type { CheerioAPI } from 'cheerio'
-import type {
-  IngredientGroup,
-  IngredientItem,
-  Ingredients,
-} from '@/types/recipe.interface'
+
+import type { IngredientGroup, IngredientItem, Ingredients } from '@/types/recipe.interface'
+
 import { isPlainObject, isString } from './index'
 import { normalizeString } from './parsing'
 
 const DEFAULT_GROUPING_SELECTORS = {
   wprm: {
-    headingSelectors: [
-      '.wprm-recipe-ingredient-group h4',
-      '.wprm-recipe-group-name',
-    ],
+    headingSelectors: ['.wprm-recipe-ingredient-group h4', '.wprm-recipe-group-name'],
     itemSelectors: ['.wprm-recipe-ingredient', '.wprm-recipe-ingredients li'],
   },
   tasty: {
-    headingSelectors: [
-      '.tasty-recipes-ingredients-body p strong',
-      '.tasty-recipes-ingredients h4',
-    ],
-    itemSelectors: [
-      '.tasty-recipes-ingredients-body ul li',
-      '.tasty-recipes-ingredients ul li',
-    ],
+    headingSelectors: ['.tasty-recipes-ingredients-body p strong', '.tasty-recipes-ingredients h4'],
+    itemSelectors: ['.tasty-recipes-ingredients-body ul li', '.tasty-recipes-ingredients ul li'],
   },
-} as const satisfies Record<
-  string,
-  { headingSelectors: string[]; itemSelectors: string[] }
->
+} as const satisfies Record<string, { headingSelectors: string[]; itemSelectors: string[] }>
 
 /**
  * Creates an IngredientItem.
@@ -109,9 +95,7 @@ export function scoreSentenceSimilarity(first: string, second: string): number {
   const firstBigrams = bigrams(first)
   const secondBigrams = bigrams(second)
 
-  const intersectionSize = [...firstBigrams].filter((b) =>
-    secondBigrams.has(b),
-  ).length
+  const intersectionSize = [...firstBigrams].filter((b) => secondBigrams.has(b)).length
 
   return (2 * intersectionSize) / (firstBigrams.size + secondBigrams.size)
 }
@@ -121,9 +105,7 @@ export function bestMatch(testString: string, targetStrings: string[]): string {
     throw new Error('targetStrings cannot be empty')
   }
 
-  const scores = targetStrings.map((t) =>
-    scoreSentenceSimilarity(testString, t),
-  )
+  const scores = targetStrings.map((t) => scoreSentenceSimilarity(testString, t))
 
   let bestIndex = 0
   let bestScore = scores[0]
@@ -198,9 +180,7 @@ export function groupIngredients(
     .filter((text) => text.length > 0)
 
   const uniqueFoundIngredients = new Set(foundIngredients)
-  const uniqueIngredientValues = new Set(
-    ingredientValues.map((value) => normalizeString(value)),
-  )
+  const uniqueIngredientValues = new Set(ingredientValues.map((value) => normalizeString(value)))
 
   // Fall back only when HTML under-covers ingredientValues:
   // - fewer total non-empty entries, or
@@ -262,7 +242,5 @@ export function groupIngredients(
     return nonEmptyGroups
   }
 
-  return ingredientValues.length > 0
-    ? stringsToIngredients(ingredientValues)
-    : []
+  return ingredientValues.length > 0 ? stringsToIngredients(ingredientValues) : []
 }

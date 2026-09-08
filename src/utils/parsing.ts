@@ -18,10 +18,7 @@ export function stripLeadingBullet(value: string): string {
   return normalizeString(value.replace(/^[\u2022\u25aa*-]\s*/, ''))
 }
 
-export function splitToList(
-  value: string,
-  separator: string | RegExp,
-): string[] {
+export function splitToList(value: string, separator: string | RegExp): string[] {
   if (!value) return []
 
   const items: string[] = []

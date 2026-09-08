@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'bun:test'
+
 import type { StandardSchemaV1 } from '@standard-schema/spec'
+
 import { getScraper, scrapeRecipe, scrapers } from '@/index'
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
 import { GenericScraper } from '@/scrapers/generic'
@@ -30,10 +32,7 @@ const html = `
   </html>
 `
 
-const HTML_WITHOUT_YIELD = html.replace(
-  '          "recipeYield": "2 servings",\n',
-  '',
-)
+const HTML_WITHOUT_YIELD = html.replace('          "recipeYield": "2 servings",\n', '')
 
 const INVALID_SCHEMA_HTML = `
   <html lang="en">
@@ -116,14 +115,10 @@ describe('getScraper', () => {
 
 describe('scrapeRecipe', () => {
   it('uses the consumer fallback when a recipe omits recipeYield', async () => {
-    const recipe = await scrapeRecipe(
-      HTML_WITHOUT_YIELD,
-      'https://food.com/recipe/1',
-      {
-        fallbackYield: 'Yield not specified',
-        wildMode: true,
-      },
-    )
+    const recipe = await scrapeRecipe(HTML_WITHOUT_YIELD, 'https://food.com/recipe/1', {
+      fallbackYield: 'Yield not specified',
+      wildMode: true,
+    })
 
     expect(recipe.yields).toBe('Yield not specified')
   })
@@ -157,9 +152,7 @@ describe('scrapeRecipe', () => {
   })
 
   it('throws for unsupported hosts when wild mode is disabled', async () => {
-    await expect(
-      scrapeRecipe(html, UNSUPPORTED_URL, { wildMode: false }),
-    ).rejects.toThrow(
+    await expect(scrapeRecipe(html, UNSUPPORTED_URL, { wildMode: false })).rejects.toThrow(
       "The website 'unsupported.example' is not currently supported.",
     )
   })
@@ -184,20 +177,14 @@ describe('scrapeRecipe', () => {
     expect(result.success).toBe(false)
 
     if (!result.success) {
-      expect(
-        result.error.issues.some((issue) => issue.path?.[0] === 'title'),
-      ).toBe(true)
+      expect(result.error.issues.some((issue) => issue.path?.[0] === 'title')).toBe(true)
     }
   })
 
   it('returns extraction_runtime_error when malformed JSON-LD blocks recipe extraction', async () => {
-    const result = await scrapeRecipe(
-      MALFORMED_RECIPE_JSON_LD_HTML,
-      UNSUPPORTED_URL,
-      {
-        safeParse: true,
-      },
-    )
+    const result = await scrapeRecipe(MALFORMED_RECIPE_JSON_LD_HTML, UNSUPPORTED_URL, {
+      safeParse: true,
+    })
 
     expect(result.success).toBe(false)
 
@@ -210,13 +197,9 @@ describe('scrapeRecipe', () => {
   })
 
   it('repairs recoverable malformed JSON-LD and still parses', async () => {
-    const result = await scrapeRecipe(
-      RECOVERABLE_MALFORMED_RECIPE_JSON_LD_HTML,
-      UNSUPPORTED_URL,
-      {
-        safeParse: true,
-      },
-    )
+    const result = await scrapeRecipe(RECOVERABLE_MALFORMED_RECIPE_JSON_LD_HTML, UNSUPPORTED_URL, {
+      safeParse: true,
+    })
 
     expect(result.success).toBe(true)
 
@@ -242,9 +225,7 @@ describe('scrapeRecipe', () => {
           }
 
           return {
-            issues: [
-              { message: 'Title must match expected value', path: ['title'] },
-            ],
+            issues: [{ message: 'Title must match expected value', path: ['title'] }],
           }
         },
       },

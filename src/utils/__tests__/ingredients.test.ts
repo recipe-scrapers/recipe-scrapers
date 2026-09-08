@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'bun:test'
+
 import * as cheerio from 'cheerio'
+
 import type { Ingredients } from '@/types/recipe.interface'
+
 import {
   bestMatch,
   createIngredientGroup,
@@ -14,10 +17,7 @@ import {
 } from '../ingredients'
 
 /** Helper to get ingredient values from a result */
-function getGroupValues(
-  result: Ingredients,
-  groupName: string | null,
-): string[] {
+function getGroupValues(result: Ingredients, groupName: string | null): string[] {
   const group = result.find((g) => g.name === groupName)
   return group ? group.items.map((i) => i.value) : []
 }
@@ -105,9 +105,7 @@ describe('stringsToIngredients', () => {
 
 describe('scoreSentenceSimilarity', () => {
   it('returns 1 for exact match', () => {
-    expect(
-      scoreSentenceSimilarity('¼ cup maple syrup', '¼ cup maple syrup'),
-    ).toBe(1.0)
+    expect(scoreSentenceSimilarity('¼ cup maple syrup', '¼ cup maple syrup')).toBe(1.0)
   })
 
   it('should return 0 for strings shorter than 2 characters', () => {
@@ -146,9 +144,7 @@ describe('bestMatch', () => {
       '¼ tsp salt',
       '1 cup shredded red cabbage',
     ]
-    expect(bestMatch('¼ cup vegan mayonnaise', targets)).toBe(
-      '¼ cup vegan mayonnaise',
-    )
+    expect(bestMatch('¼ cup vegan mayonnaise', targets)).toBe('¼ cup vegan mayonnaise')
   })
 
   it('should return the best matching string', () => {
@@ -181,14 +177,8 @@ describe('bestMatch', () => {
   })
 
   it("doesn't return the query when it's not in targets", () => {
-    const targets = [
-      '¼ cup vegan mayonnaise',
-      'apple cider vinegar',
-      '¼ tsp salt',
-    ]
-    expect(bestMatch('¼ cup maple syrup', targets)).not.toBe(
-      '¼ cup maple syrup',
-    )
+    const targets = ['¼ cup vegan mayonnaise', 'apple cider vinegar', '¼ tsp salt']
+    expect(bestMatch('¼ cup maple syrup', targets)).not.toBe('¼ cup maple syrup')
   })
 
   it('throws an error for empty target list', () => {
@@ -210,12 +200,7 @@ describe('findSelectors', () => {
     const ingredientsList = ['Custom ingredient']
 
     // Should use custom selectors even when WPRM selectors exist
-    const result = groupIngredients(
-      $,
-      ingredientsList,
-      '.custom-heading',
-      '.custom-ingredient',
-    )
+    const result = groupIngredients($, ingredientsList, '.custom-heading', '.custom-ingredient')
 
     expect(result).toHaveLength(1)
     expect(result[0].name).toBe('Custom Group')
@@ -239,12 +224,7 @@ describe('groupIngredients', () => {
   it('should return default group when selectors are provided but not found in DOM', () => {
     const $ = cheerio.load('<div></div>')
     const ingredientsList = ['flour', 'sugar', 'eggs']
-    const result = groupIngredients(
-      $,
-      ingredientsList,
-      '.heading',
-      '.ingredient',
-    )
+    const result = groupIngredients($, ingredientsList, '.heading', '.ingredient')
 
     expect(result).toEqual([
       {
@@ -288,12 +268,7 @@ describe('groupIngredients', () => {
     `
     const $ = cheerio.load(html)
     const ingredientsList = ['ingredient 1', 'ingredient 2']
-    const result = groupIngredients(
-      $,
-      ingredientsList,
-      '.custom-heading',
-      '.custom-ingredient',
-    )
+    const result = groupIngredients($, ingredientsList, '.custom-heading', '.custom-ingredient')
 
     expect(result).toEqual([
       {
@@ -371,11 +346,7 @@ describe('groupIngredients', () => {
       </div>
     `
     const $ = cheerio.load(html)
-    const ingredientsList = [
-      '2 carrots, diced',
-      '1 onion, chopped',
-      '3 celery stalks',
-    ]
+    const ingredientsList = ['2 carrots, diced', '1 onion, chopped', '3 celery stalks']
     const result = groupIngredients($, ingredientsList)
 
     expect(result).toEqual([
@@ -486,12 +457,7 @@ describe('groupIngredients', () => {
 
     const $ = cheerio.load(html)
     const ingredientsList = ['ingredient 1', 'ingredient 2']
-    const result = groupIngredients(
-      $,
-      ingredientsList,
-      '.ingredients h3',
-      '.ingredients li',
-    )
+    const result = groupIngredients($, ingredientsList, '.ingredients h3', '.ingredients li')
 
     expect(result).toHaveLength(2)
     expect(getGroupValues(result, null)).toEqual(['ingredient 1'])

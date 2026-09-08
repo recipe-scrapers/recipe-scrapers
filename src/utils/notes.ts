@@ -1,4 +1,5 @@
 import type { NoteGroup, NoteItem, Notes } from '@/types/recipe.interface'
+
 import { isPlainObject, isString } from './index'
 
 /**
@@ -11,10 +12,7 @@ export function createNoteItem(value: string): NoteItem {
 /**
  * Creates a NoteGroup.
  */
-export function createNoteGroup(
-  name: string | null,
-  items: NoteItem[] = [],
-): NoteGroup {
+export function createNoteGroup(name: string | null, items: NoteItem[] = []): NoteGroup {
   return { name, items }
 }
 
@@ -48,10 +46,7 @@ export function isNotes(value: unknown): value is Notes {
 /**
  * Converts an array of strings to a Notes array with a single default group.
  */
-export function stringsToNotes(
-  values: string[],
-  groupName: string | null = null,
-): Notes {
+export function stringsToNotes(values: string[], groupName: string | null = null): Notes {
   const items = values.map(createNoteItem)
   return [createNoteGroup(groupName, items)]
 }

@@ -1,4 +1,5 @@
 import z from 'zod'
+
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { Ingredients, RecipeFields } from '@/types/recipe.interface'
 import {
@@ -7,10 +8,7 @@ import {
   flattenIngredients,
   groupIngredients,
 } from '@/utils/ingredients'
-import {
-  createInstructionGroup,
-  createInstructionItem,
-} from '@/utils/instructions'
+import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 const recipeIngredientItemSchema = z.object({
@@ -89,9 +87,7 @@ export class AmericasTestKitchen extends AbstractScraper {
     return "America's Test Kitchen"
   }
 
-  protected image(
-    prevValue: RecipeFields['image'] | undefined,
-  ): RecipeFields['image'] {
+  protected image(prevValue: RecipeFields['image'] | undefined): RecipeFields['image'] {
     const data = this.getRecipeData()
 
     if (!data) {
@@ -158,12 +154,7 @@ export class AmericasTestKitchen extends AbstractScraper {
 
     if (prevValue && prevValue.length > 0) {
       const values = flattenIngredients(prevValue)
-      return groupIngredients(
-        this.$,
-        values,
-        headingSelector,
-        ingredientSelector,
-      )
+      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
     }
 
     return null
@@ -223,8 +214,7 @@ export class AmericasTestKitchen extends AbstractScraper {
     const result: Ingredients = []
 
     for (const group of ingredientGroups) {
-      const groupTitle =
-        group.fields.title.length === 0 ? null : group.fields.title
+      const groupTitle = group.fields.title.length === 0 ? null : group.fields.title
       const items = group.fields.recipeIngredientItems.map((item) =>
         createIngredientItem(this.parseIngredientItem(item)),
       )

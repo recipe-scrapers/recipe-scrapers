@@ -42,14 +42,9 @@ export class ExtractionRuntimeException extends Error {
     public readonly source: string,
     public readonly extractionCause?: unknown,
   ) {
-    const causeMessage = resolveErrorMessage(
-      extractionCause,
-      'Unknown extraction error',
-    )
+    const causeMessage = resolveErrorMessage(extractionCause, 'Unknown extraction error')
 
-    super(
-      `Unexpected extraction error for field "${field}" from ${source}: ${causeMessage}`,
-    )
+    super(`Unexpected extraction error for field "${field}" from ${source}: ${causeMessage}`)
     this.name = 'ExtractionRuntimeException'
   }
 }

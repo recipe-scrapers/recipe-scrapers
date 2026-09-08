@@ -12,9 +12,7 @@ export class Skinnytaste extends AbstractScraper {
   } satisfies ScraperExtractors
 
   protected equipment(): RecipeFields['equipment'] {
-    const equipmentItems = this.$(
-      '.wprm-recipe-equipment-item .wprm-recipe-equipment-name',
-    )
+    const equipmentItems = this.$('.wprm-recipe-equipment-item .wprm-recipe-equipment-name')
       .map((_, el) => normalizeString(this.$(el).text()))
       .get()
       .filter((item) => item.length > 0)

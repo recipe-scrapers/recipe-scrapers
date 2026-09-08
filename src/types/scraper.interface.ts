@@ -1,9 +1,11 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { ParseIngredientOptions } from 'parse-ingredient'
+
 import type { ExtractorPlugin } from '@/abstract-extractor-plugin'
 import type { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
 import type { LogLevel } from '@/logger'
-import type { RecipeObject } from './recipe.interface'
+
+import type { RecipeFields, RecipeObject } from './recipe.interface'
 
 export interface ScraperOptions {
   /**
@@ -23,6 +25,14 @@ export interface ScraperOptions {
    * @default []
    */
   extraPostProcessors?: PostProcessorPlugin[]
+  /**
+   * Non-empty value to use when no extractor finds a non-empty author.
+   * A function receives the extracted website name, or `null` when unavailable.
+   * Extracted author values always take precedence.
+   *
+   * When omitted, a missing author remains an extraction failure.
+   */
+  fallbackAuthor?: string | ((siteName: RecipeFields['siteName']) => RecipeFields['author'])
   /**
    * Non-empty value to use when no extractor can find a recipe yield.
    * Extracted yield values always take precedence.

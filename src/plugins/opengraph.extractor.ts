@@ -1,8 +1,5 @@
 import { ExtractorPlugin } from '../abstract-extractor-plugin'
-import {
-  ExtractionFailedException,
-  ExtractorNotFoundException,
-} from '../exceptions'
+import { ExtractionFailedException, ExtractorNotFoundException } from '../exceptions'
 import type { RecipeFields } from '../types/recipe.interface'
 
 export class OpenGraphException extends ExtractionFailedException {

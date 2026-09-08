@@ -1,11 +1,12 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import * as cheerio from 'cheerio'
 import type { ParseIngredientOptions } from 'parse-ingredient'
+
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
+
 import type { ExtractorPlugin } from './abstract-extractor-plugin'
 import type { PostProcessorPlugin } from './abstract-postprocessor-plugin'
 import {
-  ExtractionFailedException,
   ExtractionRuntimeException,
   ExtractorNotFoundException,
   NotImplementedException,
@@ -16,20 +17,18 @@ import { PluginManager } from './plugin-manager'
 import { HtmlStripperPlugin } from './plugins/html-stripper.processor'
 import { IngredientParserPlugin } from './plugins/ingredient-parser.processor'
 import { OpenGraphPlugin } from './plugins/opengraph.extractor'
-import { SchemaOrgPlugin } from './plugins/schema-org.extractor'
+import { SchemaOrgJsonLdParseException, SchemaOrgPlugin } from './plugins/schema-org.extractor'
 import { RecipeExtractor } from './recipe-extractor'
+import { createSafeParseFailure } from './safe-parse-result'
 import {
   isStandardSchemaV1,
   type SafeParseResult,
   safeParseWithStandardSchema,
 } from './schema-adapter'
-import type {
-  RecipeData,
-  RecipeFields,
-  RecipeObject,
-} from './types/recipe.interface'
+import type { RecipeEvidence, RecipeEvidenceReason } from './types/recipe-evidence.interface'
+import type { RecipeData, RecipeFields, RecipeObject } from './types/recipe.interface'
 import type { ScraperOptions } from './types/scraper.interface'
-import { isPlainObject, resolveErrorMessage } from './utils'
+import { isPlainObject, isString } from './utils'
 import { extractWprmNotes } from './utils/extract-wprm-notes'
 
 export type RecipeFieldExtractor<Key extends keyof RecipeFields> = (
@@ -44,8 +43,10 @@ export abstract class AbstractScraper {
   protected readonly logger: Logger
   protected readonly pluginManager: PluginManager
   protected readonly recipeExtractor: RecipeExtractor
-  private validationSchema: StandardSchemaV1<unknown, RecipeObject> | null =
-    null
+  readonly #schemaOrgPlugin: SchemaOrgPlugin
+  readonly #hasExtraExtractors: boolean
+  #recipeEvidencePromise: Promise<RecipeEvidence> | null = null
+  private validationSchema: StandardSchemaV1<unknown, RecipeObject> | null = null
 
   public readonly $: cheerio.CheerioAPI
   public recipeData: RecipeData | null = null
@@ -64,19 +65,16 @@ export abstract class AbstractScraper {
 
     this.logger = new Logger(this.constructor.name, logLevel)
     this.$ = cheerio.load(html)
+    this.#schemaOrgPlugin = new SchemaOrgPlugin(this.$, logLevel)
+    this.#hasExtraExtractors = extraExtractors.length > 0
 
-    const baseExtractors: ExtractorPlugin[] = [
-      new OpenGraphPlugin(this.$),
-      new SchemaOrgPlugin(this.$, logLevel),
-    ]
+    const baseExtractors: ExtractorPlugin[] = [new OpenGraphPlugin(this.$), this.#schemaOrgPlugin]
 
     const basePostProcessors: PostProcessorPlugin[] = [new HtmlStripperPlugin()]
 
     // Add ingredient parser if enabled
     if (parseIngredients) {
-      const parserOptions: ParseIngredientOptions = isPlainObject(
-        parseIngredients,
-      )
+      const parserOptions: ParseIngredientOptions = isPlainObject(parseIngredients)
         ? parseIngredients
         : {}
       basePostProcessors.push(new IngredientParserPlugin(parserOptions))
@@ -107,14 +105,9 @@ export abstract class AbstractScraper {
    * Main extraction method - tries site-specific first, then plugins,
    * then applies post-processing.
    */
-  public async extract<Key extends keyof RecipeFields>(
-    field: Key,
-  ): Promise<RecipeFields[Key]> {
+  public async extract<Key extends keyof RecipeFields>(field: Key): Promise<RecipeFields[Key]> {
     // 1. Extract the raw value
-    let value = await this.recipeExtractor.extract(
-      field,
-      this.extractors[field],
-    )
+    let value = await this.recipeExtractor.extract(field, this.extractors[field])
 
     // 2. Apply post-processors
     for (const processor of this.pluginManager.getPostProcessors()) {
@@ -149,9 +142,7 @@ export abstract class AbstractScraper {
   canonicalUrl(): RecipeFields['canonicalUrl'] {
     const canonicalLink = this.$('link[rel="canonical"]').attr('href')
 
-    const base = new URL(
-      this.url.startsWith('http') ? this.url : `https://${this.url}`,
-    )
+    const base = new URL(this.url.startsWith('http') ? this.url : `https://${this.url}`)
 
     return canonicalLink ? new URL(canonicalLink, base).href : base.href
   }
@@ -165,9 +156,7 @@ export abstract class AbstractScraper {
 
     // Deprecated: check for a meta http-equiv header
     // See: https://www.w3.org/International/questions/qa-http-and-lang
-    const metaLang = this.$('meta[http-equiv="content-language"]').attr(
-      'content',
-    )
+    const metaLang = this.$('meta[http-equiv="content-language"]').attr('content')
 
     if (metaLang) {
       return metaLang.split(',')[0]
@@ -195,6 +184,82 @@ export abstract class AbstractScraper {
     return extractWprmNotes(this.$)
   }
 
+  /**
+   * Inspect evidence of recipe content without requiring a complete recipe.
+   * The first result is cached for the lifetime of this scraper instance.
+   */
+  public inspectRecipeEvidence(): Promise<RecipeEvidence> {
+    this.#recipeEvidencePromise ??= this.#createRecipeEvidence()
+    return this.#recipeEvidencePromise
+  }
+
+  async #createRecipeEvidence(): Promise<RecipeEvidence> {
+    const structuredEvidence = this.#schemaOrgPlugin.inspectRecipeEvidence()
+    const hasSiteEvidenceExtractors = Boolean(
+      this.extractors.ingredients || this.extractors.instructions,
+    )
+
+    if (!hasSiteEvidenceExtractors && !this.#hasExtraExtractors) {
+      return structuredEvidence
+    }
+
+    const ingredients = await this.#inspectEvidenceField('ingredients')
+    const instructions = await this.#inspectEvidenceField('instructions')
+    const signals = {
+      structuredRecipeFound: structuredEvidence.structuredRecipeFound,
+      ingredientsFound: ingredients.found,
+      instructionsFound: instructions.found,
+    }
+
+    if (ingredients.found && instructions.found) {
+      return { status: 'detected', ...signals }
+    }
+
+    const reasonSet = new Set<RecipeEvidenceReason>(
+      structuredEvidence.status === 'uncertain' ? structuredEvidence.reasons : [],
+    )
+
+    if (signals.structuredRecipeFound || signals.ingredientsFound || signals.instructionsFound) {
+      reasonSet.add('partial-evidence')
+    }
+
+    if (ingredients.runtimeFailure || instructions.runtimeFailure) {
+      reasonSet.add('extractor-runtime-failure')
+    }
+
+    const orderedReasons: readonly RecipeEvidenceReason[] = [
+      'partial-evidence',
+      'malformed-structured-data',
+      'extractor-runtime-failure',
+    ]
+    const reasons = orderedReasons.filter((reason) => reasonSet.has(reason))
+
+    return reasons.length > 0
+      ? { status: 'uncertain', ...signals, reasons }
+      : { status: 'not-detected', ...signals }
+  }
+
+  async #inspectEvidenceField(
+    field: 'ingredients' | 'instructions',
+  ): Promise<{ found: boolean; runtimeFailure: boolean }> {
+    try {
+      const value = await this.recipeExtractor.extract(field, this.extractors[field])
+      return {
+        found: value.some((group) => group.items.length > 0),
+        runtimeFailure: false,
+      }
+    } catch (error) {
+      const malformedStructuredData =
+        error instanceof ExtractionRuntimeException &&
+        error.extractionCause instanceof SchemaOrgJsonLdParseException
+
+      return {
+        found: false,
+        runtimeFailure: !(error instanceof ExtractorNotFoundException) && !malformedStructuredData,
+      }
+    }
+  }
+
   private async extractYields(): Promise<RecipeFields['yields']> {
     try {
       return await this.extract('yields')
@@ -209,6 +274,43 @@ export abstract class AbstractScraper {
     }
   }
 
+  private async extractAuthor(siteName: RecipeFields['siteName']): Promise<RecipeFields['author']> {
+    try {
+      const author = await this.extract('author')
+
+      if (author.trim() || this.options.fallbackAuthor === undefined) {
+        return author
+      }
+    } catch (error) {
+      if (
+        !(error instanceof ExtractorNotFoundException) ||
+        this.options.fallbackAuthor === undefined
+      ) {
+        throw error
+      }
+    }
+
+    const fallbackAuthor = this.options.fallbackAuthor
+
+    if (isString(fallbackAuthor)) {
+      const author = fallbackAuthor.trim()
+
+      if (author) return author
+      throw new ExtractorNotFoundException('author')
+    }
+
+    let author: string
+
+    try {
+      author = fallbackAuthor(siteName).trim()
+    } catch (error) {
+      throw new ExtractionRuntimeException('author', 'fallbackAuthor', error)
+    }
+
+    if (!author) throw new ExtractorNotFoundException('author')
+    return author
+  }
+
   /**
    * Scrape's the recipe and caches the data.
    */
@@ -218,9 +320,11 @@ export abstract class AbstractScraper {
     }
 
     const notes = this.options.parseNotes ? this.notes() : undefined
+    const siteName = await this.extract('siteName')
+    const author = await this.extractAuthor(siteName)
 
     this.recipeData = {
-      author: await this.extract('author'),
+      author,
       canonicalUrl: this.canonicalUrl(),
       category: await this.extract('category'),
       cookTime: await this.extract('cookTime'),
@@ -242,7 +346,7 @@ export abstract class AbstractScraper {
       ratings: await this.extract('ratings'),
       ratingsCount: await this.extract('ratingsCount'),
       reviews: await this.extract('reviews'),
-      siteName: await this.extract('siteName'),
+      siteName,
       title: await this.extract('title'),
       totalTime: await this.extract('totalTime'),
       yields: await this.extractYields(),
@@ -303,9 +407,7 @@ export abstract class AbstractScraper {
     const schema = this.options.schema ?? this.getSchema()
 
     if (!isStandardSchemaV1<RecipeObject>(schema)) {
-      throw new Error(
-        'Validation schema must be Standard Schema v1 compatible.',
-      )
+      throw new Error('Validation schema must be Standard Schema v1 compatible.')
     }
 
     this.validationSchema = schema
@@ -321,10 +423,7 @@ export abstract class AbstractScraper {
    */
   async parse(): Promise<RecipeObject> {
     const raw = await this.toRecipeObject()
-    const result = await safeParseWithStandardSchema(
-      this.getValidationSchema(),
-      raw,
-    )
+    const result = await safeParseWithStandardSchema(this.getValidationSchema(), raw)
 
     if (!result.success) {
       throw new ValidationException(result.error.issues, result.error.cause)
@@ -344,74 +443,7 @@ export abstract class AbstractScraper {
       const raw = await this.toRecipeObject()
       return safeParseWithStandardSchema(this.getValidationSchema(), raw)
     } catch (error) {
-      if (error instanceof ExtractorNotFoundException) {
-        return {
-          success: false,
-          error: {
-            type: 'extraction',
-            code: 'extractor_not_found',
-            context: { field: error.field },
-            issues: [
-              {
-                message: error.message,
-                path: [error.field],
-                dotPath: error.field,
-              },
-            ],
-            cause: error,
-          },
-        }
-      }
-
-      if (error instanceof ExtractionRuntimeException) {
-        return {
-          success: false,
-          error: {
-            type: 'extraction',
-            code: 'extraction_runtime_error',
-            context: { field: error.field, source: error.source },
-            issues: [
-              {
-                message: error.message,
-                path: [error.field],
-                dotPath: error.field,
-              },
-            ],
-            cause: error.extractionCause ?? error,
-          },
-        }
-      }
-
-      if (error instanceof ExtractionFailedException) {
-        return {
-          success: false,
-          error: {
-            type: 'extraction',
-            code: 'extraction_failed',
-            context: { field: error.field },
-            issues: [
-              {
-                message: error.message,
-                path: [error.field],
-                dotPath: error.field,
-              },
-            ],
-            cause: error,
-          },
-        }
-      }
-
-      const message = resolveErrorMessage(error, 'Recipe extraction failed')
-
-      return {
-        success: false,
-        error: {
-          type: 'extraction',
-          code: 'extraction_failed',
-          issues: [{ message }],
-          cause: error,
-        },
-      }
+      return createSafeParseFailure({ type: 'extraction', error })
     }
   }
 }

@@ -6,11 +6,7 @@ interface MicrodataObject {
   [key: string]: unknown
 }
 
-const addProperty = (
-  obj: Record<string, unknown>,
-  key: string,
-  value: unknown,
-) => {
+const addProperty = (obj: Record<string, unknown>, key: string, value: unknown) => {
   if (obj[key] === undefined) {
     obj[key] = value
   } else if (Array.isArray(obj[key])) {
@@ -20,9 +16,7 @@ const addProperty = (
   }
 }
 
-const extractValueFromElement = <T extends Element>(
-  element: Cheerio<T>,
-): string | undefined => {
+const extractValueFromElement = <T extends Element>(element: Cheerio<T>): string | undefined => {
   if (element.is('meta')) {
     return element.attr('content')
   }
@@ -54,10 +48,7 @@ const extractSchemaType = (itemType: string): string | undefined => {
  * @param selector - Selector to find elements with microdata
  * @returns Array of extracted microdata objects
  */
-export function extractMicrodata(
-  $: CheerioAPI,
-  selector: string,
-): MicrodataObject[] {
+export function extractMicrodata($: CheerioAPI, selector: string): MicrodataObject[] {
   const results: MicrodataObject[] = []
   const elements = $(selector)
 
@@ -155,8 +146,5 @@ export function extractMicrodata(
  * @returns Array of recipe microdata objects
  */
 export function extractRecipeMicrodata($: CheerioAPI): MicrodataObject[] {
-  return extractMicrodata(
-    $,
-    '[itemtype*="schema.org/Recipe"], [itemtype*="Recipe"]',
-  )
+  return extractMicrodata($, '[itemtype*="schema.org/Recipe"], [itemtype*="Recipe"]')
 }

@@ -97,12 +97,7 @@
   "cuisine": ["American"],
   "dietaryRestrictions": [],
   "equipment": [],
-  "keywords": [
-    "grilled salmon",
-    "healthy salmon",
-    "healthy salmon recipe",
-    "salmon with avocado"
-  ],
+  "keywords": ["grilled salmon", "healthy salmon", "healthy salmon recipe", "salmon with avocado"],
   "nutrients": {
     "calories": "456 kcal",
     "carbohydrateContent": "10 g",

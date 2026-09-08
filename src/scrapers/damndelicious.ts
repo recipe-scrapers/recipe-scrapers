@@ -10,9 +10,7 @@ export class DamnDelicious extends AbstractScraper {
     siteName: this.siteName.bind(this),
   } satisfies ScraperExtractors
 
-  protected siteName(
-    _prevValue: RecipeFields['siteName'] | undefined,
-  ): RecipeFields['siteName'] {
+  protected siteName(_prevValue: RecipeFields['siteName'] | undefined): RecipeFields['siteName'] {
     return 'Damn Delicious'
   }
 }

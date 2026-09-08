@@ -98,12 +98,7 @@
   "cuisine": ["American"],
   "dietaryRestrictions": [],
   "equipment": [],
-  "keywords": [
-    "chicken salad",
-    "easy chicken salad",
-    "homemade mayonnaise",
-    "Roasted Chicken"
-  ],
+  "keywords": ["chicken salad", "easy chicken salad", "homemade mayonnaise", "Roasted Chicken"],
   "nutrients": {
     "calories": "273 kcal",
     "carbohydrateContent": "7 g",

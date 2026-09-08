@@ -1,4 +1,5 @@
 import type { CheerioAPI } from 'cheerio'
+
 import { stringsToNotes } from './notes'
 import { normalizeString } from './parsing'
 
@@ -22,14 +23,10 @@ function extractNoteText($: CheerioAPI, selector: Parameters<CheerioAPI>[0]) {
 export function extractWprmNotes($: CheerioAPI) {
   const recipeContainer = $('.wprm-recipe-container').first()
 
-  const nestedNotes = recipeContainer
-    .find('.wprm-recipe-notes-container')
-    .first()
+  const nestedNotes = recipeContainer.find('.wprm-recipe-notes-container').first()
 
   const notesContainer =
-    nestedNotes.length > 0
-      ? nestedNotes
-      : $('.wprm-recipe-notes-container').first()
+    nestedNotes.length > 0 ? nestedNotes : $('.wprm-recipe-notes-container').first()
 
   if (notesContainer.length === 0) {
     return undefined

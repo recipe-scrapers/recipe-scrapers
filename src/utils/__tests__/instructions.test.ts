@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test'
+
 import {
   createInstructionGroup,
   createInstructionItem,
@@ -20,10 +21,7 @@ describe('createInstructionItem', () => {
 
 describe('createInstructionGroup', () => {
   it('creates a group with name and items', () => {
-    const items = [
-      createInstructionItem('Step 1'),
-      createInstructionItem('Step 2'),
-    ]
+    const items = [createInstructionItem('Step 1'), createInstructionItem('Step 2')]
     const group = createInstructionGroup('For the sauce', items)
     expect(group).toEqual({
       name: 'For the sauce',
@@ -80,9 +78,7 @@ describe('isInstructionGroup', () => {
 
 describe('isInstructions', () => {
   it('returns true for valid instructions array', () => {
-    expect(isInstructions([{ name: null, items: [{ value: 'Step 1' }] }])).toBe(
-      true,
-    )
+    expect(isInstructions([{ name: null, items: [{ value: 'Step 1' }] }])).toBe(true)
     expect(isInstructions([])).toBe(true)
   })
 
@@ -99,11 +95,7 @@ describe('flattenInstructions', () => {
       { name: 'Sauce', items: [{ value: 'Simmer' }, { value: 'Stir' }] },
       { name: null, items: [{ value: 'Serve' }] },
     ]
-    expect(flattenInstructions(instructions)).toEqual([
-      'Simmer',
-      'Stir',
-      'Serve',
-    ])
+    expect(flattenInstructions(instructions)).toEqual(['Simmer', 'Stir', 'Serve'])
   })
 
   it('returns empty array for empty input', () => {
@@ -114,9 +106,7 @@ describe('flattenInstructions', () => {
 describe('stringsToInstructions', () => {
   it('converts string array to instructions with null group name', () => {
     const result = stringsToInstructions(['Step 1', 'Step 2'])
-    expect(result).toEqual([
-      { name: null, items: [{ value: 'Step 1' }, { value: 'Step 2' }] },
-    ])
+    expect(result).toEqual([{ name: null, items: [{ value: 'Step 1' }, { value: 'Step 2' }] }])
   })
 
   it('returns single empty group for empty input', () => {
@@ -140,20 +130,12 @@ describe('splitInstructions', () => {
 
   it('splits on double newlines into steps', () => {
     const input = 'First step.\n\nSecond step.\n\nThird step.'
-    expect(splitInstructions(input)).toEqual([
-      'First step.',
-      'Second step.',
-      'Third step.',
-    ])
+    expect(splitInstructions(input)).toEqual(['First step.', 'Second step.', 'Third step.'])
   })
 
   it('splits single paragraph into sentences when only one block', () => {
     const input = 'Cook noodles. Add sauce. Serve immediately.'
-    expect(splitInstructions(input)).toEqual([
-      'Cook noodles.',
-      'Add sauce.',
-      'Serve immediately.',
-    ])
+    expect(splitInstructions(input)).toEqual(['Cook noodles.', 'Add sauce.', 'Serve immediately.'])
   })
 
   it('trims excess whitespace and collapses internal newlines', () => {
@@ -168,9 +150,11 @@ describe('splitInstructions', () => {
 
 describe('splitNumberedInstructions', () => {
   it('splits inline numbered steps', () => {
-    expect(
-      splitNumberedInstructions('1. Heat oil. 2. Add onions. 3. Serve.'),
-    ).toEqual(['Heat oil.', 'Add onions.', 'Serve.'])
+    expect(splitNumberedInstructions('1. Heat oil. 2. Add onions. 3. Serve.')).toEqual([
+      'Heat oil.',
+      'Add onions.',
+      'Serve.',
+    ])
   })
 
   it('preserves text before the first numbered step', () => {

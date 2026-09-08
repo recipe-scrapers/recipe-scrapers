@@ -1,12 +1,14 @@
 import type { SafeParseResult } from './schema-adapter'
 import { scrapers } from './scrapers/_index'
 import { GenericScraper } from './scrapers/generic'
+import type { RecipeEvidence } from './types/recipe-evidence.interface'
 import type { RecipeObject } from './types/recipe.interface'
 import type { ScraperOptions } from './types/scraper.interface'
 import { getHostName } from './utils'
 
 export * from '@/schemas/recipe.schema'
 export * from '@/types/recipe.interface'
+export * from '@/types/recipe-evidence.interface'
 export * from '@/types/scraper.interface'
 export * from './abstract-extractor-plugin'
 export * from './abstract-postprocessor-plugin'
@@ -46,15 +48,20 @@ export interface ScrapeRecipeSafeParseOptions extends BaseScrapeRecipeOptions {
   safeParse: true
 }
 
+export interface InspectRecipeEvidenceOptions extends ScraperOptions {
+  /**
+   * Allow inspecting unsupported hosts with GenericScraper fallback.
+   * @default true
+   */
+  wildMode?: boolean
+}
+
 /**
  * Returns a scraper class for the given URL, if implemented.
  * Returns a GenericScraper if the host is not supported and `wildMode` is true.
  * Throws an error if the host is not supported and `wildMode` is false.
  */
-export function getScraper(
-  url: string,
-  { wildMode = false }: GetScraperOptions = {},
-) {
+export function getScraper(url: string, { wildMode = false }: GetScraperOptions = {}) {
   const hostName = getHostName(url)
   const scraper = scrapers[hostName]
 
@@ -97,4 +104,17 @@ export async function scrapeRecipe(
   const Scraper = getScraper(url, { wildMode })
   const scraper = new Scraper(html, url, scraperOptions)
   return safeParse ? scraper.safeParse() : scraper.parse()
+}
+
+/**
+ * Inspect evidence of recipe content in HTML without requiring a complete
+ * recipe extraction. Falls back to generic schema.org inspection by default.
+ */
+export async function inspectRecipeEvidence(
+  html: string,
+  url: string,
+  { wildMode = true, ...scraperOptions }: InspectRecipeEvidenceOptions = {},
+): Promise<RecipeEvidence> {
+  const Scraper = getScraper(url, { wildMode })
+  return new Scraper(html, url, scraperOptions).inspectRecipeEvidence()
 }

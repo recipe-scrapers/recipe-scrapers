@@ -1,17 +1,13 @@
 import { describe, expect, it } from 'bun:test'
+
 import { load } from 'cheerio'
-import {
-  ExtractionFailedException,
-  UnsupportedFieldException,
-} from '@/exceptions'
+
+import { ExtractionFailedException, UnsupportedFieldException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
-import {
-  SchemaOrgException,
-  SchemaOrgJsonLdParseException,
-  SchemaOrgPlugin,
-} from '../index'
+
+import { SchemaOrgException, SchemaOrgJsonLdParseException, SchemaOrgPlugin } from '../index'
 
 const minimalJsonLd = `
 <script type="application/ld+json">
@@ -61,7 +57,6 @@ describe('SchemaOrgPlugin', () => {
   const plugin = new SchemaOrgPlugin($)
 
   it('supports known recipe fields', () => {
-    // biome-ignore lint/complexity/useLiteralKeys: private use only
     const keys = Object.keys(plugin['extractors'])
     expect(plugin.supports('title')).toBe(keys.includes('title'))
     expect(plugin.supports('ingredients')).toBe(true)
@@ -116,15 +111,11 @@ describe('SchemaOrgPlugin', () => {
     const ingredients = plugin.extract('ingredients')
 
     expect(isIngredients(ingredients)).toBe(true)
-    expect(ingredients).toEqual([
-      { name: null, items: [{ value: 'a' }, { value: 'b' }] },
-    ])
+    expect(ingredients).toEqual([{ name: null, items: [{ value: 'a' }, { value: 'b' }] }])
 
     const instructions = plugin.extract('instructions')
     expect(isInstructions(instructions)).toBe(true)
-    expect(instructions).toEqual([
-      { name: null, items: [{ value: 'step1' }, { value: 'step2' }] },
-    ])
+    expect(instructions).toEqual([{ name: null, items: [{ value: 'step1' }, { value: 'step2' }] }])
   })
 
   it('deduplicates ingredient values', () => {
@@ -174,9 +165,7 @@ describe('SchemaOrgPlugin', () => {
       }
       </script>`
 
-    const percentageRatingPlugin = new SchemaOrgPlugin(
-      load(percentageRatingJson),
-    )
+    const percentageRatingPlugin = new SchemaOrgPlugin(load(percentageRatingJson))
 
     expect(percentageRatingPlugin.extract('ratings')).toBe(4.9)
   })
@@ -232,26 +221,20 @@ describe('SchemaOrgPlugin', () => {
   })
 
   it('throws UnsupportedFieldException for unsupported field', () => {
-    expect(() => plugin.extract('foo' as keyof RecipeFields)).toThrow(
-      UnsupportedFieldException,
-    )
+    expect(() => plugin.extract('foo' as keyof RecipeFields)).toThrow(UnsupportedFieldException)
   })
 
   it('throws SchemaOrgException for missing required field', () => {
     // JSON-LD missing 'name' for Recipe
     const badJson = `<script type="application/ld+json">{"@type":"Recipe"}</script>`
     const badPlugin = new SchemaOrgPlugin(load(badJson))
-    expect(() => badPlugin.extract('title')).toThrow(
-      'No value found for "title"',
-    )
+    expect(() => badPlugin.extract('title')).toThrow('No value found for "title"')
   })
 
   it('throws SchemaOrgException for invalid image', () => {
     const badImgJson = `<script type="application/ld+json">{"@type":"Recipe","image":"nope"}</script>`
     const badPlugin = new SchemaOrgPlugin(load(badImgJson))
-    expect(() => badPlugin.extract('image')).toThrow(
-      'Invalid value for "image": nope',
-    )
+    expect(() => badPlugin.extract('image')).toThrow('Invalid value for "image": nope')
   })
 
   it('recovers malformed JSON-LD when control chars are inside string values', () => {
@@ -281,9 +264,7 @@ line2"}}
 
     const plugin = new SchemaOrgPlugin(load(irreparableMalformedJsonLd))
 
-    expect(() => plugin.extract('author')).toThrow(
-      SchemaOrgJsonLdParseException,
-    )
+    expect(() => plugin.extract('author')).toThrow(SchemaOrgJsonLdParseException)
     expect(() => plugin.extract('author')).toThrow(
       'Failed to parse JSON-LD while extracting "author"',
     )
@@ -307,5 +288,144 @@ line2"}}
 
     const plugin = new SchemaOrgPlugin(load(mixedJsonLd))
     expect(plugin.extract('author')).toBe('Good Author')
+  })
+
+  describe('inspectRecipeEvidence', () => {
+    it('detects ingredients and instructions even when author is missing', () => {
+      const missingAuthorPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {
+              "@type":"Recipe",
+              "name":"Simple Rice",
+              "recipeIngredient":["1 cup rice"],
+              "recipeInstructions":["Cook the rice."]
+            }
+          </script>
+        `),
+      )
+
+      expect(missingAuthorPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'detected',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: true,
+      })
+    })
+
+    it('reports no evidence for a non-recipe document', () => {
+      const articlePlugin = new SchemaOrgPlugin(
+        load('<article><h1>Ordinary article</h1></article>'),
+      )
+
+      expect(articlePlugin.inspectRecipeEvidence()).toEqual({
+        status: 'not-detected',
+        structuredRecipeFound: false,
+        ingredientsFound: false,
+        instructionsFound: false,
+      })
+    })
+
+    it('reports partial structured recipe evidence as uncertain', () => {
+      const partialPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","name":"Incomplete Recipe"}
+          </script>
+        `),
+      )
+
+      expect(partialPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'uncertain',
+        structuredRecipeFound: true,
+        ingredientsFound: false,
+        instructionsFound: false,
+        reasons: ['partial-evidence'],
+      })
+    })
+
+    it('does not treat blank instructions as strong evidence', () => {
+      const blankInstructionsPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {
+              "@type":"Recipe",
+              "recipeIngredient":["1 cup rice"],
+              "recipeInstructions":""
+            }
+          </script>
+        `),
+      )
+
+      expect(blankInstructionsPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'uncertain',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: false,
+        reasons: ['partial-evidence'],
+      })
+    })
+
+    it('reports malformed structured data as uncertain', () => {
+      const malformedPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","name":"Broken"
+          </script>
+        `),
+      )
+
+      expect(malformedPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'uncertain',
+        structuredRecipeFound: false,
+        ingredientsFound: false,
+        instructionsFound: false,
+        reasons: ['malformed-structured-data'],
+      })
+    })
+
+    it('lets complete evidence win when another JSON-LD block is malformed', () => {
+      const mixedPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","name":"Broken"
+          </script>
+          <script type="application/ld+json">
+            {
+              "@type":"Recipe",
+              "recipeIngredient":["1 cup rice"],
+              "recipeInstructions":["Cook the rice."]
+            }
+          </script>
+        `),
+      )
+
+      expect(mixedPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'detected',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: true,
+      })
+    })
+
+    it('inspects the existing merged effective recipe', () => {
+      const mergedPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","recipeIngredient":["1 cup rice"]}
+          </script>
+          <script type="application/ld+json">
+            {"@type":"Recipe","recipeInstructions":["Cook the rice."]}
+          </script>
+        `),
+      )
+
+      expect(mergedPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'detected',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: true,
+      })
+    })
   })
 })

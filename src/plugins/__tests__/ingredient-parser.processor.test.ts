@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'bun:test'
+
 import type { Ingredients } from '@/types/recipe.interface'
+
 import { IngredientParserPlugin } from '../ingredient-parser.processor'
 
 describe('IngredientParserPlugin', () => {
@@ -180,10 +182,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = pluginWithNormalize.process(
-        'ingredients',
-        ingredients,
-      ) as Ingredients
+      const result = pluginWithNormalize.process('ingredients', ingredients) as Ingredients
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 2,

@@ -11,9 +11,7 @@ export class OnceUponAChef extends AbstractScraper {
     author: this.author.bind(this),
   } satisfies ScraperExtractors
 
-  protected author(
-    prevValue: RecipeFields['author'] | undefined,
-  ): RecipeFields['author'] {
+  protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
     if (prevValue && normalizeString(prevValue)) {
       return prevValue
     }

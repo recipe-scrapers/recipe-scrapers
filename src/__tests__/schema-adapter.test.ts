@@ -1,11 +1,10 @@
 import { describe, expect, it } from 'bun:test'
+
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import * as v from 'valibot'
 import { z } from 'zod'
-import {
-  isStandardSchemaV1,
-  safeParseWithStandardSchema,
-} from '@/schema-adapter'
+
+import { isStandardSchemaV1, safeParseWithStandardSchema } from '@/schema-adapter'
 
 describe('safeParseWithStandardSchema', () => {
   const schema: StandardSchemaV1<unknown, { title: string }> = {

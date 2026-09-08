@@ -59,7 +59,7 @@ For each RecipeFields key:
   2) Site-specific extractor override (optional)
   3) Post-processors in priority order
   4) Field default value fallback (optional fields only)
-  5) Consumer-provided yield fallback (when `fallbackYield` is configured)
+  5) Consumer-provided author/yield fallback (when configured)
   ->
 RecipeData (internal)
   ->
@@ -75,6 +75,9 @@ Important ordering behavior:
 - extractor plugins are sorted by `priority` descending
 - the first plugin that returns a defined value "wins"
 - site-specific extractor receives that value as `prevValue`
+- `fallbackAuthor` is used only when author extraction ends with
+  `extractor_not_found` or returns a blank value; a function fallback receives
+  the extracted `siteName`, which may be `null`
 - `fallbackYield` is used only when yield extraction ends with
   `extractor_not_found`; extracted values and runtime errors take precedence
 - recipe notes are currently handled outside the plugin field pipeline and are
@@ -221,6 +224,26 @@ Current validation includes:
 - `toRecipeObject()` (no schema validation)
 - `parse()` (throws on extraction or validation failure)
 - `safeParse()` (returns a normalized success/error result)
+- `inspectRecipeEvidence()` (opt-in evidence independent of full extraction)
+
+The root module also exports `inspectRecipeEvidence(html, url, options)` as a
+one-shot adapter. Evidence inspection reuses the constructed scraper, parsed
+document, merged schema.org Recipe representation, and site-specific evidence
+extractors. It evaluates only ingredients and instructions, skips
+post-processing, and caches the result per scraper instance.
+It does not populate `recipeData`; a later full parse runs normal extraction
+independently, including any configured site or extra extractors.
+
+Evidence status is independent of Recipe Object validity:
+
+- `detected`: non-empty ingredients and instructions were extracted
+- `not-detected`: no recognized evidence exists in the supplied HTML
+- `uncertain`: evidence is partial, structured data is malformed, or an
+  extractor failed at runtime; the result includes structured `reasons`
+
+This inspection does not fetch content or infer whether an access/interstitial
+page represents the live URL. Existing parsing continues to use the same merged
+schema.org Recipe data.
 
 `safeParse()` failure payloads include structured metadata:
 
@@ -239,6 +262,10 @@ Code mapping:
   (for example, unrecoverable `SchemaOrgJsonLdParseException`)
 - `extraction_failed`: non-runtime extraction failure
 - `validation_failed`: schema validation rejected extracted data
+
+Validation and extraction failures are normalized through the internal
+`safe-parse-result` module so public error codes, context, paths, and causes are
+constructed consistently.
 
 ## Internal Data Shape Conversion
 

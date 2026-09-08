@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, spyOn } from 'bun:test'
+
 import { Logger, LogLevel } from '../logger'
 
 describe('Logger', () => {
@@ -41,10 +42,7 @@ describe('Logger', () => {
       expect(consoleSpy.log).not.toHaveBeenCalled()
       expect(consoleSpy.debug).not.toHaveBeenCalled()
       expect(consoleSpy.info).not.toHaveBeenCalled()
-      expect(consoleSpy.warn).toHaveBeenCalledWith(
-        '[WARN][TestContext]',
-        'test',
-      )
+      expect(consoleSpy.warn).toHaveBeenCalledWith('[WARN][TestContext]', 'test')
     })
 
     it('should create logger with custom log level', () => {
@@ -54,10 +52,7 @@ describe('Logger', () => {
       logger.debug('test')
 
       expect(consoleSpy.log).not.toHaveBeenCalled()
-      expect(consoleSpy.debug).toHaveBeenCalledWith(
-        '[DEBUG][TestContext]',
-        'test',
-      )
+      expect(consoleSpy.debug).toHaveBeenCalledWith('[DEBUG][TestContext]', 'test')
     })
   })
 
@@ -67,11 +62,9 @@ describe('Logger', () => {
 
       logger.verbose('verbose message', { data: 'test' })
 
-      expect(consoleSpy.log).toHaveBeenCalledWith(
-        '[VERBOSE][TestContext]',
-        'verbose message',
-        { data: 'test' },
-      )
+      expect(consoleSpy.log).toHaveBeenCalledWith('[VERBOSE][TestContext]', 'verbose message', {
+        data: 'test',
+      })
     })
 
     it('should not log when log level is higher than VERBOSE', () => {
@@ -89,11 +82,7 @@ describe('Logger', () => {
 
       logger.debug('debug message', 123)
 
-      expect(consoleSpy.debug).toHaveBeenCalledWith(
-        '[DEBUG][TestContext]',
-        'debug message',
-        123,
-      )
+      expect(consoleSpy.debug).toHaveBeenCalledWith('[DEBUG][TestContext]', 'debug message', 123)
     })
 
     it('should not log when log level is higher than DEBUG', () => {
@@ -111,10 +100,7 @@ describe('Logger', () => {
 
       logger.log('info message')
 
-      expect(consoleSpy.log).toHaveBeenCalledWith(
-        '[INFO][TestContext]',
-        'info message',
-      )
+      expect(consoleSpy.log).toHaveBeenCalledWith('[INFO][TestContext]', 'info message')
     })
 
     it('should not log when log level is higher than INFO', () => {
@@ -132,11 +118,7 @@ describe('Logger', () => {
 
       logger.info('info message', true)
 
-      expect(consoleSpy.info).toHaveBeenCalledWith(
-        '[INFO][TestContext]',
-        'info message',
-        true,
-      )
+      expect(consoleSpy.info).toHaveBeenCalledWith('[INFO][TestContext]', 'info message', true)
     })
 
     it('should not log when log level is higher than INFO', () => {
@@ -188,10 +170,7 @@ describe('Logger', () => {
 
       logger.error('critical error')
 
-      expect(consoleSpy.error).toHaveBeenCalledWith(
-        '[ERROR][TestContext]',
-        'critical error',
-      )
+      expect(consoleSpy.error).toHaveBeenCalledWith('[ERROR][TestContext]', 'critical error')
     })
   })
 
@@ -205,26 +184,11 @@ describe('Logger', () => {
       logger.warn('warn')
       logger.error('error')
 
-      expect(consoleSpy.log).toHaveBeenCalledWith(
-        '[VERBOSE][TestContext]',
-        'verbose',
-      )
-      expect(consoleSpy.debug).toHaveBeenCalledWith(
-        '[DEBUG][TestContext]',
-        'debug',
-      )
-      expect(consoleSpy.info).toHaveBeenCalledWith(
-        '[INFO][TestContext]',
-        'info',
-      )
-      expect(consoleSpy.warn).toHaveBeenCalledWith(
-        '[WARN][TestContext]',
-        'warn',
-      )
-      expect(consoleSpy.error).toHaveBeenCalledWith(
-        '[ERROR][TestContext]',
-        'error',
-      )
+      expect(consoleSpy.log).toHaveBeenCalledWith('[VERBOSE][TestContext]', 'verbose')
+      expect(consoleSpy.debug).toHaveBeenCalledWith('[DEBUG][TestContext]', 'debug')
+      expect(consoleSpy.info).toHaveBeenCalledWith('[INFO][TestContext]', 'info')
+      expect(consoleSpy.warn).toHaveBeenCalledWith('[WARN][TestContext]', 'warn')
+      expect(consoleSpy.error).toHaveBeenCalledWith('[ERROR][TestContext]', 'error')
     })
 
     it('should respect ERROR log level', () => {
@@ -240,10 +204,7 @@ describe('Logger', () => {
       expect(consoleSpy.debug).not.toHaveBeenCalled()
       expect(consoleSpy.info).not.toHaveBeenCalled()
       expect(consoleSpy.warn).not.toHaveBeenCalled()
-      expect(consoleSpy.error).toHaveBeenCalledWith(
-        '[ERROR][TestContext]',
-        'error',
-      )
+      expect(consoleSpy.error).toHaveBeenCalledWith('[ERROR][TestContext]', 'error')
     })
   })
 
@@ -257,26 +218,11 @@ describe('Logger', () => {
       logger.warn('test')
       logger.error('test')
 
-      expect(consoleSpy.log).toHaveBeenCalledWith(
-        '[VERBOSE][RecipeScraper]',
-        'test',
-      )
-      expect(consoleSpy.debug).toHaveBeenCalledWith(
-        '[DEBUG][RecipeScraper]',
-        'test',
-      )
-      expect(consoleSpy.info).toHaveBeenCalledWith(
-        '[INFO][RecipeScraper]',
-        'test',
-      )
-      expect(consoleSpy.warn).toHaveBeenCalledWith(
-        '[WARN][RecipeScraper]',
-        'test',
-      )
-      expect(consoleSpy.error).toHaveBeenCalledWith(
-        '[ERROR][RecipeScraper]',
-        'test',
-      )
+      expect(consoleSpy.log).toHaveBeenCalledWith('[VERBOSE][RecipeScraper]', 'test')
+      expect(consoleSpy.debug).toHaveBeenCalledWith('[DEBUG][RecipeScraper]', 'test')
+      expect(consoleSpy.info).toHaveBeenCalledWith('[INFO][RecipeScraper]', 'test')
+      expect(consoleSpy.warn).toHaveBeenCalledWith('[WARN][RecipeScraper]', 'test')
+      expect(consoleSpy.error).toHaveBeenCalledWith('[ERROR][RecipeScraper]', 'test')
     })
   })
 

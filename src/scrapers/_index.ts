@@ -1,5 +1,6 @@
 import { AbstractScraper } from '@/abstract-scraper'
 import type { ScraperOptions } from '@/types/scraper.interface'
+
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BBCGoodFood } from './bbcgoodfood'
 import { BongEats } from './bongeats'
@@ -123,11 +124,7 @@ function buildScraperRegistry(
 ): Record<string, ScraperClass> {
   const registry: Record<string, ScraperClass> = {}
 
-  const registerHost = (
-    host: string,
-    scraper: ScraperClass,
-    source: string,
-  ) => {
+  const registerHost = (host: string, scraper: ScraperClass, source: string) => {
     const existing = registry[host]
 
     if (existing && existing !== scraper) {
