@@ -75,7 +75,7 @@ describe('AbstractScraper utility methods', () => {
 
     it('falls back to meta http-equiv content-language', () => {
       const html =
-        '<html><head>' + '<meta http-equiv="content-language" content="de, en"/>' + '</head></html>'
+        '<html><head><meta http-equiv="content-language" content="de, en"/></head></html>'
       scraper = new DummyScraper(html, 'url', {})
       expect(scraper.language()).toBe('de')
       expect(warnSpy).not.toHaveBeenCalled()
