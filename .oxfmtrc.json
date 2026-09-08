@@ -6,5 +6,13 @@
   "singleQuote": true,
   "sortImports": true,
   "sortPackageJson": false,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["*.json", "*.jsonc"],
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
 }

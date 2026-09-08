@@ -260,4 +260,4 @@ export function applyRecipeValidations<T extends z.infer<typeof RecipeObjectBase
  * For custom extensions, use RecipeObjectBaseSchema.extend() and then
  * apply validations with applyRecipeValidations().
  */
-export const RecipeObjectSchema = applyRecipeValidations(RecipeObjectBaseSchema)
+export const RecipeObjectSchema = z.compile(applyRecipeValidations(RecipeObjectBaseSchema))

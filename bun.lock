@@ -23,7 +23,7 @@
       },
       "peerDependencies": {
         "cheerio": "^1",
-        "zod": "^4",
+        "zod": "^4.5.0",
       },
     },
   },
