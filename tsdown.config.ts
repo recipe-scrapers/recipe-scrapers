@@ -6,5 +6,7 @@ export default defineConfig({
   format: 'esm',
   dts: true,
   sourcemap: true,
-  skipNodeModulesBundle: true,
+  deps: {
+    neverBundle: true,
+  },
 })

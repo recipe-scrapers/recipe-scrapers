@@ -61,7 +61,6 @@ describe('SchemaOrgPlugin', () => {
   const plugin = new SchemaOrgPlugin($)
 
   it('supports known recipe fields', () => {
-    // biome-ignore lint/complexity/useLiteralKeys: private use only
     const keys = Object.keys(plugin['extractors'])
     expect(plugin.supports('title')).toBe(keys.includes('title'))
     expect(plugin.supports('ingredients')).toBe(true)

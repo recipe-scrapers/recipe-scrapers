@@ -6,7 +6,7 @@ export function isNull<T>(value: T | null): value is null {
   return value === null
 }
 
-// biome-ignore lint/complexity/noBannedTypes: allowed here
+// oxlint-disable-next-line typescript/no-unsafe-function-type -- Accept any callable.
 export function isFunction(value: unknown): value is Function {
   return typeof value === 'function'
 }

@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    ".agents/**",
+    ".all-contributorsrc",
+    ".temp/**",
+    "dist/**",
+    "*.md"
+  ],
+  "printWidth": 80,
+  "semi": false,
+  "singleQuote": true,
+  "sortPackageJson": false,
+  "trailingComma": "all"
+}
