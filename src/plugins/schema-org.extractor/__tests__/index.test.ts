@@ -308,4 +308,143 @@ line2"}}
     const plugin = new SchemaOrgPlugin(load(mixedJsonLd))
     expect(plugin.extract('author')).toBe('Good Author')
   })
+
+  describe('inspectRecipeEvidence', () => {
+    it('detects ingredients and instructions even when author is missing', () => {
+      const missingAuthorPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {
+              "@type":"Recipe",
+              "name":"Simple Rice",
+              "recipeIngredient":["1 cup rice"],
+              "recipeInstructions":["Cook the rice."]
+            }
+          </script>
+        `),
+      )
+
+      expect(missingAuthorPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'detected',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: true,
+      })
+    })
+
+    it('reports no evidence for a non-recipe document', () => {
+      const articlePlugin = new SchemaOrgPlugin(
+        load('<article><h1>Ordinary article</h1></article>'),
+      )
+
+      expect(articlePlugin.inspectRecipeEvidence()).toEqual({
+        status: 'not-detected',
+        structuredRecipeFound: false,
+        ingredientsFound: false,
+        instructionsFound: false,
+      })
+    })
+
+    it('reports partial structured recipe evidence as uncertain', () => {
+      const partialPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","name":"Incomplete Recipe"}
+          </script>
+        `),
+      )
+
+      expect(partialPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'uncertain',
+        structuredRecipeFound: true,
+        ingredientsFound: false,
+        instructionsFound: false,
+        reasons: ['partial-evidence'],
+      })
+    })
+
+    it('does not treat blank instructions as strong evidence', () => {
+      const blankInstructionsPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {
+              "@type":"Recipe",
+              "recipeIngredient":["1 cup rice"],
+              "recipeInstructions":""
+            }
+          </script>
+        `),
+      )
+
+      expect(blankInstructionsPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'uncertain',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: false,
+        reasons: ['partial-evidence'],
+      })
+    })
+
+    it('reports malformed structured data as uncertain', () => {
+      const malformedPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","name":"Broken"
+          </script>
+        `),
+      )
+
+      expect(malformedPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'uncertain',
+        structuredRecipeFound: false,
+        ingredientsFound: false,
+        instructionsFound: false,
+        reasons: ['malformed-structured-data'],
+      })
+    })
+
+    it('lets complete evidence win when another JSON-LD block is malformed', () => {
+      const mixedPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","name":"Broken"
+          </script>
+          <script type="application/ld+json">
+            {
+              "@type":"Recipe",
+              "recipeIngredient":["1 cup rice"],
+              "recipeInstructions":["Cook the rice."]
+            }
+          </script>
+        `),
+      )
+
+      expect(mixedPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'detected',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: true,
+      })
+    })
+
+    it('inspects the existing merged effective recipe', () => {
+      const mergedPlugin = new SchemaOrgPlugin(
+        load(`
+          <script type="application/ld+json">
+            {"@type":"Recipe","recipeIngredient":["1 cup rice"]}
+          </script>
+          <script type="application/ld+json">
+            {"@type":"Recipe","recipeInstructions":["Cook the rice."]}
+          </script>
+        `),
+      )
+
+      expect(mergedPlugin.inspectRecipeEvidence()).toEqual({
+        status: 'detected',
+        structuredRecipeFound: true,
+        ingredientsFound: true,
+        instructionsFound: true,
+      })
+    })
+  })
 })

@@ -7,6 +7,10 @@ import {
 } from '@/exceptions'
 import { Logger, type LogLevel } from '@/logger'
 import type { RecipeFields } from '@/types/recipe.interface'
+import type {
+  RecipeEvidence,
+  RecipeEvidenceReason,
+} from '@/types/recipe-evidence.interface'
 import {
   isFunction,
   isNumber,
@@ -141,6 +145,59 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       }
 
       throw error
+    }
+  }
+
+  /** Inspect recipe evidence without requiring a complete recipe extraction. */
+  inspectRecipeEvidence(): RecipeEvidence {
+    const ingredients = this.inspectEvidenceField(() => this.ingredients())
+    const instructions = this.inspectEvidenceField(() => this.instructions())
+    const signals = {
+      structuredRecipeFound: this.hasRecipeEntity,
+      ingredientsFound: ingredients.found,
+      instructionsFound: instructions.found,
+    }
+
+    if (ingredients.found && instructions.found) {
+      return { status: 'detected', ...signals }
+    }
+
+    const reasons: RecipeEvidenceReason[] = []
+
+    if (this.hasRecipeEntity || ingredients.found || instructions.found) {
+      reasons.push('partial-evidence')
+    }
+
+    if (this.jsonLdParseErrors.length > 0) {
+      reasons.push('malformed-structured-data')
+    }
+
+    if (ingredients.runtimeFailure || instructions.runtimeFailure) {
+      reasons.push('extractor-runtime-failure')
+    }
+
+    return reasons.length > 0
+      ? { status: 'uncertain', ...signals, reasons }
+      : { status: 'not-detected', ...signals }
+  }
+
+  private inspectEvidenceField(
+    extract: () => RecipeFields['ingredients'] | RecipeFields['instructions'],
+  ): {
+    found: boolean
+    runtimeFailure: boolean
+  } {
+    try {
+      const groups = extract()
+      return {
+        found: groups.some((group) => group.items.length > 0),
+        runtimeFailure: false,
+      }
+    } catch (error) {
+      return {
+        found: false,
+        runtimeFailure: !(error instanceof ExtractionFailedException),
+      }
     }
   }
 

@@ -108,6 +108,51 @@ if (!result.success) {
 }
 ```
 
+### Recipe Evidence
+
+Use `inspectRecipeEvidence` when you need to distinguish missing recipe
+evidence from an incomplete or failed recipe extraction. Inspection is opt-in
+and does not change `scrapeRecipe`, `parse`, or `safeParse` behavior.
+
+```typescript
+import { inspectRecipeEvidence } from 'recipe-scrapers'
+
+const evidence = await inspectRecipeEvidence(html, url)
+
+if (evidence.status === 'detected') {
+  console.log('Recipe content was detected.')
+} else if (evidence.status === 'not-detected') {
+  console.log('No recognized recipe content was found in the supplied HTML.')
+} else if (evidence.reasons.includes('malformed-structured-data')) {
+  console.log('Recipe metadata was present but could not be inspected reliably.')
+} else {
+  console.log('Some recipe evidence was found, but it was incomplete.')
+}
+```
+
+The result reports whether a structured Recipe entity, non-empty ingredients,
+and non-empty instructions were found. `uncertain` results include one or more
+of these reasons:
+
+- `partial-evidence`
+- `malformed-structured-data`
+- `extractor-runtime-failure`
+
+Evidence follows the same effective merged Recipe representation and selected
+site-specific extractors as normal extraction. It never turns partial data into
+a successful Recipe Object.
+
+`not-detected` means only that the supplied HTML contained no evidence the
+library recognizes. Plain-text recipes, dynamically rendered content, and
+access/interstitial pages can fall outside detection coverage; inspection does
+not diagnose the live page or make another network request.
+
+The first inspection on a scraper instance evaluates only the ingredient and
+instruction extraction paths needed for evidence and caches its result.
+Subsequent calls on that instance return the cached result.
+Inspection does not populate the full recipe cache, so calling `parse()` or
+`safeParse()` afterward performs the normal extraction pipeline independently.
+
 ### Validation Schema
 
 By default, recipe data is validated with the built-in Zod schema.
