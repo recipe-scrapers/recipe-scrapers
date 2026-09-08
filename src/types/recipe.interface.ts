@@ -88,8 +88,8 @@ export interface RecipeData {
   /**
    * The author of the recipe. This is typically a person's name
    * but can sometimes be an organization or the name of the website
-   * the recipe came from. If the recipe does not explicitly define an author,
-   * this should return the name of the website.
+   * the recipe came from. When extraction does not provide an author,
+   * consumers can opt into a fallback with `ScraperOptions.fallbackAuthor`.
    * @example 'Good Food team'
    */
   author: string

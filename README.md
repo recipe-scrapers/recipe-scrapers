@@ -65,6 +65,11 @@ const recipeWithNotes = await scrapeRecipe(html, url, { parseNotes: true })
 const recipeWithFallbackYield = await scrapeRecipe(html, url, {
   fallbackYield: 'Yield not specified',
 })
+
+// Supply an author fallback based on the extracted website name
+const recipeWithFallbackAuthor = await scrapeRecipe(html, url, {
+  fallbackAuthor: (siteName) => siteName ?? 'Unknown publisher',
+})
 ```
 
 ### Safe Parse Error Shape
@@ -192,6 +197,13 @@ interface ScraperOptions {
    * @default []
    */
   extraPostProcessors?: PostProcessorPlugin[]
+  /**
+   * Non-empty value to use when no extractor finds a non-empty author.
+   * A function receives the extracted website name, or `null` when unavailable.
+   * Extracted author values always take precedence.
+   * When omitted, a missing author remains an extraction failure.
+   */
+  fallbackAuthor?: string | ((siteName: string | null) => string)
   /**
    * Non-empty value to use when no extractor can find a recipe yield.
    * Extracted yield values always take precedence.

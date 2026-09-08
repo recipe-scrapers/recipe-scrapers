@@ -141,6 +141,18 @@ class TestScraper extends AbstractScraper {
   }
 }
 
+class MissingAuthorScraper extends TestScraper {
+  readonly extractedFields: (keyof RecipeFields)[] = []
+
+  override async extract<Key extends keyof RecipeFields>(
+    field: Key,
+  ): Promise<RecipeFields[Key]> {
+    this.extractedFields.push(field)
+    if (field === 'author') throw new ExtractorNotFoundException(field)
+    return super.extract(field)
+  }
+}
+
 class ThrowingScraper extends AbstractScraper {
   static host(): string {
     return 'throw.test'
@@ -280,6 +292,90 @@ describe('AbstractScraper.toRecipeObject', () => {
       nutrients: { cal: '200kcal' },
       reviews: { rev1: 'Good' },
     })
+  })
+
+  it('uses a string author fallback when author extraction fails', async () => {
+    const scraper = new MissingAuthorScraper(createMockValues(), {
+      fallbackAuthor: '  Site team  ',
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.author).toBe('Site team')
+  })
+
+  it('passes siteName to a function author fallback and reuses it', async () => {
+    const receivedSiteNames: RecipeFields['siteName'][] = []
+    const scraper = new MissingAuthorScraper(createMockValues(), {
+      fallbackAuthor: (siteName) => {
+        receivedSiteNames.push(siteName)
+        return `${siteName ?? 'Unknown'} team`
+      },
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.author).toBe('site team')
+    expect(receivedSiteNames).toEqual(['site'])
+    expect(
+      scraper.extractedFields.filter((field) => field === 'siteName'),
+    ).toHaveLength(1)
+  })
+
+  it('keeps a non-empty extracted author ahead of the fallback', async () => {
+    let fallbackCalled = false
+    const scraper = new TestScraper(createMockValues(), {
+      fallbackAuthor: () => {
+        fallbackCalled = true
+        return 'Fallback author'
+      },
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.author).toBe('auth')
+    expect(fallbackCalled).toBe(false)
+  })
+
+  it('uses the fallback for a blank extracted author', async () => {
+    const scraper = new TestScraper(
+      { ...createMockValues(), author: '   ' },
+      { fallbackAuthor: 'Site team' },
+    )
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.author).toBe('Site team')
+  })
+
+  it('rejects an empty author fallback', () => {
+    const scraper = new MissingAuthorScraper(createMockValues(), {
+      fallbackAuthor: '   ',
+    })
+
+    expect(scraper.toRecipeObject()).rejects.toThrow(
+      new ExtractorNotFoundException('author'),
+    )
+  })
+
+  it('reports function author fallback errors with source context', async () => {
+    const scraper = new MissingAuthorScraper(createMockValues(), {
+      fallbackAuthor: () => {
+        throw new RangeError('Invalid fallback')
+      },
+    })
+
+    const result = await scraper.safeParse()
+
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error.code).toBe('extraction_runtime_error')
+      expect(result.error.context).toEqual({
+        field: 'author',
+        source: 'fallbackAuthor',
+      })
+      expect(result.error.cause).toBeInstanceOf(RangeError)
+    }
   })
 
   it('omits notes when parseNotes is disabled', async () => {

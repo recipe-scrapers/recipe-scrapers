@@ -36,7 +36,7 @@ import type {
   RecipeEvidenceReason,
 } from './types/recipe-evidence.interface'
 import type { ScraperOptions } from './types/scraper.interface'
-import { isPlainObject } from './utils'
+import { isPlainObject, isString } from './utils'
 import { extractWprmNotes } from './utils/extract-wprm-notes'
 
 export type RecipeFieldExtractor<Key extends keyof RecipeFields> = (
@@ -308,6 +308,45 @@ export abstract class AbstractScraper {
     }
   }
 
+  private async extractAuthor(
+    siteName: RecipeFields['siteName'],
+  ): Promise<RecipeFields['author']> {
+    try {
+      const author = await this.extract('author')
+
+      if (author.trim() || this.options.fallbackAuthor === undefined) {
+        return author
+      }
+    } catch (error) {
+      if (
+        !(error instanceof ExtractorNotFoundException) ||
+        this.options.fallbackAuthor === undefined
+      ) {
+        throw error
+      }
+    }
+
+    const fallbackAuthor = this.options.fallbackAuthor
+
+    if (isString(fallbackAuthor)) {
+      const author = fallbackAuthor.trim()
+
+      if (author) return author
+      throw new ExtractorNotFoundException('author')
+    }
+
+    let author: string
+
+    try {
+      author = fallbackAuthor(siteName).trim()
+    } catch (error) {
+      throw new ExtractionRuntimeException('author', 'fallbackAuthor', error)
+    }
+
+    if (!author) throw new ExtractorNotFoundException('author')
+    return author
+  }
+
   /**
    * Scrape's the recipe and caches the data.
    */
@@ -317,9 +356,11 @@ export abstract class AbstractScraper {
     }
 
     const notes = this.options.parseNotes ? this.notes() : undefined
+    const siteName = await this.extract('siteName')
+    const author = await this.extractAuthor(siteName)
 
     this.recipeData = {
-      author: await this.extract('author'),
+      author,
       canonicalUrl: this.canonicalUrl(),
       category: await this.extract('category'),
       cookTime: await this.extract('cookTime'),
@@ -341,7 +382,7 @@ export abstract class AbstractScraper {
       ratings: await this.extract('ratings'),
       ratingsCount: await this.extract('ratingsCount'),
       reviews: await this.extract('reviews'),
-      siteName: await this.extract('siteName'),
+      siteName,
       title: await this.extract('title'),
       totalTime: await this.extract('totalTime'),
       yields: await this.extractYields(),
