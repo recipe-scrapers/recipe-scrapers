@@ -105,11 +105,7 @@
   "cuisine": ["American"],
   "dietaryRestrictions": [],
   "equipment": [],
-  "keywords": [
-    "Cranberry Bread",
-    "Cranberry Orange Bread",
-    "Orange Cranberry Bread"
-  ],
+  "keywords": ["Cranberry Bread", "Cranberry Orange Bread", "Orange Cranberry Bread"],
   "nutrients": {
     "calories": "326 kcal",
     "carbohydrateContent": "56 g",

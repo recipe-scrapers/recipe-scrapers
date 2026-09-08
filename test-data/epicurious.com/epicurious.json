@@ -1,14 +1,6 @@
 {
   "siteName": "Epicurious",
-  "category": [
-    "Bon Appétit",
-    "Noodle",
-    "Tofu",
-    "Escarole",
-    "Vegetarian",
-    "Healthy",
-    "Peanut"
-  ],
+  "category": ["Bon Appétit", "Noodle", "Tofu", "Escarole", "Vegetarian", "Healthy", "Peanut"],
   "cookTime": null,
   "prepTime": null,
   "totalTime": null,

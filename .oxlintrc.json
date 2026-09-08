@@ -11,10 +11,7 @@
     "no-param-reassign": "error",
     "no-shadow": "off",
     "no-unassigned-vars": "off",
-    "no-unused-vars": [
-      "error",
-      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
-    ],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
     "one-var": ["error", "never"],
     "typescript/no-extraneous-class": "off",
     "typescript/no-inferrable-types": "error",

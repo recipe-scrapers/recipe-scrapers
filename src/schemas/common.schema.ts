@@ -19,22 +19,15 @@ export const zString = (fieldName: string, { min = 1, max = 0 } = {}) => {
 /**
  * Helper to create a URL string field
  */
-export const zHttpUrl = (fieldName: string) =>
-  z.httpUrl(`${fieldName} must be a valid URL`)
+export const zHttpUrl = (fieldName: string) => z.httpUrl(`${fieldName} must be a valid URL`)
 
 /**
  * Helper to create a positive integer field
  */
 export const zPositiveInteger = (fieldName: string) =>
-  z
-    .int(`${fieldName} must be an integer`)
-    .positive(`${fieldName} must be positive`)
-    .nullable()
+  z.int(`${fieldName} must be an integer`).positive(`${fieldName} must be positive`).nullable()
 
-export const zNonEmptyArray = <T extends z.ZodType>(
-  schema: T,
-  fieldName: string,
-) =>
+export const zNonEmptyArray = <T extends z.ZodType>(schema: T, fieldName: string) =>
   z
     .array(schema, `${fieldName} items must be an array`)
     .min(1, `${fieldName} group must have at least one item`)

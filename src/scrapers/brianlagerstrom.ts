@@ -1,10 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
-import {
-  createIngredientGroup,
-  createIngredientItem,
-} from '@/utils/ingredients'
+import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
 import {
   createInstructionGroup,
   createInstructionItem,
@@ -34,12 +31,8 @@ export class BrianLagerstrom extends AbstractScraper {
     yields: this.yields.bind(this),
   } satisfies ScraperExtractors
 
-  protected title(
-    prevValue: RecipeFields['title'] | undefined,
-  ): RecipeFields['title'] {
-    const heading = normalizeString(
-      this.$('.entry-title[itemprop="headline"]').text(),
-    )
+  protected title(prevValue: RecipeFields['title'] | undefined): RecipeFields['title'] {
+    const heading = normalizeString(this.$('.entry-title[itemprop="headline"]').text())
     if (heading) return heading
 
     const metaTitle = extractMetaContent(this.$, 'meta[property="og:title"]')
@@ -50,9 +43,7 @@ export class BrianLagerstrom extends AbstractScraper {
     throw new Error('Failed to extract title')
   }
 
-  protected author(
-    prevValue: RecipeFields['author'] | undefined,
-  ): RecipeFields['author'] {
+  protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
     if (prevValue) return prevValue
 
     const siteName = extractMetaContent(this.$, 'meta[property="og:site_name"]')
@@ -67,9 +58,7 @@ export class BrianLagerstrom extends AbstractScraper {
     const contentBlocks = this.recipeContentBlocks()
     const ingredientBlockIndex = this.ingredientBlockIndex()
     const introBlocks =
-      ingredientBlockIndex >= 0
-        ? contentBlocks.slice(0, ingredientBlockIndex)
-        : contentBlocks
+      ingredientBlockIndex >= 0 ? contentBlocks.slice(0, ingredientBlockIndex) : contentBlocks
     const introParagraph = this.$(introBlocks)
       .find('p')
       .toArray()
@@ -138,11 +127,7 @@ export class BrianLagerstrom extends AbstractScraper {
           return [createIngredientGroup(null, items)]
         }
 
-        if (
-          !text ||
-          /^as an amazon/i.test(text) ||
-          /^ingredients:?$/i.test(text)
-        ) {
+        if (!text || /^as an amazon/i.test(text) || /^ingredients:?$/i.test(text)) {
           continue
         }
 
@@ -205,15 +190,11 @@ export class BrianLagerstrom extends AbstractScraper {
     ]
   }
 
-  protected yields(
-    prevValue: RecipeFields['yields'] | undefined,
-  ): RecipeFields['yields'] {
+  protected yields(prevValue: RecipeFields['yields'] | undefined): RecipeFields['yields'] {
     if (prevValue) return prevValue
 
     const bodyText = normalizeString(this.$('.blog-item-content').text())
-    const match = bodyText.match(
-      /\b(?:serves?|yield(?:s)?)\s*:?\s*([0-9][^|.,;]*)/i,
-    )
+    const match = bodyText.match(/\b(?:serves?|yield(?:s)?)\s*:?\s*([0-9][^|.,;]*)/i)
     const servings = normalizeString(match?.[1])
 
     if (servings) {

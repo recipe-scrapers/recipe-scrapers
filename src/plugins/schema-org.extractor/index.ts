@@ -2,23 +2,11 @@ import type { CheerioAPI } from 'cheerio'
 import type { AggregateRating } from 'schema-dts'
 
 import { ExtractorPlugin } from '@/abstract-extractor-plugin'
-import {
-  ExtractionFailedException,
-  UnsupportedFieldException,
-} from '@/exceptions'
+import { ExtractionFailedException, UnsupportedFieldException } from '@/exceptions'
 import { Logger, type LogLevel } from '@/logger'
-import type {
-  RecipeEvidence,
-  RecipeEvidenceReason,
-} from '@/types/recipe-evidence.interface'
+import type { RecipeEvidence, RecipeEvidenceReason } from '@/types/recipe-evidence.interface'
 import type { RecipeFields } from '@/types/recipe.interface'
-import {
-  isFunction,
-  isNumber,
-  isPlainObject,
-  isString,
-  resolveErrorMessage,
-} from '@/utils'
+import { isFunction, isNumber, isPlainObject, isString, resolveErrorMessage } from '@/utils'
 import { groupIngredients } from '@/utils/ingredients'
 import {
   createInstructionGroup,
@@ -30,12 +18,7 @@ import { extractRecipeMicrodata } from '@/utils/microdata'
 import { parseYields } from '@/utils/parse-yields'
 import { normalizeString, parseMinutes, splitToList } from '@/utils/parsing'
 
-import type {
-  Person,
-  SchemaOrgData,
-  Recipe as SchemaRecipe,
-  Thing,
-} from './schema-org.interface'
+import type { Person, SchemaOrgData, Recipe as SchemaRecipe, Thing } from './schema-org.interface'
 import {
   isAggregateRating,
   isBaseType,
@@ -64,14 +47,9 @@ export class SchemaOrgJsonLdParseException extends Error {
     public readonly parseErrors: readonly unknown[],
   ) {
     const firstError = parseErrors[0]
-    const parseMessage = resolveErrorMessage(
-      firstError,
-      'Failed to parse JSON-LD',
-    )
+    const parseMessage = resolveErrorMessage(firstError, 'Failed to parse JSON-LD')
 
-    super(
-      `Failed to parse JSON-LD while extracting "${field}": ${parseMessage}`,
-    )
+    super(`Failed to parse JSON-LD while extracting "${field}": ${parseMessage}`)
     this.name = 'SchemaOrgJsonLdParseException'
   }
 }
@@ -139,10 +117,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     try {
       return extractor()
     } catch (error) {
-      if (
-        error instanceof SchemaOrgException &&
-        this.shouldThrowJsonLdParseException(field)
-      ) {
+      if (error instanceof SchemaOrgException && this.shouldThrowJsonLdParseException(field)) {
         throw new SchemaOrgJsonLdParseException(field, this.jsonLdParseErrors)
       }
 
@@ -297,10 +272,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     return new Set(list)
   }
 
-  private findEntity<T extends Thing>(
-    item: SchemaOrgData,
-    schemaType: string,
-  ): T | null {
+  private findEntity<T extends Thing>(item: SchemaOrgData, schemaType: string): T | null {
     if (isThingType<T>(item, schemaType)) {
       return item
     }
@@ -426,9 +398,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       return [createInstructionGroup(null, steps.map(createInstructionItem))]
     }
 
-    const instructions: unknown[] = Array.isArray(value)
-      ? value.flat()
-      : [value].flat()
+    const instructions: unknown[] = Array.isArray(value) ? value.flat() : [value].flat()
 
     const groups: RecipeFields['instructions'] = []
 
@@ -566,10 +536,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public image(): RecipeFields['image'] {
-    const image = this.getSchemaTextValue(this.recipe.image, [
-      'url',
-      'contentUrl',
-    ])
+    const image = this.getSchemaTextValue(this.recipe.image, ['url', 'contentUrl'])
 
     if (!image.startsWith('http')) {
       throw new SchemaOrgException('image', image)
@@ -579,8 +546,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public ingredients(): RecipeFields['ingredients'] {
-    const ingredients =
-      this.recipe.recipeIngredient ?? this.recipe.ingredients ?? []
+    const ingredients = this.recipe.recipeIngredient ?? this.recipe.ingredients ?? []
 
     if (!Array.isArray(ingredients)) {
       throw new SchemaOrgException('ingredients', ingredients)
@@ -626,9 +592,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public yields(): RecipeFields['yields'] {
-    const yields = this.getSchemaTextValue(
-      this.recipe.recipeYield ?? this.recipe.yield,
-    )
+    const yields = this.getSchemaTextValue(this.recipe.recipeYield ?? this.recipe.yield)
 
     if (!yields) {
       throw new SchemaOrgException('yields', yields)
@@ -681,9 +645,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public ratings(): RecipeFields['ratings'] {
-    let ratings =
-      this.recipe.aggregateRating ??
-      this.findEntity(this.recipe, 'AggregateRating') // @TODO needed?
+    let ratings = this.recipe.aggregateRating ?? this.findEntity(this.recipe, 'AggregateRating') // @TODO needed?
 
     let ratingValue: string | undefined
 
@@ -704,12 +666,8 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     let value = Number.parseFloat(ratingValue)
 
     if (isAggregateRating(ratings) && value > 5) {
-      const bestRating = Number.parseFloat(
-        this.getSchemaTextValue(ratings.bestRating),
-      )
-      const worstRating = Number.parseFloat(
-        this.getSchemaTextValue(ratings.worstRating),
-      )
+      const bestRating = Number.parseFloat(this.getSchemaTextValue(ratings.bestRating))
+      const worstRating = Number.parseFloat(this.getSchemaTextValue(ratings.worstRating))
 
       if (!Number.isNaN(bestRating) && bestRating > 5) {
         const lowerBound = Number.isNaN(worstRating) ? 0 : worstRating
@@ -725,9 +683,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public ratingsCount(): RecipeFields['ratingsCount'] {
-    let ratings =
-      this.recipe.aggregateRating ??
-      this.findEntity(this.recipe, 'AggregateRating')
+    let ratings = this.recipe.aggregateRating ?? this.findEntity(this.recipe, 'AggregateRating')
 
     let ratingsCount: string | undefined
 
@@ -739,8 +695,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       }
 
       ratingsCount =
-        this.getSchemaTextValue(ratings.ratingCount) ||
-        this.getSchemaTextValue(ratings.reviewCount)
+        this.getSchemaTextValue(ratings.ratingCount) || this.getSchemaTextValue(ratings.reviewCount)
     }
 
     if (!ratingsCount) {

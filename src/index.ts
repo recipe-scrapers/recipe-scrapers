@@ -61,10 +61,7 @@ export interface InspectRecipeEvidenceOptions extends ScraperOptions {
  * Returns a GenericScraper if the host is not supported and `wildMode` is true.
  * Throws an error if the host is not supported and `wildMode` is false.
  */
-export function getScraper(
-  url: string,
-  { wildMode = false }: GetScraperOptions = {},
-) {
+export function getScraper(url: string, { wildMode = false }: GetScraperOptions = {}) {
   const hostName = getHostName(url)
   const scraper = scrapers[hostName]
 

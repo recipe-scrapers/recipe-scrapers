@@ -25,9 +25,7 @@ async function fetchGitHubTree(
   const response = await fetch(url)
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to fetch repository tree: ${response.status} ${response.statusText}`,
-    )
+    throw new Error(`Failed to fetch repository tree: ${response.status} ${response.statusText}`)
   }
 
   const data = (await response.json()) as GitHubTreeResponse
@@ -113,9 +111,7 @@ async function downloadFilesInBatches(
             )
           } else {
             completed += 1
-            console.log(
-              `✓ Downloaded: ${relativePath} (${completed + skipped}/${totalFiles})`,
-            )
+            console.log(`✓ Downloaded: ${relativePath} (${completed + skipped}/${totalFiles})`)
           }
         } else {
           failed += 1
@@ -133,9 +129,7 @@ async function downloadFilesInBatches(
     }
   }
 
-  console.log(
-    `\nDownload complete: ${completed} downloaded, ${skipped} skipped, ${failed} failed`,
-  )
+  console.log(`\nDownload complete: ${completed} downloaded, ${skipped} skipped, ${failed} failed`)
 }
 
 async function main(): Promise<void> {
@@ -154,10 +148,7 @@ async function main(): Promise<void> {
 
     console.log('\nAll files downloaded successfully!')
   } catch (error) {
-    console.error(
-      'Error:',
-      error instanceof Error ? error.message : String(error),
-    )
+    console.error('Error:', error instanceof Error ? error.message : String(error))
     process.exit(1)
   }
 }

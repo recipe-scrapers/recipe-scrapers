@@ -2,10 +2,7 @@ import type { StandardSchemaV1 } from '@standard-schema/spec'
 
 import { isFunction, isObjectLike, isPlainObject, isString } from '@/utils'
 
-import {
-  createSafeParseFailure,
-  type SafeParseResult,
-} from './safe-parse-result'
+import { createSafeParseFailure, type SafeParseResult } from './safe-parse-result'
 
 export type {
   SafeParseError,
@@ -61,8 +58,7 @@ export async function safeParseWithStandardSchema<T>(
       issues: result.issues,
     })
   } catch (error) {
-    const message =
-      error instanceof Error ? error.message : 'Schema validation failed'
+    const message = error instanceof Error ? error.message : 'Schema validation failed'
 
     return createSafeParseFailure({
       type: 'validation',

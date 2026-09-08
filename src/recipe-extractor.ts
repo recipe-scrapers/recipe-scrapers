@@ -1,8 +1,5 @@
 import type { ExtractorPlugin } from './abstract-extractor-plugin'
-import {
-  getOptionalRecipeFieldDefault,
-  isOptionalRecipeField,
-} from './constants'
+import { getOptionalRecipeFieldDefault, isOptionalRecipeField } from './constants'
 import {
   ExtractionFailedException,
   ExtractionRuntimeException,
@@ -27,9 +24,7 @@ export class RecipeExtractor {
   }
 
   private getContext(context?: string) {
-    return `${this.scraperName}.${RecipeExtractor.name}${
-      context ? `.${context}` : ''
-    }`
+    return `${this.scraperName}.${RecipeExtractor.name}${context ? `.${context}` : ''}`
   }
 
   async extract<Key extends keyof RecipeFields>(
@@ -44,10 +39,7 @@ export class RecipeExtractor {
 
     // 1. Plugins in priority order
     for (const plugin of this.plugins) {
-      const pluginLogger = new Logger(
-        this.getContext(plugin.name),
-        this.options.logLevel,
-      )
+      const pluginLogger = new Logger(this.getContext(plugin.name), this.options.logLevel)
       const isSupported = plugin.supports(field)
 
       // Check if the plugin supports the field and if the result
@@ -61,11 +53,7 @@ export class RecipeExtractor {
           if (err instanceof ExtractionFailedException) {
             pluginLogger.verbose(err.message)
           } else {
-            throw new ExtractionRuntimeException(
-              field,
-              `plugin "${plugin.name}"`,
-              err,
-            )
+            throw new ExtractionRuntimeException(field, `plugin "${plugin.name}"`, err)
           }
         }
       } else {
@@ -85,11 +73,7 @@ export class RecipeExtractor {
         if (err instanceof ExtractionFailedException) {
           this.logger.verbose(err.message)
         } else {
-          throw new ExtractionRuntimeException(
-            field,
-            'site-specific extractor',
-            err,
-          )
+          throw new ExtractionRuntimeException(field, 'site-specific extractor', err)
         }
       }
     }

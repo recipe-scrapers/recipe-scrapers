@@ -93,16 +93,12 @@ describe('OpenGraphPlugin', () => {
 
     it('throws ExtractorNotFoundException for unsupported field', () => {
       plugin = new OpenGraphPlugin(load(htmlWithMeta))
-      expect(() => plugin.extract('name' as keyof RecipeFields)).toThrow(
-        ExtractorNotFoundException,
-      )
+      expect(() => plugin.extract('name' as keyof RecipeFields)).toThrow(ExtractorNotFoundException)
       try {
         plugin.extract('name' as keyof RecipeFields)
       } catch (err) {
         expect(err).toBeInstanceOf(ExtractorNotFoundException)
-        expect((err as Error).message).toBe(
-          'No extractor found for field: name',
-        )
+        expect((err as Error).message).toBe('No extractor found for field: name')
       }
     })
   })

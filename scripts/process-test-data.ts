@@ -1,16 +1,9 @@
 import { readdir } from 'node:fs/promises'
 import path from 'node:path'
 
-import type {
-  IngredientGroup,
-  InstructionGroup,
-  RecipeFields,
-} from '../src/types/recipe.interface'
+import type { IngredientGroup, InstructionGroup, RecipeFields } from '../src/types/recipe.interface'
 import { isPlainObject, isString } from '../src/utils'
-import {
-  createIngredientGroup,
-  createIngredientItem,
-} from '../src/utils/ingredients'
+import { createIngredientGroup, createIngredientItem } from '../src/utils/ingredients'
 import {
   createInstructionGroup,
   createInstructionItem,
@@ -103,17 +96,13 @@ const isRawInstructionGroup = (v: unknown): v is RawInstructionGroup =>
  *   Array<{ ingredients: string[]; purpose: string | null }>)
  * @returns An array of IngredientGroup objects with the new format
  */
-export function groupIngredientItems(
-  input: RawIngredientGroup[],
-): IngredientGroup[] {
+export function groupIngredientItems(input: RawIngredientGroup[]): IngredientGroup[] {
   const result: IngredientGroup[] = []
 
   for (const { ingredients, purpose } of input) {
     const name = isString(purpose) && purpose.trim() ? purpose.trim() : null
     const items = Array.isArray(ingredients)
-      ? ingredients
-          .filter(isString)
-          .map((value) => createIngredientItem(normalizeString(value)))
+      ? ingredients.filter(isString).map((value) => createIngredientItem(normalizeString(value)))
       : []
 
     result.push(createIngredientGroup(name, items))
@@ -131,9 +120,7 @@ export function groupIngredientItems(
  *   Array<{ instructions: string[]; purpose: string | null }>)
  * @returns An array of InstructionGroup objects with the new format
  */
-export function groupInstructionItems(
-  input: RawInstructionGroup[],
-): InstructionGroup[] {
+export function groupInstructionItems(input: RawInstructionGroup[]): InstructionGroup[] {
   const result: InstructionGroup[] = []
 
   for (const { instructions, purpose } of input) {
@@ -141,11 +128,7 @@ export function groupInstructionItems(
     const items = Array.isArray(instructions)
       ? instructions
           .filter(isString)
-          .map((value) =>
-            createInstructionItem(
-              removeInstructionHeading(normalizeString(value)),
-            ),
-          )
+          .map((value) => createInstructionItem(removeInstructionHeading(normalizeString(value))))
           .filter((item) => item.value !== '')
       : []
 
@@ -200,9 +183,7 @@ function groupFlatInstructionList(values: string[]): InstructionGroup[] {
     .filter((value) => value !== '')
 
   const headingIndexes = cleanedValues
-    .map((value, index) =>
-      isLikelyInstructionSectionHeading(value) ? index : null,
-    )
+    .map((value, index) => (isLikelyInstructionSectionHeading(value) ? index : null))
     .filter((index): index is number => index !== null)
 
   // Require at least two heading markers to avoid over-grouping normal steps.
@@ -249,11 +230,7 @@ function groupFlatInstructionList(values: string[]): InstructionGroup[] {
   return groups
 }
 
-function normalizeData(
-  host: string,
-  filename: string,
-  data: Record<string, unknown>,
-) {
+function normalizeData(host: string, filename: string, data: Record<string, unknown>) {
   // start with default values
   const result: Record<string, unknown> = {
     ...DEFAULT_VALUES,
@@ -290,9 +267,7 @@ function normalizeData(
       result.ingredients = groupIngredientItems(result.ingredients)
     } else if (result.ingredients.every(isString)) {
       // Convert flat string array to single group with null name
-      const items = result.ingredients.map((value) =>
-        createIngredientItem(normalizeString(value)),
-      )
+      const items = result.ingredients.map((value) => createIngredientItem(normalizeString(value)))
       result.ingredients = [createIngredientGroup(null, items)]
     }
   }

@@ -52,10 +52,7 @@ class ThrowingSiteScraper extends AbstractScraper {
 
 describe('recipe evidence', () => {
   it('detects a recipe independently when full parsing stops at author', async () => {
-    const scraper = new GenericScraper(
-      RECIPE_WITHOUT_AUTHOR,
-      'https://example.com/rice',
-    )
+    const scraper = new GenericScraper(RECIPE_WITHOUT_AUTHOR, 'https://example.com/rice')
 
     expect(await scraper.inspectRecipeEvidence()).toEqual({
       status: 'detected',
@@ -103,10 +100,7 @@ describe('recipe evidence', () => {
   })
 
   it.each([
-    [
-      'ordinary article',
-      '<article><h1>News</h1><p>No recipe here.</p></article>',
-    ],
+    ['ordinary article', '<article><h1>News</h1><p>No recipe here.</p></article>'],
     [
       'plain HTML recipe',
       '<h1>Rice</h1><h2>Ingredients</h2><p>Rice</p><h2>Method</h2><p>Cook it.</p>',
@@ -122,9 +116,7 @@ describe('recipe evidence', () => {
       </script>`,
     ],
   ])('reports no recognized evidence for %s', async (_name, html) => {
-    expect(
-      await inspectRecipeEvidence(html, 'https://example.com/page'),
-    ).toEqual({
+    expect(await inspectRecipeEvidence(html, 'https://example.com/page')).toEqual({
       status: 'not-detected',
       structuredRecipeFound: false,
       ingredientsFound: false,
@@ -161,9 +153,7 @@ describe('recipe evidence', () => {
       </div>`,
     ],
   ])('supports %s through existing structured parsing', async (_name, html) => {
-    expect(
-      await inspectRecipeEvidence(html, 'https://example.com/rice'),
-    ).toEqual({
+    expect(await inspectRecipeEvidence(html, 'https://example.com/rice')).toEqual({
       status: 'detected',
       structuredRecipeFound: true,
       ingredientsFound: true,
@@ -181,9 +171,7 @@ describe('recipe evidence', () => {
       </script>
     `
 
-    expect(
-      await inspectRecipeEvidence(html, 'https://example.com/rice'),
-    ).toEqual({
+    expect(await inspectRecipeEvidence(html, 'https://example.com/rice')).toEqual({
       status: 'detected',
       structuredRecipeFound: true,
       ingredientsFound: true,
@@ -199,12 +187,7 @@ describe('recipe evidence', () => {
       <div class="structured-project__steps"><ol><li>Cook the rice.</li></ol></div>
     `
 
-    expect(
-      await inspectRecipeEvidence(
-        html,
-        'https://simplyrecipes.com/recipes/rice',
-      ),
-    ).toEqual({
+    expect(await inspectRecipeEvidence(html, 'https://simplyrecipes.com/recipes/rice')).toEqual({
       status: 'detected',
       structuredRecipeFound: true,
       ingredientsFound: true,

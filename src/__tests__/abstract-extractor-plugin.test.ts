@@ -2,10 +2,7 @@ import { beforeEach, describe, expect, it } from 'bun:test'
 
 import { load } from 'cheerio'
 
-import {
-  NotImplementedException,
-  UnsupportedFieldException,
-} from '@/exceptions'
+import { NotImplementedException, UnsupportedFieldException } from '@/exceptions'
 import { stringsToIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
 
@@ -40,10 +37,7 @@ class MockExtractorPlugin extends ExtractorPlugin {
       case 'description':
         return 'Mock Recipe Description' as RecipeFields[Key]
       case 'ingredients':
-        return stringsToIngredients([
-          'ingredient 1',
-          'ingredient 2',
-        ]) as RecipeFields[Key]
+        return stringsToIngredients(['ingredient 1', 'ingredient 2']) as RecipeFields[Key]
       case 'instructions':
         return stringsToInstructions(['step 1', 'step 2']) as RecipeFields[Key]
       case 'prepTime':
@@ -73,9 +67,7 @@ class AsyncMockExtractorPlugin extends ExtractorPlugin {
     return ['title', 'description'].includes(field)
   }
 
-  async extract<Key extends keyof RecipeFields>(
-    field: Key,
-  ): Promise<RecipeFields[Key]> {
+  async extract<Key extends keyof RecipeFields>(field: Key): Promise<RecipeFields[Key]> {
     await new Promise((resolve) => setTimeout(resolve, 10))
 
     if (!this.supports(field)) {
@@ -115,12 +107,7 @@ describe('ExtractorPlugin', () => {
   let plugin: MockExtractorPlugin
 
   beforeEach(() => {
-    plugin = new MockExtractorPlugin([
-      'title',
-      'description',
-      'ingredients',
-      'prepTime',
-    ])
+    plugin = new MockExtractorPlugin(['title', 'description', 'ingredients', 'prepTime'])
   })
 
   describe('inheritance', () => {
@@ -179,9 +166,7 @@ describe('ExtractorPlugin', () => {
       expect(plugin.extract('description')).toBe('Mock Recipe Description')
       expect(plugin.extract('prepTime')).toBe(15)
       const ingredients = plugin.extract('ingredients')
-      expect(ingredients).toEqual(
-        stringsToIngredients(['ingredient 1', 'ingredient 2']),
-      )
+      expect(ingredients).toEqual(stringsToIngredients(['ingredient 1', 'ingredient 2']))
     })
 
     it('should throw error for unsupported fields', () => {
@@ -223,9 +208,7 @@ describe('ExtractorPlugin', () => {
     })
 
     it('should propagate extraction errors', () => {
-      expect(() => throwingPlugin.extract('title')).toThrow(
-        'Extraction failed for field: title',
-      )
+      expect(() => throwingPlugin.extract('title')).toThrow('Extraction failed for field: title')
       expect(() => throwingPlugin.extract('description')).toThrow(
         'Extraction failed for field: description',
       )
@@ -235,9 +218,7 @@ describe('ExtractorPlugin', () => {
   describe('edge cases', () => {
     it('should throw on undefined extractor', () => {
       const plugin = new MockExtractorPlugin(['author'])
-      expect(() => plugin.extract('author')).toThrow(
-        'Method should be implemented: author',
-      )
+      expect(() => plugin.extract('author')).toThrow('Method should be implemented: author')
     })
   })
 })

@@ -75,9 +75,7 @@ describe('AbstractScraper utility methods', () => {
 
     it('falls back to meta http-equiv content-language', () => {
       const html =
-        '<html><head>' +
-        '<meta http-equiv="content-language" content="de, en"/>' +
-        '</head></html>'
+        '<html><head>' + '<meta http-equiv="content-language" content="de, en"/>' + '</head></html>'
       scraper = new DummyScraper(html, 'url', {})
       expect(scraper.language()).toBe('de')
       expect(warnSpy).not.toHaveBeenCalled()
@@ -116,19 +114,14 @@ class TestScraper extends AbstractScraper {
   }
 
   private data: Partial<Record<keyof RecipeFields, unknown>>
-  constructor(
-    data: Partial<Record<keyof RecipeFields, unknown>>,
-    options: ScraperOptions = {},
-  ) {
+  constructor(data: Partial<Record<keyof RecipeFields, unknown>>, options: ScraperOptions = {}) {
     // html, url and options are unused because we override methods
     super('', '', { linksEnabled: true, ...options })
     this.data = data
   }
 
   // Return mocked values for every field
-  async extract<Key extends keyof RecipeFields>(
-    field: Key,
-  ): Promise<RecipeFields[Key]> {
+  async extract<Key extends keyof RecipeFields>(field: Key): Promise<RecipeFields[Key]> {
     return this.data[field] as RecipeFields[Key]
   }
 
@@ -146,9 +139,7 @@ class TestScraper extends AbstractScraper {
 class MissingAuthorScraper extends TestScraper {
   readonly extractedFields: (keyof RecipeFields)[] = []
 
-  override async extract<Key extends keyof RecipeFields>(
-    field: Key,
-  ): Promise<RecipeFields[Key]> {
+  override async extract<Key extends keyof RecipeFields>(field: Key): Promise<RecipeFields[Key]> {
     this.extractedFields.push(field)
     if (field === 'author') throw new ExtractorNotFoundException(field)
     return super.extract(field)
@@ -160,9 +151,7 @@ class ThrowingScraper extends AbstractScraper {
     return 'throw.test'
   }
 
-  override async extract<Key extends keyof RecipeFields>(
-    _field: Key,
-  ): Promise<RecipeFields[Key]> {
+  override async extract<Key extends keyof RecipeFields>(_field: Key): Promise<RecipeFields[Key]> {
     throw new Error('Extraction exploded')
   }
 }
@@ -172,9 +161,7 @@ class MissingFieldScraper extends AbstractScraper {
     return 'missing.test'
   }
 
-  override async extract<Key extends keyof RecipeFields>(
-    _field: Key,
-  ): Promise<RecipeFields[Key]> {
+  override async extract<Key extends keyof RecipeFields>(_field: Key): Promise<RecipeFields[Key]> {
     throw new ExtractorNotFoundException('author')
   }
 }
@@ -184,9 +171,7 @@ class RuntimeErrorScraper extends AbstractScraper {
     return 'runtime.test'
   }
 
-  override async extract<Key extends keyof RecipeFields>(
-    _field: Key,
-  ): Promise<RecipeFields[Key]> {
+  override async extract<Key extends keyof RecipeFields>(_field: Key): Promise<RecipeFields[Key]> {
     throw new ExtractionRuntimeException(
       'totalTime',
       'plugin "SchemaOrgPlugin"',
@@ -319,9 +304,7 @@ describe('AbstractScraper.toRecipeObject', () => {
 
     expect(result.author).toBe('site team')
     expect(receivedSiteNames).toEqual(['site'])
-    expect(
-      scraper.extractedFields.filter((field) => field === 'siteName'),
-    ).toHaveLength(1)
+    expect(scraper.extractedFields.filter((field) => field === 'siteName')).toHaveLength(1)
   })
 
   it('keeps a non-empty extracted author ahead of the fallback', async () => {
@@ -355,9 +338,7 @@ describe('AbstractScraper.toRecipeObject', () => {
       fallbackAuthor: '   ',
     })
 
-    expect(scraper.toRecipeObject()).rejects.toThrow(
-      new ExtractorNotFoundException('author'),
-    )
+    expect(scraper.toRecipeObject()).rejects.toThrow(new ExtractorNotFoundException('author'))
   })
 
   it('reports function author fallback errors with source context', async () => {
@@ -381,24 +362,18 @@ describe('AbstractScraper.toRecipeObject', () => {
   })
 
   it('omits notes when parseNotes is disabled', async () => {
-    const scraper = new NotesOverrideScraper(
-      stringsToNotes(['Keep chilled.']),
-      {
-        parseNotes: false,
-      },
-    )
+    const scraper = new NotesOverrideScraper(stringsToNotes(['Keep chilled.']), {
+      parseNotes: false,
+    })
 
     const result = await scraper.toRecipeObject()
     expect(result.notes).toBeUndefined()
   })
 
   it('includes notes when parseNotes is enabled', async () => {
-    const scraper = new NotesOverrideScraper(
-      stringsToNotes(['Keep chilled.']),
-      {
-        parseNotes: true,
-      },
-    )
+    const scraper = new NotesOverrideScraper(stringsToNotes(['Keep chilled.']), {
+      parseNotes: true,
+    })
 
     const result = await scraper.toRecipeObject()
     expect(result.notes).toEqual([
@@ -425,9 +400,7 @@ describe('AbstractScraper.toRecipeObject', () => {
     expect(parsed.host).toBe('host.test')
     expect(parsed.canonicalUrl).toBe('https://host.test/recipe')
     expect(parsed.image).toBe('https://host.test/image.jpg')
-    expect(parsed.links).toEqual([
-      { href: 'https://host.test/link', text: 'LinkText' },
-    ])
+    expect(parsed.links).toEqual([{ href: 'https://host.test/link', text: 'LinkText' }])
   })
 
   it('returns a failed safeParse result when validation fails', async () => {
@@ -441,9 +414,7 @@ describe('AbstractScraper.toRecipeObject', () => {
     if (!result.success) {
       expect(result.error.type).toBe('validation')
       expect(result.error.code).toBe('validation_failed')
-      expect(
-        result.error.issues.some((issue) => issue.path?.[0] === 'image'),
-      ).toBe(true)
+      expect(result.error.issues.some((issue) => issue.path?.[0] === 'image')).toBe(true)
     }
   })
 

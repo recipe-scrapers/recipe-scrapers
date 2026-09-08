@@ -15,19 +15,13 @@ export function isNumber(value: unknown): value is number {
   return typeof value === 'number'
 }
 
-export function isPlainObject(
-  value: unknown,
-): value is Record<string, unknown> {
+export function isPlainObject(value: unknown): value is Record<string, unknown> {
   return (
-    typeof value === 'object' &&
-    value !== null &&
-    Object.getPrototypeOf(value) === Object.prototype
+    typeof value === 'object' && value !== null && Object.getPrototypeOf(value) === Object.prototype
   )
 }
 
-export const isObjectLike = (
-  value: unknown,
-): value is Record<PropertyKey, unknown> => {
+export const isObjectLike = (value: unknown): value is Record<PropertyKey, unknown> => {
   return typeof value === 'object' && value !== null
 }
 
@@ -52,10 +46,7 @@ export function getHostName(value: string) {
 /**
  * Resolves an error message from various error types.
  */
-export function resolveErrorMessage(
-  error: unknown,
-  defaultMessage = 'Unknown error',
-): string {
+export function resolveErrorMessage(error: unknown, defaultMessage = 'Unknown error'): string {
   if (error instanceof Error) {
     return error.message
   }

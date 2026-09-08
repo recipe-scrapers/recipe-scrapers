@@ -18,9 +18,7 @@ const nextDataSchema = z.object({
   }),
 })
 
-type RecipePageData = z.infer<
-  typeof nextDataSchema
->['props']['pageProps']['recipe']
+type RecipePageData = z.infer<typeof nextDataSchema>['props']['pageProps']['recipe']
 
 export class NYTimes extends AbstractScraper {
   private recipePageData: RecipePageData | null | undefined = undefined
@@ -43,12 +41,7 @@ export class NYTimes extends AbstractScraper {
     if (prevValue && prevValue.length > 0) {
       const values = flattenIngredients(prevValue)
 
-      return groupIngredients(
-        this.$,
-        values,
-        headingSelector,
-        ingredientSelector,
-      )
+      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
     }
 
     throw new NoIngredientsFoundException()

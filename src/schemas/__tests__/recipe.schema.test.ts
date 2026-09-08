@@ -32,23 +32,17 @@ describe('IngredientItemSchema', () => {
 
   it('should reject empty ingredient value', () => {
     const empty = { value: '' }
-    expect(() => IngredientItemSchema.parse(empty)).toThrow(
-      'Ingredient value cannot be empty',
-    )
+    expect(() => IngredientItemSchema.parse(empty)).toThrow('Ingredient value cannot be empty')
   })
 
   it('should reject missing value', () => {
     const missing = {}
-    expect(() => IngredientItemSchema.parse(missing)).toThrow(
-      'Ingredient value must be a string',
-    )
+    expect(() => IngredientItemSchema.parse(missing)).toThrow('Ingredient value must be a string')
   })
 
   it('should reject non-string value', () => {
     const invalid = { value: 123 }
-    expect(() => IngredientItemSchema.parse(invalid)).toThrow(
-      'Ingredient value must be a string',
-    )
+    expect(() => IngredientItemSchema.parse(invalid)).toThrow('Ingredient value must be a string')
   })
 })
 
@@ -144,16 +138,12 @@ describe('InstructionItemSchema', () => {
 
   it('should reject empty instruction value', () => {
     const empty = { value: '' }
-    expect(() => InstructionItemSchema.parse(empty)).toThrow(
-      'Instruction value cannot be empty',
-    )
+    expect(() => InstructionItemSchema.parse(empty)).toThrow('Instruction value cannot be empty')
   })
 
   it('should reject missing value', () => {
     const missing = {}
-    expect(() => InstructionItemSchema.parse(missing)).toThrow(
-      'Instruction value must be a string',
-    )
+    expect(() => InstructionItemSchema.parse(missing)).toThrow('Instruction value must be a string')
   })
 })
 
@@ -248,9 +238,7 @@ describe('NoteItemSchema', () => {
   })
 
   it('should reject empty note value', () => {
-    expect(() => NoteItemSchema.parse({ value: '' })).toThrow(
-      'Note value cannot be empty',
-    )
+    expect(() => NoteItemSchema.parse({ value: '' })).toThrow('Note value cannot be empty')
   })
 })
 
@@ -289,9 +277,7 @@ describe('NotesSchema', () => {
   })
 
   it('should reject empty notes array', () => {
-    expect(() => NotesSchema.parse([])).toThrow(
-      'Recipe must have at least one note group',
-    )
+    expect(() => NotesSchema.parse([])).toThrow('Recipe must have at least one note group')
   })
 })
 
@@ -311,9 +297,7 @@ describe('LinkSchema', () => {
       href: 'not-a-url',
       text: 'Invalid',
     }
-    expect(() => LinkSchema.parse(invalid)).toThrow(
-      'Link href must be a valid URL',
-    )
+    expect(() => LinkSchema.parse(invalid)).toThrow('Link href must be a valid URL')
   })
 })
 
@@ -402,9 +386,7 @@ describe('RecipeObjectSchema', () => {
       links: [{ href: 'https://example.com/tips', text: 'Baking Tips' }],
     }
     const result = RecipeObjectSchema.parse(recipeWithLinks)
-    expect(result.links).toEqual([
-      { href: 'https://example.com/tips', text: 'Baking Tips' },
-    ])
+    expect(result.links).toEqual([{ href: 'https://example.com/tips', text: 'Baking Tips' }])
   })
 
   it('should trim whitespace from title', () => {
@@ -418,51 +400,37 @@ describe('RecipeObjectSchema', () => {
 
   it('should reject invalid host URL', () => {
     const recipe = { ...validRecipe, host: 'http://localhost' }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Host must be a valid hostname',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Host must be a valid hostname')
   })
 
   it('should reject empty title', () => {
     const recipe = { ...validRecipe, title: '' }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Title cannot be empty',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Title cannot be empty')
   })
 
   it('should reject title exceeding 500 characters', () => {
     const recipe = { ...validRecipe, title: 'a'.repeat(501) }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Title must be less than 500 characters',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Title must be less than 500 characters')
   })
 
   it('should reject invalid canonical URL', () => {
     const recipe = { ...validRecipe, canonicalUrl: 'not-a-url' }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Canonical URL must be a valid URL',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Canonical URL must be a valid URL')
   })
 
   it('should reject invalid image URL', () => {
     const recipe = { ...validRecipe, image: 'not-a-url' }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Image must be a valid URL',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Image must be a valid URL')
   })
 
   it('should reject negative time values', () => {
     const recipe = { ...validRecipe, totalTime: -10 }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Total time must be positive',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Total time must be positive')
   })
 
   it('should reject 0 time values', () => {
     const recipe = { ...validRecipe, totalTime: 0 }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Total time must be positive',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Total time must be positive')
   })
 
   it('should accept null time values', () => {
@@ -480,30 +448,22 @@ describe('RecipeObjectSchema', () => {
 
   it('should reject ratings below 0', () => {
     const recipe = { ...validRecipe, ratings: -1 }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Ratings must be at least 0',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Ratings must be at least 0')
   })
 
   it('should reject ratings above 5', () => {
     const recipe = { ...validRecipe, ratings: 6 }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Ratings must be at most 5',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Ratings must be at most 5')
   })
 
   it('should reject negative ratingsCount', () => {
     const recipe = { ...validRecipe, ratingsCount: -1 }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Ratings count must be non-negative',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Ratings count must be non-negative')
   })
 
   it('should reject non-integer ratingsCount', () => {
     const recipe = { ...validRecipe, ratingsCount: 10.5 }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Ratings count must be an integer',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Ratings count must be an integer')
   })
 
   it('should apply default values for optional arrays', () => {
@@ -620,9 +580,7 @@ describe('RecipeObjectSchema', () => {
       ...validRecipe,
       category: ['Valid', ''],
     }
-    expect(() => RecipeObjectSchema.parse(recipe)).toThrow(
-      'Category item cannot be empty',
-    )
+    expect(() => RecipeObjectSchema.parse(recipe)).toThrow('Category item cannot be empty')
   })
 
   it('should validate all link objects', () => {

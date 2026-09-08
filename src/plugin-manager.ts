@@ -17,10 +17,9 @@ export class PluginManager {
       (a, b) => b.priority - a.priority,
     )
 
-    this.postProcessorPlugins = [
-      ...basePostProcessors,
-      ...extraPostProcessors,
-    ].sort((a, b) => b.priority - a.priority)
+    this.postProcessorPlugins = [...basePostProcessors, ...extraPostProcessors].sort(
+      (a, b) => b.priority - a.priority,
+    )
   }
 
   getExtractors() {

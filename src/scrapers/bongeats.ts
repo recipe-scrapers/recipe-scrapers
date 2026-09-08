@@ -1,13 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
-import {
-  createIngredientGroup,
-  createIngredientItem,
-} from '@/utils/ingredients'
-import {
-  createInstructionGroup,
-  createInstructionItem,
-} from '@/utils/instructions'
+import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
+import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 export class BongEats extends AbstractScraper {

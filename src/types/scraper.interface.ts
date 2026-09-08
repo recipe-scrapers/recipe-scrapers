@@ -32,9 +32,7 @@ export interface ScraperOptions {
    *
    * When omitted, a missing author remains an extraction failure.
    */
-  fallbackAuthor?:
-    | string
-    | ((siteName: RecipeFields['siteName']) => RecipeFields['author'])
+  fallbackAuthor?: string | ((siteName: RecipeFields['siteName']) => RecipeFields['author'])
   /**
    * Non-empty value to use when no extractor can find a recipe yield.
    * Extracted yield values always take precedence.

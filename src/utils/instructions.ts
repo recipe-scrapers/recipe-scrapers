@@ -1,8 +1,4 @@
-import type {
-  InstructionGroup,
-  InstructionItem,
-  Instructions,
-} from '@/types/recipe.interface'
+import type { InstructionGroup, InstructionItem, Instructions } from '@/types/recipe.interface'
 
 import { isPlainObject, isString } from './index'
 import { normalizeString, splitToList } from './parsing'
@@ -10,13 +6,7 @@ import { normalizeString, splitToList } from './parsing'
 /**
  * List of possible headings to remove from instructions.
  */
-const INSTRUCTION_HEADINGS = [
-  'Preparation',
-  'Directions',
-  'Instructions',
-  'Method',
-  'Steps',
-]
+const INSTRUCTION_HEADINGS = ['Preparation', 'Directions', 'Instructions', 'Method', 'Steps']
 
 /**
  * Creates an InstructionItem.

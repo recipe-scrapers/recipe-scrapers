@@ -59,9 +59,7 @@ export function parseYields(element: string): string {
 
   for (const [singular, plural] of RECIPE_YIELD_TYPES) {
     if (serveTextLower.includes(singular) || serveTextLower.includes(plural)) {
-      const matchLength = serveTextLower.includes(singular)
-        ? singular.length
-        : plural.length
+      const matchLength = serveTextLower.includes(singular) ? singular.length : plural.length
       if (matchLength > bestMatchLength) {
         bestMatchLength = matchLength
         bestMatch = `${matched} ${Number.parseFloat(matched) === 1 ? singular : plural}`
@@ -81,10 +79,7 @@ export function parseYields(element: string): string {
     return bestMatch
   }
 
-  const plural =
-    Number.parseFloat(matched) > 1 || Number.parseFloat(matched) === 0
-      ? 's'
-      : ''
+  const plural = Number.parseFloat(matched) > 1 || Number.parseFloat(matched) === 0 ? 's' : ''
 
   if (SERVE_REGEX_ITEMS.test(serveText)) {
     return `${matched} item${plural}`

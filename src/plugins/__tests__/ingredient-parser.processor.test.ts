@@ -182,10 +182,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = pluginWithNormalize.process(
-        'ingredients',
-        ingredients,
-      ) as Ingredients
+      const result = pluginWithNormalize.process('ingredients', ingredients) as Ingredients
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 2,

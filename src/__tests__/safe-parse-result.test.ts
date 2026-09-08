@@ -62,11 +62,7 @@ describe('createSafeParseFailure', () => {
 
   it('maps an extraction runtime error with source and underlying cause', () => {
     const cause = new RangeError('Invalid duration')
-    const error = new ExtractionRuntimeException(
-      'totalTime',
-      'plugin "SchemaOrgPlugin"',
-      cause,
-    )
+    const error = new ExtractionRuntimeException('totalTime', 'plugin "SchemaOrgPlugin"', cause)
 
     expect(createSafeParseFailure({ type: 'extraction', error })).toEqual({
       success: false,

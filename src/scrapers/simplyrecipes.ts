@@ -2,10 +2,7 @@ import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
-import {
-  createInstructionGroup,
-  createInstructionItem,
-} from '@/utils/instructions'
+import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 /**
@@ -46,12 +43,7 @@ export class SimplyRecipes extends AbstractScraper {
       const rawValues = flattenIngredients(prevValue)
       const values = filterGroupHeaders(rawValues)
 
-      return groupIngredients(
-        this.$,
-        values,
-        headingSelector,
-        ingredientSelector,
-      )
+      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
     }
 
     throw new NoIngredientsFoundException()

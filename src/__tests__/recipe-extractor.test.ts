@@ -99,12 +99,8 @@ describe('RecipeExtractor', () => {
     } as ExtractorPlugin
 
     const extractor = new RecipeExtractor([plugin], scraperName)
-    await expect(extractor.extract('title')).rejects.toThrow(
-      ExtractorNotFoundException,
-    )
-    await expect(extractor.extract('title')).rejects.toThrow(
-      'No extractor found for field: title',
-    )
+    await expect(extractor.extract('title')).rejects.toThrow(ExtractorNotFoundException)
+    await expect(extractor.extract('title')).rejects.toThrow('No extractor found for field: title')
   })
 
   it('continues to lower-priority plugins for recoverable extraction failures', async () => {
@@ -145,9 +141,7 @@ describe('RecipeExtractor', () => {
 
     const extractor = new RecipeExtractor([plugin], scraperName)
 
-    expect(extractor.extract('totalTime')).rejects.toThrow(
-      ExtractionRuntimeException,
-    )
+    expect(extractor.extract('totalTime')).rejects.toThrow(ExtractionRuntimeException)
     expect(extractor.extract('totalTime')).rejects.toThrow(
       'Unexpected extraction error for field "totalTime" from plugin "SchemaOrgPlugin": invalid duration: 35 minutes',
     )

@@ -1,11 +1,7 @@
 import { type ParseIngredientOptions, parseIngredient } from 'parse-ingredient'
 
 import { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
-import type {
-  IngredientItem,
-  Ingredients,
-  RecipeFields,
-} from '@/types/recipe.interface'
+import type { IngredientItem, Ingredients, RecipeFields } from '@/types/recipe.interface'
 import { isIngredients } from '@/utils/ingredients'
 
 /**

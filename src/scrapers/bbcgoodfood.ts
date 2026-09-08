@@ -21,12 +21,7 @@ export class BBCGoodFood extends AbstractScraper {
     if (prevValue && prevValue.length > 0) {
       const values = flattenIngredients(prevValue)
 
-      return groupIngredients(
-        this.$,
-        values,
-        headingSelector,
-        ingredientSelector,
-      )
+      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
     }
 
     throw new NoIngredientsFoundException()

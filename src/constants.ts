@@ -1,7 +1,4 @@
-import type {
-  OptionalRecipeFields,
-  RecipeFields,
-} from './types/recipe.interface'
+import type { OptionalRecipeFields, RecipeFields } from './types/recipe.interface'
 
 // Default values for optional recipe fields
 const OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES = {
@@ -22,8 +19,7 @@ const OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES = {
   notes: undefined,
 } as const satisfies OptionalRecipeFields
 
-type OptionalRecipeFieldDefaultValues =
-  typeof OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES
+type OptionalRecipeFieldDefaultValues = typeof OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES
 
 type OptionalRecipeFieldWithDefault = keyof OptionalRecipeFieldDefaultValues
 
@@ -33,9 +29,9 @@ export function isOptionalRecipeField(
   return field in OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES
 }
 
-export function getOptionalRecipeFieldDefault<
-  Key extends OptionalRecipeFieldWithDefault,
->(field: Key): OptionalRecipeFieldDefaultValues[Key] {
+export function getOptionalRecipeFieldDefault<Key extends OptionalRecipeFieldWithDefault>(
+  field: Key,
+): OptionalRecipeFieldDefaultValues[Key] {
   const value = OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES[field]
 
   if (value instanceof Set) {

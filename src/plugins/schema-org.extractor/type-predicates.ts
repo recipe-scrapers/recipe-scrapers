@@ -23,9 +23,7 @@ export function isGraphType(obj: unknown): obj is Graph {
 
 export function isBaseType(obj: unknown): obj is { '@type': string } {
   return (
-    isPlainObject(obj) &&
-    '@type' in obj &&
-    (isString(obj['@type']) || Array.isArray(obj['@type']))
+    isPlainObject(obj) && '@type' in obj && (isString(obj['@type']) || Array.isArray(obj['@type']))
   )
 }
 

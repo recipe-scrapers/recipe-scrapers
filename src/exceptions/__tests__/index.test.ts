@@ -26,9 +26,7 @@ describe('NotImplementedException', () => {
 
     expect(error).toBeInstanceOf(Error)
     expect(error).toBeInstanceOf(NotImplementedException)
-    expect(error.message).toBe(
-      'Method should be implemented: extractIngredients',
-    )
+    expect(error.message).toBe('Method should be implemented: extractIngredients')
     expect(error.name).toBe('NotImplementedException')
   })
 })
@@ -47,16 +45,12 @@ describe('UnsupportedFieldException', () => {
 
 describe('ValidationException', () => {
   it('should create error with issues and name', () => {
-    const error = new ValidationException([
-      { message: 'Invalid title', path: ['title'] },
-    ])
+    const error = new ValidationException([{ message: 'Invalid title', path: ['title'] }])
 
     expect(error).toBeInstanceOf(Error)
     expect(error).toBeInstanceOf(ValidationException)
     expect(error.name).toBe('ValidationException')
     expect(error.message).toBe('Recipe validation failed')
-    expect(error.issues).toEqual([
-      { message: 'Invalid title', path: ['title'] },
-    ])
+    expect(error.issues).toEqual([{ message: 'Invalid title', path: ['title'] }])
   })
 })

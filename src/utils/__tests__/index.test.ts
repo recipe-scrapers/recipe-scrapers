@@ -1,13 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 
-import {
-  getHostName,
-  isDefined,
-  isFunction,
-  isNumber,
-  isPlainObject,
-  isString,
-} from '../index'
+import { getHostName, isDefined, isFunction, isNumber, isPlainObject, isString } from '../index'
 
 describe('isDefined', () => {
   it('returns false for undefined', () => {
@@ -100,15 +93,11 @@ describe('getHostName', () => {
   })
 
   it('should return the host for a URL with a subdomain', () => {
-    expect(getHostName('http://sub.domain.co.uk/page?q=1')).toBe(
-      'sub.domain.co.uk',
-    )
+    expect(getHostName('http://sub.domain.co.uk/page?q=1')).toBe('sub.domain.co.uk')
   })
 
   it('should not remove "www." when it is not the leading hostname label', () => {
-    expect(getHostName('https://sub.www.example.com/path')).toBe(
-      'sub.www.example.com',
-    )
+    expect(getHostName('https://sub.www.example.com/path')).toBe('sub.www.example.com')
   })
 
   it('should return the host for a URL without a path', () => {
@@ -121,9 +110,7 @@ describe('getHostName', () => {
 
   it('should throw an error for an invalid URL string', () => {
     const invalidUrl = 'not a url'
-    expect(() => getHostName(invalidUrl)).toThrow(
-      new Error(`Invalid URL: ${invalidUrl}`),
-    )
+    expect(() => getHostName(invalidUrl)).toThrow(new Error(`Invalid URL: ${invalidUrl}`))
   })
 
   it('should throw an error for an empty string', () => {

@@ -8,10 +8,8 @@ describe('PluginManager', () => {
   const makeExtractor = (name: string, priority: number): ExtractorPlugin =>
     ({ name, priority }) as ExtractorPlugin
 
-  const makePostProcessor = (
-    name: string,
-    priority: number,
-  ): PostProcessorPlugin => ({ name, priority }) as PostProcessorPlugin
+  const makePostProcessor = (name: string, priority: number): PostProcessorPlugin =>
+    ({ name, priority }) as PostProcessorPlugin
 
   it('sorts base extractors by priority descending', () => {
     const low = makeExtractor('low', 1)

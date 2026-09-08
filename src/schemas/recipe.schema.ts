@@ -2,12 +2,7 @@ import { z } from 'zod'
 
 import { isNull } from '@/utils'
 
-import {
-  zHttpUrl,
-  zNonEmptyArray,
-  zPositiveInteger,
-  zString,
-} from './common.schema'
+import { zHttpUrl, zNonEmptyArray, zPositiveInteger, zString } from './common.schema'
 
 /**
  * Current schema version for recipe objects.
@@ -187,39 +182,24 @@ export const RecipeObjectBaseSchema = z.object({
   cookingMethod: zString('Cooking method').nullable(),
 
   // List fields
-  category: z
-    .array(zString('Category item'), 'Category must be an array')
-    .default([]),
+  category: z.array(zString('Category item'), 'Category must be an array').default([]),
 
-  cuisine: z
-    .array(zString('Cuisine item'), 'Cuisine must be an array')
-    .default([]),
+  cuisine: z.array(zString('Cuisine item'), 'Cuisine must be an array').default([]),
 
-  keywords: z
-    .array(zString('Keyword item'), 'Keywords must be an array')
-    .default([]),
+  keywords: z.array(zString('Keyword item'), 'Keywords must be an array').default([]),
 
   dietaryRestrictions: z
-    .array(
-      zString('Dietary restriction item'),
-      'Dietary restrictions must be an array',
-    )
+    .array(zString('Dietary restriction item'), 'Dietary restrictions must be an array')
     .default([]),
 
-  equipment: z
-    .array(zString('Equipment item'), 'Equipment must be an array')
-    .default([]),
+  equipment: z.array(zString('Equipment item'), 'Equipment must be an array').default([]),
 
   links: z.array(LinkSchema, 'Links must be an array').optional(),
 
   // Complex fields
-  nutrients: z
-    .record(z.string(), z.string(), 'Nutrients must be an object')
-    .default({}),
+  nutrients: z.record(z.string(), z.string(), 'Nutrients must be an object').default({}),
 
-  reviews: z
-    .record(z.string(), z.string(), 'Reviews must be an object')
-    .default({}),
+  reviews: z.record(z.string(), z.string(), 'Reviews must be an object').default({}),
 })
 
 /**
@@ -239,9 +219,9 @@ export const RecipeObjectBaseSchema = z.object({
  * const ValidatedCustomSchema = applyRecipeValidations(CustomSchema)
  * ```
  */
-export function applyRecipeValidations<
-  T extends z.infer<typeof RecipeObjectBaseSchema>,
->(schema: z.ZodType<T>) {
+export function applyRecipeValidations<T extends z.infer<typeof RecipeObjectBaseSchema>>(
+  schema: z.ZodType<T>,
+) {
   return schema
     .transform((data) => {
       // Auto-fix: calculate totalTime if missing but cook and prep times exist
@@ -258,8 +238,7 @@ export function applyRecipeValidations<
         return true
       },
       {
-        message:
-          'Total time should be at least the sum of cook time and prep time',
+        message: 'Total time should be at least the sum of cook time and prep time',
         path: ['totalTime'],
       },
     )

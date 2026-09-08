@@ -2,19 +2,12 @@ import { describe, expect, it } from 'bun:test'
 
 import { load } from 'cheerio'
 
-import {
-  ExtractionFailedException,
-  UnsupportedFieldException,
-} from '@/exceptions'
+import { ExtractionFailedException, UnsupportedFieldException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
 
-import {
-  SchemaOrgException,
-  SchemaOrgJsonLdParseException,
-  SchemaOrgPlugin,
-} from '../index'
+import { SchemaOrgException, SchemaOrgJsonLdParseException, SchemaOrgPlugin } from '../index'
 
 const minimalJsonLd = `
 <script type="application/ld+json">
@@ -118,15 +111,11 @@ describe('SchemaOrgPlugin', () => {
     const ingredients = plugin.extract('ingredients')
 
     expect(isIngredients(ingredients)).toBe(true)
-    expect(ingredients).toEqual([
-      { name: null, items: [{ value: 'a' }, { value: 'b' }] },
-    ])
+    expect(ingredients).toEqual([{ name: null, items: [{ value: 'a' }, { value: 'b' }] }])
 
     const instructions = plugin.extract('instructions')
     expect(isInstructions(instructions)).toBe(true)
-    expect(instructions).toEqual([
-      { name: null, items: [{ value: 'step1' }, { value: 'step2' }] },
-    ])
+    expect(instructions).toEqual([{ name: null, items: [{ value: 'step1' }, { value: 'step2' }] }])
   })
 
   it('deduplicates ingredient values', () => {
@@ -176,9 +165,7 @@ describe('SchemaOrgPlugin', () => {
       }
       </script>`
 
-    const percentageRatingPlugin = new SchemaOrgPlugin(
-      load(percentageRatingJson),
-    )
+    const percentageRatingPlugin = new SchemaOrgPlugin(load(percentageRatingJson))
 
     expect(percentageRatingPlugin.extract('ratings')).toBe(4.9)
   })
@@ -234,26 +221,20 @@ describe('SchemaOrgPlugin', () => {
   })
 
   it('throws UnsupportedFieldException for unsupported field', () => {
-    expect(() => plugin.extract('foo' as keyof RecipeFields)).toThrow(
-      UnsupportedFieldException,
-    )
+    expect(() => plugin.extract('foo' as keyof RecipeFields)).toThrow(UnsupportedFieldException)
   })
 
   it('throws SchemaOrgException for missing required field', () => {
     // JSON-LD missing 'name' for Recipe
     const badJson = `<script type="application/ld+json">{"@type":"Recipe"}</script>`
     const badPlugin = new SchemaOrgPlugin(load(badJson))
-    expect(() => badPlugin.extract('title')).toThrow(
-      'No value found for "title"',
-    )
+    expect(() => badPlugin.extract('title')).toThrow('No value found for "title"')
   })
 
   it('throws SchemaOrgException for invalid image', () => {
     const badImgJson = `<script type="application/ld+json">{"@type":"Recipe","image":"nope"}</script>`
     const badPlugin = new SchemaOrgPlugin(load(badImgJson))
-    expect(() => badPlugin.extract('image')).toThrow(
-      'Invalid value for "image": nope',
-    )
+    expect(() => badPlugin.extract('image')).toThrow('Invalid value for "image": nope')
   })
 
   it('recovers malformed JSON-LD when control chars are inside string values', () => {
@@ -283,9 +264,7 @@ line2"}}
 
     const plugin = new SchemaOrgPlugin(load(irreparableMalformedJsonLd))
 
-    expect(() => plugin.extract('author')).toThrow(
-      SchemaOrgJsonLdParseException,
-    )
+    expect(() => plugin.extract('author')).toThrow(SchemaOrgJsonLdParseException)
     expect(() => plugin.extract('author')).toThrow(
       'Failed to parse JSON-LD while extracting "author"',
     )

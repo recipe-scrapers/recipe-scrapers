@@ -58,17 +58,11 @@ const isValidationPathSegment = (value: unknown): value is PropertyKey => {
   return isString(value) || isNumber(value) || typeof value === 'symbol'
 }
 
-const isStandardSchemaPathSegment = (
-  value: unknown,
-): value is StandardSchemaV1.PathSegment => {
-  return (
-    isPlainObject(value) && 'key' in value && isValidationPathSegment(value.key)
-  )
+const isStandardSchemaPathSegment = (value: unknown): value is StandardSchemaV1.PathSegment => {
+  return isPlainObject(value) && 'key' in value && isValidationPathSegment(value.key)
 }
 
-const normalizeIssuePath = (
-  path?: ReadonlyArray<PropertyKey | StandardSchemaV1.PathSegment>,
-) => {
+const normalizeIssuePath = (path?: ReadonlyArray<PropertyKey | StandardSchemaV1.PathSegment>) => {
   if (!path) return undefined
 
   const normalizedPath: PropertyKey[] = []
@@ -165,9 +159,7 @@ const createExtractionFailure = (error: unknown): SafeParseResult<never> => {
     error: {
       type: 'extraction',
       code: 'extraction_failed',
-      issues: [
-        { message: resolveErrorMessage(error, 'Recipe extraction failed') },
-      ],
+      issues: [{ message: resolveErrorMessage(error, 'Recipe extraction failed') }],
       cause: error,
     },
   }
@@ -176,9 +168,7 @@ const createExtractionFailure = (error: unknown): SafeParseResult<never> => {
 /**
  * Converts validation or extraction failures into a Safe Parse Result.
  */
-export function createSafeParseFailure(
-  failure: SafeParseFailure,
-): SafeParseResult<never> {
+export function createSafeParseFailure(failure: SafeParseFailure): SafeParseResult<never> {
   return failure.type === 'validation'
     ? createValidationFailure(failure.issues, failure.cause)
     : createExtractionFailure(failure.error)

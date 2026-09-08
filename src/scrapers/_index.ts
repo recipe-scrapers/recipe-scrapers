@@ -124,11 +124,7 @@ function buildScraperRegistry(
 ): Record<string, ScraperClass> {
   const registry: Record<string, ScraperClass> = {}
 
-  const registerHost = (
-    host: string,
-    scraper: ScraperClass,
-    source: string,
-  ) => {
+  const registerHost = (host: string, scraper: ScraperClass, source: string) => {
     const existing = registry[host]
 
     if (existing && existing !== scraper) {

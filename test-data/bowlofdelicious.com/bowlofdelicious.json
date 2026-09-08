@@ -74,11 +74,7 @@
   "cuisine": ["Seafood"],
   "dietaryRestrictions": [],
   "equipment": [],
-  "keywords": [
-    "Ahi tuna recipe",
-    "How to cook ahi tuna",
-    "Seared ahi tuna medium rare"
-  ],
+  "keywords": ["Ahi tuna recipe", "How to cook ahi tuna", "Seared ahi tuna medium rare"],
   "nutrients": {
     "calories": "331 kcal",
     "carbohydrateContent": "10 g",
