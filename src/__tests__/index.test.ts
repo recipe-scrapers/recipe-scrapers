@@ -3,6 +3,7 @@ import { describe, expect, it } from 'bun:test'
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 
 import { getScraper, scrapeRecipe, scrapers } from '@/index'
+import { LogLevel } from '@/logger'
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
 import { GenericScraper } from '@/scrapers/generic'
 import type { RecipeObject } from '@/types/recipe.interface'
@@ -183,6 +184,7 @@ describe('scrapeRecipe', () => {
 
   it('returns extraction_runtime_error when malformed JSON-LD blocks recipe extraction', async () => {
     const result = await scrapeRecipe(MALFORMED_RECIPE_JSON_LD_HTML, UNSUPPORTED_URL, {
+      logLevel: LogLevel.ERROR,
       safeParse: true,
     })
 

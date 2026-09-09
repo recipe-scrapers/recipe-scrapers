@@ -2,6 +2,7 @@ import { describe, expect, it } from 'bun:test'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { inspectRecipeEvidence } from '@/index'
+import { LogLevel } from '@/logger'
 import { GenericScraper } from '@/scrapers/generic'
 import { stringsToIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
@@ -88,6 +89,7 @@ describe('recipe evidence', () => {
     const evidence = await inspectRecipeEvidence(
       '<script type="application/ld+json">{"@type":"Recipe"</script>',
       'https://example.com/rice',
+      { logLevel: LogLevel.ERROR },
     )
 
     expect(evidence).toEqual({

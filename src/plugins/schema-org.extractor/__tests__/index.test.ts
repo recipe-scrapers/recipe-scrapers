@@ -3,6 +3,7 @@ import { describe, expect, it } from 'bun:test'
 import { load } from 'cheerio'
 
 import { ExtractionFailedException, UnsupportedFieldException } from '@/exceptions'
+import { LogLevel } from '@/logger'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
@@ -262,7 +263,7 @@ line2"}}
       </script>
     `
 
-    const plugin = new SchemaOrgPlugin(load(irreparableMalformedJsonLd))
+    const plugin = new SchemaOrgPlugin(load(irreparableMalformedJsonLd), LogLevel.ERROR)
 
     expect(() => plugin.extract('author')).toThrow(SchemaOrgJsonLdParseException)
     expect(() => plugin.extract('author')).toThrow(
@@ -373,6 +374,7 @@ line2"}}
             {"@type":"Recipe","name":"Broken"
           </script>
         `),
+        LogLevel.ERROR,
       )
 
       expect(malformedPlugin.inspectRecipeEvidence()).toEqual({
@@ -398,6 +400,7 @@ line2"}}
             }
           </script>
         `),
+        LogLevel.ERROR,
       )
 
       expect(mixedPlugin.inspectRecipeEvidence()).toEqual({

@@ -85,7 +85,7 @@ function runTestSuite(host: string, htmlFiles: string[], jsonFiles: string[]) {
       describe(fileName, () => {
         it('should correctly parse and validate the recipe', async () => {
           const scraper = new Scraper(htmlContent, host, {
-            logLevel: LogLevel.WARN,
+            logLevel: LogLevel.ERROR,
             parseIngredients,
             parseNotes,
           })
@@ -112,8 +112,6 @@ function runTestSuite(host: string, htmlFiles: string[], jsonFiles: string[]) {
 const testDataFiles = await getTestDataFiles()
 
 const onlyScraper = '' //'epicurious.com'
-
-console.log(`Running tests for scraper: ${onlyScraper || 'all'}`)
 
 for (const [host, { html, json }] of testDataFiles) {
   if (onlyScraper && host !== onlyScraper) continue
