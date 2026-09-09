@@ -1,8 +1,24 @@
-import { type ParseIngredientOptions, parseIngredient } from 'parse-ingredient'
-
 import { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
+import type { IngredientParserOptions } from '@/types/ingredient-parser.interface'
 import type { IngredientItem, Ingredients, RecipeFields } from '@/types/recipe.interface'
 import { isIngredients } from '@/utils/ingredients'
+
+type ParseIngredient = (typeof import('parse-ingredient'))['parseIngredient']
+
+let parseIngredientPromise: Promise<ParseIngredient> | null = null
+
+async function loadParseIngredient(): Promise<ParseIngredient> {
+  parseIngredientPromise ??= import('parse-ingredient')
+    .then(({ parseIngredient }) => parseIngredient)
+    .catch((error: unknown) => {
+      throw new Error(
+        'Ingredient parsing requires the optional peer dependency "parse-ingredient". Install it before enabling parseIngredients.',
+        { cause: error },
+      )
+    })
+
+  return parseIngredientPromise
+}
 
 /**
  * Post-processor plugin that parses ingredient strings into structured data.
@@ -14,7 +30,7 @@ export class IngredientParserPlugin extends PostProcessorPlugin {
   name = 'IngredientParser'
   priority = 50 // Run after HTML stripping
 
-  constructor(private readonly options: ParseIngredientOptions = {}) {
+  constructor(private readonly options: IngredientParserOptions = {}) {
     super()
   }
 
@@ -22,26 +38,28 @@ export class IngredientParserPlugin extends PostProcessorPlugin {
     return field === 'ingredients'
   }
 
-  process<T>(field: keyof RecipeFields, value: T): T {
+  async process<T>(field: keyof RecipeFields, value: T): Promise<T> {
     if (!this.shouldProcess(field)) {
       return value
     }
 
     if (isIngredients(value)) {
-      return this.processIngredients(value) as T
+      return this.processIngredients(value) as Promise<T>
     }
 
     return value
   }
 
-  private processIngredients(ingredients: Ingredients): Ingredients {
+  private async processIngredients(ingredients: Ingredients): Promise<Ingredients> {
+    const parseIngredient = await loadParseIngredient()
+
     return ingredients.map((group) => ({
       name: group.name,
-      items: group.items.map((item) => this.parseItem(item)),
+      items: group.items.map((item) => this.parseItem(item, parseIngredient)),
     }))
   }
 
-  private parseItem(item: IngredientItem): IngredientItem {
+  private parseItem(item: IngredientItem, parseIngredient: ParseIngredient): IngredientItem {
     const parsed = parseIngredient(item.value, this.options)
 
     // parseIngredient returns an array, we take the first result

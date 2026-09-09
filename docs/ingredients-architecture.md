@@ -62,7 +62,9 @@ Common pattern:
 ### 3) Optional Ingredient Parsing
 
 If scraper option `parseIngredients` is enabled, `IngredientParserPlugin`
-post-processes ingredient items and adds `item.parsed`.
+loads the optional `parse-ingredient` peer dependency, post-processes ingredient
+items, and adds `item.parsed`. The dependency is not loaded when ingredient
+parsing is disabled.
 
 Post-processor order:
 
@@ -162,6 +164,12 @@ Skip override when plugin output is already sufficient.
 - using Bun-only APIs in `src/**` runtime code
 
 ## Ingredient Parsing Details
+
+Install the optional parser before enabling ingredient parsing:
+
+```bash
+npm install parse-ingredient
+```
 
 Enable parsed ingredient objects with:
 

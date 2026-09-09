@@ -7,6 +7,7 @@ import type { ScraperOptions } from './types/scraper.interface'
 import { getHostName } from './utils'
 
 export * from '@/schemas/recipe.schema'
+export * from '@/types/ingredient-parser.interface'
 export * from '@/types/recipe.interface'
 export * from '@/types/recipe-evidence.interface'
 export * from '@/types/scraper.interface'

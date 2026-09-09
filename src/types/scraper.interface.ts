@@ -1,10 +1,10 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import type { ParseIngredientOptions } from 'parse-ingredient'
 
 import type { ExtractorPlugin } from '@/abstract-extractor-plugin'
 import type { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
 import type { LogLevel } from '@/logger'
 
+import type { IngredientParserOptions } from './ingredient-parser.interface'
 import type { RecipeFields, RecipeObject } from './recipe.interface'
 
 export interface ScraperOptions {
@@ -74,7 +74,7 @@ export interface ScraperOptions {
    * // Include quantity/unit pairs embedded in ingredient descriptions
    * { parseIngredients: { descriptionMeasurements: true } }
    */
-  parseIngredients?: boolean | ParseIngredientOptions
+  parseIngredients?: boolean | IngredientParserOptions
   /**
    * Enable recipe note parsing from supported HTML recipe blocks.
    * When enabled, recipes may include a `notes` field containing
