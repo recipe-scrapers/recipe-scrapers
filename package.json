@@ -58,7 +58,7 @@
     "@standard-schema/spec": "^1.1.0",
     "@standard-schema/utils": "^0.3.0",
     "iso8601-duration": "^2.1.4",
-    "parse-ingredient": "^2.2.0"
+    "parse-ingredient": "^3.0.0"
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",
@@ -74,6 +74,9 @@
   "peerDependencies": {
     "cheerio": "^1",
     "zod": "^4.5.0"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "packageManager": "bun@1.4.2"
 }

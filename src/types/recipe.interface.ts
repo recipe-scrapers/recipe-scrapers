@@ -1,6 +1,7 @@
 import type { z } from 'zod'
 
 import type {
+  DescriptionMeasurementSchema,
   IngredientGroupSchema,
   IngredientItemSchema,
   InstructionGroupSchema,
@@ -14,6 +15,9 @@ import type {
 } from '@/schemas/recipe.schema'
 
 export type List = Set<string>
+
+/** A quantity and unit found within a parsed ingredient description. */
+export type DescriptionMeasurement = z.infer<typeof DescriptionMeasurementSchema>
 
 /**
  * Parsed ingredient data from the parse-ingredient library

@@ -13,9 +13,26 @@ import {
   NoteGroupSchema,
   NoteItemSchema,
   NotesSchema,
+  ParsedIngredientSchema,
   RECIPE_SCHEMA_VERSION,
   RecipeObjectSchema,
 } from '../recipe.schema'
+
+describe('ParsedIngredientSchema', () => {
+  const parsedIngredient = {
+    quantity: 1,
+    quantity2: null,
+    unitOfMeasureID: 'cup',
+    unitOfMeasure: 'cup',
+    description: 'flour',
+    isGroupHeader: false,
+  }
+
+  it('rejects negative quantities', () => {
+    expect(() => ParsedIngredientSchema.parse({ ...parsedIngredient, quantity: -1 })).toThrow()
+    expect(() => ParsedIngredientSchema.parse({ ...parsedIngredient, quantity2: -1 })).toThrow()
+  })
+})
 
 describe('IngredientItemSchema', () => {
   it('should validate a valid ingredient item', () => {

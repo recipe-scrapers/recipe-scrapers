@@ -152,6 +152,29 @@ describe('scrapeRecipe', () => {
     expect(recipe.ingredients[0]?.items.length).toBe(2)
   })
 
+  it('preserves parsed description measurements when enabled', async () => {
+    const recipe = await scrapeRecipe(
+      html.replace('"1 cup water", "1 tsp salt"', '"1 pound beef, cut into 1 1/2-inch cubes"'),
+      UNSUPPORTED_URL,
+      { parseIngredients: { descriptionMeasurements: true } },
+    )
+
+    expect(recipe.ingredients[0]?.items[0]?.parsed?.descriptionMeasurements).toEqual([
+      {
+        quantity: 1.5,
+        quantity2: null,
+        unitOfMeasureID: 'inch',
+        unitOfMeasure: 'inch',
+        unitType: 'length',
+        text: '1 1/2-inch',
+        startIndex: 15,
+        endIndex: 25,
+        sourceStartIndex: 23,
+        sourceEndIndex: 33,
+      },
+    ])
+  })
+
   it('throws for unsupported hosts when wild mode is disabled', async () => {
     await expect(scrapeRecipe(html, UNSUPPORTED_URL, { wildMode: false })).rejects.toThrow(
       "The website 'unsupported.example' is not currently supported.",

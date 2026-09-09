@@ -69,6 +69,10 @@ export interface ScraperOptions {
    * @example
    * // Enable with custom options
    * { parseIngredients: { normalizeUOM: true } }
+   *
+   * @example
+   * // Include quantity/unit pairs embedded in ingredient descriptions
+   * { parseIngredients: { descriptionMeasurements: true } }
    */
   parseIngredients?: boolean | ParseIngredientOptions
   /**

@@ -13,6 +13,20 @@ import { zHttpUrl, zNonEmptyArray, zPositiveInteger, zString } from './common.sc
  */
 export const RECIPE_SCHEMA_VERSION = '1.0.0' as const
 
+/** A quantity and unit found within a parsed ingredient description. */
+export const DescriptionMeasurementSchema = z.object({
+  quantity: z.number().nonnegative(),
+  quantity2: z.number().nonnegative().nullable(),
+  unitOfMeasureID: z.string(),
+  unitOfMeasure: z.string(),
+  unitType: z.enum(['volume', 'mass', 'length', 'count', 'other']).nullable(),
+  text: z.string(),
+  startIndex: z.int().nonnegative(),
+  endIndex: z.int().nonnegative(),
+  sourceStartIndex: z.int().nonnegative().nullable(),
+  sourceEndIndex: z.int().nonnegative().nullable(),
+})
+
 /**
  * Schema for a parsed ingredient from the parse-ingredient library.
  * This represents the structured data extracted from an ingredient string.
@@ -20,10 +34,10 @@ export const RECIPE_SCHEMA_VERSION = '1.0.0' as const
  */
 export const ParsedIngredientSchema = z.object({
   /** The primary quantity (the lower quantity in a range, if applicable) */
-  quantity: z.number().nullable(),
+  quantity: z.number().nonnegative().nullable(),
   /** The secondary quantity (the upper quantity in a range, or null if not
    * applicable) */
-  quantity2: z.number().nullable(),
+  quantity2: z.number().nonnegative().nullable(),
   /** The unit of measure identifier (normalized key) */
   unitOfMeasureID: z.string().nullable(),
   /** The unit of measure as written in the ingredient string */
@@ -32,6 +46,8 @@ export const ParsedIngredientSchema = z.object({
   description: z.string(),
   /** Whether the "ingredient" is actually a group header, e.g. "For icing:" */
   isGroupHeader: z.boolean(),
+  /** Quantity/unit pairs found within the ingredient description */
+  descriptionMeasurements: z.array(DescriptionMeasurementSchema).optional(),
 })
 
 /**
