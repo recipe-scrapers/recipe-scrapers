@@ -108,7 +108,7 @@ export interface RecipeData {
    */
   image: string
   /**
-   * The canonical URL for the scraped recipe.
+   * The canonical URL for the extracted recipe.
    * The canonical URL is the direct URL (defined by the website) at which the
    * recipe can be found. This URL will generally not contain any query
    * parameters or fragments, except those required to load the recipe.
@@ -295,9 +295,9 @@ export interface RecipeData {
 }
 
 /**
- * The fields of a recipe that can be extracted by scraping the HTML.
+ * The fields of a recipe that can be extracted from the supplied HTML.
  * The 'host' field is omitted because it is a static field
- * that is not scraped.
+ * that is not extracted.
  */
 export type RecipeFields = Omit<RecipeData, 'host'>
 

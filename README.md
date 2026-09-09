@@ -5,12 +5,19 @@
 [![license](https://img.shields.io/npm/l/recipe-scrapers.svg?style=flat-square)](LICENSE)
 [![All Contributors](https://img.shields.io/github/all-contributors/recipe-scrapers/recipe-scrapers?color=ee8449&style=flat-square)](#contributors)
 
-A TypeScript library for scraping recipe data from various cooking websites. This is a JavaScript port inspired by the Python [recipe-scrapers](https://github.com/hhursev/recipe-scrapers) library.
+Recipe Scrapers is a TypeScript library for extracting structured recipe data
+from HTML. It supports Schema.org, OpenGraph, and site-specific extraction, then
+normalizes and validates the result as a consistent recipe object.
+
+The project name preserves its lineage with the Python
+[recipe-scrapers](https://github.com/hhursev/recipe-scrapers) library that
+inspired this port.
 
 ## Features
 
-- Extract structured recipe data from cooking websites
-- Support for many popular recipe sites
+- Extract and normalize recipe data from supplied HTML
+- Support Schema.org, OpenGraph, and site-specific page structures
+- Select host-specific extraction logic from the supplied recipe URL
 - Built with TypeScript for better developer experience
 - Comprehensive test coverage
 
@@ -35,12 +42,14 @@ bun add recipe-scrapers cheerio zod
 ```typescript
 import { getScraper, scrapeRecipe } from 'recipe-scrapers'
 
-const html = `<html>The html to scrape...</html>`
-const url = 'https://allrecipes.com/recipe/example'
+// Acquire the HTML using your own HTTP client, browser, cache, or fixture.
+const html = `<html>The recipe-page HTML to parse...</html>`
+// The URL selects the extraction implementation; it is not fetched.
+const url = 'https://recipes.example/recipes/tomato-soup'
 
-// Get a scraper for a specific URL
-// This function throws by default if a scraper does not exist.
-const MyScraper = getScraper(url)
+// Use generic Schema.org extraction for this unregistered example host.
+// Without wildMode, getScraper throws when a host is not registered.
+const MyScraper = getScraper(url, { wildMode: true })
 const scraper = new MyScraper(html, url, /* { ...options } */)
 
 // Get the recipe data
@@ -48,9 +57,6 @@ const rawRecipe = await scraper.toRecipeObject()
 
 // Get the schema validated recipe data
 const validatedRecipe = await scraper.parse()
-
-// Enable fallback mode for unsupported hosts
-const FallbackScraper = getScraper(url, { wildMode: true })
 
 // One-shot helper (wild mode is enabled by default)
 const parsed = await scrapeRecipe(html, url)
@@ -211,7 +217,7 @@ interface ScraperOptions {
    */
   fallbackYield?: string
   /**
-   * Whether link scraping is enabled.
+   * Whether link extraction is enabled.
    * @default false
    */
   linksEnabled?: boolean
@@ -273,13 +279,17 @@ the `notes` field is omitted.
 
 ## Supported Sites
 
-This library supports recipe extraction from various popular cooking websites. The scraper automatically detects the appropriate scraper based on the URL.
+This library supports recipe extraction for various popular cooking websites.
+It uses the supplied URL to select the appropriate extraction implementation,
+but it does not visit that URL.
 
 Supported hosts are registered in [src/scrapers/_index.ts](./src/scrapers/_index.ts), split between custom scrapers and Schema.org-only hosts.
 
-## Copyright and Usage
+## Acquiring HTML Responsibly
 
-_**This library is for educational and personal use. Please respect the robots.txt files and terms of service of the websites you scrape.**_
+This library only processes HTML supplied by the caller. If you acquire HTML
+from a third-party website, you are responsible for complying with that site's
+terms, robots directives, copyright restrictions, and applicable law.
 
 ## Development
 
@@ -363,7 +373,7 @@ import type { RecipeFields } from '@/types/recipe.interface'
 
 export class NewSiteScraper extends AbstractScraper {
   static host() {
-    return 'www.newsite.com'
+    return 'recipes.example'
   }
 
   extractors = {

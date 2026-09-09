@@ -1,6 +1,9 @@
 # Recipe Scrapers
 
-Recipe Scrapers is a TypeScript library that turns recipe-page HTML from cooking websites into a normalized recipe object.
+Recipe Scrapers is a TypeScript library that turns caller-supplied recipe-page
+HTML into a normalized recipe object. It does not fetch or crawl pages. The
+caller also supplies the source URL, which selects host-specific extraction
+logic and provides recipe metadata.
 
 ## Language
 
@@ -13,8 +16,10 @@ The validated, JSON-serializable representation of a recipe returned to library 
 _Avoid_: Recipe data when referring to the public output.
 
 **Scraper**:
-An extraction implementation selected for a host that turns a Recipe Page into a Recipe Object.
-_Avoid_: Parser, crawler, spider.
+The compatibility-oriented API name for an extraction implementation selected
+for a Host. A Scraper reads a supplied Recipe Page and produces a Recipe Object;
+it does not retrieve the page.
+_Avoid_: Crawler, spider, HTTP client; scraping as a verb when extraction is meant.
 
 **Host**:
 The normalized hostname from a Recipe Page URL used to choose a Scraper.
@@ -101,5 +106,7 @@ _Avoid_: Snapshot unless referring to a snapshot testing mechanism.
 ## Flagged ambiguities
 
 - "HTML" can mean the raw markup string or the broader **Recipe Page**; use **Recipe Page** when the URL and host-selection behavior matter.
-- "Parser" can mean ingredient parsing, schema validation, or scraping; use **Scraper**, **Extractor**, **Parsed Ingredient**, or **Validation** instead.
+- "Scraper" is retained in API and architecture names for compatibility with the Python project; in general prose, prefer **extraction** for what this library does.
+- "Parser" can mean ingredient parsing, HTML parsing, or schema validation; use **Scraper**, **Extractor**, **Parsed Ingredient**, or **Validation** when one of those meanings is intended.
+- "Scraping" may imply retrieving or crawling pages. Use **extraction** for library behavior and describe HTML acquisition separately as caller-owned behavior.
 - "Recipe data" can mean internal extraction state or public output; use **Recipe Object** for the validated consumer-facing result.

@@ -1,10 +1,12 @@
 {
   "name": "recipe-scrapers",
   "version": "2.0.0",
-  "description": "A TypeScript library for scraping recipe data from various cooking websites",
+  "description": "A TypeScript library for extracting and validating structured recipe data from HTML",
   "keywords": [
     "cooking",
+    "extractor",
     "food",
+    "html",
     "parser",
     "recipe",
     "scraper"

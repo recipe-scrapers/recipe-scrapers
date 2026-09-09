@@ -1,6 +1,9 @@
 # Instructions for Recipe Scrapers
 
-You are helping with a TypeScript project that scrapes recipe data from various cooking websites. The project extracts structured recipe information from HTML pages using multiple extraction methods.
+You are helping with a TypeScript recipe-extraction library. It turns HTML and
+a source URL supplied by the caller into normalized recipe data using multiple
+extraction methods. The library does not fetch, crawl, or download pages; the
+URL selects the appropriate host-specific extraction logic.
 
 ## Project Structure
 

@@ -41,7 +41,7 @@ export interface ScraperOptions {
    */
   fallbackYield?: string
   /**
-   * Whether link scraping is enabled.
+   * Whether link extraction is enabled.
    * @default false
    */
   linksEnabled?: boolean

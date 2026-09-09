@@ -312,7 +312,7 @@ export abstract class AbstractScraper {
   }
 
   /**
-   * Scrape's the recipe and caches the data.
+   * Extracts the recipe and caches the data.
    */
   public async scrape(): Promise<RecipeData> {
     if (this.recipeData) {

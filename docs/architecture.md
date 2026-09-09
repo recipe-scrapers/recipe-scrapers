@@ -3,7 +3,9 @@
 ## Overview
 
 Recipe Scrapers is a TypeScript library that extracts structured recipe data
-from HTML. It combines:
+from caller-supplied HTML. The supplied URL selects host-specific logic and
+provides metadata; no part of the extraction pipeline fetches or crawls pages.
+It combines:
 
 - generic extractor plugins (Schema.org and OpenGraph),
 - optional site-specific scraper overrides, and
@@ -27,14 +29,17 @@ The public entry point is `src/index.ts`.
 
 ### Typical Usage
 
+HTML acquisition is caller-owned. For example, a consumer can use `fetch`, a
+browser, a cache, or a saved fixture before passing the resulting markup to the
+library:
+
 ```typescript
 import { scrapeRecipe } from 'recipe-scrapers'
 
-const html = await fetch('https://cooking.nytimes.com/recipes/...').then((r) =>
-  r.text(),
-)
+const url = 'https://recipes.example/recipes/tomato-soup'
+const html = await fetch(url).then((response) => response.text())
 
-const recipe = await scrapeRecipe(html, 'https://cooking.nytimes.com/recipes/...')
+const recipe = await scrapeRecipe(html, url)
 console.log(recipe.title)
 console.log(recipe.ingredients)
 ```
@@ -180,7 +185,7 @@ import type { RecipeFields } from '@/types/recipe.interface'
 
 export class MySite extends AbstractScraper {
   static host() {
-    return 'example.com'
+    return 'recipes.example'
   }
 
   extractors = {

@@ -50,7 +50,7 @@ export class SimplyRecipes extends AbstractScraper {
   }
 
   /**
-   * Scrape and normalize each step under
+   * Extract and normalize each step under
    * div.structured-project__steps > ol > li
    */
   protected instructions(): RecipeFields['instructions'] {
