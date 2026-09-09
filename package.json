@@ -1,8 +1,19 @@
 {
   "name": "recipe-scrapers",
   "version": "1.12.1",
-  "license": "MIT",
   "description": "A TypeScript library for scraping recipe data from various cooking websites",
+  "keywords": [
+    "cooking",
+    "food",
+    "parser",
+    "recipe",
+    "scraper"
+  ],
+  "homepage": "https://github.com/recipe-scrapers/recipe-scrapers#readme",
+  "bugs": {
+    "url": "https://github.com/recipe-scrapers/recipe-scrapers/issues"
+  },
+  "license": "MIT",
   "author": {
     "name": "Justin Williams",
     "url": "https://github.com/nerdstep"
@@ -10,21 +21,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/recipe-scrapers/recipe-scrapers.git"
-  },
-  "homepage": "https://github.com/recipe-scrapers/recipe-scrapers#readme",
-  "bugs": {
-    "url": "https://github.com/recipe-scrapers/recipe-scrapers/issues"
-  },
-  "type": "module",
-  "module": "dist/index.mjs",
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.mts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs"
-    }
   },
   "files": [
     "dist",
@@ -35,29 +31,28 @@
     "LICENSE",
     "README.md"
   ],
-  "keywords": [
-    "recipe",
-    "scraper",
-    "parser",
-    "food",
-    "cooking"
-  ],
+  "type": "module",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
   "scripts": {
     "build": "tsdown",
-    "test": "bun test",
+    "test": "bun test --parallel --dots --bail",
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",
-    "lint": "oxlint --deny-warnings && bun fmt:check && bun run ts:check",
+    "lint": "oxlint --deny-warnings && bun run fmt:check && bun run ts:check",
     "lint:fix": "oxlint --fix && oxfmt",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "ts:check": "tsc --noEmit",
-    "prepublishOnly": "bun run lint && bun run build"
-  },
-  "peerDependencies": {
-    "cheerio": "^1",
-    "zod": "^4.5.0"
+    "ts:check": "tsc --noEmit"
   },
   "dependencies": {
     "@standard-schema/spec": "^1.1.0",
@@ -73,7 +68,12 @@
     "schema-dts": "^2.0.0",
     "tsdown": "^0.23.0",
     "typescript": "^7.0.2",
-    "valibot": "^1.4.2",
+    "valibot": "^1.5.0",
     "zod": "^4.5.4"
-  }
+  },
+  "peerDependencies": {
+    "cheerio": "^1",
+    "zod": "^4.5.0"
+  },
+  "packageManager": "bun@1.4.2"
 }

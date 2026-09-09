@@ -5,7 +5,7 @@
   "semi": false,
   "singleQuote": true,
   "sortImports": true,
-  "sortPackageJson": false,
+  "sortPackageJson": true,
   "trailingComma": "all",
   "overrides": [
     {
