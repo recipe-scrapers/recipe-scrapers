@@ -8,20 +8,39 @@ import { parseJsonWithRepair } from '@/utils/json'
 import { stringsToNotes } from '@/utils/notes'
 import { normalizeString } from '@/utils/parsing'
 
-const nextDataSchema = z.object({
-  props: z.object({
-    pageProps: z.object({
-      recipe: z.object({
-        tips: z.array(z.string()).optional(),
-      }),
+const legacyRecipeSchema = z.object({
+  tips: z.array(z.string()).optional(),
+})
+
+const scoopTipSchema = z.object({
+  details: z.object({
+    doc: z.object({
+      content: z.array(
+        z.object({
+          content: z.array(z.object({ text: z.string().optional() })).optional(),
+        }),
+      ),
     }),
   }),
 })
 
-type RecipePageData = z.infer<typeof nextDataSchema>['props']['pageProps']['recipe']
+const nextDataSchema = z.object({
+  props: z.object({
+    pageProps: z.object({
+      recipe: legacyRecipeSchema.optional(),
+      scoopRecipe: z.object({ tips: z.array(scoopTipSchema).optional() }).optional(),
+    }),
+  }),
+})
+
+function scoopTipText(tip: z.infer<typeof scoopTipSchema>): string {
+  return tip.details.doc.content
+    .map((block) => block.content?.map(({ text = '' }) => text).join('') ?? '')
+    .join(' ')
+}
 
 export class NYTimes extends AbstractScraper {
-  private recipePageData: RecipePageData | null | undefined = undefined
+  private recipeTips: string[] | null | undefined = undefined
 
   static host() {
     return 'cooking.nytimes.com'
@@ -57,33 +76,34 @@ export class NYTimes extends AbstractScraper {
     return this.domNotes()
   }
 
-  private getRecipePageData(): RecipePageData | null {
-    if (this.recipePageData !== undefined) {
-      return this.recipePageData
+  private getPayloadTips(): string[] | null {
+    if (this.recipeTips !== undefined) {
+      return this.recipeTips
     }
 
     const raw = this.$('#__NEXT_DATA__').html()
 
     if (!raw) {
       this.logger.warn('Could not find NYTimes __NEXT_DATA__ payload')
-      this.recipePageData = null
-      return this.recipePageData
+      this.recipeTips = null
+      return this.recipeTips
     }
 
     try {
       const { data } = parseJsonWithRepair(raw)
       const parsed = nextDataSchema.parse(data)
-      this.recipePageData = parsed.props.pageProps.recipe
+      const { recipe, scoopRecipe } = parsed.props.pageProps
+      this.recipeTips = recipe?.tips ?? scoopRecipe?.tips?.map(scoopTipText) ?? null
     } catch (error) {
       this.logger.warn('Failed to parse NYTimes recipe payload', error)
-      this.recipePageData = null
+      this.recipeTips = null
     }
 
-    return this.recipePageData
+    return this.recipeTips
   }
 
   private payloadNotes(): RecipeData['notes'] {
-    const tips = this.getRecipePageData()?.tips ?? []
+    const tips = this.getPayloadTips() ?? []
     const values = tips.map(normalizeString).filter((value) => value.length > 0)
 
     if (values.length === 0) {
