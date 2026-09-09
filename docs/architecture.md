@@ -330,8 +330,10 @@ Fixture format:
 2. Extend `AbstractScraper`
 3. Add extractor overrides only where needed
 4. Register in `src/scrapers/_index.ts`
-5. Add fixtures under `test-data/<host>/`
-6. Run tests
+5. Add at least one paired `*.testhtml` and `*.json` fixture under
+   `test-data/<primary-host>/`; aliases reuse the primary Host's fixtures
+6. Run `bun test src/scrapers/__tests__/scrapers.test.ts`; the fixture catalog
+   verifies registration, aliases, fixture pairing, and fixture-driven options
 
 ### Add a New Plugin
 
