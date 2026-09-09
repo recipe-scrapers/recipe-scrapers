@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/2.0.0...3.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ingredients:** Consumers using `parseIngredients` must install `parse-ingredient` separately.
+
+### Features
+
+* **ingredients:** make parse-ingredient an optional peer dependency ([71a82e6](https://github.com/recipe-scrapers/recipe-scrapers/commit/71a82e667fea7e0678eb66dd4f37e62848a3b060))
+
+
+### Bug Fixes
+
+* **scrapers:** support new nytimes `tips` format ([71a82e6](https://github.com/recipe-scrapers/recipe-scrapers/commit/71a82e667fea7e0678eb66dd4f37e62848a3b060))
+
 ## [2.0.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/1.12.1...2.0.0) (2026-09-09)
 
 
