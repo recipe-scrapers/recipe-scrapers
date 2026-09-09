@@ -1,6 +1,5 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import * as cheerio from 'cheerio'
-import type { ParseIngredientOptions } from 'parse-ingredient'
 
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
 
@@ -25,6 +24,7 @@ import {
   type SafeParseResult,
   safeParseWithStandardSchema,
 } from './schema-adapter'
+import type { IngredientParserOptions } from './types/ingredient-parser.interface'
 import type { RecipeEvidence, RecipeEvidenceReason } from './types/recipe-evidence.interface'
 import type { RecipeData, RecipeFields, RecipeObject } from './types/recipe.interface'
 import type { ScraperOptions } from './types/scraper.interface'
@@ -74,7 +74,7 @@ export abstract class AbstractScraper {
 
     // Add ingredient parser if enabled
     if (parseIngredients) {
-      const parserOptions: ParseIngredientOptions = isPlainObject(parseIngredients)
+      const parserOptions: IngredientParserOptions = isPlainObject(parseIngredients)
         ? parseIngredients
         : {}
       basePostProcessors.push(new IngredientParserPlugin(parserOptions))

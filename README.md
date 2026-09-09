@@ -35,6 +35,13 @@ pnpm add recipe-scrapers cheerio zod
 bun add recipe-scrapers cheerio zod
 ```
 
+Ingredient parsing is optional. Install its peer dependency only when enabling
+the `parseIngredients` option:
+
+```bash
+npm install parse-ingredient
+```
+
 ## Usage
 
 ### Basic Usage
@@ -237,7 +244,7 @@ interface ScraperOptions {
    * @see https://github.com/jakeboone02/parse-ingredient
    * @default false
    */
-  parseIngredients?: boolean | ParseIngredientOptions
+  parseIngredients?: boolean | IngredientParserOptions
   /**
    * Enable recipe note parsing from supported HTML recipe blocks.
    * When enabled, recipes may include a `notes` field containing

@@ -20,7 +20,7 @@ describe('IngredientParserPlugin', () => {
   })
 
   describe('process', () => {
-    it('should parse a simple ingredient', () => {
+    it('should parse a simple ingredient', async () => {
       const ingredients: Ingredients = [
         {
           name: null,
@@ -28,7 +28,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = plugin.process('ingredients', ingredients) as Ingredients
+      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
 
       expect(result).toEqual([
         {
@@ -50,7 +50,7 @@ describe('IngredientParserPlugin', () => {
       ])
     })
 
-    it('should parse ingredients with ranges', () => {
+    it('should parse ingredients with ranges', async () => {
       const ingredients: Ingredients = [
         {
           name: null,
@@ -58,7 +58,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = plugin.process('ingredients', ingredients) as Ingredients
+      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 1,
@@ -68,7 +68,7 @@ describe('IngredientParserPlugin', () => {
       })
     })
 
-    it('should parse ingredients without units', () => {
+    it('should parse ingredients without units', async () => {
       const ingredients: Ingredients = [
         {
           name: null,
@@ -76,7 +76,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = plugin.process('ingredients', ingredients) as Ingredients
+      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
 
       expect(result[0].items[0].parsed).toEqual({
         quantity: 3,
@@ -88,7 +88,7 @@ describe('IngredientParserPlugin', () => {
       })
     })
 
-    it('should handle fractions', () => {
+    it('should handle fractions', async () => {
       const ingredients: Ingredients = [
         {
           name: null,
@@ -96,7 +96,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = plugin.process('ingredients', ingredients) as Ingredients
+      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 0.5,
@@ -106,7 +106,7 @@ describe('IngredientParserPlugin', () => {
       })
     })
 
-    it('should handle mixed numbers', () => {
+    it('should handle mixed numbers', async () => {
       const ingredients: Ingredients = [
         {
           name: null,
@@ -114,7 +114,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = plugin.process('ingredients', ingredients) as Ingredients
+      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 1.5,
@@ -123,7 +123,7 @@ describe('IngredientParserPlugin', () => {
       })
     })
 
-    it('should preserve group names', () => {
+    it('should preserve group names', async () => {
       const ingredients: Ingredients = [
         {
           name: 'For the sauce',
@@ -135,7 +135,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = plugin.process('ingredients', ingredients) as Ingredients
+      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
 
       expect(result[0].name).toBe('For the sauce')
       expect(result[1].name).toBe('For the pasta')
@@ -143,7 +143,7 @@ describe('IngredientParserPlugin', () => {
       expect(result[1].items).toHaveLength(1)
     })
 
-    it('should handle group headers in ingredient text', () => {
+    it('should handle group headers in ingredient text', async () => {
       const ingredients: Ingredients = [
         {
           name: null,
@@ -151,20 +151,20 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = plugin.process('ingredients', ingredients) as Ingredients
+      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
 
       expect(result[0].items[0].parsed?.isGroupHeader).toBe(true)
     })
 
-    it('should return non-ingredient values unchanged', () => {
+    it('should return non-ingredient values unchanged', async () => {
       const title = 'My Recipe'
-      const result = plugin.process('title', title)
+      const result = await plugin.process('title', title)
       expect(result).toBe(title)
     })
 
-    it('should return non-array ingredients unchanged', () => {
+    it('should return non-array ingredients unchanged', async () => {
       const invalidValue = 'not an array'
-      const result = plugin.process('ingredients', invalidValue)
+      const result = await plugin.process('ingredients', invalidValue)
       expect(result).toBe(invalidValue)
     })
   })
@@ -174,7 +174,7 @@ describe('IngredientParserPlugin', () => {
       normalizeUOM: true,
     })
 
-    it('should normalize unit of measure', () => {
+    it('should normalize unit of measure', async () => {
       const ingredients: Ingredients = [
         {
           name: null,
@@ -182,7 +182,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = pluginWithNormalize.process('ingredients', ingredients) as Ingredients
+      const result = (await pluginWithNormalize.process('ingredients', ingredients)) as Ingredients
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 2,

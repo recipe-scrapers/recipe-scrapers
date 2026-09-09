@@ -59,14 +59,14 @@
   "dependencies": {
     "@standard-schema/spec": "^1.1.0",
     "@standard-schema/utils": "^0.3.0",
-    "iso8601-duration": "^2.1.4",
-    "parse-ingredient": "^3.0.0"
+    "iso8601-duration": "^2.1.4"
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",
     "cheerio": "^1.2.0",
     "oxfmt": "^0.67.0",
     "oxlint": "^1.82.0",
+    "parse-ingredient": "^3.0.0",
     "schema-dts": "^2.0.0",
     "tsdown": "^0.23.0",
     "typescript": "^7.0.2",
@@ -75,7 +75,13 @@
   },
   "peerDependencies": {
     "cheerio": "^1",
+    "parse-ingredient": "^3.0.0",
     "zod": "^4.5.0"
+  },
+  "peerDependenciesMeta": {
+    "parse-ingredient": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=22"
