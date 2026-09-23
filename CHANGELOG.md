@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.0.0...3.1.0) (2026-09-23)
+
+
+### Features
+
+* **scapers:** add 244 schema-only host entries ([24fca99](https://github.com/recipe-scrapers/recipe-scrapers/commit/24fca99ee54dc08bba656fd5625cf1cfeec5ffa2))
+* **scrapers:** add maangchi.com ([25ffd20](https://github.com/recipe-scrapers/recipe-scrapers/commit/25ffd2039bc91c4904c70db1a522a3f2c106dd9b))
+
+
+### Code Refactoring
+
+* **scrapers:** re-use existing utils ([3ed0d50](https://github.com/recipe-scrapers/recipe-scrapers/commit/3ed0d50713c01535a8dadae24e4c923b3c7d8c95))
+
 ## [3.0.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/2.0.0...3.0.0) (2026-09-09)
 
 
