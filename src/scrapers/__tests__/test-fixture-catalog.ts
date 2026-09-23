@@ -7,6 +7,7 @@ import type { ScraperOptions } from '@/types/scraper.interface'
 type ScraperClass = {
   new (html: string, url: string, options?: ScraperOptions): AbstractScraper
   host(): string
+  schemaOrgOnly?: boolean
 }
 
 type RecipeFixture = Omit<RecipeObject, 'schemaVersion'>
@@ -136,7 +137,7 @@ export async function loadTestFixtureCatalog(
   for (const supportedHost of catalog) {
     supportedHost.aliases.sort()
 
-    if (supportedHost.fixtures.length === 0) {
+    if (supportedHost.fixtures.length === 0 && supportedHost.scraperClass.schemaOrgOnly !== true) {
       throw new Error(`Primary host '${supportedHost.host}' requires at least one fixture pair.`)
     }
   }
