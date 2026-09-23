@@ -5,10 +5,10 @@ import type { Ingredients, RecipeFields } from '@/types/recipe.interface'
 import {
   createIngredientGroup,
   createIngredientItem,
-  flattenIngredients,
-  groupIngredients,
+  regroupExtractedIngredients,
 } from '@/utils/ingredients'
-import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
+import { stringsToInstructions } from '@/utils/instructions'
+import { parseJsonWithRepair } from '@/utils/json'
 import { normalizeString } from '@/utils/parsing'
 
 const recipeIngredientItemSchema = z.object({
@@ -142,7 +142,7 @@ export class AmericasTestKitchen extends AbstractScraper {
       items.push(normalizeString(instruction.fields.content))
     }
 
-    return [createInstructionGroup(null, items.map(createInstructionItem))]
+    return stringsToInstructions(items)
   }
 
   private parseHtmlIngredients(
@@ -152,12 +152,9 @@ export class AmericasTestKitchen extends AbstractScraper {
     const headingSelector = '[class*="RecipeIngredientGroups_group"] > span'
     const ingredientSelector = '[class*="RecipeIngredient"] label'
 
-    if (prevValue && prevValue.length > 0) {
-      const values = flattenIngredients(prevValue)
-      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
-    }
+    if (!prevValue || prevValue.length === 0) return null
 
-    return null
+    return regroupExtractedIngredients(this.$, prevValue, headingSelector, ingredientSelector)
   }
 
   private getRecipeData(): RecipeData | null {
@@ -171,7 +168,8 @@ export class AmericasTestKitchen extends AbstractScraper {
       }
 
       try {
-        const parsed = pagePropsDataSchema.parse(JSON.parse(jsonString))
+        const { data } = parseJsonWithRepair(jsonString)
+        const parsed = pagePropsDataSchema.parse(data)
         this.data = parsed.props.pageProps.data
       } catch (error) {
         this.logger.error('Failed to parse JSON data:', error)

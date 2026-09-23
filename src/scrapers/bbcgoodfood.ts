@@ -1,7 +1,6 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
+import { regroupExtractedIngredients } from '@/utils/ingredients'
 
 export class BBCGoodFood extends AbstractScraper {
   static host() {
@@ -18,12 +17,6 @@ export class BBCGoodFood extends AbstractScraper {
     const headingSelector = '.recipe__ingredients h3'
     const ingredientSelector = '.recipe__ingredients li'
 
-    if (prevValue && prevValue.length > 0) {
-      const values = flattenIngredients(prevValue)
-
-      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
-    }
-
-    throw new NoIngredientsFoundException()
+    return regroupExtractedIngredients(this.$, prevValue, headingSelector, ingredientSelector)
   }
 }

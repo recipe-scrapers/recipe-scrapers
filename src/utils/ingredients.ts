@@ -1,5 +1,6 @@
 import type { CheerioAPI } from 'cheerio'
 
+import { NoIngredientsFoundException } from '@/exceptions'
 import type { IngredientGroup, IngredientItem, Ingredients } from '@/types/recipe.interface'
 
 import { isPlainObject, isString } from './index'
@@ -78,6 +79,23 @@ export function stringsToIngredients(
 ): Ingredients {
   const items = values.map(createIngredientItem)
   return [createIngredientGroup(groupName, items)]
+}
+
+/**
+ * Re-groups previously extracted ingredient values using headings and items
+ * from the page DOM while preserving the extracted values as authoritative.
+ */
+export function regroupExtractedIngredients(
+  $: CheerioAPI,
+  ingredients: Ingredients | undefined,
+  headingSelector: string,
+  ingredientSelector: string,
+): Ingredients {
+  if (!ingredients || ingredients.length === 0) {
+    throw new NoIngredientsFoundException()
+  }
+
+  return groupIngredients($, flattenIngredients(ingredients), headingSelector, ingredientSelector)
 }
 
 export function scoreSentenceSimilarity(first: string, second: string): number {

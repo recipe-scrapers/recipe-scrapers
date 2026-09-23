@@ -2,7 +2,7 @@ import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
-import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
+import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 /**
@@ -69,8 +69,7 @@ export class SimplyRecipes extends AbstractScraper {
         return normalizeString($clone.text())
       })
       .filter((text) => text.length > 0)
-      .map(createInstructionItem)
 
-    return [createInstructionGroup(null, steps)]
+    return stringsToInstructions(steps)
   }
 }

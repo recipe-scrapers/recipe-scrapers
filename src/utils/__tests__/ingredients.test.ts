@@ -2,6 +2,7 @@ import { describe, expect, it } from 'bun:test'
 
 import * as cheerio from 'cheerio'
 
+import { NoIngredientsFoundException } from '@/exceptions'
 import type { Ingredients } from '@/types/recipe.interface'
 
 import {
@@ -12,6 +13,7 @@ import {
   isIngredientGroup,
   isIngredientItem,
   isIngredients,
+  regroupExtractedIngredients,
   scoreSentenceSimilarity,
   stringsToIngredients,
 } from '../ingredients'
@@ -488,5 +490,36 @@ describe('groupIngredients', () => {
         name: 'Topping',
       },
     ])
+  })
+})
+
+describe('regroupExtractedIngredients', () => {
+  it('groups previously extracted values using DOM headings', () => {
+    const $ = cheerio.load(`
+      <h3>For the dough</h3>
+      <li class="ingredient">2 cups all purpose flour</li>
+      <h3>For the filling</h3>
+      <li class="ingredient">1 cup sugar</li>
+    `)
+    const ingredients = stringsToIngredients(['2 cups all-purpose flour', '1 cup sugar'])
+
+    expect(regroupExtractedIngredients($, ingredients, 'h3', '.ingredient')).toEqual([
+      {
+        name: 'For the dough',
+        items: [{ value: '2 cups all-purpose flour' }],
+      },
+      {
+        name: 'For the filling',
+        items: [{ value: '1 cup sugar' }],
+      },
+    ])
+  })
+
+  it('fails extraction when there are no previous ingredient values', () => {
+    const $ = cheerio.load('<div></div>')
+
+    expect(() => regroupExtractedIngredients($, undefined, 'h3', 'li')).toThrow(
+      NoIngredientsFoundException,
+    )
   })
 })

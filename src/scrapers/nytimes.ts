@@ -1,9 +1,8 @@
 import z from 'zod'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeData, RecipeFields } from '@/types/recipe.interface'
-import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
+import { regroupExtractedIngredients } from '@/utils/ingredients'
 import { parseJsonWithRepair } from '@/utils/json'
 import { stringsToNotes } from '@/utils/notes'
 import { normalizeString } from '@/utils/parsing'
@@ -57,13 +56,7 @@ export class NYTimes extends AbstractScraper {
     const headingSelector = 'h3[class*="ingredientgroup_name"]'
     const ingredientSelector = 'li[class*="ingredient"]'
 
-    if (prevValue && prevValue.length > 0) {
-      const values = flattenIngredients(prevValue)
-
-      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
-    }
-
-    throw new NoIngredientsFoundException()
+    return regroupExtractedIngredients(this.$, prevValue, headingSelector, ingredientSelector)
   }
 
   protected override notes(): RecipeData['notes'] {

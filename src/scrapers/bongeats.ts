@@ -1,7 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
-import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
+import { stringsToIngredients } from '@/utils/ingredients'
+import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 export class BongEats extends AbstractScraper {
@@ -21,17 +21,16 @@ export class BongEats extends AbstractScraper {
       return prevValue
     }
 
-    const items = this.$('.recipe-ingredients li')
+    const values = this.$('.recipe-ingredients li')
       .toArray()
       .map((element) => normalizeString(this.$(element).text()))
       .filter((value) => value.length > 0)
-      .map(createIngredientItem)
 
-    if (items.length === 0) {
+    if (values.length === 0) {
       throw new Error('Failed to extract ingredients')
     }
 
-    return [createIngredientGroup(null, items)]
+    return stringsToIngredients(values)
   }
 
   protected instructions(
@@ -41,16 +40,15 @@ export class BongEats extends AbstractScraper {
       return prevValue
     }
 
-    const items = this.$('.recipe-process li')
+    const values = this.$('.recipe-process li')
       .toArray()
       .map((element) => normalizeString(this.$(element).text()))
       .filter((value) => value.length > 0)
-      .map(createInstructionItem)
 
-    if (items.length === 0) {
+    if (values.length === 0) {
       throw new Error('Failed to extract instructions')
     }
 
-    return [createInstructionGroup(null, items)]
+    return stringsToInstructions(values)
   }
 }
