@@ -11,6 +11,41 @@
       "name": null,
       "items": [
         {
+          "value": "1 pound boneless & skinless chicken thighs"
+        },
+        {
+          "value": "½ teaspoon kosher salt"
+        },
+        {
+          "value": "¼ teaspoon ground black pepper"
+        },
+        {
+          "value": "2 inch of white part of dae-pa (or 2 to 3 regular green onions), thinly sliced lengthwise"
+        },
+        {
+          "value": "¼ of small onion (about 2 tablespoons), thinly sliced"
+        },
+        {
+          "value": "2 cups grape seeds oil (or vegetable oil, corn oil) for frying"
+        },
+        {
+          "value": "4 to 5 lettuce leaves"
+        },
+        {
+          "value": "3 to 4 spicy green and red chili peppers (or non-spicy peppers, green and red bell pepper), thinly sliced"
+        }
+      ]
+    },
+    {
+      "name": "For sauce",
+      "items": [
+        {
+          "value": "2 tablespoons grape seeds oil (or vegetable oil)"
+        },
+        {
+          "value": "1 teaspoon crushed chili pepper (or 2 small dried red chili peppers or Korean hot pepper flakes)"
+        },
+        {
           "value": "3 tablespoons soy sauce"
         },
         {
@@ -27,7 +62,12 @@
         },
         {
           "value": "1 teaspoon toasted sesame oil"
-        },
+        }
+      ]
+    },
+    {
+      "name": "For batter",
+      "items": [
         {
           "value": "¼ cup potato starch"
         },
@@ -36,58 +76,111 @@
         },
         {
           "value": "1 large egg"
-        },
-        {
-          "value": "1 teaspoon crushed chili pepper (or 2 small dried red chili peppers or Korean hot pepper flakes)"
         }
       ]
     }
   ],
   "instructions": [
     {
-      "name": null,
+      "name": "Prepare the chicken and onions",
       "items": [
         {
-          "value": "Prepare the chicken and onions"
+          "value": "Pat the chicken thighs dry with paper towels. Score a crosshatch patten on both sides of the chicken pieces."
         },
         {
-          "value": "Pat the chicken thighs dry with paper towels. Score a crosshatch patten on both sides of the chicken pieces. Pound the thighs to an even thickness with a meat tenderizer or with the back of your kitchen knife. Sprinkle both sides with salt and ground black pepper. Set aside or refrigerate until ready to use. Place the shredded green onion and onion in a bowl and add cold water. Let it sit."
+          "value": "Pound the thighs to an even thickness with a meat tenderizer or with the back of your kitchen knife."
         },
         {
-          "value": "Make the sauce"
+          "value": "Sprinkle both sides with salt and ground black pepper."
         },
         {
-          "value": "Heat the vegetable oil in a small pan until it begins to smoke, about 30 seconds to 1 minute. Remove from the heat. Stir in the pepper flakes until they are slightly brown. Strain the oil into a medium sized stainless steel bowl. Add the soy sauce, vinegar, sugar, water, garlic, and sesame oil. Stir well until the sugar is completely dissolved."
+          "value": "Set aside or refrigerate until ready to use."
         },
         {
-          "value": "Make the batter"
+          "value": "Place the shredded green onion and onion in a bowl and add cold water. Let it sit."
+        }
+      ]
+    },
+    {
+      "name": "Make the sauce",
+      "items": [
+        {
+          "value": "Heat the vegetable oil in a small pan until it begins to smoke, about 30 seconds to 1 minute."
         },
         {
-          "value": "Prepare a shallow and wide bowl (I use my large, shallow plastic bowl). Add the starch and salt. Crack in an egg. Mix well with a spoon or a whisk."
+          "value": "Remove from the heat. Stir in the pepper flakes until they are slightly brown. Strain the oil into a medium sized stainless steel bowl."
         },
         {
-          "value": "Fry the chicken"
+          "value": "Add the soy sauce, vinegar, sugar, water, garlic, and sesame oil."
         },
         {
-          "value": "Heat the oil in a large, deep pan over medium-high heat until it reaches about 340° to 350° F. If you don't have a kitchen thermometer, test the oil temperature by dipping a tip of a chicken piece into it. If it bubbles, it's ready. Dip a chicken piece into the batter and wipe off the excess with the side of the bowl. Add it to the oil one piece at a time, working in batches if your pan is small. My 12 inch large pan is perfect for frying 4 pieces of chicken thighs at a time. Repeat with the rest of the chicken pieces until all are in the pan. Deep-fry, turning the chicken with tongs, until all sides are light golden brown and crunchy, about 5 to 6 minutes. As each piece is done, transfer it to a strainer over a bowl to drain the excess oil. Reheat the oil for about 1 minute and add all the chicken again. It will look a little soggy at first. Deep-fry, turning occasionally, until all the chicken pieces are dark golden brown and very crunchy, another 5 to 6 minutes. Transfer the chicken pieces to the strainer over the bowl to drain. Let them cool for a few minutes until you can handle them."
+          "value": "Stir well until the sugar is completely dissolved."
+        }
+      ]
+    },
+    {
+      "name": "Make the batter",
+      "items": [
+        {
+          "value": "Prepare a shallow and wide bowl (I use my large, shallow plastic bowl)."
         },
         {
-          "value": "Serve"
+          "value": "Add the starch and salt. Crack in an egg."
         },
         {
-          "value": "Add the sliced chili pepper to the sauce and mix it together. Drain the soaking green onion and onion through a strainer set in your sink. Rinse it under cold running water, turning it over by hand for 10 seconds. Drain well. Cut the chicken into bite size pieces and put them on a large plate lined with the lettuce. Spoon the peppers out of the sauce and put them on top of the chicken. Add the shredded green onion and onion and gently pour the rest of the sauce all over top. Serve right away."
+          "value": "Mix well with a spoon or a whisk."
+        }
+      ]
+    },
+    {
+      "name": "Fry the chicken",
+      "items": [
+        {
+          "value": "Heat the oil in a large, deep pan over medium-high heat until it reaches about 340° to 350° F. If you don’t have a kitchen thermometer, test the oil temperature by dipping a tip of a chicken piece into it. If it bubbles, it’s ready."
+        },
+        {
+          "value": "Dip a chicken piece into the batter and wipe off the excess with the side of the bowl. Add it to the oil one piece at a time, working in batches if your pan is small. My 12 inch large pan is perfect for frying 4 pieces of chicken thighs at a time. Repeat with the rest of the chicken pieces until all are in the pan."
+        },
+        {
+          "value": "Deep-fry, turning the chicken with tongs, until all sides are light golden brown and crunchy, about 5 to 6 minutes. As each piece is done, transfer it to a strainer over a bowl to drain the excess oil."
+        },
+        {
+          "value": "Reheat the oil for about 1 minute and add all the chicken again. It will look a little soggy at first. Deep-fry, turning occasionally, until all the chicken pieces are dark golden brown and very crunchy, another 5 to 6 minutes."
+        },
+        {
+          "value": "Transfer the chicken pieces to the strainer over the bowl to drain. Let them cool for a few minutes until you can handle them."
+        }
+      ]
+    },
+    {
+      "name": "Serve",
+      "items": [
+        {
+          "value": "Add the sliced chili pepper to the sauce and mix it together."
+        },
+        {
+          "value": "Drain the soaking green onion and onion through a strainer set in your sink. Rinse it under cold running water, turning it over by hand for 10 seconds. Drain well."
+        },
+        {
+          "value": "Cut the chicken into bite size pieces and put them on a large plate lined with the lettuce. Spoon the peppers out of the sauce and put them on top of the chicken."
+        },
+        {
+          "value": "Add the shredded green onion and onion and gently pour the rest of the sauce all over top."
+        },
+        {
+          "value": "Serve right away."
         }
       ]
     }
   ],
   "language": "en-US",
   "prepTime": 20,
-  "ratings": 0,
-  "ratingsCount": 0,
+  "ratings": 5,
+  "ratingsCount": 233,
   "siteName": "Cooking Korean food with Maangchi",
   "title": "Pepper fried chicken (Yuringi: 유린기)",
   "totalTime": 34,
-  "yields": "3 servings",
+  "yields": "4 servings",
   "category": ["Main"],
   "cuisine": ["Korean"],
   "dietaryRestrictions": [],

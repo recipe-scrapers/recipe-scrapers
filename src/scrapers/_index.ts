@@ -8,6 +8,7 @@ import { BrianLagerstrom } from './brianlagerstrom'
 import { DamnDelicious } from './damndelicious'
 import { Epicurious } from './epicurious'
 import { InspiredTaste } from './inspiredtaste'
+import { Maangchi } from './maangchi'
 import { MyPlate } from './myplate'
 import { NYTimes } from './nytimes'
 import { OnceUponAChef } from './onceuponachef'
@@ -35,6 +36,7 @@ const customScraperClasses = [
   DamnDelicious,
   Epicurious,
   InspiredTaste,
+  Maangchi,
   MyPlate,
   SimplyRecipes,
   NYTimes,
@@ -72,7 +74,6 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'indianhealthyrecipes.com',
   'joyfoodsunshine.com',
   'lecremedelacrumb.com',
-  'maangchi.com',
   'marmiton.org',
   'marthastewart.com',
   'natashaskitchen.com',
