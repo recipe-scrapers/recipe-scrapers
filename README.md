@@ -175,6 +175,20 @@ Inspection does not populate the full recipe cache, so calling `parse()` or
 
 By default, recipe data is validated with the built-in Zod schema.
 
+Browser code that only needs schemas, recipe types, safe-parse helpers, or
+`parseYields` should use the browser-safe `recipe-scrapers/schema` subpath. It
+does not import Cheerio or the scraping runtime.
+
+```typescript
+import {
+  RECIPE_SCHEMA_VERSION,
+  RecipeObjectSchema,
+  type RecipeObject,
+} from 'recipe-scrapers/schema'
+
+const result = RecipeObjectSchema.safeParse(candidate)
+```
+
 You can also validate with any [Standard Schema](https://github.com/standard-schema/standard-schema) compatible schema (for example Valibot).
 
 ```typescript

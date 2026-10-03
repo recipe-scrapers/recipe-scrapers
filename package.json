@@ -34,6 +34,7 @@
     "README.md"
   ],
   "type": "module",
+  "sideEffects": false,
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
@@ -42,11 +43,15 @@
     ".": {
       "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.mts",
+      "import": "./dist/schema.mjs"
     }
   },
   "scripts": {
     "build": "tsdown",
-    "test": "bun test --parallel --dots --bail",
+    "test": "bun run build && bun test --parallel --dots --bail",
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",
