@@ -56,7 +56,7 @@
   "scripts": {
     "build": "tsdown",
     "test": "bun test --parallel --dots --bail",
-    "test:browser-exports": "bun run build && bun scripts/check-browser-entries.ts",
+    "test:browser-exports": "bun scripts/check-browser-entries.ts",
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",

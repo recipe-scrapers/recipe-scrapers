@@ -36,17 +36,5 @@ jobs:
       - name: Build 🚧
         run: bun run build
 
-  browser-safe-exports:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛰️
-        uses: actions/checkout@v7
-
-      - name: Install bun 🍔
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install dependencies 📦
-        run: bun install
-
       - name: Verify browser-safe exports 🌐
         run: bun run test:browser-exports
