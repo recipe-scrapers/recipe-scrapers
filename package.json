@@ -50,8 +50,8 @@
     }
   },
   "scripts": {
-    "build": "tsdown",
-    "test": "bun run build && bun test --parallel --dots --bail",
+    "build": "tsdown && bun scripts/check-schema-entry.ts",
+    "test": "bun test --parallel --dots --bail",
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",

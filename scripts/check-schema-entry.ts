@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'bun:test'
+import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 
-const DIST_DIR = path.resolve(import.meta.dir, '../../dist')
+const DIST_DIR = path.resolve(import.meta.dir, '../dist')
 const RELATIVE_MODULE_PATTERN = /\b(?:import|export)(?:\s+[^'"]*?\s+from)?\s*['"](\.[^'"]+)['"]/g
 const DYNAMIC_IMPORT_PATTERN = /\bimport\s*\(\s*['"](\.[^'"]+)['"]\s*\)/g
 const CHEERIO_IMPORT_PATTERN = /\b(?:from\s*|import\s*(?:\(\s*)?)['"]cheerio(?:\/[^'"]*)?['"]/
@@ -32,13 +32,9 @@ async function collectReachableModules(entryFile: string): Promise<Map<string, s
   return modules
 }
 
-describe('schema package entry', () => {
-  it('does not import cheerio from any reachable output chunk', async () => {
-    const modules = await collectReachableModules(path.join(DIST_DIR, 'schema.mjs'))
-    const cheerioImports = [...modules.entries()]
-      .filter(([, source]) => CHEERIO_IMPORT_PATTERN.test(source))
-      .map(([file]) => path.relative(DIST_DIR, file))
+const modules = await collectReachableModules(path.join(DIST_DIR, 'schema.mjs'))
+const cheerioImports = [...modules.entries()]
+  .filter(([, source]) => CHEERIO_IMPORT_PATTERN.test(source))
+  .map(([file]) => path.relative(DIST_DIR, file))
 
-    expect(cheerioImports).toEqual([])
-  })
-})
+assert.deepEqual(cheerioImports, [], 'The schema entry must not import Cheerio')
