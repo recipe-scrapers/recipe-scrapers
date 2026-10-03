@@ -32,9 +32,16 @@ async function collectReachableModules(entryFile: string): Promise<Map<string, s
   return modules
 }
 
-const modules = await collectReachableModules(path.join(DIST_DIR, 'schema.mjs'))
-const cheerioImports = [...modules.entries()]
-  .filter(([, source]) => CHEERIO_IMPORT_PATTERN.test(source))
-  .map(([file]) => path.relative(DIST_DIR, file))
+const cheerioImports: string[] = []
 
-assert.deepEqual(cheerioImports, [], 'The schema entry must not import Cheerio')
+for (const entry of ['schema.mjs', 'utils.mjs']) {
+  const modules = await collectReachableModules(path.join(DIST_DIR, entry))
+
+  cheerioImports.push(
+    ...[...modules.entries()]
+      .filter(([, source]) => CHEERIO_IMPORT_PATTERN.test(source))
+      .map(([file]) => path.relative(DIST_DIR, file)),
+  )
+}
+
+assert.deepEqual(cheerioImports, [], 'Browser-safe entries must not import Cheerio')
