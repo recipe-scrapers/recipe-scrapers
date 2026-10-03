@@ -35,3 +35,6 @@ jobs:
 
       - name: Build 🚧
         run: bun run build
+
+      - name: Verify browser-safe exports 🌐
+        run: bun run test:browser-exports

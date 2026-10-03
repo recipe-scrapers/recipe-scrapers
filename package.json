@@ -34,6 +34,7 @@
     "README.md"
   ],
   "type": "module",
+  "sideEffects": false,
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
@@ -42,11 +43,20 @@
     ".": {
       "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.mts",
+      "import": "./dist/schema.mjs"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.mts",
+      "import": "./dist/utils.mjs"
     }
   },
   "scripts": {
     "build": "tsdown",
     "test": "bun test --parallel --dots --bail",
+    "test:browser-exports": "bun scripts/check-browser-entries.ts",
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",
@@ -64,21 +74,24 @@
   "devDependencies": {
     "@types/bun": "^1.4.2",
     "cheerio": "^1.2.0",
-    "oxfmt": "^0.67.0",
-    "oxlint": "^1.82.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
     "parse-ingredient": "^3.0.0",
-    "schema-dts": "^2.0.0",
+    "schema-dts": "^2.1.0",
     "tsdown": "^0.23.0",
     "typescript": "^7.0.2",
     "valibot": "^1.5.0",
-    "zod": "^4.5.4"
+    "zod": "^4.6.5"
   },
   "peerDependencies": {
     "cheerio": "^1",
     "parse-ingredient": "^3.0.0",
-    "zod": "^4.5.0"
+    "zod": "^4.6.5"
   },
   "peerDependenciesMeta": {
+    "cheerio": {
+      "optional": true
+    },
     "parse-ingredient": {
       "optional": true
     }

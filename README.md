@@ -35,6 +35,12 @@ pnpm add recipe-scrapers cheerio zod
 bun add recipe-scrapers cheerio zod
 ```
 
+Schema and utility subpath consumers do not need Cheerio:
+
+```bash
+npm install recipe-scrapers zod
+```
+
 Ingredient parsing is optional. Install its peer dependency only when enabling
 the `parseIngredients` option:
 
@@ -174,6 +180,27 @@ Inspection does not populate the full recipe cache, so calling `parse()` or
 ### Validation Schema
 
 By default, recipe data is validated with the built-in Zod schema.
+
+Browser code that only needs schemas, recipe types, or safe-parse helpers should
+use the browser-safe `recipe-scrapers/schema` subpath. It does not import
+Cheerio or the scraping runtime.
+
+```typescript
+import {
+  RECIPE_SCHEMA_VERSION,
+  RecipeObjectSchema,
+  type RecipeObject,
+} from 'recipe-scrapers/schema'
+
+const result = RecipeObjectSchema.safeParse(candidate)
+```
+
+Browser code that only needs general utilities should use the dedicated
+browser-safe utilities subpath:
+
+```typescript
+import { parseYields } from 'recipe-scrapers/utils'
+```
 
 You can also validate with any [Standard Schema](https://github.com/standard-schema/standard-schema) compatible schema (for example Valibot).
 
