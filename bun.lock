@@ -27,6 +27,7 @@
         "zod": "^4.5.0",
       },
       "optionalPeers": [
+        "cheerio",
         "parse-ingredient",
       ],
     },

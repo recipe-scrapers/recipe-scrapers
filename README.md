@@ -35,6 +35,12 @@ pnpm add recipe-scrapers cheerio zod
 bun add recipe-scrapers cheerio zod
 ```
 
+Schema-only browser consumers do not need Cheerio:
+
+```bash
+npm install recipe-scrapers zod
+```
+
 Ingredient parsing is optional. Install its peer dependency only when enabling
 the `parseIngredients` option:
 

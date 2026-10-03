@@ -84,6 +84,9 @@
     "zod": "^4.5.0"
   },
   "peerDependenciesMeta": {
+    "cheerio": {
+      "optional": true
+    },
     "parse-ingredient": {
       "optional": true
     }
