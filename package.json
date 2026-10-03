@@ -74,19 +74,19 @@
   "devDependencies": {
     "@types/bun": "^1.4.2",
     "cheerio": "^1.2.0",
-    "oxfmt": "^0.67.0",
-    "oxlint": "^1.82.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
     "parse-ingredient": "^3.0.0",
-    "schema-dts": "^2.0.0",
+    "schema-dts": "^2.1.0",
     "tsdown": "^0.23.0",
     "typescript": "^7.0.2",
     "valibot": "^1.5.0",
-    "zod": "^4.5.4"
+    "zod": "^4.6.5"
   },
   "peerDependencies": {
     "cheerio": "^1",
     "parse-ingredient": "^3.0.0",
-    "zod": "^4.5.0"
+    "zod": "^4.6.5"
   },
   "peerDependenciesMeta": {
     "cheerio": {
