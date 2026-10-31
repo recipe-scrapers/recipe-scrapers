@@ -16,6 +16,7 @@ import {
   regroupExtractedIngredients,
   scoreSentenceSimilarity,
   stringsToIngredients,
+  unwrapIngredientNotes,
 } from '../ingredients'
 
 /** Helper to get ingredient values from a result */
@@ -521,5 +522,38 @@ describe('regroupExtractedIngredients', () => {
     expect(() => regroupExtractedIngredients($, undefined, 'h3', 'li')).toThrow(
       NoIngredientsFoundException,
     )
+  })
+})
+
+describe('unwrapIngredientNotes', () => {
+  it('should unwrap notes that start with a comma', () => {
+    expect(unwrapIngredientNotes('3 garlic cloves (, minced)')).toBe('3 garlic cloves, minced')
+    expect(unwrapIngredientNotes('1 bay leaf (, fresh (sub: dried))')).toBe(
+      '1 bay leaf, fresh (sub: dried)',
+    )
+  })
+
+  it('should unwrap notes that are already parenthesized', () => {
+    expect(unwrapIngredientNotes('1 egg ((large))')).toBe('1 egg (large)')
+    expect(unwrapIngredientNotes('100 grams butter ((soft & cold) )')).toBe(
+      '100 grams butter (soft & cold)',
+    )
+  })
+
+  it('should unwrap notes that start with their own parenthetical', () => {
+    expect(unwrapIngredientNotes('2 large carrots ((~300g/10oz), cut on an angle)')).toBe(
+      '2 large carrots (~300g/10oz), cut on an angle',
+    )
+  })
+
+  it('should leave ordinary trailing parentheticals unchanged', () => {
+    expect(unwrapIngredientNotes('3 cups beef stock (low sodium)')).toBe(
+      '3 cups beef stock (low sodium)',
+    )
+    expect(unwrapIngredientNotes('1 cup flour (sifted (optional))')).toBe(
+      '1 cup flour (sifted (optional))',
+    )
+    expect(unwrapIngredientNotes('(optional) salt')).toBe('(optional) salt')
+    expect(unwrapIngredientNotes('((large))')).toBe('((large))')
   })
 })

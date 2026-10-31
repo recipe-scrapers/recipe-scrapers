@@ -82,6 +82,45 @@ export function stringsToIngredients(
 }
 
 /**
+ * Removes the extra parentheses WP Recipe Maker wraps around ingredient notes
+ * in JSON-LD when the notes already start with a comma or their own
+ * parentheses, matching how the notes are displayed on the page.
+ *
+ * @example
+ * unwrapIngredientNotes('3 garlic cloves (, minced)') // '3 garlic cloves, minced'
+ * unwrapIngredientNotes('1 egg ((large))') // '1 egg (large)'
+ */
+export function unwrapIngredientNotes(value: string): string {
+  if (!value.endsWith(')')) {
+    return value
+  }
+
+  let depth = 0
+
+  for (let index = value.length - 1; index > 0; index--) {
+    const char = value[index]
+
+    if (char === ')') {
+      depth++
+    } else if (char === '(') {
+      depth--
+
+      if (depth === 0) {
+        const notes = value.slice(index + 1, -1).trim()
+
+        if (!/^[(,]/.test(notes)) {
+          return value
+        }
+
+        return normalizeString(`${value.slice(0, index)} ${notes}`)
+      }
+    }
+  }
+
+  return value
+}
+
+/**
  * Re-groups previously extracted ingredient values using headings and items
  * from the page DOM while preserving the extracted values as authoritative.
  */
