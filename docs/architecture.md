@@ -208,6 +208,13 @@ export class MySite extends AbstractScraper {
 }
 ```
 
+Scrapers that read a JSON payload embedded in the Recipe Page (for example a
+`__NEXT_DATA__` script) create a reader with `embeddedPayload($, { selector,
+parse, logger })` from `src/utils/embedded-payload.ts`. The selector and
+validator stay in the Scraper; the reader handles JSON repair, caches the
+result (including failures), and logs a warning and returns `null` instead of
+throwing, so the Scraper decides the fallback.
+
 All site scrapers must be registered in `src/scrapers/_index.ts`.
 
 ## Validation Model

@@ -2,7 +2,7 @@ import z from 'zod'
 
 import { AbstractScraper } from '@/abstract-scraper'
 import type { RecipeData } from '@/types/recipe.interface'
-import { parseJsonWithRepair } from '@/utils/json'
+import { embeddedPayload } from '@/utils/embedded-payload'
 import { stringsToNotes } from '@/utils/notes'
 import { normalizeString } from '@/utils/parsing'
 
@@ -38,7 +38,12 @@ function scoopTipText(tip: z.infer<typeof scoopTipSchema>): string {
 }
 
 export class NYTimes extends AbstractScraper {
-  private recipeTips: string[] | null | undefined = undefined
+  private readonly nextData = embeddedPayload(this.$, {
+    selector: '#__NEXT_DATA__',
+    name: 'NYTimes __NEXT_DATA__',
+    parse: (data) => nextDataSchema.parse(data),
+    logger: this.logger,
+  })
 
   static host() {
     return 'cooking.nytimes.com'
@@ -60,34 +65,13 @@ export class NYTimes extends AbstractScraper {
     return this.domNotes()
   }
 
-  private getPayloadTips(): string[] | null {
-    if (this.recipeTips !== undefined) {
-      return this.recipeTips
-    }
-
-    const raw = this.$('#__NEXT_DATA__').html()
-
-    if (!raw) {
-      this.logger.warn('Could not find NYTimes __NEXT_DATA__ payload')
-      this.recipeTips = null
-      return this.recipeTips
-    }
-
-    try {
-      const { data } = parseJsonWithRepair(raw)
-      const parsed = nextDataSchema.parse(data)
-      const { recipe, scoopRecipe } = parsed.props.pageProps
-      this.recipeTips = recipe?.tips ?? scoopRecipe?.tips?.map(scoopTipText) ?? null
-    } catch (error) {
-      this.logger.warn('Failed to parse NYTimes recipe payload', error)
-      this.recipeTips = null
-    }
-
-    return this.recipeTips
+  private payloadTips(): string[] {
+    const { recipe, scoopRecipe } = this.nextData()?.props.pageProps ?? {}
+    return recipe?.tips ?? scoopRecipe?.tips?.map(scoopTipText) ?? []
   }
 
   private payloadNotes(): RecipeData['notes'] {
-    const tips = this.getPayloadTips() ?? []
+    const tips = this.payloadTips()
     const values = tips.map(normalizeString).filter((value) => value.length > 0)
 
     if (values.length === 0) {
