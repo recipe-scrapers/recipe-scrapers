@@ -2,6 +2,7 @@ import z from 'zod'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { Ingredients, RecipeFields } from '@/types/recipe.interface'
+import { embeddedPayload } from '@/utils/embedded-payload'
 import {
   createIngredientGroup,
   createIngredientItem,
@@ -9,7 +10,6 @@ import {
   recoverIngredientGroups,
 } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
-import { parseJsonWithRepair } from '@/utils/json'
 import { normalizeString } from '@/utils/parsing'
 
 // Use wildcard selectors to handle dynamic class name suffixes
@@ -77,7 +77,12 @@ const pagePropsDataSchema = z.object({
 })
 
 export class AmericasTestKitchen extends AbstractScraper {
-  private data: RecipeData | null = null
+  private readonly getRecipeData = embeddedPayload<RecipeData>(this.$, {
+    selector: 'script[type="application/json"]',
+    name: "America's Test Kitchen page data",
+    parse: (data) => pagePropsDataSchema.parse(data).props.pageProps.data,
+    logger: this.logger,
+  })
 
   static host() {
     return 'americastestkitchen.com'
@@ -139,29 +144,6 @@ export class AmericasTestKitchen extends AbstractScraper {
     }
 
     return stringsToInstructions(items)
-  }
-
-  private getRecipeData(): RecipeData | null {
-    if (this.data === null) {
-      const jsonElement = this.$('script[type="application/json"]')
-      const jsonString = jsonElement.html()
-
-      if (!jsonString) {
-        this.logger.warn('Could not find JSON data script tag')
-        return null
-      }
-
-      try {
-        const { data } = parseJsonWithRepair(jsonString)
-        const parsed = pagePropsDataSchema.parse(data)
-        this.data = parsed.props.pageProps.data
-      } catch (error) {
-        this.logger.error('Failed to parse JSON data:', error)
-        return null
-      }
-    }
-
-    return this.data
   }
 
   private parseIngredientItem(ingredientItem: RecipeIngredientItem): string {
