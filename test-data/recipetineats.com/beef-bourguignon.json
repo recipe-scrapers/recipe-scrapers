@@ -1,0 +1,230 @@
+{
+  "author": "Nagi",
+  "canonicalUrl": "https://www.recipetineats.com/beef-bourguignon-beef-burgundy/",
+  "category": ["Main", "Stew"],
+  "cookingMethod": null,
+  "cookTime": 150,
+  "cuisine": ["French"],
+  "description": "Recipe video above. Considered by many to be the mother of all stews, Beef Bourguignon is a French dish made with beef, bacon lardons, carrots, onions and mushrooms slow-cooked in a rich red wine sauce. For the most magnificent stew of your life, start this 2 days before you plan to serve it, do not shortcut pan roasting ingredients individually, and use homemade beef stock if you can!",
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "host": "recipetineats.com",
+  "image": "https://www.recipetineats.com/tachyon/2021/02/Beef-Bourguignon_7-SQ.jpg",
+  "ingredients": [
+    {
+      "name": "Beef marinade",
+      "items": [
+        {
+          "value": "800g/ 1.6 lb chuck beef, cut in 4-5 cm / 2” cubes (Note 1)"
+        },
+        {
+          "value": "2 large carrots (~300g/10oz), cut on an angle into 4-5 cm / 2” pieces"
+        },
+        {
+          "value": "16 pearl onions or small, round pickling onions (Note 2)"
+        },
+        {
+          "value": "1 bay leaf, fresh (sub: dried)"
+        },
+        {
+          "value": "3 sprigs thyme"
+        },
+        {
+          "value": "750ml/ 25 oz pinot noir or other red wine (Note 3)"
+        }
+      ]
+    },
+    {
+      "name": "Browning beef",
+      "items": [
+        {
+          "value": "3 tbsp oil, olive, canola or vegetable"
+        },
+        {
+          "value": "3/4 tsp salt"
+        },
+        {
+          "value": "1/2 tsp pepper"
+        }
+      ]
+    },
+    {
+      "name": "Stew",
+      "items": [
+        {
+          "value": "200g/ 7oz mushrooms, halved (quarters if large)"
+        },
+        {
+          "value": "150g/ 5oz bacon piece, cut into 1cm / 1/2” thick batons (Note 4)"
+        },
+        {
+          "value": "50g/3 tbsp unsalted butter"
+        },
+        {
+          "value": "3 garlic cloves, minced"
+        },
+        {
+          "value": "2 tbsp tomato paste"
+        },
+        {
+          "value": "6 tbsp flour, plain/all purpose"
+        },
+        {
+          "value": "3 cups beef stock (low sodium)"
+        },
+        {
+          "value": "1/4 tsp salt"
+        },
+        {
+          "value": "2 tbsp chopped parsley, for garnish"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "Marinate beef",
+      "items": [
+        {
+          "value": "Marinate beef: Place the Beef Marinade ingredients in a large, non-reactive ceramic dish or ziplock bag. Marinate overnight in the fridge (minimum 12 hours, maximum 24 hours)."
+        },
+        {
+          "value": "Strain liquid into a bowl, reserve marinade. Separate the beef, carrots and onion."
+        },
+        {
+          "value": "Reduce wine: Pour red wine into a saucepan and bring to a boil over medium high heat. Simmer vigorously, skimming off any impurities that rise to the surface, until reduced by half. Set aside."
+        }
+      ]
+    },
+    {
+      "name": "Brown beef and vegetables",
+      "items": [
+        {
+          "value": "Preheat oven to 180°C / 350°F (160°C fan)."
+        },
+        {
+          "value": "Dry beef: Line a tray with paper towels, spread beef out, then pat dry with paper towels."
+        },
+        {
+          "value": "Season beef: Sprinkle beef with 3/4 tsp salt and 1/2 tsp black pepper."
+        },
+        {
+          "value": "Brown beef: Heat 2 tbsp oil in a large, heavy-based, oven-proof pot over high heat. Add 1/3 beef and brown aggressively all over. Remove into bowl, then repeat with remaining beef, adding more oil if needed."
+        },
+        {
+          "value": "Fry bacon: Add bacon and cook for 3 minutes until golden. Add to bowl with beef."
+        },
+        {
+          "value": "Sauté mushrooms: Add mushrooms and cook for 5 minutes, or until golden. Remove into a new bowl."
+        },
+        {
+          "value": "Sauté onion: Add a bit of extra oil if needed, then cook onions for 5 minutes or until there are nice golden patches. Add to bowl with mushrooms."
+        },
+        {
+          "value": "Sauté carrot: Add butter into pot. Once melted, add carrot and cook for 3 - 4 minutes until there are golden patches. Add garlic and cook for a further 1 minute."
+        },
+        {
+          "value": "Tomato paste: Add tomato paste and cook for 2 minutes."
+        },
+        {
+          "value": "Flour: Add flour and cook for 2 minutes."
+        },
+        {
+          "value": "Add wine and stock: While stirring, slowly pour in beef stock – this helps the flour dissolve lump-free into the stock. Then add wine and mix until flour mixture is dissolved and mostly lump-free (Note 6)."
+        },
+        {
+          "value": "Add beef into pot: Add beef, bacon, thyme, bay leaf, 1/4 tsp salt and pepper into the pot, then stir well."
+        }
+      ]
+    },
+    {
+      "name": "Slow-cook",
+      "items": [
+        {
+          "value": "Oven 1 hour: Bring to a simmer, then cover and transfer to oven for 1 hour. (Note 7)"
+        },
+        {
+          "value": "Mushrooms and onion: Remove from oven, stir in mushrooms and onion."
+        },
+        {
+          "value": "Oven 1½ hours: Cover with lid and return to oven for 1½ hours, or until beef is \"fall-apart tender\"."
+        },
+        {
+          "value": "Adjust salt: Remove from oven, taste sauce and add salt if needed. (Note 8 - important!)"
+        },
+        {
+          "value": "Leave overnight (recommended): If time permits, leave the stew overnight before serving because as with all stews, it gets better with time! Reheat gently on a low stove."
+        },
+        {
+          "value": "Serve over mashed potato – Essential for mopping up every drop of that amazing sauce!"
+        }
+      ]
+    }
+  ],
+  "keywords": ["Beef Bourguignon", "Beef burgundy", "bœuf bourguignon", "French beef stew"],
+  "language": "en-US",
+  "notes": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Scaling recipe up – will work perfectly, but be sure to brown the meat and vegetable in batches so you get some nice colour on them. If you crowd the pan too much, they will just braise and get watery, rather than going golden. Slow cook time will be the same as long as you’re using a heavy based pot and bring to simmer first before covering and transferring to oven."
+        },
+        {
+          "value": "1. Chuck beef – Look for beef that’s nicely ribboned with fat, as it will be juicier and more tender. Don’t buy pre-cut small pieces, they will cook too quickly before the flavour in the sauce develops. It’s better to buy a big piece and cut your own to size."
+        },
+        {
+          "value": "2. Pearl onions are very small onions and are irritatingly hard to find in Australia. The closest are pickling onions which are slightly bigger, so just peel an extra layer or two off to make them the right size – around 2.5cm/1″ in diameter. Soak them for 10/15min in cold water, it will soften the skin and will make them easier to peel (use a small knife to assist). You can also just use 2 brown or yellow onions, halved then cut into 1cm / 2/5” slices."
+        },
+        {
+          "value": "3. Pinot Noir is the traditional wine used in Beef Bourguignon. It’s the red wine that the Burgundy region of France is most famous for, reflecting the origins of this dish which is also known as “Beef Burgundy”. There’s no need to splurge on expensive wine here. Just rummage through the discount bins at your local liquor store. The bottle I used an end-of-bin bottle steeply discounted to $7 (I stocked up!)."
+        },
+        {
+          "value": "4. Bacon Lardons – Biting into a thick piece of bacon is all part of the Beef Bourguignon experience! If you can’t find a slab of bacon to cut yourself, try speck which is similar (and similar fat % too which is key!). Otherwise, just use streaky bacon cut into strips. Bacon is key for sauce seasoning, so don’t skip it!"
+        },
+        {
+          "value": "5. Beef stock quality is the key variable here that will set apart a good homemade Beef Bourguignon from an exceptional restaurant-quality one. Homemade beef stock trumps any store bought. Good quality store-bought from butchers etc. are far better than mass-produced (like Campbell’s here in Australia). Do not use powdered beef stock. It’s frankly inferior to even the packet liquid stock and has no place here amongst all this effort, I’m afraid!"
+        },
+        {
+          "value": "6. Flour lumps – Don’t fret if you have some lumps! They will dissolve during the slow cooking time 🙂"
+        },
+        {
+          "value": "7. Cook method – Oven is best because it’s entirely hands off, no need to stir to ensure base doesn’t catch. But it can also be done on a low stove, lid on, stirring every now and then (take extra care towards the end so the meat doesn’t break apart). Slow cooker: This can work but you’ll need to reduce on the stove at the end to thicken sauce. Slow-cook for 4 hours on low, add mushrooms and onion, then slow cook a further 4 hours. Transfer to pot then simmer (no lid) for 15 – 20 minutes until sauce reduces. I really think it’s just easier to use the oven!"
+        },
+        {
+          "value": "8. Salt quantity required varies drastically depending on saltiness of bacon, homemade vs store bought stock (homemade is unsalted), so always do this at the end and trust your tastebuds. With homemade beef stock, I add another 3/4 tsp salt. With store bought, it’s unlikely you’ll need more salt."
+        },
+        {
+          "value": "9. Storage – Stew will keep for 5 days in the fridge, and freezes great!"
+        },
+        {
+          "value": "10. Recipe source: Developed with the assistance of a classically trained French chef from Burgundy, Jean-Baptiste Alexandre of Baptise & Wilson. For a dish this iconic, I refused to just settle for any old recipe! Better than the Julia Child recipe I’d been using for years. 🙂"
+        },
+        {
+          "value": "11. Nutrition per serving, assuming 5 servings."
+        }
+      ]
+    }
+  ],
+  "nutrients": {
+    "calories": "745 kcal",
+    "carbohydrateContent": "25 g",
+    "proteinContent": "47 g",
+    "fatContent": "40 g",
+    "saturatedFatContent": "17 g",
+    "transFatContent": "1 g",
+    "cholesterolContent": "165 mg",
+    "sodiumContent": "1822 mg",
+    "fiberContent": "3 g",
+    "sugarContent": "7 g",
+    "servingSize": "1 serving"
+  },
+  "prepTime": 40,
+  "ratings": 4.96,
+  "ratingsCount": 190,
+  "reviews": {},
+  "siteName": "RecipeTin Eats",
+  "title": "Beef Bourguignon (Beef Burgundy)",
+  "totalTime": 190,
+  "yields": "5 servings"
+}

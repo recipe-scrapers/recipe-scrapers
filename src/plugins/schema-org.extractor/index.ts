@@ -7,7 +7,7 @@ import { Logger, type LogLevel } from '@/logger'
 import type { RecipeEvidence, RecipeEvidenceReason } from '@/types/recipe-evidence.interface'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isFunction, isNumber, isPlainObject, isString, resolveErrorMessage } from '@/utils'
-import { groupIngredients } from '@/utils/ingredients'
+import { groupIngredients, unwrapIngredientNotes } from '@/utils/ingredients'
 import {
   createInstructionGroup,
   createInstructionItem,
@@ -433,7 +433,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
         }
 
         // Start new group with section name
-        currentGroup = { name: name || null, items: [] }
+        currentGroup = { name: name.replace(/:$/, '') || null, items: [] }
 
         if (item.itemListElement) {
           const nestedResult = this.parseInstructions(item.itemListElement)
@@ -557,7 +557,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     const uniqueIngredients = new Set<string>()
 
     for (const item of flatIngredients) {
-      const ingredient = this.getSchemaTextValue(item)
+      const ingredient = unwrapIngredientNotes(this.getSchemaTextValue(item))
 
       if (ingredient) {
         uniqueIngredients.add(ingredient)
