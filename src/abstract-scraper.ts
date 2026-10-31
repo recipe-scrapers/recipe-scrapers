@@ -274,41 +274,62 @@ export abstract class AbstractScraper {
     }
   }
 
-  private async extractAuthor(siteName: RecipeFields['siteName']): Promise<RecipeFields['author']> {
-    try {
-      const author = await this.extract('author')
+  private extractAuthor(siteName: RecipeFields['siteName']): Promise<RecipeFields['author']> {
+    const { fallbackAuthor } = this.options
 
-      if (author.trim() || this.options.fallbackAuthor === undefined) {
-        return author
+    return this.extractWithFallback(
+      'author',
+      'fallbackAuthor',
+      isString(fallbackAuthor) || fallbackAuthor === undefined
+        ? fallbackAuthor
+        : () => fallbackAuthor(siteName),
+    )
+  }
+
+  private extractDescription(title: RecipeFields['title']): Promise<RecipeFields['description']> {
+    const { fallbackDescription } = this.options
+
+    return this.extractWithFallback(
+      'description',
+      'fallbackDescription',
+      isString(fallbackDescription) || fallbackDescription === undefined
+        ? fallbackDescription
+        : () => fallbackDescription(title),
+    )
+  }
+
+  /**
+   * Extracts a required text field, using a consumer-provided fallback when
+   * extraction ends with `extractor_not_found` or returns a blank value.
+   * Without a fallback, the extracted value or failure is returned unchanged.
+   */
+  private async extractWithFallback(
+    field: 'author' | 'description' | 'image',
+    source: string,
+    fallback: string | (() => string) | undefined,
+  ): Promise<string> {
+    try {
+      const value = await this.extract(field)
+
+      if (value.trim() || fallback === undefined) {
+        return value
       }
     } catch (error) {
-      if (
-        !(error instanceof ExtractorNotFoundException) ||
-        this.options.fallbackAuthor === undefined
-      ) {
+      if (!(error instanceof ExtractorNotFoundException) || fallback === undefined) {
         throw error
       }
     }
 
-    const fallbackAuthor = this.options.fallbackAuthor
-
-    if (isString(fallbackAuthor)) {
-      const author = fallbackAuthor.trim()
-
-      if (author) return author
-      throw new ExtractorNotFoundException('author')
-    }
-
-    let author: string
+    let value: string
 
     try {
-      author = fallbackAuthor(siteName).trim()
+      value = (isString(fallback) ? fallback : fallback()).trim()
     } catch (error) {
-      throw new ExtractionRuntimeException('author', 'fallbackAuthor', error)
+      throw new ExtractionRuntimeException(field, source, error)
     }
 
-    if (!author) throw new ExtractorNotFoundException('author')
-    return author
+    if (!value) throw new ExtractorNotFoundException(field)
+    return value
   }
 
   /**
@@ -322,6 +343,7 @@ export abstract class AbstractScraper {
     const notes = this.options.parseNotes ? this.notes() : undefined
     const siteName = await this.extract('siteName')
     const author = await this.extractAuthor(siteName)
+    const title = await this.extract('title')
 
     this.recipeData = {
       author,
@@ -330,11 +352,11 @@ export abstract class AbstractScraper {
       cookTime: await this.extract('cookTime'),
       cookingMethod: await this.extract('cookingMethod'),
       cuisine: await this.extract('cuisine'),
-      description: await this.extract('description'),
+      description: await this.extractDescription(title),
       dietaryRestrictions: await this.extract('dietaryRestrictions'),
       equipment: await this.extract('equipment'),
       host: this.getHost(),
-      image: await this.extract('image'),
+      image: await this.extractWithFallback('image', 'fallbackImage', this.options.fallbackImage),
       ingredients: await this.extract('ingredients'),
       instructions: await this.extract('instructions'),
       ...(notes ? { notes } : {}),
@@ -347,7 +369,7 @@ export abstract class AbstractScraper {
       ratingsCount: await this.extract('ratingsCount'),
       reviews: await this.extract('reviews'),
       siteName,
-      title: await this.extract('title'),
+      title,
       totalTime: await this.extract('totalTime'),
       yields: await this.extractYields(),
     }

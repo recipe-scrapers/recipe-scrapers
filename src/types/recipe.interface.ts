@@ -104,7 +104,9 @@ export interface RecipeData {
   title: string
   /**
    * The URL to the main image associated with the recipe,
-   * usually a photograph of the completed recipe.
+   * usually a photograph of the completed recipe. When extraction does not
+   * provide an image, consumers can opt into a fallback with
+   * `ScraperOptions.fallbackImage`.
    */
   image: string
   /**
@@ -138,6 +140,8 @@ export interface RecipeData {
    * A description of the recipe. This is normally a sentence or short
    * paragraph describing the recipe. Often the website defines the
    * description, but sometimes it has to be inferred from the page content.
+   * When extraction does not provide a description, consumers can opt into a
+   * fallback with `ScraperOptions.fallbackDescription`.
    */
   description: string
   /**

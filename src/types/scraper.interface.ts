@@ -34,6 +34,22 @@ export interface ScraperOptions {
    */
   fallbackAuthor?: string | ((siteName: RecipeFields['siteName']) => RecipeFields['author'])
   /**
+   * Non-empty value to use when no extractor finds a non-empty description.
+   * A function receives the extracted recipe title.
+   * Extracted description values always take precedence.
+   *
+   * When omitted, a missing description remains an extraction failure.
+   */
+  fallbackDescription?: string | ((title: RecipeFields['title']) => RecipeFields['description'])
+  /**
+   * Image URL to use when no extractor finds a non-empty image, such as an
+   * app placeholder. Extracted image values always take precedence, and the
+   * fallback must still pass image URL validation.
+   *
+   * When omitted, a missing image remains an extraction failure.
+   */
+  fallbackImage?: string
+  /**
    * Non-empty value to use when no extractor can find a recipe yield.
    * Extracted yield values always take precedence.
    *

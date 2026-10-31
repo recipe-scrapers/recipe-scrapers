@@ -35,6 +35,11 @@ const html = `
 
 const HTML_WITHOUT_YIELD = html.replace('          "recipeYield": "2 servings",\n', '')
 
+// Mirrors a recipe-app export: empty description and an embedded photo
+const HTML_WITHOUT_DESCRIPTION_OR_IMAGE = html
+  .replace('"Simple soup recipe"', '""')
+  .replace('"https://unsupported.example/images/soup.jpg"', '"data:image/jpeg;base64,AAAA"')
+
 const INVALID_SCHEMA_HTML = `
   <html lang="en">
     <head>
@@ -139,6 +144,24 @@ describe('scrapeRecipe', () => {
         wildMode: true,
       }),
     ).rejects.toThrow('No extractor found for field: yields')
+  })
+
+  it('uses consumer fallbacks when a recipe has no description or image URL', async () => {
+    const recipe = await scrapeRecipe(HTML_WITHOUT_DESCRIPTION_OR_IMAGE, UNSUPPORTED_URL, {
+      fallbackDescription: (title) => `${title} recipe`,
+      fallbackImage: 'https://app.example/placeholder.png',
+    })
+
+    expect(recipe.description).toBe('Wild Mode Soup recipe')
+    expect(recipe.image).toBe('https://app.example/placeholder.png')
+  })
+
+  it('still fails when a recipe has no description without a fallback', async () => {
+    await expect(
+      scrapeRecipe(HTML_WITHOUT_DESCRIPTION_OR_IMAGE, UNSUPPORTED_URL, {
+        fallbackImage: 'https://app.example/placeholder.png',
+      }),
+    ).rejects.toThrow('No extractor found for field: description')
   })
 
   it('parses unsupported hosts in wild mode by default', async () => {

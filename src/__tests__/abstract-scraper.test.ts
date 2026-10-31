@@ -146,6 +146,20 @@ class MissingAuthorScraper extends TestScraper {
   }
 }
 
+class MissingFieldsScraper extends TestScraper {
+  constructor(
+    private readonly missingFields: (keyof RecipeFields)[],
+    options: ScraperOptions = {},
+  ) {
+    super(createMockValues(), options)
+  }
+
+  override async extract<Key extends keyof RecipeFields>(field: Key): Promise<RecipeFields[Key]> {
+    if (this.missingFields.includes(field)) throw new ExtractorNotFoundException(field)
+    return super.extract(field)
+  }
+}
+
 class ThrowingScraper extends AbstractScraper {
   static host(): string {
     return 'throw.test'
@@ -358,6 +372,122 @@ describe('AbstractScraper.toRecipeObject', () => {
         source: 'fallbackAuthor',
       })
       expect(result.error.cause).toBeInstanceOf(RangeError)
+    }
+  })
+
+  it('uses a string description fallback when description extraction fails', async () => {
+    const scraper = new MissingFieldsScraper(['description'], {
+      fallbackDescription: '  No description provided  ',
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.description).toBe('No description provided')
+  })
+
+  it('passes the extracted title to a function description fallback', async () => {
+    const receivedTitles: RecipeFields['title'][] = []
+    const scraper = new MissingFieldsScraper(['description'], {
+      fallbackDescription: (title) => {
+        receivedTitles.push(title)
+        return `A recipe for ${title}`
+      },
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.description).toBe('A recipe for ttl')
+    expect(receivedTitles).toEqual(['ttl'])
+  })
+
+  it('keeps a non-empty extracted description ahead of the fallback', async () => {
+    let fallbackCalled = false
+    const scraper = new TestScraper(createMockValues(), {
+      fallbackDescription: () => {
+        fallbackCalled = true
+        return 'Fallback description'
+      },
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.description).toBe('desc')
+    expect(fallbackCalled).toBe(false)
+  })
+
+  it('uses the fallback for a blank extracted description', async () => {
+    const scraper = new TestScraper(
+      { ...createMockValues(), description: '   ' },
+      { fallbackDescription: 'No description provided' },
+    )
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.description).toBe('No description provided')
+  })
+
+  it('still fails on a missing description without a fallback', () => {
+    const scraper = new MissingFieldsScraper(['description'])
+
+    expect(scraper.toRecipeObject()).rejects.toThrow(new ExtractorNotFoundException('description'))
+  })
+
+  it('reports function description fallback errors with source context', async () => {
+    const scraper = new MissingFieldsScraper(['description'], {
+      fallbackDescription: () => {
+        throw new RangeError('Invalid fallback')
+      },
+    })
+
+    const result = await scraper.safeParse()
+
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error.code).toBe('extraction_runtime_error')
+      expect(result.error.context).toEqual({
+        field: 'description',
+        source: 'fallbackDescription',
+      })
+      expect(result.error.cause).toBeInstanceOf(RangeError)
+    }
+  })
+
+  it('uses the image fallback when image extraction fails', async () => {
+    const scraper = new MissingFieldsScraper(['image'], {
+      fallbackImage: 'https://app.test/placeholder.png',
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.image).toBe('https://app.test/placeholder.png')
+  })
+
+  it('keeps an extracted image ahead of the fallback', async () => {
+    const scraper = new TestScraper(createMockValues(), {
+      fallbackImage: 'https://app.test/placeholder.png',
+    })
+
+    const result = await scraper.toRecipeObject()
+
+    expect(result.image).toBe('https://host.test/image.jpg')
+  })
+
+  it('rejects an empty image fallback', () => {
+    const scraper = new MissingFieldsScraper(['image'], { fallbackImage: '   ' })
+
+    expect(scraper.toRecipeObject()).rejects.toThrow(new ExtractorNotFoundException('image'))
+  })
+
+  it('validates the image fallback as a URL', async () => {
+    const scraper = new MissingFieldsScraper(['image'], {
+      fallbackImage: 'data:image/png;base64,AAAA',
+    })
+
+    const result = await scraper.safeParse()
+
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error.type).toBe('validation')
     }
   })
 

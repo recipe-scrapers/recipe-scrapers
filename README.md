@@ -89,6 +89,12 @@ const recipeWithFallbackYield = await scrapeRecipe(html, url, {
 const recipeWithFallbackAuthor = await scrapeRecipe(html, url, {
   fallbackAuthor: (siteName) => siteName ?? 'Unknown publisher',
 })
+
+// Supply description and image fallbacks, e.g. for recipe-app exports
+const recipeWithFallbacks = await scrapeRecipe(html, url, {
+  fallbackDescription: (title) => `${title} recipe`,
+  fallbackImage: 'https://example.com/placeholder.png',
+})
 ```
 
 ### Safe Parse Error Shape
@@ -244,6 +250,20 @@ interface ScraperOptions {
    * When omitted, a missing author remains an extraction failure.
    */
   fallbackAuthor?: string | ((siteName: string | null) => string)
+  /**
+   * Non-empty value to use when no extractor finds a non-empty description.
+   * A function receives the extracted recipe title.
+   * Extracted description values always take precedence.
+   * When omitted, a missing description remains an extraction failure.
+   */
+  fallbackDescription?: string | ((title: string) => string)
+  /**
+   * Image URL to use when no extractor finds a non-empty image, such as an
+   * app placeholder. Extracted image values always take precedence, and the
+   * fallback must still pass image URL validation.
+   * When omitted, a missing image remains an extraction failure.
+   */
+  fallbackImage?: string
   /**
    * Non-empty value to use when no extractor can find a recipe yield.
    * Extracted yield values always take precedence.
