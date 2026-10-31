@@ -1,8 +1,7 @@
 import z from 'zod'
 
-import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import type { RecipeData, RecipeFields } from '@/types/recipe.interface'
-import { regroupExtractedIngredients } from '@/utils/ingredients'
+import { AbstractScraper } from '@/abstract-scraper'
+import type { RecipeData } from '@/types/recipe.interface'
 import { parseJsonWithRepair } from '@/utils/json'
 import { stringsToNotes } from '@/utils/notes'
 import { normalizeString } from '@/utils/parsing'
@@ -45,18 +44,10 @@ export class NYTimes extends AbstractScraper {
     return 'cooking.nytimes.com'
   }
 
-  protected override readonly extractors = {
-    ingredients: this.ingredients.bind(this),
-  } satisfies ScraperExtractors
-
-  protected ingredients(
-    prevValue: RecipeFields['ingredients'] | undefined,
-  ): RecipeFields['ingredients'] {
-    // Use wildcard selectors to handle dynamic class name suffixes
-    const headingSelector = 'h3[class*="ingredientgroup_name"]'
-    const ingredientSelector = 'li[class*="ingredient"]'
-
-    return regroupExtractedIngredients(this.$, prevValue, headingSelector, ingredientSelector)
+  // Use wildcard selectors to handle dynamic class name suffixes
+  protected override readonly ingredientGroupStructure = {
+    heading: 'h3[class*="ingredientgroup_name"]',
+    item: 'li[class*="ingredient"]',
   }
 
   protected override notes(): RecipeData['notes'] {

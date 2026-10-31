@@ -692,3 +692,49 @@ describe('AbstractScraper.notes', () => {
     expect(scraper.readNotes()).toBeUndefined()
   })
 })
+
+describe('AbstractScraper.ingredientGroupStructure', () => {
+  const html = `
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": "Pie",
+        "recipeIngredient": ["2 cups flour", "1 cup sugar"]
+      }
+    </script>
+    <h3 class="group">Crust</h3>
+    <li class="item">2 cups flour</li>
+    <h3 class="group">Filling</h3>
+    <li class="item">1 cup sugar</li>
+  `
+
+  class GroupedScraper extends AbstractScraper {
+    static host() {
+      return 'grouped.test'
+    }
+
+    protected override readonly ingredientGroupStructure = { heading: '.group', item: '.item' }
+  }
+
+  class OverridingScraper extends GroupedScraper {
+    protected override readonly extractors = {
+      ingredients: () => stringsToIngredients(['custom']),
+    }
+  }
+
+  it('restores Ingredient Groups from the declared structure', async () => {
+    const scraper = new GroupedScraper(html, 'https://grouped.test/pie')
+
+    expect(await scraper.extract('ingredients')).toEqual([
+      { name: 'Crust', items: [{ value: '2 cups flour' }] },
+      { name: 'Filling', items: [{ value: '1 cup sugar' }] },
+    ])
+  })
+
+  it('prefers a site-specific ingredients extractor over the declared structure', async () => {
+    const scraper = new OverridingScraper(html, 'https://grouped.test/pie')
+
+    expect(await scraper.extract('ingredients')).toEqual(stringsToIngredients(['custom']))
+  })
+})

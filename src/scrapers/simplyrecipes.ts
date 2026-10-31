@@ -1,21 +1,16 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 /**
- * Filters out ingredient group headers from a list of ingredient values.
- * SimplyRecipes JSON-LD includes group headers (like "For the roasted
- * parsnips:") as regular ingredients, so we need to remove them.
+ * SimplyRecipes JSON-LD includes Ingredient Group headers (like "For the
+ * roasted parsnips:") as regular ingredients, so they need to be excluded.
  */
-function filterGroupHeaders(values: string[]): string[] {
+function isGroupHeader(value: string): boolean {
   // Group headers typically start with "For " and end with ":"
-  return values.filter((value) => {
-    const trimmed = value.trim().toLowerCase()
-    return !(trimmed.startsWith('for ') && trimmed.endsWith(':'))
-  })
+  const trimmed = value.trim().toLowerCase()
+  return trimmed.startsWith('for ') && trimmed.endsWith(':')
 }
 
 export class SimplyRecipes extends AbstractScraper {
@@ -24,29 +19,13 @@ export class SimplyRecipes extends AbstractScraper {
   }
 
   protected override readonly extractors = {
-    ingredients: this.ingredients.bind(this),
     instructions: this.instructions.bind(this),
   } satisfies ScraperExtractors
 
-  /**
-   * Parse ingredients from HTML using structured ingredients selectors.
-   * Filters out group headers that schema-org includes as ingredients.
-   */
-  protected ingredients(
-    prevValue: RecipeFields['ingredients'] | undefined,
-  ): RecipeFields['ingredients'] {
-    const headingSelector = '.structured-ingredients__list-heading'
-    const ingredientSelector = '.structured-ingredients__list-item'
-
-    if (prevValue && prevValue.length > 0) {
-      // Get values and filter out group headers that JSON-LD includes
-      const rawValues = flattenIngredients(prevValue)
-      const values = filterGroupHeaders(rawValues)
-
-      return groupIngredients(this.$, values, headingSelector, ingredientSelector)
-    }
-
-    throw new NoIngredientsFoundException()
+  protected override readonly ingredientGroupStructure = {
+    heading: '.structured-ingredients__list-heading',
+    item: '.structured-ingredients__list-item',
+    excludeSource: isGroupHeader,
   }
 
   /**

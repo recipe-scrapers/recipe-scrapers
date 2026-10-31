@@ -179,6 +179,8 @@ Site scrapers extend `AbstractScraper` and implement:
 
 - `static host(): string`
 - `extractors` map for field overrides
+- optional `ingredientGroupStructure` to restore Ingredient Groups from page
+  structure (see [Ingredients Architecture](./ingredients-architecture.md))
 
 Example pattern:
 

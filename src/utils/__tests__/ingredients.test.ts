@@ -13,7 +13,7 @@ import {
   isIngredientGroup,
   isIngredientItem,
   isIngredients,
-  regroupExtractedIngredients,
+  recoverIngredientGroups,
   scoreSentenceSimilarity,
   stringsToIngredients,
   unwrapIngredientNotes,
@@ -494,34 +494,128 @@ describe('groupIngredients', () => {
   })
 })
 
-describe('regroupExtractedIngredients', () => {
-  it('groups previously extracted values using DOM headings', () => {
-    const $ = cheerio.load(`
-      <h3>For the dough</h3>
-      <li class="ingredient">2 cups all purpose flour</li>
-      <h3>For the filling</h3>
-      <li class="ingredient">1 cup sugar</li>
-    `)
-    const ingredients = stringsToIngredients(['2 cups all-purpose flour', '1 cup sugar'])
+describe('recoverIngredientGroups', () => {
+  const structure = { heading: 'h3', item: '.ingredient' }
+  const source = stringsToIngredients(['2 cups all-purpose flour', '1 cup sugar'])
+  const groupedHtml = `
+    <h3>For the dough</h3>
+    <li class="ingredient">2 cups all purpose flour</li>
+    <h3>For the filling</h3>
+    <li class="ingredient">1 cup sugar</li>
+  `
+  const ungrouped = [
+    {
+      name: null,
+      items: [{ value: '2 cups all-purpose flour' }, { value: '1 cup sugar' }],
+    },
+  ]
 
-    expect(regroupExtractedIngredients($, ingredients, 'h3', '.ingredient')).toEqual([
-      {
-        name: 'For the dough',
-        items: [{ value: '2 cups all-purpose flour' }],
-      },
-      {
-        name: 'For the filling',
-        items: [{ value: '1 cup sugar' }],
-      },
+  it('restores Ingredient Groups while keeping the Structured Data text', () => {
+    const $ = cheerio.load(groupedHtml)
+
+    expect(recoverIngredientGroups($, source, structure)).toEqual([
+      { name: 'For the dough', items: [{ value: '2 cups all-purpose flour' }] },
+      { name: 'For the filling', items: [{ value: '1 cup sugar' }] },
     ])
   })
 
-  it('fails extraction when there are no previous ingredient values', () => {
-    const $ = cheerio.load('<div></div>')
+  it('flattens source ingredients that are already grouped', () => {
+    const $ = cheerio.load(groupedHtml)
+    const groupedSource = [
+      createIngredientGroup('Old', [createIngredientItem('2 cups all-purpose flour')]),
+      createIngredientGroup(null, [createIngredientItem('1 cup sugar')]),
+    ]
 
-    expect(() => regroupExtractedIngredients($, undefined, 'h3', 'li')).toThrow(
+    expect(recoverIngredientGroups($, groupedSource, structure).map((g) => g.name)).toEqual([
+      'For the dough',
+      'For the filling',
+    ])
+  })
+
+  it('falls back to an unnamed group when the selectors miss', () => {
+    const $ = cheerio.load(groupedHtml)
+
+    expect(recoverIngredientGroups($, source, { heading: 'h4', item: '.missing' })).toEqual(
+      ungrouped,
+    )
+  })
+
+  it('falls back to an unnamed group when the DOM under-covers the source', () => {
+    const $ = cheerio.load(`
+      <h3>For the dough</h3>
+      <li class="ingredient">2 cups all purpose flour</li>
+    `)
+
+    expect(recoverIngredientGroups($, source, structure)).toEqual(ungrouped)
+  })
+
+  it('falls back to an unnamed group when grouping produces no items', () => {
+    // Every item match is also a heading, so no ingredients get grouped
+    const $ = cheerio.load(groupedHtml)
+
+    expect(recoverIngredientGroups($, source, { heading: 'h3', item: 'h3' })).toEqual(ungrouped)
+  })
+
+  it('does not duplicate ingredients when the DOM list is rendered twice', () => {
+    const $ = cheerio.load(`
+      <div class="mobile">${groupedHtml}</div>
+      <div class="desktop">${groupedHtml}</div>
+    `)
+
+    expect(recoverIngredientGroups($, source, structure)).toEqual([
+      { name: 'For the dough', items: [{ value: '2 cups all-purpose flour' }] },
+      { name: 'For the filling', items: [{ value: '1 cup sugar' }] },
+    ])
+  })
+
+  it('places one source ingredient under each group that lists it', () => {
+    const $ = cheerio.load(`
+      <h3>Cake</h3>
+      <li class="ingredient">1 egg</li>
+      <h3>Glaze</h3>
+      <li class="ingredient">1 egg</li>
+    `)
+    // Schema.org extraction de-duplicates recipeIngredient values
+    const deduplicated = stringsToIngredients(['1 egg'])
+
+    expect(recoverIngredientGroups($, deduplicated, structure)).toEqual([
+      { name: 'Cake', items: [{ value: '1 egg' }] },
+      { name: 'Glaze', items: [{ value: '1 egg' }] },
+    ])
+  })
+
+  it('excludes source values the structure marks as non-ingredients', () => {
+    const $ = cheerio.load(groupedHtml)
+    const withHeaders = stringsToIngredients([
+      'For the dough:',
+      '2 cups all-purpose flour',
+      'For the filling:',
+      '1 cup sugar',
+    ])
+
+    expect(
+      recoverIngredientGroups($, withHeaders, {
+        ...structure,
+        excludeSource: (value) => value.endsWith(':'),
+      }),
+    ).toEqual([
+      { name: 'For the dough', items: [{ value: '2 cups all-purpose flour' }] },
+      { name: 'For the filling', items: [{ value: '1 cup sugar' }] },
+    ])
+  })
+
+  it('fails extraction when there are no source ingredients', () => {
+    const $ = cheerio.load(groupedHtml)
+
+    expect(() => recoverIngredientGroups($, undefined, structure)).toThrow(
       NoIngredientsFoundException,
     )
+    expect(() =>
+      recoverIngredientGroups($, stringsToIngredients(['For the dough:']), {
+        ...structure,
+        excludeSource: () => true,
+      }),
+    ).toThrow(NoIngredientsFoundException)
   })
 })
 

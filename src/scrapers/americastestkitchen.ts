@@ -5,11 +5,18 @@ import type { Ingredients, RecipeFields } from '@/types/recipe.interface'
 import {
   createIngredientGroup,
   createIngredientItem,
-  regroupExtractedIngredients,
+  type IngredientGroupStructure,
+  recoverIngredientGroups,
 } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
 import { parseJsonWithRepair } from '@/utils/json'
 import { normalizeString } from '@/utils/parsing'
+
+// Use wildcard selectors to handle dynamic class name suffixes
+const INGREDIENT_GROUPS: IngredientGroupStructure = {
+  heading: '[class*="RecipeIngredientGroups_group"] > span',
+  item: '[class*="RecipeIngredient"] label',
+}
 
 const recipeIngredientItemSchema = z.object({
   fields: z.object({
@@ -103,19 +110,8 @@ export class AmericasTestKitchen extends AbstractScraper {
   protected ingredients(
     prevValue: RecipeFields['ingredients'] | undefined,
   ): RecipeFields['ingredients'] {
-    // First try to parse structured data
-    // If that fails, try to parse HTML ingredients
-    let ingredients = this.parseIngredients()
-
-    if (!ingredients) {
-      ingredients = this.parseHtmlIngredients(prevValue)
-    }
-
-    if (!ingredients) {
-      throw new Error('Failed to extract ingredients')
-    }
-
-    return ingredients
+    // First try the page payload, then restore groups from the HTML
+    return this.parseIngredients() ?? recoverIngredientGroups(this.$, prevValue, INGREDIENT_GROUPS)
   }
 
   protected instructions(
@@ -143,18 +139,6 @@ export class AmericasTestKitchen extends AbstractScraper {
     }
 
     return stringsToInstructions(items)
-  }
-
-  private parseHtmlIngredients(
-    prevValue: RecipeFields['ingredients'] | undefined,
-  ): RecipeFields['ingredients'] | null {
-    // Use wildcard selectors to handle dynamic class name suffixes
-    const headingSelector = '[class*="RecipeIngredientGroups_group"] > span'
-    const ingredientSelector = '[class*="RecipeIngredient"] label'
-
-    if (!prevValue || prevValue.length === 0) return null
-
-    return regroupExtractedIngredients(this.$, prevValue, headingSelector, ingredientSelector)
   }
 
   private getRecipeData(): RecipeData | null {
