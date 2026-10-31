@@ -30,6 +30,7 @@ import type { RecipeData, RecipeFields, RecipeObject } from './types/recipe.inte
 import type { ScraperOptions } from './types/scraper.interface'
 import { isPlainObject, isString } from './utils'
 import { extractWprmNotes } from './utils/extract-wprm-notes'
+import { type IngredientGroupStructure, recoverIngredientGroups } from './utils/ingredients'
 
 export type RecipeFieldExtractor<Key extends keyof RecipeFields> = (
   prevValue: RecipeFields[Key] | undefined,
@@ -102,12 +103,43 @@ export abstract class AbstractScraper {
   protected readonly extractors: ScraperExtractors = {}
 
   /**
+   * Recipe Page structure used to restore Ingredient Groups from Structured
+   * Data ingredients. Ignored when the subclass defines its own ingredients
+   * extractor; call `recoverIngredientGroups` from that extractor instead.
+   */
+  protected readonly ingredientGroupStructure?: IngredientGroupStructure
+
+  #siteExtractors: ScraperExtractors | null = null
+
+  /**
+   * Site-specific extractors, including Ingredient Group recovery when the
+   * subclass declares an `ingredientGroupStructure`.
+   */
+  get #resolvedExtractors(): ScraperExtractors {
+    if (this.#siteExtractors) {
+      return this.#siteExtractors
+    }
+
+    const structure = this.ingredientGroupStructure
+
+    this.#siteExtractors =
+      structure && !this.extractors.ingredients
+        ? {
+            ...this.extractors,
+            ingredients: (prevValue) => recoverIngredientGroups(this.$, prevValue, structure),
+          }
+        : this.extractors
+
+    return this.#siteExtractors
+  }
+
+  /**
    * Main extraction method - tries site-specific first, then plugins,
    * then applies post-processing.
    */
   public async extract<Key extends keyof RecipeFields>(field: Key): Promise<RecipeFields[Key]> {
     // 1. Extract the raw value
-    let value = await this.recipeExtractor.extract(field, this.extractors[field])
+    let value = await this.recipeExtractor.extract(field, this.#resolvedExtractors[field])
 
     // 2. Apply post-processors
     for (const processor of this.pluginManager.getPostProcessors()) {
@@ -195,8 +227,9 @@ export abstract class AbstractScraper {
 
   async #createRecipeEvidence(): Promise<RecipeEvidence> {
     const structuredEvidence = this.#schemaOrgPlugin.inspectRecipeEvidence()
+    const siteExtractors = this.#resolvedExtractors
     const hasSiteEvidenceExtractors = Boolean(
-      this.extractors.ingredients || this.extractors.instructions,
+      siteExtractors.ingredients || siteExtractors.instructions,
     )
 
     if (!hasSiteEvidenceExtractors && !this.#hasExtraExtractors) {
@@ -243,7 +276,7 @@ export abstract class AbstractScraper {
     field: 'ingredients' | 'instructions',
   ): Promise<{ found: boolean; runtimeFailure: boolean }> {
     try {
-      const value = await this.recipeExtractor.extract(field, this.extractors[field])
+      const value = await this.recipeExtractor.extract(field, this.#resolvedExtractors[field])
       return {
         found: value.some((group) => group.items.length > 0),
         runtimeFailure: false,

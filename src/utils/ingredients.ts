@@ -18,6 +18,19 @@ const DEFAULT_GROUPING_SELECTORS = {
 } as const satisfies Record<string, { headingSelectors: string[]; itemSelectors: string[] }>
 
 /**
+ * The Recipe Page structure a Site-specific Extractor trusts for restoring
+ * Ingredient Groups from Structured Data ingredient text.
+ */
+export interface IngredientGroupStructure {
+  /** Selector matching Ingredient Group headings. */
+  heading: string
+  /** Selector matching ingredient items. */
+  item: string
+  /** Returns true for Structured Data values that are not ingredients, such as group headers. */
+  excludeSource?: (value: string) => boolean
+}
+
+/**
  * Creates an IngredientItem.
  */
 export function createIngredientItem(value: string): IngredientItem {
@@ -121,20 +134,27 @@ export function unwrapIngredientNotes(value: string): string {
 }
 
 /**
- * Re-groups previously extracted ingredient values using headings and items
- * from the page DOM while preserving the extracted values as authoritative.
+ * Restores Ingredient Groups for previously extracted Structured Data
+ * ingredients using the Recipe Page structure a Scraper trusts.
+ *
+ * The extracted ingredient text stays authoritative; the DOM only supplies
+ * group names and order. Falls back to a single unnamed Ingredient Group when
+ * the selectors miss, the DOM under-covers the source, or grouping is empty.
+ *
+ * @throws {NoIngredientsFoundException} When there are no source ingredients
  */
-export function regroupExtractedIngredients(
+export function recoverIngredientGroups(
   $: CheerioAPI,
   ingredients: Ingredients | undefined,
-  headingSelector: string,
-  ingredientSelector: string,
+  { heading, item, excludeSource }: IngredientGroupStructure,
 ): Ingredients {
-  if (!ingredients || ingredients.length === 0) {
+  const values = flattenIngredients(ingredients ?? []).filter((value) => !excludeSource?.(value))
+
+  if (values.length === 0) {
     throw new NoIngredientsFoundException()
   }
 
-  return groupIngredients($, flattenIngredients(ingredients), headingSelector, ingredientSelector)
+  return groupIngredients($, values, heading, item)
 }
 
 export function scoreSentenceSimilarity(first: string, second: string): number {
@@ -277,12 +297,17 @@ export function groupIngredients(
 
       const matched = bestMatch(text, ingredientValues)
       const heading = currentHeading ?? null
+      const items = groupings.get(heading) ?? []
 
-      if (!groupings.has(heading)) {
-        groupings.set(heading, [])
+      // A list rendered twice (e.g. mobile and desktop layouts) merges into
+      // the same groups, so skip values already placed under this heading.
+      // The same value under different headings is kept.
+      if (items.includes(matched)) {
+        continue
       }
 
-      groupings.get(heading)?.push(matched)
+      items.push(matched)
+      groupings.set(heading, items)
     }
   }
 

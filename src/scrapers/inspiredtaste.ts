@@ -1,6 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { regroupExtractedIngredients } from '@/utils/ingredients'
 
 export class InspiredTaste extends AbstractScraper {
   static host() {
@@ -8,17 +7,12 @@ export class InspiredTaste extends AbstractScraper {
   }
 
   protected override readonly extractors = {
-    ingredients: this.ingredients.bind(this),
     siteName: this.siteName.bind(this),
   } satisfies ScraperExtractors
 
-  protected ingredients(
-    prevValue: RecipeFields['ingredients'] | undefined,
-  ): RecipeFields['ingredients'] {
-    const headingSelector = '.ingredient_heading'
-    const ingredientSelector = '.itr-ingredients p'
-
-    return regroupExtractedIngredients(this.$, prevValue, headingSelector, ingredientSelector)
+  protected override readonly ingredientGroupStructure = {
+    heading: '.ingredient_heading',
+    item: '.itr-ingredients p',
   }
 
   protected siteName(_prevValue: RecipeFields['siteName'] | undefined): RecipeFields['siteName'] {
