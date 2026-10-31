@@ -64,7 +64,7 @@ For each RecipeFields key:
   2) Site-specific extractor override (optional)
   3) Post-processors in priority order
   4) Field default value fallback (optional fields only)
-  5) Consumer-provided author/yield fallback (when configured)
+  5) Consumer-provided author/description/image/yield fallback (when configured)
   ->
 RecipeData (internal)
   ->
@@ -83,6 +83,9 @@ Important ordering behavior:
 - `fallbackAuthor` is used only when author extraction ends with
   `extractor_not_found` or returns a blank value; a function fallback receives
   the extracted `siteName`, which may be `null`
+- `fallbackDescription` and `fallbackImage` follow the same rules as
+  `fallbackAuthor`; a function description fallback receives the extracted
+  `title`, and `fallbackImage` must still pass image URL validation
 - `fallbackYield` is used only when yield extraction ends with
   `extractor_not_found`; extracted values and runtime errors take precedence
 - recipe notes are currently handled outside the plugin field pipeline and are
