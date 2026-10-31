@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.2.0...3.3.0) (2026-10-31)
+
+
+### Features
+
+* add fallbackDescription and fallbackImage options ([#46](https://github.com/recipe-scrapers/recipe-scrapers/issues/46)) ([5f6f47c](https://github.com/recipe-scrapers/recipe-scrapers/commit/5f6f47c27e6482d57b21c06e065fc8a9b993eea7))
+
+
+### Bug Fixes
+
+* **deps:** require zod &gt;=4.6.7 (security) ([5f6f47c](https://github.com/recipe-scrapers/recipe-scrapers/commit/5f6f47c27e6482d57b21c06e065fc8a9b993eea7))
+
 ## [3.2.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.1.0...3.2.0) (2026-10-03)
 
 
