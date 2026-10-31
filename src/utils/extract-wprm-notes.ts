@@ -16,6 +16,37 @@ function extractNoteText($: CheerioAPI, selector: Parameters<CheerioAPI>[0]) {
   return text || undefined
 }
 
+const NUMBERED_NOTE_PATTERN = /^\d+[.)]\s/
+
+/**
+ * Merges unnumbered paragraphs into the preceding numbered note when the
+ * notes are numbered, so multi-paragraph notes stay a single item.
+ * Paragraphs before the first numbered note are kept as separate items.
+ */
+function mergeNumberedNoteParagraphs(values: string[]): string[] {
+  const numberedCount = values.filter((value) => NUMBERED_NOTE_PATTERN.test(value)).length
+
+  if (numberedCount < 2) {
+    return values
+  }
+
+  const merged: string[] = []
+  let inNumberedNote = false
+
+  for (const value of values) {
+    if (NUMBERED_NOTE_PATTERN.test(value)) {
+      inNumberedNote = true
+      merged.push(value)
+    } else if (inNumberedNote && merged.length > 0) {
+      merged[merged.length - 1] = `${merged[merged.length - 1]} ${value}`
+    } else {
+      merged.push(value)
+    }
+  }
+
+  return merged
+}
+
 /**
  * Extracts recipe notes from WP Recipe Maker HTML.
  * Returns a single unnamed note group, or undefined when no note block exists.
@@ -66,5 +97,5 @@ export function extractWprmNotes($: CheerioAPI) {
       return text ? [text] : []
     })
 
-  return noteValues.length > 0 ? stringsToNotes(noteValues) : undefined
+  return noteValues.length > 0 ? stringsToNotes(mergeNumberedNoteParagraphs(noteValues)) : undefined
 }
