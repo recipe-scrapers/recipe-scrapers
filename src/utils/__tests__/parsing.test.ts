@@ -95,6 +95,21 @@ describe('parseMinutes', () => {
     expect(parseMinutes('1 hour 30 minutes')).toBe(90)
   })
 
+  it('parses human-readable durations in other European languages', () => {
+    expect(parseMinutes('35 minuti')).toBe(35)
+    expect(parseMinutes('Tillagningstid\n   30 minuter')).toBe(30)
+    expect(parseMinutes('1 Stunde 15 Minuten')).toBe(75)
+    expect(parseMinutes('1,5 timer')).toBe(90)
+    expect(parseMinutes('2 horas')).toBe(120)
+    expect(parseMinutes('1 heure 10 minutes')).toBe(70)
+    expect(parseMinutes('45 minuten')).toBe(45)
+  })
+
+  it('does not read a unit out of a longer word', () => {
+    expect(() => parseMinutes('serves 4 people')).toThrow('invalid duration')
+    expect(parseMinutes('10 minutes, then 2 more')).toBe(10)
+  })
+
   it('throws on invalid input', () => {
     expect(() => parseMinutes('')).toThrow('invalid duration')
   })
