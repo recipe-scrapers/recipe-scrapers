@@ -66,6 +66,34 @@ describe('embeddedPayload', () => {
     expect(read()?.recipe.title).toBe('Apple\nPie')
   })
 
+  it('reads the payload from an attribute', () => {
+    const $ = pageWith(
+      `<div id="app" data-page='{"recipe":{"title":"Pie &amp; cream"}}'><p>Rendered</p></div>`,
+    )
+    const read = embeddedPayload($, {
+      selector: '#app',
+      attribute: 'data-page',
+      parse: parsePayload,
+      logger,
+    })
+
+    expect(read()).toEqual({ recipe: { title: 'Pie & cream' } })
+    expect(warnSpy).not.toHaveBeenCalled()
+  })
+
+  it('returns null and warns when the payload attribute is missing', () => {
+    const read = embeddedPayload(pageWith('<div id="app"><p>Rendered</p></div>'), {
+      selector: '#app',
+      attribute: 'data-page',
+      parse: parsePayload,
+      logger,
+      name: 'test data',
+    })
+
+    expect(read()).toBeNull()
+    expect(warnSpy).toHaveBeenCalledWith('Could not find test data payload')
+  })
+
   it('returns null and warns when the payload is missing', () => {
     const read = embeddedPayload(pageWith(''), {
       selector: '#__NEXT_DATA__',
