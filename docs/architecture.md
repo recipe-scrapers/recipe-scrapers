@@ -139,7 +139,8 @@ Post-processors extend `PostProcessorPlugin` and run per-field:
 
 Built-in post-processors:
 
-- `HtmlStripperPlugin` (priority `100`)
+- `HtmlStripperPlugin` (priority `100`): strips markup and decodes entities,
+  with a second decode pass for double-encoded text such as `&amp;atilde;`
 - `IngredientParserPlugin` (priority `50`, enabled when `parseIngredients` is set)
 
 ## Optional Notes Extraction
