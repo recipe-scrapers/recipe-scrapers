@@ -1,105 +1,30 @@
 # Instructions for Recipe Scrapers
 
-You are helping with a TypeScript recipe-extraction library. It turns HTML and
-a source URL supplied by the caller into normalized recipe data using multiple
-extraction methods. The library does not fetch, crawl, or download pages; the
-URL selects the appropriate host-specific extraction logic.
+A TypeScript library that turns a caller-supplied Recipe Page (HTML plus its URL) into a validated Recipe Object (`RecipeObject` in `src/types/recipe.interface.ts`). It never fetches pages; the URL's Host only selects the Scraper. Domain terms are defined in `CONTEXT.md`.
 
-## Project Structure
+## Runtime Boundaries
 
-```txt
-recipe-scrapers/
-├── src/
-│   ├── __tests__/       # Core test files
-│   ├── exceptions/      # Custom exceptions
-│   ├── plugins/         # Generic extraction plugins (JSON-LD, microdata, etc.)
-│   ├── schemas/         # Zod schemas
-│   ├── scrapers/        # Site-specific scrapers + scraper registry
-│   ├── types/           # TypeScript types
-│   ├── utils/           # Utility functions
-│   └── index.ts         # Public entry point
-├── test-data/           # HTML fixtures and expected JSON outputs
-└── scripts/             # Test-data fetch/process scripts
-```
+`src/**` is the published library and must run unchanged in Node, Bun, and browsers, so oxlint rejects Bun APIs and `node:` imports there. Build on platform-neutral code and the helpers in `src/utils/`. Tests (`src/**/__tests__/**`) and `scripts/**` may use Bun and Node APIs freely.
 
-## Key Technologies
+## TypeScript
 
-- **Bun** for development and testing
-- **Cheerio** for HTML parsing and DOM manipulation
+- Narrow `unknown` with type guards (`isString`, `isPlainObject`, etc. in `src/utils/index.ts`); cast with `as` only after a check the compiler cannot follow.
+- Add JSDoc to exported functions.
+- Write look-alike characters such as the fraction slash (`\u2044`, not `/`) as `\u` escapes; oxlint already rejects literal invisible characters.
 
-## Runtime Boundaries (Important)
+## Testing
 
-- **`src/**` (library/runtime code): Keep code runtime-agnostic and portable.
-- In `src/**`, do **not** introduce Bun-only globals/APIs (for example `Bun.file`, `Bun.Glob`, `Bun.serve`).
-- In `src/**`, prefer platform-neutral JavaScript/TypeScript and existing project abstractions.
-- **`src/**/__tests__/**`, `scripts/**`, and test tooling**: Bun-specific APIs are acceptable.
-- If a change touches both `src/**` and tests, keep Bun usage confined to tests/scripts only.
+- Put tests in a `__tests__/` directory beside the code, named `*.test.ts`, written with `it`. Add tests for new behaviour.
+- A Test Fixture is `test-data/<host>/<name>.testhtml` plus `<name>.json`, the expected Recipe Object. The shared harness discovers every pair and infers `parseIngredients` and `parseNotes` from the JSON. An optional `<name>.options.json` supplies string caller fallbacks such as `fallbackDescription`.
+- `bun run fetch-test-data` downloads the Python library's fixtures into `.temp/<host>/`, and `bun run process-test-data <host>` converts them into `test-data/<host>/`.
 
-## TypeScript Rules
+## Adding a Supported Host
 
-### Strict Type Safety
-
-- **Never use non-null assertions (!)**
-- **Never use `any`** - Use proper types, unions, or `unknown` instead
-- **Avoid type casting** unless absolutely necessary and safe
-- Use **type guards** for runtime type checking instead of casting
-- Prefer **union types** over loose typing: `string | number` not `any`
-
-## Code Patterns
-
-### Extraction Methods
-
-1. **JSON-LD**: Extract from `<script type="application/ld+json">` tags
-2. **Microdata**: Parse HTML microdata attributes (`itemprop`)
-3. **OpenGraph**: Parse OpenGraph meta tags (`og:site_name`)
-4. **Site-specific**: Custom extractors for each cooking website
-
-### Expected Output Format
-
-Reference `RecipeObject` from `src/types/recipe.interface.ts`
-
-## Testing Guidelines
-
-- Use Bun for unit tests
-- Prefer `it` style test syntax
-- Place test files in `__tests__/` directory with `.test.ts` suffix
-- Test data goes in `test-data/[sitename]/` with `.testhtml` and `.json` files
-- Mock external dependencies when needed
-- Bun globals/APIs are allowed in tests and scripts, but should not leak into `src/**`
-- `scripts/process-test-data.ts` is the default entry point for converting raw fixture files from `.temp/[host]/` into `test-data/[host]/`
-- The shared scraper test harness discovers `test-data/**/*.testhtml` and expects a sibling `.json` fixture
-
-## Common Tasks
-
-### Adding New Supported Host
-
-1. Decide whether the host can use generic schema.org extraction or needs site-specific logic
-2. If schema.org-only support is enough, add the hostname to `SCHEMA_ORG_ONLY_HOSTS` in `src/scrapers/_index.ts`
-3. If site-specific logic is needed, create `src/scrapers/[name].ts` using the repo's normalized scraper naming convention rather than the literal hostname
-4. Export a class extending `AbstractScraper`
-5. Register custom scrapers in `customScraperClasses` in `src/scrapers/_index.ts`
-6. Add host aliases to `scraperAliases` in `src/scrapers/_index.ts` when the same scraper should support alternate hostnames
-7. Add test data in `test-data/[host]/`
-8. If fixture output is difficult to reconcile, compare with the original Python scraper implementation at `https://github.com/hhursev/recipe-scrapers/tree/main/recipe_scrapers` before changing shared extraction behavior
-
-## Code Style
-
-- Keep `src/**` runtime-portable; avoid Bun-specific APIs there
-- Use the latest ECMAScript (ESM) features
-- Use `import`/`export` instead of `require`
-- Use `const`/`let` instead of `var`
-- Prefer template literals for string interpolation
-- Use destructuring for object/array assignments
-- Add JSDoc comments for public functions
-- Handle errors gracefully with try/catch
-
-When suggesting code changes:
-
-- Prioritize maintainability and readability
-- Include error handling
-- Add tests for new functionality
-- Follow existing project patterns
-- Use meaningful variable names
+1. Decide whether the Host can be a Schema.org-only Host or needs a Scraper with Site-specific Extractors.
+2. For a Schema.org-only Host, add the hostname to `SCHEMA_ORG_ONLY_HOSTS` in `src/scrapers/_index.ts`.
+3. Otherwise create `src/scrapers/<name>.ts`, named by the repo's normalized convention rather than the literal hostname, export a class extending `AbstractScraper`, and register it in `customScraperClasses`. Alternate hostnames go in `scraperAliases`.
+4. Add Test Fixtures in `test-data/<host>/`.
+5. When fixture output is hard to reconcile, compare with the original Python scraper at `https://github.com/hhursev/recipe-scrapers/tree/main/recipe_scrapers` before changing shared extraction behaviour. Expected JSON converted from Python output is a reference: where our output is more accurate, update the JSON and say why in the commit.
 
 ## Pull Requests
 
