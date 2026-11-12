@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [".agents/**", ".all-contributorsrc", ".temp/**", "dist/**", "*.md"],
+  "ignorePatterns": [".agents/**", ".all-contributorsrc", ".temp/**", "dist/**", "CHANGELOG.md"],
   "printWidth": 100,
   "semi": false,
   "singleQuote": true,
