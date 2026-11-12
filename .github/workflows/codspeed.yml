@@ -2,22 +2,27 @@ name: 'CodSpeed'
 
 # Parse-speed benchmarks (bench/**/*.bench.ts). CodSpeed counts CPU
 # instructions instead of timing them, so results are stable across runners;
-# runs on main are the baseline each PR is compared against. Release-please
-# PRs only bump the version and changelog, so they are skipped.
+# runs on main are the baseline each PR is compared against.
+#
+# Runs only when a file that can change parse speed changes, so docs,
+# formatting, and release-please PRs skip it. Dependency updates still run
+# because they change bun.lock. A main commit without a run is fine:
+# CodSpeed compares against the latest earlier run instead.
 
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - 'CHANGELOG.md'
-      - '.release-please-manifest.json'
-      - 'package.json'
+    paths: &benchmark-paths
+      - 'src/**'
+      - 'bench/**'
+      - 'test-data/**'
+      - 'bun.lock'
+      - 'tsconfig.json'
+      - 'vitest.config.ts'
+      - '.github/workflows/codspeed.yml'
   pull_request:
     branches: [main]
-    paths-ignore:
-      - 'CHANGELOG.md'
-      - '.release-please-manifest.json'
-      - 'package.json'
+    paths: *benchmark-paths
   workflow_dispatch:
 
 permissions:
