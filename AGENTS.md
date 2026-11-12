@@ -20,7 +20,7 @@ A TypeScript library that turns a caller-supplied Recipe Page (HTML plus its URL
 
 ## Performance
 
-- Parse-speed benchmarks in `bench/` run on CodSpeed in CI, one benchmark per extraction path. When a change adds an extraction path that no page in `PAGES` covers, add a fixture page for it.
+- Parse-speed benchmarks in `bench/` run on CodSpeed in CI, one bench file per extraction path. When a change adds an extraction path no bench file covers, add one that calls `benchPage` with a fixture for it.
 - `bun run size` (after `bun run build`) fails when an entry outgrows its gzip budget in `bundle-size-budgets.json`. Raise a budget with `--update-budgets` only for intended growth, and say why in the commit.
 
 ## Adding a Supported Host

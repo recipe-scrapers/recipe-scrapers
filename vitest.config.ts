@@ -12,5 +12,8 @@ export default defineConfig({
   test: {
     include: [],
     benchmark: { include: ['bench/**/*.bench.ts'] },
+    // CodSpeed simulation runs each benchmark 8 times under instrumentation,
+    // so one page can take several minutes.
+    testTimeout: 15 * 60_000,
   },
 })
