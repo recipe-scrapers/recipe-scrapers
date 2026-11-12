@@ -31,6 +31,7 @@ import type { ScraperOptions } from './types/scraper.interface'
 import { isPlainObject, isString } from './utils'
 import { extractWprmNotes } from './utils/extract-wprm-notes'
 import { type IngredientGroupStructure, recoverIngredientGroups } from './utils/ingredients'
+import { reconcileRecipeTimes, type RecipeTimes } from './utils/times'
 
 export type RecipeFieldExtractor<Key extends keyof RecipeFields> = (
   prevValue: RecipeFields[Key] | undefined,
@@ -307,6 +308,27 @@ export abstract class AbstractScraper {
     }
   }
 
+  /**
+   * Extracts the total, cook, and prep times and repairs published values
+   * where cook plus prep is longer than the total.
+   */
+  private async extractTimes(): Promise<RecipeTimes> {
+    const extracted: RecipeTimes = {
+      totalTime: await this.extract('totalTime'),
+      cookTime: await this.extract('cookTime'),
+      prepTime: await this.extract('prepTime'),
+    }
+    const reconciled = reconcileRecipeTimes(extracted)
+
+    if (reconciled !== extracted) {
+      this.logger.warn(
+        `Cook time (${extracted.cookTime}) plus prep time (${extracted.prepTime}) exceeds total time (${extracted.totalTime}); using cook time ${reconciled.cookTime} and prep time ${reconciled.prepTime}`,
+      )
+    }
+
+    return reconciled
+  }
+
   private extractAuthor(siteName: RecipeFields['siteName']): Promise<RecipeFields['author']> {
     const { fallbackAuthor } = this.options
 
@@ -377,12 +399,13 @@ export abstract class AbstractScraper {
     const siteName = await this.extract('siteName')
     const author = await this.extractAuthor(siteName)
     const title = await this.extract('title')
+    const { cookTime, prepTime, totalTime } = await this.extractTimes()
 
     this.recipeData = {
       author,
       canonicalUrl: this.canonicalUrl(),
       category: await this.extract('category'),
-      cookTime: await this.extract('cookTime'),
+      cookTime,
       cookingMethod: await this.extract('cookingMethod'),
       cuisine: await this.extract('cuisine'),
       description: await this.extractDescription(title),
@@ -397,13 +420,13 @@ export abstract class AbstractScraper {
       language: this.language(),
       links: this.links(),
       nutrients: await this.extract('nutrients'),
-      prepTime: await this.extract('prepTime'),
+      prepTime,
       ratings: await this.extract('ratings'),
       ratingsCount: await this.extract('ratingsCount'),
       reviews: await this.extract('reviews'),
       siteName,
       title,
-      totalTime: await this.extract('totalTime'),
+      totalTime,
       yields: await this.extractYields(),
     }
 

@@ -1,0 +1,100 @@
+{
+  "author": "Millie Peartree",
+  "canonicalUrl": "https://cooking.nytimes.com/recipes/1024108-brown-butter-chocolate-chip-cookies",
+  "cookTime": 95,
+  "cookingMethod": "Bake, Baking",
+  "description": "There is nothing more magical than a gooey-centered, crispy-edged chocolate chip cookie. What makes this particular recipe especially enchanting is the inclusion of brown butter. It mixes right into the dry ingredients, infusing the batter with its nutty flavor without the need for a mixer or any other special equipment. An optional dash of cinnamon has a warmth that feels like a hug, and the brown sugar gives you that chew with a slight molasses taste. Whether for a holiday or an afternoon snack, these cookies may become your go-to.",
+  "host": "cooking.nytimes.com",
+  "image": "https://static01.nyt.com/images/2023/04/11/multimedia/mp-chocolate-chip-cookies-vtgz/mp-chocolate-chip-cookies-vtgz-videoSixteenByNineJumbo1600-v2.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 cup/226 grams unsalted butter"
+        },
+        {
+          "value": "2 ½ cups/320 grams all-purpose flour"
+        },
+        {
+          "value": "1 teaspoon baking soda"
+        },
+        {
+          "value": "1 teaspoon fine sea salt"
+        },
+        {
+          "value": "½ teaspoon ground cinnamon (optional)"
+        },
+        {
+          "value": "1 cup/220 grams light brown sugar"
+        },
+        {
+          "value": "¼ cup/50 grams granulated sugar"
+        },
+        {
+          "value": "1 large egg plus 1 egg yolk, at room temperature"
+        },
+        {
+          "value": "2 teaspoons vanilla extract"
+        },
+        {
+          "value": "12 ounces semisweet chocolate, preferably from a bar, roughly chopped (or use 12 ounces chocolate chips)"
+        },
+        {
+          "value": "Flaky sea salt (optional), for topping"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a medium saucepan over medium heat, melt the butter, stirring and swirling the pan often, until the butter foams, turns golden brown and smells nutty, about 5 minutes. Pour into a large bowl and set aside to cool."
+        },
+        {
+          "value": "In a medium bowl, whisk together the flour, baking soda, salt and cinnamon, if you like. Line 2 rimmed sheet pans with parchment paper."
+        },
+        {
+          "value": "Add the sugars to the melted brown butter; mix until combined. Add the egg, egg yolk and vanilla extract and stir until combined. Add the flour mixture and stir until well combined."
+        },
+        {
+          "value": "Stir in the chocolate. Working one at a time, scoop out a ¼ cup of the dough and roll into a ball. Place the balls on the prepared sheet pans, and chill for 1 hour and up to 24 hours."
+        },
+        {
+          "value": "When ready to bake, heat oven to 350 degrees. Bake just until the edges start to turn golden, rotating halfway through, about 15 minutes."
+        },
+        {
+          "value": "Remove from the oven and bang the pan on the counter. (This creates a flatter, chewier cookie.) Sprinkle cookies with flaky sea salt, if you like. Let sit on the baking sheets for 5 minutes before moving to a cooling rack to cool completely. Store cookies in an airtight container at room temperature for up to 3 days."
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 15,
+  "ratings": 5,
+  "ratingsCount": 3795,
+  "siteName": "NYT Cooking",
+  "title": "Brown Butter Chocolate Chip Cookies",
+  "totalTime": 110,
+  "yields": "16 cookies",
+  "category": ["Chocolate Chip Cookie", "Dessert"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Brown Butter", "Egg Yolk", "Semisweet Chocolate", "Semisweet Chocolate Chip"],
+  "nutrients": {
+    "calories": "354",
+    "carbohydrateContent": "46.6 grams",
+    "cholesterolContent": "54.3 milligrams",
+    "fatContent": "17.1 grams",
+    "fiberContent": "1.2 grams",
+    "proteinContent": "3.7 grams",
+    "saturatedFatContent": "10.4 grams",
+    "sodiumContent": "179.3 milligrams",
+    "sugarContent": "29.9 grams",
+    "unsaturatedFatContent": "0.6 grams"
+  },
+  "reviews": {}
+}
