@@ -17,8 +17,13 @@ const addProperty = (obj: Record<string, unknown>, key: string, value: unknown) 
 }
 
 const extractValueFromElement = <T extends Element>(element: Cheerio<T>): string | undefined => {
-  if (element.is('meta')) {
-    return element.attr('content')
+  // HTML only defines `content` on <meta>, but sites (and schema.org's own
+  // examples) put it on <time>, <span>, and others. A `content` attribute is
+  // the publisher's machine-readable value, so it wins on any element.
+  const content = element.attr('content')
+
+  if (content !== undefined || element.is('meta')) {
+    return content
   }
 
   if (element.is('time')) {
