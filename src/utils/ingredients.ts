@@ -168,7 +168,24 @@ export function recoverIngredientGroups(
   return groupIngredients($, values, heading, item)
 }
 
-export function scoreSentenceSimilarity(first: string, second: string): number {
+/**
+ * Normalizes text before similarity scoring so that equivalent quantities
+ * compare equal: vulgar fractions become ASCII (`1½` → `1 1/2`), so a Recipe
+ * Page showing "½ tsp salt" matches Structured Data "1/2 tsp salt" rather
+ * than "¼ tsp salt".
+ */
+function normalizeForComparison(value: string): string {
+  return value
+    .replace(/(\d)([\u00bc-\u00be\u2150-\u215e])/g, '$1 $2')
+    .normalize('NFKD')
+    .replace(/\u2044/g, '/')
+    .toLowerCase()
+}
+
+export function scoreSentenceSimilarity(rawFirst: string, rawSecond: string): number {
+  const first = normalizeForComparison(rawFirst)
+  const second = normalizeForComparison(rawSecond)
+
   if (first === second) {
     return 1
   }
