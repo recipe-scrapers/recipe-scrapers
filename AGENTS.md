@@ -43,6 +43,7 @@ END_COMMIT_OVERRIDE
 ```
 
 - Build the list with `git log --reverse --format=%s origin/main..HEAD`, and rewrite it whenever commits are added, dropped, or reworded.
+- Write the `BEGIN_COMMIT_OVERRIDE` marker only in the block itself. release-please reads from the first occurrence anywhere in the body, so a mention elsewhere breaks the override and drops the PR from the changelog.
 - A merged PR's override can still be edited until its release is published; release-please picks up the change on its next run.
 - Title the PR as a conventional commit; with a single commit, the title alone becomes the changelog entry.
 
