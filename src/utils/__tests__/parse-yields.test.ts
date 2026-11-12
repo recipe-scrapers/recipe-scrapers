@@ -33,6 +33,29 @@ describe('parseYields', () => {
     )
   })
 
+  it('keeps the parenthetical from the first line that closes one', () => {
+    expect(parseYields('5 cups (about 120 (or more) crackers) total')).toBe(
+      '5 cups (about 120 (or more) crackers)',
+    )
+    expect(parseYields('5 cups (unclosed')).toBe('5 cups')
+    expect(
+      parseYields(`5 cups (about
+120 crackers)`),
+    ).toBe('5 cups')
+    expect(
+      parseYields(`5 cups
+(about 120 crackers)`),
+    ).toBe('5 cups (about 120 crackers)')
+  })
+
+  it('parses long input in linear time', () => {
+    const started = performance.now()
+
+    expect(parseYields(`5 cups ${'('.repeat(200_000)}`)).toBe('5 cups')
+    expect(parseYields('a'.repeat(200_000))).toBe('0 servings')
+    expect(performance.now() - started).toBeLessThan(1000)
+  })
+
   it('should be deterministic across repeated calls', () => {
     expect(parseYields('Makes 3')).toBe('3 items')
     expect(parseYields('Makes 3')).toBe('3 items')
