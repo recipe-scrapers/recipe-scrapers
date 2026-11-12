@@ -31,6 +31,7 @@ import type { ScraperOptions } from './types/scraper.interface'
 import { isPlainObject, isString } from './utils'
 import { extractWprmNotes } from './utils/extract-wprm-notes'
 import { type IngredientGroupStructure, recoverIngredientGroups } from './utils/ingredients'
+import { reconcileRecipeRatings, type RecipeRatings } from './utils/ratings'
 import { reconcileRecipeTimes, type RecipeTimes } from './utils/times'
 
 export type RecipeFieldExtractor<Key extends keyof RecipeFields> = (
@@ -309,6 +310,24 @@ export abstract class AbstractScraper {
   }
 
   /**
+   * Extracts the rating and ratings count, dropping a rating that has no
+   * count behind it.
+   */
+  private async extractRatings(): Promise<RecipeRatings> {
+    const extracted: RecipeRatings = {
+      ratings: await this.extract('ratings'),
+      ratingsCount: await this.extract('ratingsCount'),
+    }
+    const reconciled = reconcileRecipeRatings(extracted)
+
+    if (reconciled !== extracted) {
+      this.logger.warn(`Rating ${extracted.ratings} has no ratings count; ignoring it`)
+    }
+
+    return reconciled
+  }
+
+  /**
    * Extracts the total, cook, and prep times and repairs published values
    * where cook plus prep is longer than the total.
    */
@@ -400,6 +419,7 @@ export abstract class AbstractScraper {
     const author = await this.extractAuthor(siteName)
     const title = await this.extract('title')
     const { cookTime, prepTime, totalTime } = await this.extractTimes()
+    const { ratings, ratingsCount } = await this.extractRatings()
 
     this.recipeData = {
       author,
@@ -421,8 +441,8 @@ export abstract class AbstractScraper {
       links: this.links(),
       nutrients: await this.extract('nutrients'),
       prepTime,
-      ratings: await this.extract('ratings'),
-      ratingsCount: await this.extract('ratingsCount'),
+      ratings,
+      ratingsCount,
       reviews: await this.extract('reviews'),
       siteName,
       title,
