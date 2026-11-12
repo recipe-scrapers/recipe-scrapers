@@ -1,4 +1,27 @@
-const SERVE_REGEX_NUMBER = /(?:\D*(?<items>\d+(?:\.\d*)?)\D*)/
+// The first number in the yield text. No surrounding `\D*`: those never
+// changed the capture but made a digit-free string backtrack quadratically.
+const SERVE_REGEX_NUMBER = /(?<items>\d+(?:\.\d*)?)/
+
+const LINE_BREAK = /\r\n|[\n\r\u2028\u2029]/
+
+/**
+ * Returns the parenthetical text in a yield ("(about 120 to 160 crackers)"):
+ * from the first `(` to the last `)` on the first line that has both. This
+ * is what `/\(.*\)/` matched, without its quadratic backtracking on text
+ * with many unclosed `(`.
+ */
+function findParenthetical(text: string): string | null {
+  for (const line of text.split(LINE_BREAK)) {
+    const start = line.indexOf('(')
+    const end = line.lastIndexOf(')')
+
+    if (start !== -1 && end > start) {
+      return line.slice(start, end + 1)
+    }
+  }
+
+  return null
+}
 
 const SERVE_REGEX_ITEMS =
   /\bsandwiches\b|\btacquitos\b|\bmakes\b|\bcups\b|\bappetizer\b|\bporzioni\b|\bcookies\b|\b(large |small )?buns\b/i
@@ -70,11 +93,11 @@ export function parseYields(element: string): string {
   // If we found the best match (e.g. "5 cups"), append any trailing
   // parentheses text. That way "5 cups (about 120...)" stays intact.
   if (bestMatch) {
-    const parenMatch = serveText.match(/\(.*\)/)
+    const parenthetical = findParenthetical(serveText)
 
-    if (parenMatch) {
+    if (parenthetical) {
       // e.g. "5 cups (about 120 to 160 crackers)"
-      bestMatch += ` ${parenMatch[0]}`
+      bestMatch += ` ${parenthetical}`
     }
     return bestMatch
   }
