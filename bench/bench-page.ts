@@ -16,7 +16,7 @@ const DATA_DIR = path.resolve(import.meta.dirname, '../test-data')
  *   quarters of `scrape`, so a regression in our own code shows up more
  *   clearly here.
  *
- * Each page lives in its own bench file so Vitest can run pages in parallel;
+ * Each page lives in its own bench file so CI can run one page per shard;
  * under CodSpeed simulation one page takes minutes.
  *
  * @param fixture Fixture path under test-data/, without extension.

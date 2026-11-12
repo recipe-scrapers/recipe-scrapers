@@ -27,6 +27,11 @@ permissions:
 jobs:
   benchmarks:
     runs-on: ubuntu-latest
+    # Vitest runs bench files one at a time, and one page takes minutes under
+    # simulation, so each shard runs one bench file. CodSpeed merges the shards.
+    strategy:
+      matrix:
+        shard: [1/5, 2/5, 3/5, 4/5, 5/5]
     steps:
       - name: Checkout 🛰️
         uses: actions/checkout@v7
@@ -49,4 +54,4 @@ jobs:
           mode: simulation
           # Call vitest directly so the instrumented process is Node, not a
           # package-manager wrapper.
-          run: node_modules/.bin/vitest bench --run
+          run: node_modules/.bin/vitest bench --run --shard=${{ matrix.shard }}
