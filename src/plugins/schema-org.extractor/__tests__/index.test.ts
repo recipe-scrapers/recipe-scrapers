@@ -108,6 +108,17 @@ describe('SchemaOrgPlugin', () => {
     expect(plugin.extract('yields')).toBe('4 servings')
   })
 
+  it('treats unparseable durations as missing', () => {
+    const templatedPlugin = new SchemaOrgPlugin(
+      load(minimalJsonLd.replace('"cookTime": "PT5M"', '"cookTime": "PTnullM"')),
+      LogLevel.ERROR,
+    )
+
+    expect(templatedPlugin.extract('cookTime')).toBeNull()
+    expect(templatedPlugin.extract('prepTime')).toBe(5)
+    expect(templatedPlugin.extract('totalTime')).toBe(10)
+  })
+
   it('extracts ingredient and instruction lists', () => {
     const ingredients = plugin.extract('ingredients')
 

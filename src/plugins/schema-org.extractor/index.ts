@@ -380,16 +380,29 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     }
 
     if (isString(value)) {
-      return parseMinutes(value)
+      return this.parseDurationText(key, value)
     }
 
     // Handle QuantitativeValue objects
     if (isBaseType(value) && 'maxValue' in value) {
       const maxValue = this.getSchemaTextValue(value.maxValue)
-      return parseMinutes(maxValue)
+      return this.parseDurationText(key, maxValue)
     }
 
     return null
+  }
+
+  /**
+   * Parses a duration string, treating unparseable values (e.g. a templated
+   * `PTnullM`) as missing instead of failing the whole field.
+   */
+  private parseDurationText(key: keyof SchemaRecipe, value: string): number | null {
+    try {
+      return parseMinutes(value)
+    } catch {
+      this.logger.warn(`Duration field "${key}" could not be parsed: ${value}`)
+      return null
+    }
   }
 
   private parseInstructions(value: unknown): RecipeFields['instructions'] {
