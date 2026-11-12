@@ -4,30 +4,56 @@
     "correctness": "error",
     "suspicious": "error"
   },
-  "plugins": ["typescript", "unicorn"],
+  "plugins": ["typescript", "unicorn", "import"],
   "rules": {
     "default-param-last": "error",
+    "eqeqeq": "error",
+    "import/no-cycle": "error",
+    "import/no-duplicates": "error",
+    "import/no-self-import": "error",
     "no-else-return": "error",
     "no-irregular-whitespace": [
       "error",
-      { "skipStrings": false, "skipRegExps": false, "skipTemplates": false, "skipComments": false }
+      {
+        "skipStrings": false,
+        "skipRegExps": false,
+        "skipTemplates": false,
+        "skipComments": false
+      }
     ],
     "no-param-reassign": "error",
     "no-shadow": "off",
     "no-unassigned-vars": "off",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "no-var": "error",
     "one-var": ["error", "never"],
     "prefer-const": "error",
     "prefer-destructuring": [
       "error",
       {
-        "VariableDeclarator": { "object": true, "array": false },
-        "AssignmentExpression": { "object": false, "array": false }
+        "VariableDeclarator": {
+          "object": true,
+          "array": false
+        },
+        "AssignmentExpression": {
+          "object": false,
+          "array": false
+        }
       }
     ],
     "prefer-template": "error",
-    "typescript/consistent-type-assertions": ["error", { "assertionStyle": "never" }],
+    "typescript/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "never"
+      }
+    ],
     "typescript/no-explicit-any": "error",
     "typescript/no-extraneous-class": "off",
     "typescript/no-inferrable-types": "error",
@@ -38,7 +64,10 @@
     "typescript/prefer-enum-initializers": "error",
     "unicorn/consistent-function-scoping": "off",
     "unicorn/no-array-sort": "off",
-    "unicorn/prefer-number-properties": "error"
+    "unicorn/prefer-includes": "error",
+    "unicorn/prefer-node-protocol": "error",
+    "unicorn/prefer-number-properties": "error",
+    "unicorn/throw-new-error": "error"
   },
   "overrides": [
     {
@@ -71,7 +100,14 @@
               }
             ]
           }
-        ]
+        ],
+        "no-console": "error"
+      }
+    },
+    {
+      "files": ["src/logger.ts"],
+      "rules": {
+        "no-console": "off"
       }
     },
     {
@@ -79,7 +115,8 @@
       "rules": {
         "no-restricted-globals": "off",
         "no-restricted-imports": "off",
-        "typescript/consistent-type-assertions": "off"
+        "typescript/consistent-type-assertions": "off",
+        "no-console": "off"
       }
     }
   ],

@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import z from 'zod'
+import { z } from 'zod'
 
 const TEMP_DIR = path.resolve(import.meta.dirname, '../.temp')
 

@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import z from 'zod'
+import { z } from 'zod'
 
 import type { AbstractScraper } from '@/abstract-scraper'
 import type { RecipeObject } from '@/types/recipe.interface'
