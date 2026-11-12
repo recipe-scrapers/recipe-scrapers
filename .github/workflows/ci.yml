@@ -38,3 +38,32 @@ jobs:
 
       - name: Verify browser-safe exports 🌐
         run: bun run test:browser-exports
+
+  bundle-size:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛰️
+        uses: actions/checkout@v7
+
+      # On PRs, also build the base branch so the summary shows the change.
+      - name: Checkout base 🛰️
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: .base
+
+      - name: Install bun 🍔
+        uses: oven-sh/setup-bun@v2
+
+      - name: Build 🚧
+        run: bun install && bun run build
+
+      - name: Build base 🚧
+        if: github.event_name == 'pull_request'
+        working-directory: .base
+        run: bun install && bun run build
+
+      - name: Measure bundle size 📏
+        shell: bash
+        run: bun scripts/bundle-size.ts ${{ github.event_name == 'pull_request' && '--base .base/dist' || '' }} | tee -a "$GITHUB_STEP_SUMMARY"

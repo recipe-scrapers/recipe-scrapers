@@ -65,7 +65,8 @@
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "ts:check": "tsc --noEmit",
-    "bench": "vitest bench --run"
+    "bench": "vitest bench --run",
+    "size": "bun scripts/bundle-size.ts"
   },
   "dependencies": {
     "@standard-schema/spec": "^1.1.0",
