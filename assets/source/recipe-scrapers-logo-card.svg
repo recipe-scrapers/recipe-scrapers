@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="676" height="160" viewBox="0 0 676 160" role="img" aria-labelledby="title desc">
+  <title id="title">recipe-scrapers</title>
+  <desc id="desc">Logo for recipe-scrapers, a TypeScript library for extracting structured recipe data from HTML.</desc>
+  <rect width="676" height="160" rx="34.375" fill="#172B33"/>
+  <g transform="scale(0.625)">
+    <rect width="256" height="256" rx="55" fill="#1F3943"/>
+    <!-- HTML input: matched angle brackets -->
+    <path d="M87 99 60 128l27 29" fill="none" stroke="#FFF7EB" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="m169 99 27 29-27 29" fill="none" stroke="#FFF7EB" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Recipe data: a minimal fork -->
+    <path d="M111 77v32c0 12 8 21 17 21s17-9 17-21V77" fill="none" stroke="#FF8A61" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M122.5 77v33m11-33v33M128 131v50" fill="none" stroke="#FF8A61" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <text x="190" y="81" fill="#FFF7EB" font-family="'DejaVu Sans Mono', 'Cascadia Code', Consolas, monospace" font-size="53" font-weight="700" letter-spacing="-2.4">recipe-scrapers</text>
+  <text x="194" y="115" fill="#93A9B0" font-family="'DejaVu Sans Mono', 'Cascadia Code', Consolas, monospace" font-size="19" font-weight="500" letter-spacing="1.35">HTML IN. RECIPE DATA OUT.</text>
+</svg>

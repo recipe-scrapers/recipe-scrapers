@@ -1,11 +1,4 @@
-<!-- markdownlint-disable MD033 -- <picture> switches the logo for dark mode; Markdown images cannot -->
-<h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/recipe-scrapers-logo-dark.png">
-    <img src="assets/recipe-scrapers-logo.png" alt="Recipe Scrapers" width="600">
-  </picture>
-</h1>
-<!-- markdownlint-enable MD033 -->
+# ![Recipe Scrapers](assets/recipe-scrapers-logo-card.svg)
 
 [![npm version](https://img.shields.io/npm/v/recipe-scrapers.svg?style=flat-square)](https://www.npmjs.com/package/recipe-scrapers)
 [![npm downloads](https://img.shields.io/npm/dw/recipe-scrapers.svg?style=flat-square)](https://www.npmjs.com/package/recipe-scrapers)
