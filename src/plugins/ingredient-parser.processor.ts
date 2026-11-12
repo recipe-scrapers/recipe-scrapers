@@ -44,6 +44,7 @@ export class IngredientParserPlugin extends PostProcessorPlugin {
     }
 
     if (isIngredients(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Ingredients in, Ingredients out; the generic process<T> signature can't express it.
       return this.processIngredients(value) as Promise<T>
     }
 

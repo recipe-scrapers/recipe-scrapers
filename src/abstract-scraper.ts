@@ -164,6 +164,7 @@ export abstract class AbstractScraper {
    * Subclasses can override when host must be derived from instance context.
    */
   protected getHost(): string {
+    // oxlint-disable-next-line typescript/consistent-type-assertions -- `this.constructor` is typed as Function, but every instance is built by an AbstractScraper subclass.
     const instance = this.constructor as typeof AbstractScraper
     return instance.host()
   }

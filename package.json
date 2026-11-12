@@ -60,7 +60,7 @@
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",
-    "lint": "oxlint --deny-warnings && bun run fmt:check && bun run ts:check",
+    "lint": "oxlint --deny-warnings --report-unused-disable-directives && bun run fmt:check && bun run ts:check",
     "lint:fix": "oxlint --fix && oxfmt",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",

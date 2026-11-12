@@ -32,15 +32,6 @@ export function isOptionalRecipeField(
 export function getOptionalRecipeFieldDefault<Key extends OptionalRecipeFieldWithDefault>(
   field: Key,
 ): OptionalRecipeFieldDefaultValues[Key] {
-  const value = OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES[field]
-
-  if (value instanceof Set) {
-    return new Set(value) as OptionalRecipeFieldDefaultValues[Key]
-  }
-
-  if (value instanceof Map) {
-    return new Map(value) as OptionalRecipeFieldDefaultValues[Key]
-  }
-
-  return value
+  // A copy, so callers can't mutate the shared Set and Map defaults.
+  return structuredClone(OPTIONAL_RECIPE_FIELD_DEFAULT_VALUES[field])
 }

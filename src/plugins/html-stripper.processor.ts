@@ -31,15 +31,21 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
       return value
     }
 
+    // The generic `process<T>` signature can't express "same type out"; each
+    // branch is narrowed by a guard and returns a value of that same type,
+    // with every field kept.
     if (isString(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- string in, string out.
       return this.stripHtml(value) as T
     }
 
     if (field === 'instructions' && isInstructions(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Instructions in, Instructions out.
       return this.processInstructions(value) as T
     }
 
     if (field === 'ingredients' && isIngredients(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Ingredients in, Ingredients out.
       return this.processIngredients(value) as T
     }
 

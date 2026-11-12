@@ -81,6 +81,7 @@ export class RecipeExtractor {
     // 3. Fallback to default values
     if (!result && isOptionalRecipeField(field)) {
       this.logger.debug(`Using default value for: ${field}`)
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- the defaults table `satisfies OptionalRecipeFields`, so the default for a narrowed Key is RecipeFields[Key].
       result = getOptionalRecipeFieldDefault(field) as RecipeFields[Key]
     }
 

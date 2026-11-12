@@ -8,7 +8,7 @@ A TypeScript library that turns a caller-supplied Recipe Page (HTML plus its URL
 
 ## TypeScript
 
-- Narrow `unknown` with type guards (`isString`, `isPlainObject`, etc. in `src/utils/index.ts`); cast with `as` only after a check the compiler cannot follow.
+- Narrow `unknown` with type guards (`isString`, `isPlainObject`, etc. in `src/utils/index.ts`) or a schema parse. oxlint bans `as` casts outside tests; when a guard has already proven a type the compiler cannot follow, suppress that one line with the reason: `// oxlint-disable-next-line typescript/consistent-type-assertions -- <why it is safe>`.
 - Add JSDoc to exported functions.
 - Write look-alike characters such as the fraction slash (`\u2044`, not `/`) as `\u` escapes; oxlint already rejects literal invisible characters.
 
