@@ -64,7 +64,9 @@
     "lint:fix": "oxlint --type-aware --fix && oxfmt",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "bench": "vitest bench --run",
+    "size": "bun scripts/bundle-size.ts"
   },
   "dependencies": {
     "@standard-schema/spec": "^1.1.0",
@@ -72,6 +74,7 @@
     "iso8601-duration": "^2.2.0"
   },
   "devDependencies": {
+    "@codspeed/vitest-plugin": "^6.1.1",
     "@types/bun": "^1.4.4",
     "cheerio": "^1.2.0",
     "oxfmt": "^0.78.0",
@@ -82,6 +85,7 @@
     "tsdown": "^0.23.7",
     "typescript": "^7.0.2",
     "valibot": "^1.5.0",
+    "vitest": "^5.1.0",
     "zod": "^4.6.7"
   },
   "peerDependencies": {
