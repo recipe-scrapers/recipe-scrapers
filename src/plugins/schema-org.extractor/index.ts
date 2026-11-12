@@ -518,7 +518,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public author(): RecipeFields['author'] {
-    let author = this.recipe.author
+    let { author } = this.recipe
 
     if (Array.isArray(author) && author.length > 0) {
       author = author[0]
@@ -738,7 +738,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public keywords(): RecipeFields['keywords'] {
-    const keywords = this.recipe.keywords
+    const { keywords } = this.recipe
 
     if (!keywords) {
       throw new SchemaOrgException('keywords')
