@@ -74,11 +74,11 @@
   "devDependencies": {
     "@types/bun": "^1.4.4",
     "cheerio": "^1.2.0",
-    "oxfmt": "^0.75.0",
-    "oxlint": "^1.90.0",
-    "parse-ingredient": "^3.1.0",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "parse-ingredient": "^3.2.0",
     "schema-dts": "^2.1.0",
-    "tsdown": "^0.23.4",
+    "tsdown": "^0.23.7",
     "typescript": "^7.0.2",
     "valibot": "^1.5.0",
     "zod": "^4.6.7"

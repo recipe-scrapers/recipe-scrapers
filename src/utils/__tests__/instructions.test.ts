@@ -219,6 +219,14 @@ describe('isRedundantStepName', () => {
     ).toBe(true)
   })
 
+  it('handles long names and text in linear time', () => {
+    const long = `Step 1${' '.repeat(200_000)}x...`
+    const started = performance.now()
+
+    isRedundantStepName(long, long)
+    expect(performance.now() - started).toBeLessThan(1000)
+  })
+
   it('keeps real step titles', () => {
     expect(isRedundantStepName('Prepare the dough', 'Whisk the warm buttermilk and yeast.')).toBe(
       false,

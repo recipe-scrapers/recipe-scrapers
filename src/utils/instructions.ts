@@ -157,9 +157,11 @@ export function splitNumberedInstructions(value: string): string[] {
  * "Schritt 2", "Passo 3", "Étape 4", "stap 5", or a bare "1." / "2)".
  */
 const STEP_LABEL_PATTERN =
-  /^(?:(?:step|schritt|passo|paso|etape|étape|stap|steg|trin|krok|fase)\s*)?\d+\s*[:.)-]?\s*/i
+  /^(?:(?:step|schritt|passo|paso|etape|étape|stap|steg|trin|krok|fase)\s*)?\d+(?:\s*[:.)-])?\s*/i
 
-const TRAILING_ELLIPSIS_PATTERN = /\s*(?:…|\.{3})$/
+// No leading `\s*`: an unanchored whitespace run before `$` backtracks
+// quadratically. Whitespace before the ellipsis is trimmed separately.
+const TRAILING_ELLIPSIS_PATTERN = /(?:…|\.{3})$/
 
 /**
  * Returns true when a HowToStep `name` adds nothing to its `text` and should
@@ -174,7 +176,7 @@ const TRAILING_ELLIPSIS_PATTERN = /\s*(?:…|\.{3})$/
  */
 export function isRedundantStepName(name: string, text: string): boolean {
   const toPreview = (value: string) =>
-    value.replace(TRAILING_ELLIPSIS_PATTERN, '').replace(/[.:]$/, '').toLowerCase()
+    value.replace(TRAILING_ELLIPSIS_PATTERN, '').trimEnd().replace(/[.:]$/, '').toLowerCase()
 
   const fullName = normalizeString(name)
   const unlabeledName = fullName.replace(STEP_LABEL_PATTERN, '')

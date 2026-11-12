@@ -69,9 +69,12 @@ const UNIT_MINUTES = new Map(
   ),
 )
 
-// Longest names first, so "minuten" is tried before "min" and "m".
+// Longest names first, so "minuten" is tried before "min" and "m". The
+// lookbehind starts each match at the first digit of a number, so a long run
+// of digits is scanned once rather than once per digit (linear, not
+// quadratic, on untrusted page input).
 const DURATION_PATTERN = new RegExp(
-  `(\\d+(?:[.,]\\d+)?)\\s*(${[...UNIT_MINUTES.keys()].sort((a, b) => b.length - a.length).join('|')})(?![\\p{L}])`,
+  `(?<!\\d)(\\d+(?:[.,]\\d+)?)\\s*(${[...UNIT_MINUTES.keys()].sort((a, b) => b.length - a.length).join('|')})(?![\\p{L}])`,
   'gu',
 )
 
