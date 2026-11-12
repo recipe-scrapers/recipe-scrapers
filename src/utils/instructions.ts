@@ -151,3 +151,41 @@ export function splitNumberedInstructions(value: string): string[] {
 
   return steps
 }
+
+/**
+ * Step labels, optionally localized, followed by a number: "Step 1",
+ * "Schritt 2", "Passo 3", "Étape 4", "stap 5", or a bare "1." / "2)".
+ */
+const STEP_LABEL_PATTERN =
+  /^(?:(?:step|schritt|passo|paso|etape|étape|stap|steg|trin|krok|fase)\s*)?\d+\s*[:.)-]?\s*/i
+
+const TRAILING_ELLIPSIS_PATTERN = /\s*(?:…|\.{3})$/
+
+/**
+ * Returns true when a HowToStep `name` adds nothing to its `text` and should
+ * not become a step of its own: a numbered label ("Step 1", "1."), a label
+ * followed by the start of the text ("Step 1: Preheat oven to…"), a
+ * truncated preview of the text, or the start of the text in another case.
+ * Real step titles such as "Prepare the dough" are kept.
+ *
+ * @param name - The HowToStep `name`
+ * @param text - The HowToStep `text`
+ * @returns Whether the name should be dropped
+ */
+export function isRedundantStepName(name: string, text: string): boolean {
+  const toPreview = (value: string) =>
+    value.replace(TRAILING_ELLIPSIS_PATTERN, '').replace(/[.:]$/, '').toLowerCase()
+
+  const fullName = normalizeString(name)
+  const unlabeledName = fullName.replace(STEP_LABEL_PATTERN, '')
+
+  if (!toPreview(unlabeledName)) {
+    return true
+  }
+
+  const fullText = normalizeString(text).toLowerCase()
+  const texts = [fullText, fullText.replace(STEP_LABEL_PATTERN, '')]
+  const previews = [toPreview(fullName), toPreview(unlabeledName)]
+
+  return texts.some((value) => previews.some((preview) => value.startsWith(preview)))
+}

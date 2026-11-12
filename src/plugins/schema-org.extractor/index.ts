@@ -11,6 +11,7 @@ import { groupIngredients, unwrapIngredientNotes } from '@/utils/ingredients'
 import {
   createInstructionGroup,
   createInstructionItem,
+  isRedundantStepName,
   splitInstructions,
 } from '@/utils/instructions'
 import { parseJsonWithRepair } from '@/utils/json'
@@ -427,7 +428,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       if (isString(item)) {
         currentGroup.items.push(normalizeString(item))
       } else if (isHowToStep(item)) {
-        if (name && text && !text.startsWith(name.replace(/\.$/, ''))) {
+        if (name && text && !isRedundantStepName(name, text)) {
           currentGroup.items.push(name)
         }
 
