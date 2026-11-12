@@ -79,20 +79,13 @@ export function extractWprmNotes($: CheerioAPI) {
     return stringsToNotes(listItemValues)
   }
 
+  // Script and style elements have their own node types, so the old
+  // `type === 'tag'` filter excluded them; keep doing so.
   const noteValues = notesRoot
-    .contents()
+    .children()
+    .not('script, style, .wprm-spacer')
     .toArray()
     .flatMap((node) => {
-      if (node.type !== 'tag') {
-        return []
-      }
-
-      const child = $(node)
-
-      if (child.is('.wprm-spacer')) {
-        return []
-      }
-
       const text = extractNoteText($, node)
       return text ? [text] : []
     })

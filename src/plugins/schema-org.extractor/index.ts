@@ -238,7 +238,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     return undefined
   }
 
-  private getSchemaTextValue<T>(
+  private getSchemaTextValue(
     value: unknown,
     props: string[] = ['textValue', 'name', 'title', '@id'],
   ): string {
@@ -249,7 +249,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     } else if (isNumber(value)) {
       text = value.toString()
     } else if (Array.isArray(value)) {
-      text = this.getSchemaTextValue<T>(value[0], props)
+      text = this.getSchemaTextValue(value[0], props)
     } else {
       text = this.pickFromObject(value, props)
     }
@@ -275,14 +275,14 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     return new Set(list)
   }
 
-  private findEntity<T extends Thing>(item: SchemaOrgData, schemaType: string): T | null {
-    if (isThingType<T>(item, schemaType)) {
+  private findEntity(item: SchemaOrgData, schemaType: string): Thing | null {
+    if (isThingType(item, schemaType)) {
       return item
     }
 
     if (isGraphType(item)) {
       for (const graphItem of item['@graph']) {
-        if (isThingType<T>(graphItem, schemaType)) {
+        if (isThingType(graphItem, schemaType)) {
           return graphItem
         }
       }

@@ -34,7 +34,7 @@ export class IngredientParserPlugin extends PostProcessorPlugin {
     super()
   }
 
-  shouldProcess<Key extends keyof RecipeFields>(field: Key): boolean {
+  shouldProcess(field: keyof RecipeFields): boolean {
     return field === 'ingredients'
   }
 

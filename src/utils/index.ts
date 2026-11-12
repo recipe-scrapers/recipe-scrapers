@@ -2,7 +2,7 @@ export function isDefined<T>(value: T | undefined): value is T {
   return value !== undefined
 }
 
-export function isNull<T>(value: T | null): value is null {
+export function isNull(value: unknown): value is null {
   return value === null
 }
 

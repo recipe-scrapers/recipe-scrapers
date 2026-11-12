@@ -42,7 +42,7 @@ describe('HtmlStripperPlugin', () => {
         createIngredientItem('2 &lt;b&gt;eggs&lt;/b&gt;'),
       ]),
     ]
-    const output = plugin.process('ingredients', input) as Ingredients
+    const output = plugin.process('ingredients', input)
     expect(output[0].items.map((i) => i.value)).toEqual(['1 cup flour', '2 <b>eggs</b>'])
   })
 
@@ -72,7 +72,7 @@ describe('HtmlStripperPlugin', () => {
       ]),
       createIngredientGroup('Other', [createIngredientItem('<span>3</span> apples')]),
     ]
-    const output = plugin.process('ingredients', input) as Ingredients
+    const output = plugin.process('ingredients', input)
 
     expect(output).toHaveLength(2)
     expect(output[0].name).toBe('Group 1')

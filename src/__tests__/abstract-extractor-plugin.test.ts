@@ -99,7 +99,7 @@ class ThrowingExtractorPlugin extends ExtractorPlugin {
   }
 
   extract<Key extends keyof RecipeFields>(field: Key): RecipeFields[Key] {
-    throw new Error(`Extraction failed for field: ${String(field)}`)
+    throw new Error(`Extraction failed for field: ${field}`)
   }
 }
 

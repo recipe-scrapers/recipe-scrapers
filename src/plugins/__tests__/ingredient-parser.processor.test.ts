@@ -28,7 +28,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
+      const result = await plugin.process('ingredients', ingredients)
 
       expect(result).toEqual([
         {
@@ -58,7 +58,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
+      const result = await plugin.process('ingredients', ingredients)
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 1,
@@ -76,7 +76,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
+      const result = await plugin.process('ingredients', ingredients)
 
       expect(result[0].items[0].parsed).toEqual({
         quantity: 3,
@@ -96,7 +96,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
+      const result = await plugin.process('ingredients', ingredients)
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 0.5,
@@ -114,7 +114,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
+      const result = await plugin.process('ingredients', ingredients)
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 1.5,
@@ -135,7 +135,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
+      const result = await plugin.process('ingredients', ingredients)
 
       expect(result[0].name).toBe('For the sauce')
       expect(result[1].name).toBe('For the pasta')
@@ -151,7 +151,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await plugin.process('ingredients', ingredients)) as Ingredients
+      const result = await plugin.process('ingredients', ingredients)
 
       expect(result[0].items[0].parsed?.isGroupHeader).toBe(true)
     })
@@ -182,7 +182,7 @@ describe('IngredientParserPlugin', () => {
         },
       ]
 
-      const result = (await pluginWithNormalize.process('ingredients', ingredients)) as Ingredients
+      const result = await pluginWithNormalize.process('ingredients', ingredients)
 
       expect(result[0].items[0].parsed).toMatchObject({
         quantity: 2,
