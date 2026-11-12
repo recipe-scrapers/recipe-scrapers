@@ -1,0 +1,162 @@
+{
+  "author": "Zoha",
+  "canonicalUrl": "https://bakewithzoha.com/mini-cheesecake-pavlovas/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "Light, crispy, and chewy and delicious mini pavlovas filled with a luscious cheesecake filling and topped with berries",
+  "host": "bakewithzoha.com",
+  "image": "https://bakewithzoha.com/wp-content/uploads/2025/03/cheescake-pavlova-cups-featured-225x225.jpg",
+  "ingredients": [
+    {
+      "name": "Mini pavlova shells",
+      "items": [
+        {
+          "value": "5 large egg whites"
+        },
+        {
+          "value": "1/2 teaspoon cream of tartar"
+        },
+        {
+          "value": "1/2 tsp salt"
+        },
+        {
+          "value": "1 cup + 2 tbsp granulated sugar (125g)"
+        },
+        {
+          "value": "1 teaspoon pure vanilla extract"
+        }
+      ]
+    },
+    {
+      "name": "Cheesecake filling",
+      "items": [
+        {
+          "value": "12oz cream cheese (340g), room temp"
+        },
+        {
+          "value": "1/2 cup sugar (100g)"
+        },
+        {
+          "value": "1 tsp vanilla"
+        },
+        {
+          "value": "¼ tsp salt"
+        },
+        {
+          "value": "2-3 tablespoon lemon juice"
+        },
+        {
+          "value": "1 cup heavy cream (240g)"
+        }
+      ]
+    },
+    {
+      "name": "Berry glaze",
+      "items": [
+        {
+          "value": "4 tbsp berry jam of choice"
+        },
+        {
+          "value": "2 tbsp water"
+        },
+        {
+          "value": "1 tbsp sugar"
+        },
+        {
+          "value": "Fresh berries of choice for decoration"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "Mini pavlova shells",
+      "items": [
+        {
+          "value": "Pre-heat oven to 220F and line a large baking sheet (light colored preferred) with parchment paper"
+        },
+        {
+          "value": "Add the egg whites to the clean bowl of a stand mixer. Make sure there are no yolk specks in the egg whites, and make sure the bowl and whisk are completely clean with no grease on them. Add the cream of tartar and salt"
+        },
+        {
+          "value": "Use the balloon whisk attachment (or standard paddle beaters of an electric mixer) to whisk on medium speed for a few minutes until the egg whites look frothy and white"
+        },
+        {
+          "value": "Add the sugar one spoon at a time while continuing to whisk on medium speed. Towards the end, add the vanilla extract too"
+        },
+        {
+          "value": "Keep whisking until the egg whites turn into a stiff and glossy meringue that starts to collect in ripples around the whisk and leaves a stiff peak when the whisk is lifted out of it. This process can take several minutes. Do not overmix, as that will cause the meringue to separate and leak water"
+        },
+        {
+          "value": "Transfer the meringue to a piping bag and cut a ~1/2\" hole in it"
+        },
+        {
+          "value": "Pipe mini pavlova cups onto the baking sheet, about ~3\" in diameter. Make sure to pipe raised edges so the pavlovas can hold the cheesecake filling, and ensure there aren't any large gaping holes in them (see video tutorial). You should get ~10 mini pavlovas"
+        },
+        {
+          "value": "Bake at 220F for ~90 minutes or until the pavlovas look a light golden color and are firm to touch (i.e., not sticky)"
+        },
+        {
+          "value": "Remove from the oven and let them cool down fully. Once cooled, they should become crispy and should easily come off the parchment paper"
+        }
+      ]
+    },
+    {
+      "name": "Cheesecake filling",
+      "items": [
+        {
+          "value": "Make the filling while the pavlovas are baking"
+        },
+        {
+          "value": "Add the cream cheese, sugar, salt, vanilla and lemon juice to a bowl and whisk until the mixture looks creamy. Scrape the bowl along the way"
+        },
+        {
+          "value": "Add the heavy whipping cream and whisk for a few seconds until a thick, pipeable mixture forms"
+        },
+        {
+          "value": "Transfer to a piping bag and keep refrigerated"
+        }
+      ]
+    },
+    {
+      "name": "Berry glaze",
+      "items": [
+        {
+          "value": "Add the jam, water and sugar to a saucepan. Cook and stir on low heat for a few minutes until a smooth glaze forms that just starts to thicken up. Remove from heat and let cool down"
+        }
+      ]
+    },
+    {
+      "name": "Assembly",
+      "items": [
+        {
+          "value": "Once the pavlovas have completely cooled down, it's time to assemble"
+        },
+        {
+          "value": "Add a small spoon of the glaze to the bottom of each pavlova. Then pipe a generous swirl of the cheesecake filling into each pavlova (I like to use a star piping tip for this)"
+        },
+        {
+          "value": "Decorate with a drizzle of the berry glaze and top off with fresh berries"
+        },
+        {
+          "value": "Serve immediately & enjoy!"
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "siteName": "BAKE WITH ZOHA",
+  "title": "Mini Cheesecake Pavlovas Recipe",
+  "totalTime": 120,
+  "yields": "10 servings",
+  "category": ["Dessert"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Mini cheesecake pavlovas", "mini pavlovas"],
+  "nutrients": {},
+  "reviews": {}
+}

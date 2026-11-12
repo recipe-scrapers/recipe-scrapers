@@ -1,0 +1,65 @@
+{
+  "siteName": "WW Deutschland",
+  "category": ["Frühstück"],
+  "cookTime": null,
+  "prepTime": 5,
+  "totalTime": 5,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "621 kcal",
+    "points": "4 Points value"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["Laktosefrei", "Vegetarisch", "Nussfrei", "Getreide", "Obst"],
+  "author": "WeightWatchers",
+  "canonicalUrl": "https://www.weightwatchers.com/de/rezept/sarahs-schnelles-tassen-fruhstck/5ca1d63084dd9c001659e52f",
+  "host": "weightwatchers.com",
+  "language": "de",
+  "title": "Schnelles Tassen-Frühstück",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 Stück Bananen; mittel"
+        },
+        {
+          "value": "2 Stück Datteln, getrocknet"
+        },
+        {
+          "value": "1 Stück Eier, Hühnereier; Gewichtsklasse M"
+        },
+        {
+          "value": "30 g Haferflocken/Vollkornhaferflocken; zart"
+        },
+        {
+          "value": "2 Prise(n) Zimt"
+        },
+        {
+          "value": "2 Stück Erdbeeren, frisch"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Banane schälen und mit einer Gabel zerdrücken. Datteln hacken, mit Bananenmus, Ei, Haferflocken und Zimt verrühren und in eine Tasse füllen."
+        },
+        {
+          "value": "Tassen-Frühstück in der Mikrowelle bei 800 Watt 2–3 Minuten garen. Erdbeeren waschen, trocken tupfen, in Scheiben schneiden und Sarah’s Tassen-Frühstück mit Erdbeerscheiben garniert servieren."
+        }
+      ]
+    }
+  ],
+  "yields": "1 serving",
+  "description": "No description provided",
+  "image": "https://cmx.weightwatchers.de/assets-proxy/weight-watchers/image/upload/t_WINE_EXTRALARGE/mx3m5id4qg4vynlk8w33.jpg"
+}

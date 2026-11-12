@@ -1,0 +1,108 @@
+{
+  "author": "Leticia Obo Andreghetti",
+  "canonicalUrl": "https://cybercook.com.br/receitas/aves/strogonoff-de-frango-16644",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "Já experimentou essa maravilhosa receita de Strogonoff de Frango da Leticia? No CyberCook você encontra essa e outras receitas. Saiba nessa dica incrível",
+  "host": "cybercook.com.br",
+  "image": "https://img.cybercook.com.br/receitas/644/strogonoff-de-frango-2.jpeg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Molho de tomate 200 gramas"
+        },
+        {
+          "value": "Cebola 1 unidade"
+        },
+        {
+          "value": "Alho 2 dentes"
+        },
+        {
+          "value": "Creme de Leite 1 lata"
+        },
+        {
+          "value": "Peito de Frango 600 gramas"
+        },
+        {
+          "value": "Óleo de soja 2 colheres (sopa)"
+        },
+        {
+          "value": "Sal a gosto"
+        },
+        {
+          "value": "Pimenta-do-Reino Branca a gosto"
+        },
+        {
+          "value": "Champignon em conserva 100 gramas"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Primeiro corte o frango em cubinhos."
+        },
+        {
+          "value": "Em uma panela média, coloque o óleo, o alho e a cebola e espere dourar."
+        },
+        {
+          "value": "Depois coloque o frango e o sal e a pimenta a gosto, aqueça até o ponto de fritura."
+        },
+        {
+          "value": "Mexa bem e tampe meia panela para que crie água, espere."
+        },
+        {
+          "value": "Sumir a água e começar a fritura."
+        },
+        {
+          "value": "Quando o frango já tiver dourado, acrescente o molho de tomate e o champignon."
+        },
+        {
+          "value": "Depois coloque a lata de creme de leite e mexa até espalhar, com a mesma lata encha de água."
+        },
+        {
+          "value": "Mexa mais uma vez até misturar e deixe levantar fervura."
+        },
+        {
+          "value": "O strogonoff está pronto para ser servido."
+        }
+      ]
+    }
+  ],
+  "language": "pt-BR",
+  "prepTime": null,
+  "ratings": 4,
+  "ratingsCount": 81,
+  "siteName": null,
+  "title": "Strogonoff de Frango",
+  "totalTime": 30,
+  "yields": "4 servings",
+  "category": ["Aves"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": [
+    "Sal",
+    "Receitas de Strogonoff",
+    "Receitas com Caldo",
+    "Peito de Frango",
+    "Creme de Leite",
+    "Caldo de Galinha",
+    "Russa",
+    "Cozinha Internacional",
+    "Receitas Salgadas",
+    "Frango",
+    "Aves",
+    "Pratos principais",
+    "Receitas de Frango Xadrez"
+  ],
+  "nutrients": {
+    "calories": "485.09"
+  },
+  "reviews": {}
+}

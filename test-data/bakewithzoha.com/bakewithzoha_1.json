@@ -1,0 +1,86 @@
+{
+  "author": "Zoha",
+  "canonicalUrl": "https://bakewithzoha.com/molten-lava-chocolate-mug-cake/",
+  "cookTime": 1,
+  "cookingMethod": null,
+  "description": "This molten lava mug cake comes together in 5 minutes and is almost as good as the real thing!",
+  "host": "bakewithzoha.com",
+  "image": "https://bakewithzoha.com/wp-content/uploads/2023/09/Molten-lava-chocolate-mug-cake-featured-225x225.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 tbsp butter"
+        },
+        {
+          "value": "1 oz dark chocolate"
+        },
+        {
+          "value": "3 tbsp milk"
+        },
+        {
+          "value": "2 tbsp sugar"
+        },
+        {
+          "value": "4 tbsp flour"
+        },
+        {
+          "value": "1 tbsp cocoa powder"
+        },
+        {
+          "value": "1/3 tsp baking powder"
+        },
+        {
+          "value": "Pinch of salt"
+        },
+        {
+          "value": "1-2 chocolate truffles in the middle (I use Lindt dark chocolate)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "To a 10-12oz microwave safe mug, add the butter and 1 oz chocolate, and microwave in 15 second increments until molten and combined"
+        },
+        {
+          "value": "Add the milk and stir to combine"
+        },
+        {
+          "value": "Add the sugar and stir in"
+        },
+        {
+          "value": "Sift in the dry ingredients (flour, cocoa powder, baking powder and salt) and stir. Scrape the edges and bottom of the cup so no flour gets stuck there"
+        },
+        {
+          "value": "Dunk the chocolate truffle(s) in the middle (no need to push all the way down)"
+        },
+        {
+          "value": "Microwave on high for 60-70 seconds"
+        },
+        {
+          "value": "Dust with powdered sugar, and enjoy!"
+        }
+      ]
+    }
+  ],
+  "language": "en-US",
+  "prepTime": 4,
+  "ratings": 4.6,
+  "ratingsCount": 13,
+  "siteName": "BAKE WITH ZOHA",
+  "title": "BEST MOLTEN LAVA MUG CAKE RECIPE",
+  "totalTime": 5,
+  "yields": "1 serving",
+  "category": ["Dessert"],
+  "cuisine": ["American"],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Molten Lava Mug Cake"],
+  "nutrients": {},
+  "reviews": {}
+}

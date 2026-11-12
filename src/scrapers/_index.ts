@@ -5,16 +5,22 @@ import { AmericasTestKitchen } from './americastestkitchen'
 import { BBCGoodFood } from './bbcgoodfood'
 import { BongEats } from './bongeats'
 import { BrianLagerstrom } from './brianlagerstrom'
+import { CookingCircle } from './cookingcircle'
 import { DamnDelicious } from './damndelicious'
+import { DomesticateMe } from './domesticateme'
 import { Epicurious } from './epicurious'
 import { InspiredTaste } from './inspiredtaste'
 import { Maangchi } from './maangchi'
 import { MyPlate } from './myplate'
 import { NYTimes } from './nytimes'
 import { OnceUponAChef } from './onceuponachef'
+import { SaboresAjinomoto } from './saboresajinomoto'
 import { SimplyRecipes } from './simplyrecipes'
 import { Skinnytaste } from './skinnytaste'
+import { SpisBedre } from './spisbedre'
 import { TheCleverCarrot } from './theclevercarrot'
+import { TudoGostoso } from './tudogostoso'
+import { WeightWatchers } from './weightwatchers'
 
 /**
  * Constructor type for scraper classes.
@@ -34,7 +40,9 @@ const customScraperClasses = [
   BBCGoodFood,
   BongEats,
   BrianLagerstrom,
+  CookingCircle,
   DamnDelicious,
+  DomesticateMe,
   Epicurious,
   InspiredTaste,
   Maangchi,
@@ -42,8 +50,12 @@ const customScraperClasses = [
   SimplyRecipes,
   NYTimes,
   OnceUponAChef,
+  SaboresAjinomoto,
   Skinnytaste,
+  SpisBedre,
   TheCleverCarrot,
+  TudoGostoso,
+  WeightWatchers,
 ] as const satisfies readonly ScraperClass[]
 
 /**
@@ -110,6 +122,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'aubreyskitchen.com',
   'averiecooks.com',
   'bakerbynature.com',
+  'bakewithzoha.com',
   'baking-sense.com',
   'bakingmischief.com',
   'barefeetinthekitchen.com',
@@ -146,6 +159,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'crazyforcrust.com',
   'creativecanning.com',
   'cucchiaio.it',
+  'cybercook.com.br',
   'daringgourmet.com',
   'dashfordinner.com',
   'deliciouslyella.com',

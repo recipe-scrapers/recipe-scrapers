@@ -1,0 +1,103 @@
+{
+  "siteName": "Ninja Test Kitchen",
+  "category": ["30 mins or less"],
+  "cookTime": 25,
+  "prepTime": 5,
+  "totalTime": 30,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": ["BN800EU", "BN800UK", "Food processor"],
+  "author": "Charlotte Roberts",
+  "canonicalUrl": "https://ninjatestkitchen.eu/recipe/vegan-lemon-cupcakes/",
+  "host": "cookingcircle.com",
+  "language": "en-UN",
+  "title": "Vegan Lemon Cupcakes",
+  "ingredients": [
+    {
+      "name": "For the base",
+      "items": [
+        {
+          "value": "125ml non dairy milk"
+        },
+        {
+          "value": "1 tsp apple cider vinegar"
+        },
+        {
+          "value": "60ml olive oil"
+        },
+        {
+          "value": "100g caster sugar"
+        },
+        {
+          "value": "96g gluten free self raising flour"
+        },
+        {
+          "value": "1 tsp baking powder"
+        },
+        {
+          "value": "50g oat flour"
+        },
+        {
+          "value": "1 zest from lemon"
+        }
+      ]
+    },
+    {
+      "name": "For the frosting",
+      "items": [
+        {
+          "value": "120g icing sugar"
+        },
+        {
+          "value": "112g vegan stick butter"
+        },
+        {
+          "value": "1/4 tsp blue spirulina"
+        },
+        {
+          "value": "1/2 tsp pink pitaya powder"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat your oven to 180c and line a cupcake tray with cases."
+        },
+        {
+          "value": "Combine the non-dairy milk and cider vinegar, then set aside and allow to thicken."
+        },
+        {
+          "value": "In your Ninja food processor, add in all of your dry ingredients and pulse to combine."
+        },
+        {
+          "value": "Pour in the oil, milk mixture and lemon zest and blend for a few seconds to create a smooth batter."
+        },
+        {
+          "value": "Transfer this into your cupcake cases (makes around 6 cupcakes) and bake in the oven for 25 minutes or until cooked through."
+        },
+        {
+          "value": "Whilst allowing your cupcakes to cool, use an electric mixer to cream the butter until light and fluffy."
+        },
+        {
+          "value": "Gradually add in the sugar and powders whilst mixing until fully combined."
+        },
+        {
+          "value": "Once cooled, pipe the butter cream into each of your cakes and decorate."
+        }
+      ]
+    }
+  ],
+  "yields": "6 servings",
+  "image": "https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2022/02/23144350/Vegan-Lemon-Cupcakes-2220x1000.jpg",
+  "description": "No description provided"
+}

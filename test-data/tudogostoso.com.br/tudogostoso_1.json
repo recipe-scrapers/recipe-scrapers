@@ -1,0 +1,62 @@
+{
+  "author": "Daniela Belizario",
+  "canonicalUrl": "https://tudogostoso.com.br/",
+  "cookTime": null,
+  "cookingMethod": null,
+  "description": "Descubra agora o segredo da caipirinha original, uma receita clássica que vai transportar você para um sabor autêntico do Brasil! Com apenas três ingredientes e alguns passos simples, você poderá preparar essa deliciosa bebida refrescante em minutos. O equilíbrio perfeito entre limão, açúcar e cachaça irá surpreender seu paladar.",
+  "host": "tudogostoso.com.br",
+  "image": "https://static.itdg.com.br/images/1200-675/82a28aad77a013831d5c0ca43544eedc/319875-original.jpg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 limão grande"
+        },
+        {
+          "value": "2 colheres de açúcar"
+        },
+        {
+          "value": "gelo a gosto"
+        },
+        {
+          "value": "cachaça"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Pegue o limão coloque-o na horizontal e retire as duas pontas, vire-o na vertical e corte-o ao meio, retire os meio (parte branca) do limão e fatie."
+        },
+        {
+          "value": "Coloque o limão fatiado e duas colheres bem cheias de açúcar dentro de um copo próprio para a bebida e com um socador esprema até que saia todo o suco do limão."
+        },
+        {
+          "value": "Coloque pedras de gelo até quase encher o copo (aproximadamente 12 pedras pequenas de gelo) e encha o copo com a cachaça."
+        },
+        {
+          "value": "Mexa bem com uma colher ou coloque em uma coqueteleira e sirva-se!"
+        }
+      ]
+    }
+  ],
+  "language": "pt-br",
+  "prepTime": 5,
+  "ratings": 4.8,
+  "ratingsCount": 25,
+  "siteName": "TudoGostoso",
+  "title": "Caipirinha - Original",
+  "totalTime": 5,
+  "yields": "1 serving",
+  "category": ["Bebidas"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Receita de Caipirinha - Original"],
+  "nutrients": {},
+  "reviews": {}
+}

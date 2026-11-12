@@ -1,0 +1,106 @@
+{
+  "siteName": "SPIS BEDRE",
+  "category": ["Hovedretter"],
+  "cookTime": 20,
+  "prepTime": 20,
+  "totalTime": 40,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "787 kcal",
+    "fatContent": "53 g",
+    "carbohydrateContent": "43 g",
+    "proteinContent": "33 g"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Louisa Lorang",
+  "canonicalUrl": "https://spisbedre.dk/opskrifter/kyllingetaerte-med-butterdejslag",
+  "host": "spisbedre.dk",
+  "language": "da",
+  "title": "Kyllingetærte med butterdejslåg",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 stilke bladselleri"
+        },
+        {
+          "value": "2 gulerødder"
+        },
+        {
+          "value": "1 porre"
+        },
+        {
+          "value": "2 fed hvidløg"
+        },
+        {
+          "value": "2 spsk. olivenolie til stegning"
+        },
+        {
+          "value": "salt og peber"
+        },
+        {
+          "value": "50 g smør"
+        },
+        {
+          "value": "50 g hvedemel"
+        },
+        {
+          "value": "2 dl hønsebouillon"
+        },
+        {
+          "value": "2 dl piskefløde"
+        },
+        {
+          "value": "300 g kogt kyllingebrystfilet"
+        },
+        {
+          "value": "200 g ærter fra frost"
+        },
+        {
+          "value": "1 spsk. frisk timian"
+        },
+        {
+          "value": "1 rulle butterdej"
+        },
+        {
+          "value": "1 æg til pensling"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Rens bladselleri, og skær dem i tynde skiver. Skrub eller skræl gulerødderne, og skær dem i tern. Rens porre, og pil hvidløg. Hak begge dele fint."
+        },
+        {
+          "value": "Steg alle grøntsagerne i olie i en stor, dyb pande. De skal ikke tage farve, men falde let sammen. Krydr dem med salt og peber. Tag grøntsagerne af panden, og læg dem til side på en stor tallerken."
+        },
+        {
+          "value": "Smelt smør i den samme pande. Pisk mel i. Tilsæt langsomt bouillon under piskning. Pisk, til saucen er glat. Tilsæt fløde, og lad saucen simre i 4-5 minutter."
+        },
+        {
+          "value": "Tænd ovnen på 220°. Skær kyllingebrystfilet i strimler. Vend kyllingestrimler, grøntsager og ærter i saucen. Skyl og pluk timian. Kog saucen op, og smag til med timian, salt og peber."
+        },
+        {
+          "value": "Fordel fyldet i en tærteform. Rul butterdejen ud, og læg den forsigtigt over fyldet. Klem overskydende dej sammen rundt i kanten. Klip et par små huller i midten af butterdejslåget, så damp kan slippe ud."
+        },
+        {
+          "value": "Pisk æg med 1½ spsk. koldt vand, og pensl butterdejslåget. Bag tærten i ovnen i ca. 20 minutter, til den er gylden og lækker. Servér den lun, evt. med salat til."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Brug dine grøntsags- og kyllingerester i en lun tærte til middagsbordet. Det sprøde butterdejslåg er prikken over i'et.",
+  "image": "https://spisbedre-production-app.imgix.net/images/recipes/kyllingetaerte-med-butterdejslag_15964.jpg?fit=crop&crop=focalpoint&fp-x=0.44097082638046&fp-y=0.66429758726712&fp-z=1.25"
+}

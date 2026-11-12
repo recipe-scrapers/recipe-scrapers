@@ -1,0 +1,106 @@
+{
+  "siteName": "Domesticate ME",
+  "category": ["Breakfast", "Recipes", "Summer", "Vegetarian"],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": 25,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Serena Wolf",
+  "canonicalUrl": "https://domesticate-me.com/summer-squash-toast/",
+  "host": "domesticate-me.com",
+  "language": "en-US",
+  "title": "Summer Squash Toasts with Sun-Dried Tomato White Bean Spread",
+  "description": "The combo of sun-dried tomato-spiked white bean spread topped with a simple summer squash sauté hits all the right sweet, savory, and spicy notes, packs a serious nutritional punch, and tastes delightful any time of day.",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 tablespoon extra-virgin olive oil"
+        },
+        {
+          "value": "2 medium zucchini (diced small)"
+        },
+        {
+          "value": "1 medium summer squash (diced small)"
+        },
+        {
+          "value": "Kosher salt"
+        },
+        {
+          "value": "¼-½ teaspoon crushed red pepper flakes (depending on how much heat you like)"
+        },
+        {
+          "value": "4 large eggs"
+        },
+        {
+          "value": "4 large slices of bread (I recommend sourdough or a seeded loaf)"
+        },
+        {
+          "value": "Chopped chives for garnish (optional)"
+        }
+      ]
+    },
+    {
+      "name": "For the spread",
+      "items": [
+        {
+          "value": "One 15-ounce can cannellini beans (drained and rinsed)"
+        },
+        {
+          "value": "1/3 cup sun-dried tomatoes packed in extra-virgin olive oil (drained, patted dry, and roughly chopped)"
+        },
+        {
+          "value": "1 large garlic clove (peeled and smashed)"
+        },
+        {
+          "value": "1 tablespoon balsamic vinegar"
+        },
+        {
+          "value": "Kosher salt"
+        },
+        {
+          "value": "Freshly ground black pepper"
+        },
+        {
+          "value": "3 tablespoons olive oil from the sun-dried tomato jar"
+        },
+        {
+          "value": "3-4 tablespoons water"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Add the cannellini beans, sun-dried tomatoes, garlic, balsamic, and a good pinch of salt to the bowl of a food processor. Process for about a minute until relatively smooth (some small pieces of tomato are fine), scraping down the sides of the bowl a few times if necessary. With the processor running, slowly add the olive oil and process until well incorporated. Add the water one tablespoon at a time until the spread is smooth and spreadable. Season with extra salt and freshly ground black pepper to taste. Briefly set aside."
+        },
+        {
+          "value": "Heat the olive oil in a large skillet over high heat. When the oil is hot and shimmering (but not smoking!), add the zucchini, summer squash, a large pinch of salt, and crushed red pepper. Cook for about 4 minutes, shaking the pan occasionally, or until the squash is just tender and browned in spots. Transfer to a bowl and cover with foil to keep warm while you cook the eggs."
+        },
+        {
+          "value": "Poach or fry the eggs, depending on your preference."
+        },
+        {
+          "value": "While the eggs are cooking, toast (or grill!) the bread."
+        },
+        {
+          "value": "Assembly the toasts: Spread each piece of toast with a thick layer of sun-dried tomato white bean spread. Top with cooked squash and an egg. Garnish with chives and extra salt and fresh ground pepper if you like, and serve immediately."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "image": "https://domesticate-me.com/wp-content/uploads/2018/08/Summer-Squash-Toast-5.jpg"
+}

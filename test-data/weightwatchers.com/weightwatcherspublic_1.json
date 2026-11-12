@@ -1,0 +1,106 @@
+{
+  "siteName": "WW Deutschland",
+  "category": [],
+  "cookTime": null,
+  "prepTime": 40,
+  "totalTime": 40,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "137 kcal",
+    "points": "13 Points value"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [
+    "Ohne Meeresfrüchte",
+    "Ohne Fisch",
+    "Fleisch",
+    "Kartoffeln",
+    "Kochen & Braten",
+    "Aus einem Topf",
+    "Eintöpfe & Suppen"
+  ],
+  "author": "WeightWatchers",
+  "canonicalUrl": "https://www.weightwatchers.com/de/rezept/kartoffelgulasch/562a9b02873e1afb2a3c4c13",
+  "host": "weightwatchers.com",
+  "language": "de",
+  "title": "Kartoffelgulasch",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "800 g Kartoffeln; vorwiegend festkochend"
+        },
+        {
+          "value": "2 Stück Zwiebel/n; mittelgroß"
+        },
+        {
+          "value": "2 Stück Paprika; rot"
+        },
+        {
+          "value": "2 Stück Paprika; grün"
+        },
+        {
+          "value": "1 EL Petersilie; gehackt"
+        },
+        {
+          "value": "2 Stück Paprika; gelb"
+        },
+        {
+          "value": "250 g Tomaten, frisch"
+        },
+        {
+          "value": "4 Stück Wiener Würstchen"
+        },
+        {
+          "value": "2 TL Pflanzenöl, Rapsöl/Sonnenblumenöl"
+        },
+        {
+          "value": "2 EL Tomatenmark"
+        },
+        {
+          "value": "250 ml Gemüsebouillon/Gemüsebrühe, zubereitet; (1 TL Instantpulver)"
+        },
+        {
+          "value": "1 TL Oregano; gehackt"
+        },
+        {
+          "value": "1 TL Paprikapulver"
+        },
+        {
+          "value": "1 Prise(n) Salz/Jodsalz"
+        },
+        {
+          "value": "1 Prise(n) Pfeffer"
+        },
+        {
+          "value": "2 EL Schmand, 24 % Fett"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Kartoffeln und Zwiebeln schälen. Kartoffeln würfeln und Zwiebeln in Streifen schneiden. Paprika waschen, entkernen und in Stücke schneiden. Tomaten waschen und in Spalten schneiden. Würstchen in Scheiben schneiden."
+        },
+        {
+          "value": "Öl in einem Topf erhitzen, Kartoffelwürfel und Zwiebelstreifen darin ca. 5 Minuten anbraten. Paprikastücke zufügen, Tomatenmark einrühren und kurz mitbraten. Mit Brühe ablöschen und zugedeckt ca. 15 Minuten garen."
+        },
+        {
+          "value": "Kartoffelgulasch mit Oregano, Paprikapulver, Salz und Pfeffer würzen. Würstchenscheiben und Tomatenspalten zufügen und weitere ca. 5 Minuten garen. Kartoffelgulasch mit Salz und Pfeffer abschmecken. Mit einem Klecks Schmand und Petersilie bestreut servieren."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Das Rezept zaubert ein saftiges, würziges Gericht auf den Tisch und schmeckt garantiert.",
+  "image": "https://cmx.weightwatchers.com/assets-proxy/weight-watchers/image/upload/t_WINE_EXTRALARGE/h7wo0hbnwcleucj30sbw.jpg"
+}

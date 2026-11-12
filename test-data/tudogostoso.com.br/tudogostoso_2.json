@@ -1,0 +1,103 @@
+{
+  "author": "TudoGostoso",
+  "canonicalUrl": "https://tudogostoso.com.br/",
+  "cookTime": 30,
+  "cookingMethod": null,
+  "description": "Quando se trata de uma sobremesa clássica e deliciosa, poucas opções são tão tentadoras quanto um bom bolo de chocolate. Esta receita simples e fácil de preparar é a solução perfeita para satisfazer aquele desejo por um doce delicioso e prazeroso. Combinando ingredientes básicos, como ovos, açúcar, farinha de trigo e um toque generoso de chocolate em pó, este bolo derrete na boca a cada mordida. A adição estratégica de água quente e fermento em pó confere a textura ideal para esse bolo, garantindo maciez e um sabor que agrada a todos. O segredo, no entanto, está na cobertura deliciosa que coroa essa iguaria. Uma mistura cuidadosa de leite, chocolate em pó, manteiga e açúcar é aquecida até atingir o ponto de fervura, resultando em uma cobertura cremosa e irresistível. Ao ser derramada sobre o bolo ainda quente, essa cobertura se funde perfeitamente à massa, proporcionando uma experiência de sabor inesquecível. Este bolo é uma excelente opção para encontros familiares, momentos de celebração ou simplesmente para um momento de prazer pessoal. Siga os passos simples deste modo de preparo para criar um bolo que encantará os paladares e aquecerá os corações de todos à mesa.",
+  "host": "tudogostoso.com.br",
+  "image": "https://static.itdg.com.br/images/1200-675/3b03a942ab534200a0a80eb324828ccb/246606-postprocess-71802381-1893-4fbe-b302-726bfca18774.jpg",
+  "ingredients": [
+    {
+      "name": "Massa",
+      "items": [
+        {
+          "value": "3 ovos"
+        },
+        {
+          "value": "1 e 1/2 xícara (chá) de açúcar"
+        },
+        {
+          "value": "2 xícaras (chá) de farinha de trigo"
+        },
+        {
+          "value": "1 xícara (chá) de chocolate em pó ou achocolatado"
+        },
+        {
+          "value": "1/2 xícara (chá) de óleo"
+        },
+        {
+          "value": "1 colher (sopa) de fermento em pó"
+        },
+        {
+          "value": "1 pitada de sal"
+        },
+        {
+          "value": "1 xícara (chá) de água quente"
+        }
+      ]
+    },
+    {
+      "name": "Cobertura",
+      "items": [
+        {
+          "value": "4 colheres (sopa) de leite"
+        },
+        {
+          "value": "1/2 xícara (chá) de chocolate em pó"
+        },
+        {
+          "value": "1 colher (sopa) de manteiga"
+        },
+        {
+          "value": "1 xícara (chá) de açúcar"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Massa"
+        },
+        {
+          "value": "Em um liquidificador, bata os ovos, o açúcar, o óleo, o achocolatado e a farinha de trigo."
+        },
+        {
+          "value": "Despeje a massa em uma tigela e adicione a água quente e o fermento, misturando bem."
+        },
+        {
+          "value": "Despeje a massa em uma forma untada e asse em forno médio-alto (200° C), preaquecido, por 40 minutos."
+        },
+        {
+          "value": "Desenforme ainda quente."
+        },
+        {
+          "value": "Cobertura"
+        },
+        {
+          "value": "Em uma panela, leve todos os ingredientes ao fogo até levantar fervura."
+        },
+        {
+          "value": "Despeje ainda quente em cima do bolo."
+        }
+      ]
+    }
+  ],
+  "language": "pt-br",
+  "prepTime": 10,
+  "ratings": 4.6,
+  "ratingsCount": 273,
+  "siteName": "TudoGostoso",
+  "title": "Bolo de chocolate simples",
+  "totalTime": 40,
+  "yields": "12 servings",
+  "category": ["Bolos e tortas doces"],
+  "cuisine": [],
+  "dietaryRestrictions": [],
+  "equipment": [],
+  "keywords": ["Receita de Bolo de chocolate simples"],
+  "nutrients": {},
+  "reviews": {}
+}
