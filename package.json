@@ -31,7 +31,8 @@
     "CONTRIBUTING.md",
     "GOVERNANCE.md",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "type": "module",
   "sideEffects": false,
