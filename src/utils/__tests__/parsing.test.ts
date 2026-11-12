@@ -19,6 +19,16 @@ describe('normalizeString', () => {
   it('returns empty string for input that becomes empty after trim', () => {
     expect(normalizeString('    ')).toBe('')
   })
+
+  it('removes zero-width spaces and byte order marks', () => {
+    expect(normalizeString('\u200b1 xícara de arroz')).toBe('1 xícara de arroz')
+    expect(normalizeString('\ufeffsalt to\u200b taste')).toBe('salt to taste')
+    expect(normalizeString('\u200b \u200b')).toBe('')
+  })
+
+  it('keeps zero-width joiners used in emoji sequences', () => {
+    expect(normalizeString('chef 👨\u200d🍳')).toBe('chef 👨\u200d🍳')
+  })
 })
 
 describe('splitToList', () => {

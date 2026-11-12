@@ -3,10 +3,18 @@
  ******************************************************************************/
 import { parse as parseDuration, toSeconds } from 'iso8601-duration'
 
+/**
+ * Invisible characters that carry no meaning in recipe text: the zero-width
+ * space and the byte order mark. Joiners (U+200C, U+200D) are kept because
+ * they matter in emoji sequences and some scripts.
+ */
+const INVISIBLE_CHARACTERS = /[\u200b\ufeff]/g
+
 export function normalizeString(str: string | null | undefined): string {
   return (
     str
-      ?.trim()
+      ?.replace(INVISIBLE_CHARACTERS, '')
+      .trim()
       // collapse all whitespace to single spaces
       .replace(/\s+/g, ' ')
       // remove any space(s) immediately before a comma
