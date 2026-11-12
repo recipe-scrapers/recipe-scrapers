@@ -26,8 +26,12 @@ function escapeControlCharacter(value: string): string {
  * Matches a CDATA wrapper left around a script's JSON, written as a JS
  * comment (`// <![CDATA[` … `// ]]>`) or block comment (`/*<![CDATA[*\/`).
  */
-const CDATA_OPEN_PATTERN = /^\s*(?:\/\/|\/\*)?\s*<!\[CDATA\[\s*(?:\*\/)?/
-const CDATA_CLOSE_PATTERN = /(?:\/\/|\/\*)?\s*\]\]>\s*(?:\*\/)?\s*$/
+// Each `\s*` is fenced by a required token, so no two quantifiers can
+// split the same run of whitespace (linear time on untrusted page input).
+const CDATA_OPEN_PATTERN = /^\s*(?:(?:\/\/|\/\*)\s*)?<!\[CDATA\[(?:\s*\*\/)?/
+const CDATA_CLOSE_PATTERN = /(?:(?:\/\/|\/\*)\s*)?\]\]>(?:\s*\*\/)?\s*$/
+
+const JSON_WHITESPACE = new Set([' ', '\t', '\n', '\r'])
 
 /**
  * Repairs common syntax errors in hand-written or templated JSON-LD:
@@ -40,15 +44,26 @@ const CDATA_CLOSE_PATTERN = /(?:\/\/|\/\*)?\s*\]\]>\s*(?:\*\/)?\s*$/
  * Everything else is left untouched, so valid JSON is returned unchanged.
  */
 export function repairJson(raw: string): string {
-  const input = raw.replace(CDATA_OPEN_PATTERN, '').replace(CDATA_CLOSE_PATTERN, '')
+  const unwrapped = raw.replace(CDATA_OPEN_PATTERN, '').replace(CDATA_CLOSE_PATTERN, '')
+  // Whitespace left around a removed wrapper is dropped here, not in the
+  // patterns, where an extra `\s*` would make them backtrack.
+  const input = unwrapped === raw ? raw : unwrapped.trim()
   let repaired = ''
   let inString = false
   let isEscaping = false
+  // Position in `repaired` of a comma that only whitespace has followed so far.
+  let trailingCommaIndex: number | null = null
 
   for (const char of input) {
     if (!inString) {
-      if (char === '}' || char === ']') {
-        repaired = repaired.replace(/,(\s*)$/, '$1')
+      if ((char === '}' || char === ']') && trailingCommaIndex !== null) {
+        repaired = repaired.slice(0, trailingCommaIndex) + repaired.slice(trailingCommaIndex + 1)
+      }
+
+      if (char === ',') {
+        trailingCommaIndex = repaired.length
+      } else if (!JSON_WHITESPACE.has(char)) {
+        trailingCommaIndex = null
       }
 
       repaired += char

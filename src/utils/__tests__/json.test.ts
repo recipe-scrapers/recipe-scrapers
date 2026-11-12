@@ -82,6 +82,17 @@ describe('parseJsonWithRepair', () => {
     })
   })
 
+  it('repairs large malformed input in linear time', () => {
+    const whitespace = ' '.repeat(200_000)
+    const items = '[1],'.repeat(50_000)
+    const started = performance.now()
+
+    expect(() => parseJsonWithRepair(`${whitespace}x`)).toThrow()
+    expect(() => parseJsonWithRepair(`{${whitespace}x}`)).toThrow()
+    expect(parseJsonWithRepair(`[${items}]`).repaired).toBe(true)
+    expect(performance.now() - started).toBeLessThan(1000)
+  })
+
   it('throws when JSON cannot be repaired', () => {
     expect(() => parseJsonWithRepair('{"name":"missing brace"')).toThrow()
   })

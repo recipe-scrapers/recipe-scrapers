@@ -105,6 +105,13 @@ describe('parseMinutes', () => {
     expect(parseMinutes('45 minuten')).toBe(45)
   })
 
+  it('parses long unit-less input in linear time', () => {
+    const started = performance.now()
+
+    expect(() => parseMinutes('1'.repeat(200_000))).toThrow('invalid duration')
+    expect(performance.now() - started).toBeLessThan(1000)
+  })
+
   it('does not read a unit out of a longer word', () => {
     expect(() => parseMinutes('serves 4 people')).toThrow('invalid duration')
     expect(parseMinutes('10 minutes, then 2 more')).toBe(10)
