@@ -1,6 +1,14 @@
-# Recipe Scrapers
+<!-- markdownlint-disable MD033 -- <picture> switches the logo for dark mode; Markdown images cannot -->
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/recipe-scrapers-logo-dark.png">
+    <img src="assets/recipe-scrapers-logo.png" alt="Recipe Scrapers" width="600">
+  </picture>
+</h1>
+<!-- markdownlint-enable MD033 -->
 
 [![npm version](https://img.shields.io/npm/v/recipe-scrapers.svg?style=flat-square)](https://www.npmjs.com/package/recipe-scrapers)
+[![npm downloads](https://img.shields.io/npm/dw/recipe-scrapers.svg?style=flat-square)](https://www.npmjs.com/package/recipe-scrapers)
 [![build](https://img.shields.io/github/actions/workflow/status/recipe-scrapers/recipe-scrapers/ci.yml?branch=main&style=flat-square)](https://github.com/recipe-scrapers/recipe-scrapers/actions)
 [![CodSpeed](https://img.shields.io/endpoint?url=https://codspeed.io/badge.json&style=flat-square)](https://codspeed.io/recipe-scrapers/recipe-scrapers)
 [![license](https://img.shields.io/npm/l/recipe-scrapers.svg?style=flat-square)](LICENSE)
@@ -64,7 +72,7 @@ const url = 'https://recipes.example/recipes/tomato-soup'
 // Use generic Schema.org extraction for this unregistered example host.
 // Without wildMode, getScraper throws when a host is not registered.
 const MyScraper = getScraper(url, { wildMode: true })
-const scraper = new MyScraper(html, url, /* { ...options } */)
+const scraper = new MyScraper(html, url /* { ...options } */)
 
 // Get the recipe data
 const rawRecipe = await scraper.toRecipeObject()
@@ -404,15 +412,15 @@ bun run build
 
 1. Fetch test data from the original Python repository
 
-    ```bash
-    bun fetch-test-data
-    ```
+   ```bash
+   bun fetch-test-data
+   ```
 
 2. Convert the data into the expected JSON format (i.e. the `RecipeObject` interface)
 
-    ```bash
-    bun process-test-data <host>
-    ```
+   ```bash
+   bun process-test-data <host>
+   ```
 
 3. Choose the scraper type:
    - **Schema.org-only host** (no site-specific extraction needed): add the hostname to `SCHEMA_ORG_ONLY_HOSTS` in [src/scrapers/_index.ts](./src/scrapers/_index.ts)
@@ -423,8 +431,9 @@ bun run build
 7. Update documentation as needed, using [CONTEXT.md](./CONTEXT.md) for the project's domain language
 
 ```typescript
-import { AbstractScraper } from './abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
+
+import { AbstractScraper } from './abstract-scraper'
 
 export class NewSiteScraper extends AbstractScraper {
   static host() {
@@ -447,7 +456,7 @@ export class NewSiteScraper extends AbstractScraper {
       },
     ]
   }
-  
+
   // ... implement other extraction methods
 }
 ```
