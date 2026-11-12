@@ -1,5 +1,7 @@
 import path from 'node:path'
 
+import z from 'zod'
+
 import type { AbstractScraper } from '@/abstract-scraper'
 import type { RecipeObject } from '@/types/recipe.interface'
 import type { ScraperOptions } from '@/types/scraper.interface'
@@ -16,7 +18,7 @@ export type TestFixture = {
   name: string
   html: string
   expected: RecipeFixture
-  options: Required<Pick<ScraperOptions, 'parseIngredients' | 'parseNotes'>>
+  options: Required<Pick<ScraperOptions, 'parseIngredients' | 'parseNotes'>> & FixtureOptions
 }
 
 export type SupportedHostTestFixtures = {
@@ -27,6 +29,36 @@ export type SupportedHostTestFixtures = {
 }
 
 export type TestFixtureCatalog = SupportedHostTestFixtures[]
+
+/**
+ * Caller options a fixture can declare in a sibling `<name>.options.json`,
+ * for pages that need a consumer-provided fallback to parse. Only string
+ * fallbacks are supported because the file is plain JSON.
+ */
+const FixtureOptionsSchema = z.strictObject({
+  fallbackAuthor: z.string().optional(),
+  fallbackDescription: z.string().optional(),
+  fallbackImage: z.string().optional(),
+  fallbackYield: z.string().optional(),
+})
+
+type FixtureOptions = z.infer<typeof FixtureOptionsSchema>
+
+const OPTIONS_SUFFIX = '.options.json'
+
+async function readFixtureOptions(optionsPath: string): Promise<FixtureOptions> {
+  const file = Bun.file(optionsPath)
+
+  if (!(await file.exists())) return {}
+
+  const result = FixtureOptionsSchema.safeParse(await file.json())
+
+  if (!result.success) {
+    throw new Error(`Invalid fixture options '${optionsPath}': ${z.prettifyError(result.error)}`)
+  }
+
+  return result.data
+}
 
 function inferFixtureOptions(fixture: RecipeFixture): TestFixture['options'] {
   return {
@@ -89,12 +121,19 @@ export async function loadTestFixtureCatalog(
   dataDirectory: string,
 ): Promise<TestFixtureCatalog> {
   const supportedHosts = getSupportedHosts(registry)
-  const [htmlFiles, jsonFiles] = await Promise.all([
+  const [htmlFiles, allJsonFiles] = await Promise.all([
     Array.fromAsync(new Bun.Glob('**/*.testhtml').scan(dataDirectory)),
     Array.fromAsync(new Bun.Glob('**/*.json').scan(dataDirectory)),
   ])
+  const jsonFiles = allJsonFiles.filter((file) => !file.endsWith(OPTIONS_SUFFIX))
   const htmlFileSet = new Set(htmlFiles)
   const jsonFileSet = new Set(jsonFiles)
+
+  for (const optionsFile of allJsonFiles.filter((file) => file.endsWith(OPTIONS_SUFFIX))) {
+    if (!jsonFileSet.has(optionsFile.replace(OPTIONS_SUFFIX, '.json'))) {
+      throw new Error(`Fixture options '${optionsFile}' have no corresponding fixture.`)
+    }
+  }
 
   for (const jsonFile of jsonFiles) {
     const htmlFile = jsonFile.replace(/\.json$/, '.testhtml')
@@ -126,7 +165,10 @@ export async function loadTestFixtureCatalog(
       name: path.basename(htmlFile),
       html: await Bun.file(htmlPath).text(),
       expected,
-      options: inferFixtureOptions(expected),
+      options: {
+        ...inferFixtureOptions(expected),
+        ...(await readFixtureOptions(jsonPath.replace(/\.json$/, OPTIONS_SUFFIX))),
+      },
     })
   }
 
