@@ -23,18 +23,34 @@ function escapeControlCharacter(value: string): string {
 }
 
 /**
- * Escapes raw control characters within JSON string literals.
- *
- * This is a focused repair pass intended for malformed JSON-LD where values
- * contain unescaped newlines/tabs or other ASCII control chars.
+ * Matches a CDATA wrapper left around a script's JSON, written as a JS
+ * comment (`// <![CDATA[` … `// ]]>`) or block comment (`/*<![CDATA[*\/`).
  */
-export function repairJsonControlCharactersInStrings(raw: string): string {
+const CDATA_OPEN_PATTERN = /^\s*(?:\/\/|\/\*)?\s*<!\[CDATA\[\s*(?:\*\/)?/
+const CDATA_CLOSE_PATTERN = /(?:\/\/|\/\*)?\s*\]\]>\s*(?:\*\/)?\s*$/
+
+/**
+ * Repairs common syntax errors in hand-written or templated JSON-LD:
+ *
+ * - a CDATA comment wrapper around the JSON
+ * - raw control characters (newlines, tabs) inside string literals
+ * - `\'` escapes inside string literals, which JSON does not allow
+ * - trailing commas before `}` or `]`
+ *
+ * Everything else is left untouched, so valid JSON is returned unchanged.
+ */
+export function repairJson(raw: string): string {
+  const input = raw.replace(CDATA_OPEN_PATTERN, '').replace(CDATA_CLOSE_PATTERN, '')
   let repaired = ''
   let inString = false
   let isEscaping = false
 
-  for (const char of raw) {
+  for (const char of input) {
     if (!inString) {
+      if (char === '}' || char === ']') {
+        repaired = repaired.replace(/,(\s*)$/, '$1')
+      }
+
       repaired += char
 
       if (char === '"') {
@@ -44,13 +60,12 @@ export function repairJsonControlCharactersInStrings(raw: string): string {
     }
 
     if (isEscaping) {
-      repaired += char
+      repaired += char === "'" ? "'" : `\\${char}`
       isEscaping = false
       continue
     }
 
     if (char === '\\') {
-      repaired += char
       isEscaping = true
       continue
     }
@@ -73,15 +88,15 @@ export function repairJsonControlCharactersInStrings(raw: string): string {
 }
 
 /**
- * Parses JSON and attempts a control-character repair pass if initial parsing
- * fails.
+ * Parses JSON and attempts a syntax repair pass (see `repairJson`) if initial
+ * parsing fails.
  * Throws the original parse error if repair is not applicable/successful.
  */
 export function parseJsonWithRepair(raw: string): JsonParseResult {
   try {
     return { data: JSON.parse(raw), repaired: false }
   } catch (error) {
-    const repairedRaw = repairJsonControlCharactersInStrings(raw)
+    const repairedRaw = repairJson(raw)
 
     if (repairedRaw === raw) {
       throw error

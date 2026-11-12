@@ -8,6 +8,8 @@ import { isInstructions } from '@/utils/instructions'
 
 import type { Ingredients, Instructions } from '../types/recipe.interface'
 
+const RESIDUAL_ENTITY_PATTERN = /&(?:[a-z][a-z\d]*|#\d+|#x[\da-f]+);/i
+
 export class HtmlStripperPlugin extends PostProcessorPlugin {
   name = 'HtmlStripper'
   priority = 100 // Run early
@@ -63,12 +65,21 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
   }
 
   private stripHtml(html: string): string {
-    const $ = load(html, null, false)
+    const text = this.toText(html)
+
+    // Some sites double-encode entities (e.g. `&amp;atilde;`), which leaves
+    // entity text behind after one pass. Decode once more in that case,
+    // escaping `<` so decoded text is never re-parsed as markup.
+    const decoded = RESIDUAL_ENTITY_PATTERN.test(text)
+      ? this.toText(text.replaceAll('<', '&lt;'))
+      : text
+
     // Cheerio decodes &nbsp; as non-breaking space (U+00A0),
     // normalize to regular space
-    return $.root()
-      .text()
-      .replace(/\u00A0/g, ' ')
-      .trim()
+    return decoded.replace(/\u00A0/g, ' ').trim()
+  }
+
+  private toText(html: string): string {
+    return load(html, null, false).root().text()
   }
 }

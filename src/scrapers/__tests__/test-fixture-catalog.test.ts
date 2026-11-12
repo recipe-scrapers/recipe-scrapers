@@ -69,6 +69,51 @@ describe('test fixture catalog', () => {
     ])
   })
 
+  it('merges caller options declared in a sibling options file', async () => {
+    await writeFixture('fallback', { ingredients: [] })
+    await writeFile(
+      path.join(dataDirectory, 'primary.test', 'fallback.options.json'),
+      JSON.stringify({ fallbackDescription: 'No description provided' }),
+    )
+
+    const [supportedHost] = await loadTestFixtureCatalog(registry, dataDirectory)
+
+    expect(supportedHost?.fixtures.map(({ name, options }) => ({ name, options }))).toEqual([
+      {
+        name: 'fallback.testhtml',
+        options: {
+          parseIngredients: false,
+          parseNotes: false,
+          fallbackDescription: 'No description provided',
+        },
+      },
+    ])
+  })
+
+  it('rejects unknown keys in a fixture options file', async () => {
+    await writeFixture('fallback', { ingredients: [] })
+    await writeFile(
+      path.join(dataDirectory, 'primary.test', 'fallback.options.json'),
+      JSON.stringify({ parseIngredients: true }),
+    )
+
+    await expect(loadTestFixtureCatalog(registry, dataDirectory)).rejects.toThrow(
+      'Invalid fixture options',
+    )
+  })
+
+  it('rejects options files without a fixture', async () => {
+    await writeFixture('recipe', { ingredients: [] })
+    await writeFile(
+      path.join(dataDirectory, 'primary.test', 'orphan.options.json'),
+      JSON.stringify({ fallbackDescription: 'x' }),
+    )
+
+    await expect(loadTestFixtureCatalog(registry, dataDirectory)).rejects.toThrow(
+      `Fixture options '${path.join('primary.test', 'orphan.options.json')}' have no corresponding fixture.`,
+    )
+  })
+
   it('requires fixtures for every primary host', async () => {
     await expect(loadTestFixtureCatalog(registry, dataDirectory)).rejects.toThrow(
       "Primary host 'primary.test' requires at least one fixture pair.",

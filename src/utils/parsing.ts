@@ -3,10 +3,18 @@
  ******************************************************************************/
 import { parse as parseDuration, toSeconds } from 'iso8601-duration'
 
+/**
+ * Invisible characters that carry no meaning in recipe text: the zero-width
+ * space and the byte order mark. Joiners (U+200C, U+200D) are kept because
+ * they matter in emoji sequences and some scripts.
+ */
+const INVISIBLE_CHARACTERS = /[\u200b\ufeff]/g
+
 export function normalizeString(str: string | null | undefined): string {
   return (
     str
-      ?.trim()
+      ?.replace(INVISIBLE_CHARACTERS, '')
+      .trim()
       // collapse all whitespace to single spaces
       .replace(/\s+/g, ' ')
       // remove any space(s) immediately before a comma
@@ -34,6 +42,39 @@ export function splitToList(value: string, separator: string | RegExp): string[]
   return items
 }
 
+/**
+ * Duration unit names, in minutes, for English and common European
+ * languages (German, Dutch, French, Italian, Spanish, Portuguese, and the
+ * Scandinavian languages), e.g. "35 minuti" or "30 minuter".
+ */
+const DURATION_UNITS: readonly (readonly [string, number])[] = [
+  [
+    'days day tage tag dagen jours jour giorni giorno días dias día dia dagar dager dage dag d',
+    24 * 60,
+  ],
+  [
+    'hours hour hrs hr stunden stunde std uur heures heure ore ora horas hora timmar timme timer time h',
+    60,
+  ],
+  ['minutes minute mins min minuten minuut minuti minuto minutos minuter minutter minutt m', 1],
+  [
+    'seconds second secs sec sekunden sekunde seconden secondes secondi segundos sekunder s',
+    1 / 60,
+  ],
+]
+
+const UNIT_MINUTES = new Map(
+  DURATION_UNITS.flatMap(([names, minutes]) =>
+    names.split(' ').map((name) => [name, minutes] as const),
+  ),
+)
+
+// Longest names first, so "minuten" is tried before "min" and "m".
+const DURATION_PATTERN = new RegExp(
+  `(\\d+(?:[.,]\\d+)?)\\s*(${[...UNIT_MINUTES.keys()].sort((a, b) => b.length - a.length).join('|')})(?![\\p{L}])`,
+  'gu',
+)
+
 function parseHumanDurationMinutes(value: string): number | null {
   const normalized = normalizeString(value).toLowerCase()
 
@@ -41,11 +82,7 @@ function parseHumanDurationMinutes(value: string): number | null {
     return null
   }
 
-  const matches = Array.from(
-    normalized.matchAll(
-      /(\d+(?:\.\d+)?)\s*(days?|d|hours?|hrs?|hr|h|minutes?|mins?|min|m|seconds?|secs?|sec|s)\b/g,
-    ),
-  )
+  const matches = Array.from(normalized.matchAll(DURATION_PATTERN))
 
   if (matches.length === 0) {
     return null
@@ -53,31 +90,12 @@ function parseHumanDurationMinutes(value: string): number | null {
 
   let totalMinutes = 0
 
-  for (const match of matches) {
-    const amount = Number.parseFloat(match[1] ?? '')
-    const unit = match[2] ?? ''
+  for (const [, rawAmount = '', unit = ''] of matches) {
+    const amount = Number.parseFloat(rawAmount.replace(',', '.'))
+    const minutes = UNIT_MINUTES.get(unit)
 
-    if (Number.isNaN(amount)) {
-      continue
-    }
-
-    if (/^days?$|^d$/.test(unit)) {
-      totalMinutes += amount * 24 * 60
-      continue
-    }
-
-    if (/^hours?$|^hrs?$|^hr$|^h$/.test(unit)) {
-      totalMinutes += amount * 60
-      continue
-    }
-
-    if (/^minutes?$|^mins?$|^min$|^m$/.test(unit)) {
-      totalMinutes += amount
-      continue
-    }
-
-    if (/^seconds?$|^secs?$|^sec$|^s$/.test(unit)) {
-      totalMinutes += amount / 60
+    if (!Number.isNaN(amount) && minutes !== undefined) {
+      totalMinutes += amount * minutes
     }
   }
 

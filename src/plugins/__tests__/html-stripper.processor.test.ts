@@ -73,4 +73,17 @@ describe('HtmlStripperPlugin', () => {
     expect(plugin.process('title', '100&deg;C')).toBe('100°C')
     expect(plugin.process('siteName', 'Mamá Maggie&#039;s Kitchen')).toBe("Mamá Maggie's Kitchen")
   })
+
+  it('decodes double-encoded HTML entities', () => {
+    expect(plugin.process('title', 'lim&amp;atilde;o e a&amp;ccedil;&amp;uacute;car')).toBe(
+      'limão e açúcar',
+    )
+    expect(plugin.process('title', '200&amp;#176; C')).toBe('200° C')
+  })
+
+  it('does not re-parse decoded text as markup', () => {
+    expect(plugin.process('title', '&lt;b&gt;bold&lt;/b&gt; &amp;amp; more')).toBe(
+      '<b>bold</b> & more',
+    )
+  })
 })

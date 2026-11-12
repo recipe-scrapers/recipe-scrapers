@@ -23,6 +23,27 @@ describe('microdata-extractor', () => {
     })
   })
 
+  it('prefers a content attribute on any element over its text', () => {
+    const html = `
+      <div itemtype="https://schema.org/Recipe">
+        <h1 itemprop="name">Test Recipe</h1>
+        <span itemprop="totalTime" content="PT30M">30 min</span>
+        <time itemprop="prepTime" content="PT00H10M"></time>
+        <time itemprop="cookTime" datetime="PT20M">20 minutes</time>
+      </div>
+    `
+    const $ = cheerio.load(html)
+    const result = extractRecipeMicrodata($)
+
+    expect(result[0]).toEqual({
+      '@type': 'Recipe',
+      name: 'Test Recipe',
+      totalTime: 'PT30M',
+      prepTime: 'PT00H10M',
+      cookTime: 'PT20M',
+    })
+  })
+
   it('should extract nested microdata objects', () => {
     const html = `
       <div itemtype="https://schema.org/Recipe">

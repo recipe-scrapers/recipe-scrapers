@@ -19,6 +19,16 @@ describe('normalizeString', () => {
   it('returns empty string for input that becomes empty after trim', () => {
     expect(normalizeString('    ')).toBe('')
   })
+
+  it('removes zero-width spaces and byte order marks', () => {
+    expect(normalizeString('\u200b1 xícara de arroz')).toBe('1 xícara de arroz')
+    expect(normalizeString('\ufeffsalt to\u200b taste')).toBe('salt to taste')
+    expect(normalizeString('\u200b \u200b')).toBe('')
+  })
+
+  it('keeps zero-width joiners used in emoji sequences', () => {
+    expect(normalizeString('chef 👨\u200d🍳')).toBe('chef 👨\u200d🍳')
+  })
 })
 
 describe('splitToList', () => {
@@ -83,6 +93,21 @@ describe('parseMinutes', () => {
 
   it('parses human-readable mixed units', () => {
     expect(parseMinutes('1 hour 30 minutes')).toBe(90)
+  })
+
+  it('parses human-readable durations in other European languages', () => {
+    expect(parseMinutes('35 minuti')).toBe(35)
+    expect(parseMinutes('Tillagningstid\n   30 minuter')).toBe(30)
+    expect(parseMinutes('1 Stunde 15 Minuten')).toBe(75)
+    expect(parseMinutes('1,5 timer')).toBe(90)
+    expect(parseMinutes('2 horas')).toBe(120)
+    expect(parseMinutes('1 heure 10 minutes')).toBe(70)
+    expect(parseMinutes('45 minuten')).toBe(45)
+  })
+
+  it('does not read a unit out of a longer word', () => {
+    expect(() => parseMinutes('serves 4 people')).toThrow('invalid duration')
+    expect(parseMinutes('10 minutes, then 2 more')).toBe(10)
   })
 
   it('throws on invalid input', () => {

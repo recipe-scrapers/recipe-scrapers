@@ -1,0 +1,65 @@
+{
+  "siteName": "Sabores Ajinomoto",
+  "category": ["Verduras e Legumes"],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": 25,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": ["AJI-NO-MOTO; Purê; Batata; Frango"],
+  "author": "sabores ajinomoto",
+  "canonicalUrl": "https://www.saboresajinomoto.com.br/receita/pure-de-batata-com-frango",
+  "host": "saboresajinomoto.com.br",
+  "language": "pt-br",
+  "title": "Purê de batata com frango",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "3 colheres (sopa) de margarina sem sal (45 g)"
+        },
+        {
+          "value": "1 filé de peito de frango (100 g)"
+        },
+        {
+          "value": "2 batatas médias, cozidas e espremidas (400 g)"
+        },
+        {
+          "value": "meia xícara (chá) de leite (100 ml)"
+        },
+        {
+          "value": "meia colher (chá) de sal"
+        },
+        {
+          "value": "meia colher (chá) de AJI-NO-MOTO®"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Em uma panela média, derreta 1 colher (sopa) da margarina em fogo médio e frite o frango por cerca de 10 minutos, virando na metade do tempo, ou até dourar. Retire do fogo, desfie com o auxílio de um garfo e reserve aquecido."
+        },
+        {
+          "value": "Na mesma panela, derreta a margarina restante, em fogo alto, junte a batata, o leite, o sal e o AJI-NO-MOTO®, e mexa até que fique homogêneo."
+        },
+        {
+          "value": "Acrescente o frango, misture e retire do fogo. Sirva em seguida."
+        }
+      ]
+    }
+  ],
+  "yields": "5 servings",
+  "description": "Uma saborosa receita de purê de batata com frango que rende 5 porções e você só leva 25 minutinhos para preparar. Veja a lista de ingredientes e o modo de preparo.",
+  "image": "https://www.saboresajinomoto.com.br/uploads/images/recipes/pure-de-batata-com-frango.jpg"
+}

@@ -12,8 +12,19 @@ const DEFAULT_GROUPING_SELECTORS = {
     itemSelectors: ['.wprm-recipe-ingredient', '.wprm-recipe-ingredients li'],
   },
   tasty: {
-    headingSelectors: ['.tasty-recipes-ingredients-body p strong', '.tasty-recipes-ingredients h4'],
+    headingSelectors: [
+      '.tasty-recipes-ingredients-body p strong',
+      '.tasty-recipes-ingredients h4',
+      // Some themes write headings as plain paragraphs, or wrap them in <b>.
+      '.tasty-recipes-ingredients p:not(li p)',
+    ],
     itemSelectors: ['.tasty-recipes-ingredients-body ul li', '.tasty-recipes-ingredients ul li'],
+  },
+  mediavine: {
+    headingSelectors: [
+      '.mv-create-ingredients h4, .mv-create-ingredients h3:not(.mv-create-ingredients-title)',
+    ],
+    itemSelectors: ['.mv-create-ingredients li'],
   },
 } as const satisfies Record<string, { headingSelectors: string[]; itemSelectors: string[] }>
 
@@ -157,7 +168,24 @@ export function recoverIngredientGroups(
   return groupIngredients($, values, heading, item)
 }
 
-export function scoreSentenceSimilarity(first: string, second: string): number {
+/**
+ * Normalizes text before similarity scoring so that equivalent quantities
+ * compare equal: vulgar fractions become ASCII (`1½` → `1 1/2`), so a Recipe
+ * Page showing "½ tsp salt" matches Structured Data "1/2 tsp salt" rather
+ * than "¼ tsp salt".
+ */
+function normalizeForComparison(value: string): string {
+  return value
+    .replace(/(\d)([\u00bc-\u00be\u2150-\u215e])/g, '$1 $2')
+    .normalize('NFKD')
+    .replace(/\u2044/g, '/')
+    .toLowerCase()
+}
+
+export function scoreSentenceSimilarity(rawFirst: string, rawSecond: string): number {
+  const first = normalizeForComparison(rawFirst)
+  const second = normalizeForComparison(rawSecond)
+
   if (first === second) {
     return 1
   }

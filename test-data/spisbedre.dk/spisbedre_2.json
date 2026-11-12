@@ -1,0 +1,109 @@
+{
+  "siteName": "SPIS BEDRE",
+  "category": ["Hovedretter", "Frokost", "Dansk"],
+  "cookTime": null,
+  "prepTime": 35,
+  "totalTime": 35,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 4,
+  "ratingsCount": 1,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "631 kcal",
+    "fatContent": "52 g",
+    "carbohydrateContent": "34 g",
+    "proteinContent": "7 g"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Timm Vladimir",
+  "canonicalUrl": "https://spisbedre.dk/opskrifter/stegt-makrel-med-kartofler",
+  "host": "spisbedre.dk",
+  "language": "da",
+  "title": "Stegt makrel med kartofler",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "4 ferske makrelfileter"
+        },
+        {
+          "value": "100 g smør"
+        }
+      ]
+    },
+    {
+      "name": "Syltede stikkelsbær",
+      "items": [
+        {
+          "value": "300 g stikkelsbær"
+        },
+        {
+          "value": "1 dl vand"
+        },
+        {
+          "value": "1 dl eddike"
+        },
+        {
+          "value": "1 dl sukker"
+        }
+      ]
+    },
+    {
+      "name": "Tilbehør",
+      "items": [
+        {
+          "value": "600 g små kartofler"
+        },
+        {
+          "value": "1 bundt frisk dild"
+        },
+        {
+          "value": "salt"
+        },
+        {
+          "value": "2 hjertesalater"
+        },
+        {
+          "value": "1 spsk. smagsneutral olie til stegning"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "Syltede stikkelsbær",
+      "items": [
+        {
+          "value": "Skyl stikkelsbærrene, og hæld dem i et skoldet glas. Kog vand, eddike og sukker op i en lille gryde, og hæld den kogende lage over bærrene."
+        },
+        {
+          "value": "Luk glasset til, og lad bærrene stå 1-2 døgn."
+        }
+      ]
+    },
+    {
+      "name": "Tilbehør",
+      "items": [
+        {
+          "value": "Skrub kartoflerne, og læg dem i en gryde. Skyl dild, og skær stilkene fra (gem toppene til pynt). Læg stilkene ned til kartoflerne, hæld vand og lidt salt på, og kog kartoflerne, til de er møre."
+        },
+        {
+          "value": "Skyl hjertesalater, og skær dem over på langs. Steg dem i lidt olie på en pande i ca. 1 minut, til de har taget lidt farve."
+        },
+        {
+          "value": "Filetér makrellerne. Steg dem i lidt smør på en pande i ca. 3 minutter på skindsiden. Vend dem, og steg dem i 1 minut på kødsiden."
+        },
+        {
+          "value": "Smelt resten af smørret på panden, til det er brunet. Anret makrelfileterne på tallerkener sammen med kogte kartofler, stegt hjertesalat, brunet smør og dild. Servér de syltede stikkelsbær til."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Hvad enten der er tale om frokost eller aftensmad, kan du altid spise stegt makrel med møre kartofler toppet med surt og sødt.",
+  "image": "https://spisbedre-production-app.imgix.net/images/recipes/stegt-makrel-med-kartofler_324.jpg?fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.63232421875&fp-z=1"
+}

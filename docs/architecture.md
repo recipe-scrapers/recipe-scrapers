@@ -66,6 +66,8 @@ For each RecipeFields key:
   4) Field default value fallback (optional fields only)
   5) Consumer-provided author/description/image/yield fallback (when configured)
   ->
+time reconciliation (`reconcileRecipeTimes`)
+  ->
 RecipeData (internal)
   ->
 optional note extraction (`parseNotes`) from supported HTML recipe blocks
@@ -139,7 +141,8 @@ Post-processors extend `PostProcessorPlugin` and run per-field:
 
 Built-in post-processors:
 
-- `HtmlStripperPlugin` (priority `100`)
+- `HtmlStripperPlugin` (priority `100`): strips markup and decodes entities,
+  with a second decode pass for double-encoded text such as `&amp;atilde;`
 - `IngredientParserPlugin` (priority `50`, enabled when `parseIngredients` is set)
 
 ## Optional Notes Extraction
@@ -235,6 +238,18 @@ Current validation includes:
 - ratings range and ratings count consistency
 - `totalTime >= cookTime + prepTime` refinement
 - transform to fill `totalTime` when missing and both `cookTime` + `prepTime` exist
+
+Scraped times rarely reach that refinement in a failing state.
+`AbstractScraper.scrape()` repairs published times with
+`reconcileRecipeTimes` (`src/utils/times.ts`) and logs a warning when it does.
+When cook plus prep is longer than the total, the total is kept and:
+
+- a cook time equal to the total becomes total minus prep
+- a prep time equal to the total becomes total minus cook
+- any other mismatch sets cook and prep time to `null`
+
+The schema refinement stays strict, so data validated without a scraper is
+still rejected when its times are inconsistent.
 
 `AbstractScraper` exposes:
 

@@ -140,6 +140,13 @@ describe('scoreSentenceSimilarity', () => {
 })
 
 describe('bestMatch', () => {
+  it('treats vulgar fractions and ASCII fractions as equal', () => {
+    const targets = ['1/2 tsp salt', '¼ tsp salt', '1 1/2 cups flour', '1 cup sugar']
+
+    expect(bestMatch('½ tsp salt', targets)).toBe('1/2 tsp salt')
+    expect(bestMatch('1½ cups flour', targets)).toBe('1 1/2 cups flour')
+  })
+
   it('finds exact match', () => {
     const targets = [
       '¼ cup vegan mayonnaise',

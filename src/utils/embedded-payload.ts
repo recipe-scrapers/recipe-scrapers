@@ -8,6 +8,12 @@ export interface EmbeddedPayloadOptions<T> {
   /** Selector for the element holding the JSON payload; the first match is read. */
   selector: string
   /**
+   * Attribute holding the JSON payload, for pages that store it in markup
+   * (e.g. an Inertia `data-page` attribute). Defaults to the element's
+   * contents.
+   */
+  attribute?: string
+  /**
    * Validates the parsed JSON, returning the payload, or `null` (or throwing)
    * when it does not have the expected shape. A thrown error is logged with
    * the warning. Kept library-agnostic so Scrapers can use a type guard or
@@ -22,7 +28,7 @@ export interface EmbeddedPayloadOptions<T> {
 
 /**
  * Creates a reader for a JSON payload embedded in the Recipe Page, such as a
- * `__NEXT_DATA__` script.
+ * `__NEXT_DATA__` script or a `data-page` attribute.
  *
  * The payload is read once and the result is cached, including failures. The
  * reader never throws: a missing, malformed, or invalid payload is logged as a
@@ -30,12 +36,13 @@ export interface EmbeddedPayloadOptions<T> {
  */
 export function embeddedPayload<T>(
   $: CheerioAPI,
-  { selector, parse, logger, name = selector }: EmbeddedPayloadOptions<T>,
+  { selector, attribute, parse, logger, name = selector }: EmbeddedPayloadOptions<T>,
 ): () => T | null {
   let result: { value: T | null } | undefined
 
   const load = (): T | null => {
-    const raw = $(selector).first().html()
+    const element = $(selector).first()
+    const raw = attribute ? element.attr(attribute) : element.html()
 
     if (!raw?.trim()) {
       logger.warn(`Could not find ${name} payload`)

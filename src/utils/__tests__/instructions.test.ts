@@ -7,6 +7,7 @@ import {
   isInstructionGroup,
   isInstructionItem,
   isInstructions,
+  isRedundantStepName,
   splitInstructions,
   splitNumberedInstructions,
   stringsToInstructions,
@@ -171,5 +172,58 @@ describe('splitNumberedInstructions', () => {
 
   it('returns an empty array for empty input', () => {
     expect(splitNumberedInstructions('')).toEqual([])
+  })
+})
+
+describe('isRedundantStepName', () => {
+  it('drops numbered step labels, including localized ones', () => {
+    for (const name of [
+      'Step 1',
+      'step 12:',
+      '1.',
+      '2',
+      '3)',
+      'Schritt 1',
+      'Passo 2',
+      'Étape 3',
+      'stap 4',
+    ]) {
+      expect(isRedundantStepName(name, 'Preheat the oven.')).toBe(true)
+    }
+  })
+
+  it('drops a label followed by the start of the text', () => {
+    expect(isRedundantStepName('Step 1: Preheat oven to 425…', 'Preheat oven to 425°F.')).toBe(true)
+  })
+
+  it('drops a truncated preview of the text', () => {
+    expect(
+      isRedundantStepName(
+        'Butter one side of 6 slices of bread...',
+        'Butter one side of 6 slices of bread and place each slice butter-side down.',
+      ),
+    ).toBe(true)
+  })
+
+  it('drops a name that repeats the start of the text in another case', () => {
+    expect(isRedundantStepName('preheat oven', 'Preheat oven to 340°F.')).toBe(true)
+    expect(isRedundantStepName('Whisk the eggs.', 'Whisk the eggs.')).toBe(true)
+  })
+
+  it('drops a name repeated in the text, both with a step number', () => {
+    expect(
+      isRedundantStepName(
+        '1. Bring a large pot of salted water to a boil.',
+        '1. Bring a large pot of salted water to a boil. Add the pasta.',
+      ),
+    ).toBe(true)
+  })
+
+  it('keeps real step titles', () => {
+    expect(isRedundantStepName('Prepare the dough', 'Whisk the warm buttermilk and yeast.')).toBe(
+      false,
+    )
+    expect(isRedundantStepName('Serve', 'Divide the rice among 4 bowls.')).toBe(false)
+    expect(isRedundantStepName('350 degrees', 'Bake until golden.')).toBe(false)
   })
 })
