@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.5.0...3.6.0) (2026-11-12)
+
+
+### Features
+
+* **ingredients:** recover Mediavine Create and more Tasty Recipes groups ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **scrapers:** add 8 hosts from the Python library's fixtures ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **scrapers:** drop ratings that have no ratings count ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **scrapers:** reconcile inconsistent recipe times ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **utils:** parse durations written in other European languages ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **utils:** read embedded payloads from an attribute ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+
+
+### Bug Fixes
+
+* **ingredients:** treat vulgar and ASCII fractions as equal when grouping ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **plugins:** decode double-encoded HTML entities ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **schema-org:** stop turning HowToStep names into extra steps ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **schema-org:** treat unparseable durations as missing ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **utils:** read microdata content attributes on any element ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **utils:** repair more JSON-LD syntax errors ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+* **utils:** strip zero-width spaces in normalizeString ([8b0bd3c](https://github.com/recipe-scrapers/recipe-scrapers/commit/8b0bd3c87eb6e3f33f1e8ccc506d7f161a64ef28))
+
 ## [3.5.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.4.0...3.5.0) (2026-10-31)
 
 
