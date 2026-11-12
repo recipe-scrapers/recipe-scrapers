@@ -57,6 +57,15 @@ Avoid mixing unrelated concerns.
 
 ---
 
+## Performance and Bundle Size
+
+CI reports both on every PR:
+
+- **Parse speed:** CodSpeed runs the benchmarks in `bench/` and comments on the PR when one changes. `bun run bench` runs them locally; local timings are noisy, so only compare runs from the same machine.
+- **Bundle size:** the `bundle-size` job summary shows each entry's change from the base branch. The job fails when an entry's gzip size exceeds its budget in `bundle-size-budgets.json`. If the growth is justified, run `bun run build && bun run size --update-budgets` and explain it in the PR.
+
+---
+
 ## Dependency Policy
 
 Dependencies must have clear justification.

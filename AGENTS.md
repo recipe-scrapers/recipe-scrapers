@@ -18,6 +18,11 @@ A TypeScript library that turns a caller-supplied Recipe Page (HTML plus its URL
 - A Test Fixture is `test-data/<host>/<name>.testhtml` plus `<name>.json`, the expected Recipe Object. The shared harness discovers every pair and infers `parseIngredients` and `parseNotes` from the JSON. An optional `<name>.options.json` supplies string caller fallbacks such as `fallbackDescription`.
 - `bun run fetch-test-data` downloads the Python library's fixtures into `.temp/<host>/`, and `bun run process-test-data <host>` converts them into `test-data/<host>/`.
 
+## Performance
+
+- Parse-speed benchmarks in `bench/` run on CodSpeed in CI, one bench file per extraction path. When a change adds an extraction path no bench file covers, add one that calls `benchPage` with a fixture for it.
+- `bun run size` (after `bun run build`) fails when an entry outgrows its gzip budget in `bundle-size-budgets.json`. Raise a budget with `--update-budgets` only for intended growth, and say why in the commit.
+
 ## Adding a Supported Host
 
 1. Decide whether the Host can be a Schema.org-only Host or needs a Scraper with Site-specific Extractors.
@@ -38,6 +43,7 @@ END_COMMIT_OVERRIDE
 ```
 
 - Build the list with `git log --reverse --format=%s origin/main..HEAD`, and rewrite it whenever commits are added, dropped, or reworded.
+- Write the `BEGIN_COMMIT_OVERRIDE` marker only in the block itself. release-please reads from the first occurrence anywhere in the body, so a mention elsewhere breaks the override and drops the PR from the changelog.
 - A merged PR's override can still be edited until its release is published; release-please picks up the change on its next run.
 - Title the PR as a conventional commit; with a single commit, the title alone becomes the changelog entry.
 
