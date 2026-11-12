@@ -42,7 +42,12 @@
         },
         {
           "value": "3 cups fresh baby spinach"
-        },
+        }
+      ]
+    },
+    {
+      "name": "For serving",
+      "items": [
         {
           "value": "Chopped fresh parsley (optional)"
         }

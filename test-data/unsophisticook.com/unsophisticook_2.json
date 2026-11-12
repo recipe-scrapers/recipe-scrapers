@@ -8,7 +8,7 @@
   "image": "https://unsophisticook.com/wp-content/uploads/2020/12/Pork-Chop-Sour-Cream-Recipe-720x720.jpg",
   "ingredients": [
     {
-      "name": null,
+      "name": "For the pork chops",
       "items": [
         {
           "value": "6 pork chops"
@@ -39,7 +39,12 @@
         },
         {
           "value": "1/4 teaspoon salt"
-        },
+        }
+      ]
+    },
+    {
+      "name": "For the sour cream sauce",
+      "items": [
         {
           "value": "1 cup water"
         },
