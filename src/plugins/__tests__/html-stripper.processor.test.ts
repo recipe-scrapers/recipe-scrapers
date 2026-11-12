@@ -46,6 +46,24 @@ describe('HtmlStripperPlugin', () => {
     expect(output[0].items.map((i) => i.value)).toEqual(['1 cup flour', '2 <b>eggs</b>'])
   })
 
+  it('keeps parsed ingredient data while stripping HTML', () => {
+    const parsed = {
+      quantity: 1,
+      quantity2: null,
+      unitOfMeasureID: 'cup',
+      unitOfMeasure: 'cup',
+      description: 'flour',
+      isGroupHeader: false,
+    }
+    const input: Ingredients = [
+      createIngredientGroup(null, [{ value: '<i>1 cup</i> flour', parsed }]),
+    ]
+
+    expect(plugin.process('ingredients', input)).toEqual([
+      { name: null, items: [{ value: '1 cup flour', parsed }] },
+    ])
+  })
+
   it('strips HTML from ingredient groups', () => {
     const input: Ingredients = [
       createIngredientGroup('<b>Group 1</b>', [

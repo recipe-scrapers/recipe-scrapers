@@ -46,21 +46,21 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
     return value
   }
 
+  // Groups and items are spread so fields other than the text (such as an
+  // ingredient's `parsed` data) survive stripping.
   private processIngredients(ingredients: Ingredients): Ingredients {
     return ingredients.map((group) => ({
+      ...group,
       name: group.name === null ? null : this.stripHtml(group.name),
-      items: group.items.map((item) => ({
-        value: this.stripHtml(item.value),
-      })),
+      items: group.items.map((item) => ({ ...item, value: this.stripHtml(item.value) })),
     }))
   }
 
   private processInstructions(instructions: Instructions): Instructions {
     return instructions.map((group) => ({
+      ...group,
       name: group.name === null ? null : this.stripHtml(group.name),
-      items: group.items.map((item) => ({
-        value: this.stripHtml(item.value),
-      })),
+      items: group.items.map((item) => ({ ...item, value: this.stripHtml(item.value) })),
     }))
   }
 

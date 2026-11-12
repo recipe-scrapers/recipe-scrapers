@@ -192,7 +192,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
 
           if (repaired) {
             this.logger.debug(
-              'Recovered malformed JSON-LD by escaping control characters in string values',
+              'Recovered malformed JSON-LD by repairing its syntax (see repairJson)',
             )
           }
 
@@ -220,7 +220,9 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     const microdataObjects = extractRecipeMicrodata(this.$)
 
     for (const obj of microdataObjects) {
-      this.schemaData.push(obj as SchemaOrgData)
+      if (isSchemaOrgData(obj)) {
+        this.schemaData.push(obj)
+      }
     }
   }
 
