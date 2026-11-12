@@ -8,6 +8,7 @@
 <!-- markdownlint-enable MD033 -->
 
 [![npm version](https://img.shields.io/npm/v/recipe-scrapers.svg?style=flat-square)](https://www.npmjs.com/package/recipe-scrapers)
+[![npm downloads](https://img.shields.io/npm/dw/recipe-scrapers.svg?style=flat-square)](https://www.npmjs.com/package/recipe-scrapers)
 [![build](https://img.shields.io/github/actions/workflow/status/recipe-scrapers/recipe-scrapers/ci.yml?branch=main&style=flat-square)](https://github.com/recipe-scrapers/recipe-scrapers/actions)
 [![CodSpeed](https://img.shields.io/endpoint?url=https://codspeed.io/badge.json&style=flat-square)](https://codspeed.io/recipe-scrapers/recipe-scrapers)
 [![license](https://img.shields.io/npm/l/recipe-scrapers.svg?style=flat-square)](LICENSE)
