@@ -11,9 +11,10 @@ Recipe Scrapers is a TypeScript library for extracting structured recipe data
 from HTML. It supports Schema.org, OpenGraph, and site-specific extraction, then
 normalizes and validates the result as a consistent recipe object.
 
-The project name preserves its lineage with the Python
-[recipe-scrapers](https://github.com/hhursev/recipe-scrapers) library that
-inspired this port.
+It is an independent TypeScript port of the Python
+[recipe-scrapers](https://github.com/hhursev/recipe-scrapers) library, whose
+name it keeps to preserve that lineage, and is not affiliated with that project.
+See [Acknowledgments](#acknowledgments).
 
 ## Features
 
@@ -468,7 +469,7 @@ bun test:coverage
 
 ## Acknowledgments
 
-- Original [recipe-scrapers](https://github.com/hhursev/recipe-scrapers) Python library by [hhursev](https://github.com/hhursev)
+- Original [recipe-scrapers](https://github.com/hhursev/recipe-scrapers) Python library by [hhursev](https://github.com/hhursev) and its contributors. The test fixtures in `test-data/` are adapted from its test data, and the site-specific scrapers are ported from or modeled on its scrapers, under its MIT license (see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
 - [Schema.org Recipe specification](https://schema.org/Recipe)
 - [Cheerio](https://cheerio.js.org/) for HTML parsing
 - [Zod](https://zod.dev/) for schema validation
