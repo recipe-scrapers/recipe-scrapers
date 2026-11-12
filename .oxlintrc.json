@@ -4,23 +4,127 @@
     "correctness": "error",
     "suspicious": "error"
   },
-  "plugins": ["typescript", "unicorn"],
+  "plugins": ["typescript", "unicorn", "import"],
   "rules": {
     "default-param-last": "error",
+    "eqeqeq": "error",
+    "import/no-cycle": "error",
+    "import/no-duplicates": "error",
+    "import/no-self-import": "error",
     "no-else-return": "error",
+    "no-irregular-whitespace": [
+      "error",
+      {
+        "skipStrings": false,
+        "skipRegExps": false,
+        "skipTemplates": false,
+        "skipComments": false
+      }
+    ],
     "no-param-reassign": "error",
     "no-shadow": "off",
     "no-unassigned-vars": "off",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "no-var": "error",
     "one-var": ["error", "never"],
+    "prefer-const": "error",
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "object": true,
+          "array": false
+        },
+        "AssignmentExpression": {
+          "object": false,
+          "array": false
+        }
+      }
+    ],
+    "prefer-template": "error",
+    "typescript/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "never"
+      }
+    ],
+    "typescript/no-explicit-any": "error",
     "typescript/no-extraneous-class": "off",
+    "typescript/no-floating-promises": "error",
     "typescript/no-inferrable-types": "error",
+    "typescript/no-misused-promises": "error",
+    "typescript/no-non-null-assertion": "error",
+    "typescript/no-require-imports": "error",
     "typescript/no-unnecessary-template-expression": "error",
+    "typescript/no-unsafe-type-assertion": "off",
     "typescript/prefer-as-const": "error",
     "typescript/prefer-enum-initializers": "error",
     "unicorn/consistent-function-scoping": "off",
     "unicorn/no-array-sort": "off",
-    "unicorn/prefer-number-properties": "error"
+    "unicorn/prefer-includes": "error",
+    "unicorn/prefer-node-protocol": "error",
+    "unicorn/prefer-number-properties": "error",
+    "unicorn/throw-new-error": "error"
   },
+  "overrides": [
+    {
+      "files": ["src/**"],
+      "rules": {
+        "no-restricted-globals": [
+          "error",
+          {
+            "name": "Bun",
+            "message": "src/** must stay runtime-portable; Bun APIs belong in tests and scripts."
+          }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "bun",
+                "message": "src/** must stay runtime-portable; Bun APIs belong in tests and scripts."
+              },
+              {
+                "name": "bun:test",
+                "message": "Test helpers belong in __tests__/."
+              }
+            ],
+            "patterns": [
+              {
+                "regex": "^node:",
+                "message": "src/** must stay runtime-portable; Node built-ins belong in tests and scripts."
+              }
+            ]
+          }
+        ],
+        "no-console": "error"
+      }
+    },
+    {
+      "files": ["src/logger.ts"],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["src/**/__tests__/**"],
+      "rules": {
+        "no-restricted-globals": "off",
+        "no-restricted-imports": "off",
+        "typescript/consistent-type-assertions": "off",
+        "no-console": "off",
+        "typescript/await-thenable": "off",
+        "typescript/no-unnecessary-type-parameters": "off",
+        "typescript/no-unsafe-enum-assignment": "off"
+      }
+    }
+  ],
   "ignorePatterns": [".temp/**", "dist/**"]
 }

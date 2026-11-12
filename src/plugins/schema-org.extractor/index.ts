@@ -192,7 +192,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
 
           if (repaired) {
             this.logger.debug(
-              'Recovered malformed JSON-LD by escaping control characters in string values',
+              'Recovered malformed JSON-LD by repairing its syntax (see repairJson)',
             )
           }
 
@@ -220,7 +220,9 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     const microdataObjects = extractRecipeMicrodata(this.$)
 
     for (const obj of microdataObjects) {
-      this.schemaData.push(obj as SchemaOrgData)
+      if (isSchemaOrgData(obj)) {
+        this.schemaData.push(obj)
+      }
     }
   }
 
@@ -236,7 +238,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     return undefined
   }
 
-  private getSchemaTextValue<T>(
+  private getSchemaTextValue(
     value: unknown,
     props: string[] = ['textValue', 'name', 'title', '@id'],
   ): string {
@@ -247,7 +249,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     } else if (isNumber(value)) {
       text = value.toString()
     } else if (Array.isArray(value)) {
-      text = this.getSchemaTextValue<T>(value[0], props)
+      text = this.getSchemaTextValue(value[0], props)
     } else {
       text = this.pickFromObject(value, props)
     }
@@ -273,14 +275,14 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
     return new Set(list)
   }
 
-  private findEntity<T extends Thing>(item: SchemaOrgData, schemaType: string): T | null {
-    if (isThingType<T>(item, schemaType)) {
+  private findEntity(item: SchemaOrgData, schemaType: string): Thing | null {
+    if (isThingType(item, schemaType)) {
       return item
     }
 
     if (isGraphType(item)) {
       for (const graphItem of item['@graph']) {
-        if (isThingType<T>(graphItem, schemaType)) {
+        if (isThingType(graphItem, schemaType)) {
           return graphItem
         }
       }
@@ -518,7 +520,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public author(): RecipeFields['author'] {
-    let author = this.recipe.author
+    let { author } = this.recipe
 
     if (Array.isArray(author) && author.length > 0) {
       author = author[0]
@@ -738,7 +740,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
   }
 
   public keywords(): RecipeFields['keywords'] {
-    const keywords = this.recipe.keywords
+    const { keywords } = this.recipe
 
     if (!keywords) {
       throw new SchemaOrgException('keywords')

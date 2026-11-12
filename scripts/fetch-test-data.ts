@@ -1,19 +1,24 @@
 import path from 'node:path'
 
+import { z } from 'zod'
+
 const TEMP_DIR = path.resolve(import.meta.dirname, '../.temp')
 
-interface GitHubTreeItem {
-  path: string
-  type: 'blob' | 'tree'
-  sha: string
-  size?: number
-  url: string
-}
+const GitHubTreeItemSchema = z.object({
+  path: z.string(),
+  // 'blob', 'tree', or 'commit' (submodules)
+  type: z.string(),
+  sha: z.string(),
+  size: z.number().optional(),
+  url: z.string(),
+})
 
-interface GitHubTreeResponse {
-  tree: GitHubTreeItem[]
-  truncated: boolean
-}
+const GitHubTreeResponseSchema = z.object({
+  tree: z.array(GitHubTreeItemSchema),
+  truncated: z.boolean(),
+})
+
+type GitHubTreeItem = z.infer<typeof GitHubTreeItemSchema>
 
 async function fetchGitHubTree(
   owner: string,
@@ -28,7 +33,7 @@ async function fetchGitHubTree(
     throw new Error(`Failed to fetch repository tree: ${response.status} ${response.statusText}`)
   }
 
-  const data = (await response.json()) as GitHubTreeResponse
+  const data = GitHubTreeResponseSchema.parse(await response.json())
 
   // Filter items that are in the specified path
   const filteredItems = data.tree.filter(

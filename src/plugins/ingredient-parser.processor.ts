@@ -34,7 +34,7 @@ export class IngredientParserPlugin extends PostProcessorPlugin {
     super()
   }
 
-  shouldProcess<Key extends keyof RecipeFields>(field: Key): boolean {
+  shouldProcess(field: keyof RecipeFields): boolean {
     return field === 'ingredients'
   }
 
@@ -44,6 +44,7 @@ export class IngredientParserPlugin extends PostProcessorPlugin {
     }
 
     if (isIngredients(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Ingredients in, Ingredients out; the generic process<T> signature can't express it.
       return this.processIngredients(value) as Promise<T>
     }
 

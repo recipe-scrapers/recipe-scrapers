@@ -2,11 +2,10 @@ export function isDefined<T>(value: T | undefined): value is T {
   return value !== undefined
 }
 
-export function isNull<T>(value: T | null): value is null {
+export function isNull(value: unknown): value is null {
   return value === null
 }
 
-// oxlint-disable-next-line typescript/no-unsafe-function-type -- Accept any callable.
 export function isFunction(value: unknown): value is Function {
   return typeof value === 'function'
 }

@@ -60,8 +60,8 @@
     "test:coverage": "bun run test --coverage",
     "fetch-test-data": "bun scripts/fetch-test-data.ts",
     "process-test-data": "bun scripts/process-test-data.ts",
-    "lint": "oxlint --deny-warnings && bun run fmt:check && bun run ts:check",
-    "lint:fix": "oxlint --fix && oxfmt",
+    "lint": "oxlint --type-aware --deny-warnings --report-unused-disable-directives && bun run fmt:check && bun run ts:check",
+    "lint:fix": "oxlint --type-aware --fix && oxfmt",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "ts:check": "tsc --noEmit"
@@ -76,6 +76,7 @@
     "cheerio": "^1.2.0",
     "oxfmt": "^0.78.0",
     "oxlint": "^1.93.0",
+    "oxlint-tsgolint": "^7.0.2006",
     "parse-ingredient": "^3.2.0",
     "schema-dts": "^2.1.0",
     "tsdown": "^0.23.7",

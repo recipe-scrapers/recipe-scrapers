@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 
-import z from 'zod'
+import { z } from 'zod'
 
 import { AbstractScraper } from '@/abstract-scraper'
 import { LogLevel } from '@/logger'

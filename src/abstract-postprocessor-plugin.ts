@@ -7,7 +7,7 @@ export abstract class PostProcessorPlugin {
   /** The priority of the plugin */
   abstract priority: number
 
-  abstract shouldProcess<Key extends keyof RecipeFields>(field: Key): boolean
+  abstract shouldProcess(field: keyof RecipeFields): boolean
 
   abstract process<T>(field: keyof RecipeFields, value: T): T | Promise<T>
 }

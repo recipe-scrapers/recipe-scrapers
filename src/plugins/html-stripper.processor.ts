@@ -22,7 +22,7 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
     'ingredients',
   ]
 
-  shouldProcess<Key extends keyof RecipeFields>(field: Key): boolean {
+  shouldProcess(field: keyof RecipeFields): boolean {
     return this.fieldsToProcess.includes(field)
   }
 
@@ -31,36 +31,42 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
       return value
     }
 
+    // The generic `process<T>` signature can't express "same type out"; each
+    // branch is narrowed by a guard and returns a value of that same type,
+    // with every field kept.
     if (isString(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- string in, string out.
       return this.stripHtml(value) as T
     }
 
     if (field === 'instructions' && isInstructions(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Instructions in, Instructions out.
       return this.processInstructions(value) as T
     }
 
     if (field === 'ingredients' && isIngredients(value)) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Ingredients in, Ingredients out.
       return this.processIngredients(value) as T
     }
 
     return value
   }
 
+  // Groups and items are spread so fields other than the text (such as an
+  // ingredient's `parsed` data) survive stripping.
   private processIngredients(ingredients: Ingredients): Ingredients {
     return ingredients.map((group) => ({
+      ...group,
       name: group.name === null ? null : this.stripHtml(group.name),
-      items: group.items.map((item) => ({
-        value: this.stripHtml(item.value),
-      })),
+      items: group.items.map((item) => ({ ...item, value: this.stripHtml(item.value) })),
     }))
   }
 
   private processInstructions(instructions: Instructions): Instructions {
     return instructions.map((group) => ({
+      ...group,
       name: group.name === null ? null : this.stripHtml(group.name),
-      items: group.items.map((item) => ({
-        value: this.stripHtml(item.value),
-      })),
+      items: group.items.map((item) => ({ ...item, value: this.stripHtml(item.value) })),
     }))
   }
 

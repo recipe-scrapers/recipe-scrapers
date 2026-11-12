@@ -71,12 +71,12 @@ export function extractMicrodata($: CheerioAPI, selector: string): MicrodataObje
     }
 
     // Also get itemprop elements that are not inside nested itemtype elements
-    const allProps = $element.find('[itemprop]').addBack('[itemprop]')
+    const allProps = $element.find('[itemprop]').add($element.filter('[itemprop]'))
     const nestedItemTypes = $element.find('[itemtype]')
 
     // Filter out properties that are inside nested itemtype elements
     const rootLevelProps = allProps.filter((_, propEl) => {
-      const $prop = $(propEl as Element)
+      const $prop = $(propEl)
 
       // If this element itself has itemtype, it's a nested object
       if ($prop.attr('itemtype')) {
@@ -86,13 +86,13 @@ export function extractMicrodata($: CheerioAPI, selector: string): MicrodataObje
       // Check if this property is inside any nested itemtype element
       const isInsideNestedType = nestedItemTypes
         .toArray()
-        .some((nestedEl) => $(nestedEl as Element).find($prop).length > 0)
+        .some((nestedEl) => $(nestedEl).find($prop).length > 0)
 
       return !isInsideNestedType
     })
 
     rootLevelProps.each((_, propEl) => {
-      const $prop = $(propEl as Element)
+      const $prop = $(propEl)
       const propName = $prop.attr('itemprop')
       if (!propName) return
 
@@ -111,7 +111,7 @@ export function extractMicrodata($: CheerioAPI, selector: string): MicrodataObje
 
         // Extract properties from nested object (only direct children)
         $prop.find('[itemprop]').each((_, nestedEl) => {
-          const $nested = $(nestedEl as Element)
+          const $nested = $(nestedEl)
           const nestedProp = $nested.attr('itemprop')
           if (!nestedProp) return
 
