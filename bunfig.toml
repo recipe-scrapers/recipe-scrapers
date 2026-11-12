@@ -1,5 +1,5 @@
 [test]
-root = "src"
+root = "."
 preload = ["./src/__tests__/setup.ts"]
 coverageSkipTestFiles = true
 # https://github.com/oven-sh/bun/issues/7662
