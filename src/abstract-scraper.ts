@@ -1,5 +1,5 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import * as cheerio from 'cheerio'
+import * as cheerio from 'cheerio/slim'
 
 import { RecipeObjectSchema } from '@/schemas/recipe.schema'
 

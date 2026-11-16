@@ -1,13 +1,11 @@
-import { load } from 'cheerio'
+import { load } from 'cheerio/slim'
 
 import { PostProcessorPlugin } from '@/abstract-postprocessor-plugin'
-import type { RecipeFields } from '@/types/recipe.interface'
+import type { Ingredients, Instructions, RecipeFields } from '@/types/recipe.interface'
 import { isString } from '@/utils'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
-
-import type { Ingredients, Instructions } from '../types/recipe.interface'
 
 const RESIDUAL_ENTITY_PATTERN = /&(?:[a-z][a-z\d]*|#\d+|#x[\da-f]+);/i
 
