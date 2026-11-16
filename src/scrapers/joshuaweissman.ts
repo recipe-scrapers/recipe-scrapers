@@ -58,11 +58,20 @@ export class JoshuaWeissman extends AbstractScraper {
   }
 
   protected override readonly extractors = {
+    author: this.author.bind(this),
     description: this.description.bind(this),
     ingredients: this.ingredients.bind(this),
     instructions: this.instructions.bind(this),
     yields: this.yields.bind(this),
   } satisfies ScraperExtractors
+
+  /**
+   * Every recipe is Joshua Weissman's. The JSON-LD author is the Wix account
+   * that posted it (such as "paytonmin"), while its publisher names him.
+   */
+  protected author(): RecipeFields['author'] {
+    return 'Joshua Weissman'
+  }
 
   /** Uses the post's intro paragraph; the JSON-LD description runs into the ingredients. */
   protected description(
