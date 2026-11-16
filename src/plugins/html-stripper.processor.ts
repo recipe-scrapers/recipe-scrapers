@@ -5,6 +5,7 @@ import type { RecipeFields } from '@/types/recipe.interface'
 import { isString } from '@/utils'
 import { isIngredients } from '@/utils/ingredients'
 import { isInstructions } from '@/utils/instructions'
+import { normalizeString } from '@/utils/parsing'
 
 import type { Ingredients, Instructions } from '../types/recipe.interface'
 
@@ -20,6 +21,12 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
     'siteName',
     'instructions',
     'ingredients',
+    'nutrients',
+    'category',
+    'cuisine',
+    'keywords',
+    'equipment',
+    'dietaryRestrictions',
   ]
 
   shouldProcess(field: keyof RecipeFields): boolean {
@@ -49,7 +56,36 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
       return this.processIngredients(value) as T
     }
 
+    if (field === 'nutrients' && value instanceof Map) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Map in, Map out.
+      return this.processNutrients(value) as T
+    }
+
+    // List fields such as keywords carry entities from Structured Data
+    // ("Pasta &amp; Noodles").
+    if (value instanceof Set) {
+      // oxlint-disable-next-line typescript/consistent-type-assertions -- Set in, Set out.
+      return this.processList(value) as T
+    }
+
     return value
+  }
+
+  private processList(list: Set<unknown>): Set<unknown> {
+    return new Set([...list].map((item) => (isString(item) ? this.stripHtml(item) : item)))
+  }
+
+  // Some sites embed markup in Structured Data nutrient values, such as
+  // `<b>Diabetic Exchanges</b>: </b> 3 lean meat` on tasteofhome.com, so
+  // whitespace left around removed tags is collapsed too. Non-string values
+  // are kept.
+  private processNutrients(nutrients: Map<unknown, unknown>): Map<unknown, unknown> {
+    return new Map(
+      [...nutrients].map(([key, value]) => [
+        key,
+        isString(value) ? normalizeString(this.stripHtml(value)) : value,
+      ]),
+    )
   }
 
   // Groups and items are spread so fields other than the text (such as an
@@ -80,9 +116,10 @@ export class HtmlStripperPlugin extends PostProcessorPlugin {
       ? this.toText(text.replaceAll('<', '&lt;'))
       : text
 
-    // Cheerio decodes &nbsp; as non-breaking space (U+00A0),
-    // normalize to regular space
-    return decoded.replace(/\u00A0/g, ' ').trim()
+    // Cheerio decodes &nbsp; as non-breaking space (U+00A0), normalized to a
+    // regular space. Removed block tags leave runs of whitespace behind
+    // ("breasts. </p>\n<p>Toss"), so those collapse to one space.
+    return decoded.replace(/\s+/g, ' ').trim()
   }
 
   private toText(html: string): string {

@@ -14,7 +14,15 @@ describe('HtmlStripperPlugin', () => {
     expect(plugin.shouldProcess('siteName')).toBe(true)
     expect(plugin.shouldProcess('instructions')).toBe(true)
     expect(plugin.shouldProcess('ingredients')).toBe(true)
-    expect(plugin.shouldProcess('category')).toBe(false)
+    expect(plugin.shouldProcess('category')).toBe(true)
+    expect(plugin.shouldProcess('keywords')).toBe(true)
+    expect(plugin.shouldProcess('image')).toBe(false)
+  })
+
+  it('decodes entities in list fields', () => {
+    expect(plugin.process('keywords', new Set(['Pasta &amp; Noodles', '<b>Quick</b>']))).toEqual(
+      new Set(['Pasta & Noodles', 'Quick']),
+    )
   })
 
   it('strips HTML from string values', () => {
@@ -81,8 +89,26 @@ describe('HtmlStripperPlugin', () => {
     expect(output[1].items.map((i) => i.value)).toEqual(['3 apples'])
   })
 
+  it('strips HTML from nutrient values', () => {
+    expect(plugin.shouldProcess('nutrients')).toBe(true)
+    expect(
+      plugin.process(
+        'nutrients',
+        new Map([
+          ['proteinContent', '27g protein. <B><b>Diabetic Exchanges</b>: </B> 3 lean meat'],
+          ['calories', '311 kcal'],
+        ]),
+      ),
+    ).toEqual(
+      new Map([
+        ['proteinContent', '27g protein. Diabetic Exchanges: 3 lean meat'],
+        ['calories', '311 kcal'],
+      ]),
+    )
+  })
+
   it('returns value unchanged for non-target fields', () => {
-    expect(plugin.process('category', new Set(['<b>cat</b>']))).toEqual(new Set(['<b>cat</b>']))
+    expect(plugin.process('image', '<b>cat</b>')).toBe('<b>cat</b>')
   })
 
   it('decodes all HTML entities', () => {
