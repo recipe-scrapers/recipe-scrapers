@@ -56,6 +56,40 @@ const RECIPE_YIELD_TYPES: [string, string][] = [
 ]
 
 /**
+ * Every yield type name as a whole word, so "Barbecue" is not a `bar` and
+ * "cupcakes" is a `cupcake` rather than a `cup`. Longest names first, so at
+ * any one position "hamburger buns" is tried before "buns".
+ */
+const YIELD_TYPE_PATTERN = new RegExp(
+  `\\b(?:${RECIPE_YIELD_TYPES.flat()
+    .sort((a, b) => b.length - a.length)
+    .join('|')})\\b`,
+  'gi',
+)
+
+/**
+ * Returns the yield type that names what the number counts: the first one
+ * after the number ("4 dozen cookies" is 4 dozen), or else the first one in
+ * the text ("Cookies: 24").
+ */
+function findYieldType(text: string, numberEnd: number): readonly [string, string] | undefined {
+  let firstType: readonly [string, string] | undefined
+
+  for (const match of text.matchAll(YIELD_TYPE_PATTERN)) {
+    const name = match[0].toLowerCase()
+    const type = RECIPE_YIELD_TYPES.find((names) => names.includes(name))
+
+    if (match.index >= numberEnd) {
+      return type
+    }
+
+    firstType ??= type
+  }
+
+  return firstType
+}
+
+/**
  * Returns a string of servings or items. If the recipe is for a number of
  * items (not servings), it returns "x item(s)" where x is the quantity.
  * This function handles cases where the yield is in dozens,
@@ -63,32 +97,35 @@ const RECIPE_YIELD_TYPES: [string, string][] = [
  * Additionally accommodates yields specified in batches
  * (e.g., "2 batches of brownies"), returning the yield as stated.
  *
+ * Text without a number, such as "Makes a batch", is returned as written
+ * (whitespace collapsed) rather than as a "0" yield, which would read as a
+ * recipe that makes nothing.
+ *
  * @param value The yield string from the recipe
  * @returns The number of servings, items, dozen, batches, etc...
  */
 export function parseYields(element: string): string {
-  if (!element) {
+  // Collapsed inline rather than with `normalizeString`: importing
+  // `./parsing` would pull the duration parser into the `utils` entry.
+  const writtenText = element.replace(/\s+/g, ' ').trim()
+
+  if (!writtenText) {
     throw new Error('Element is required')
   }
 
+  // Not normalized: the parenthetical lookup below reads line by line.
   const serveText = element
+  const numberMatch = serveText.match(SERVE_REGEX_NUMBER)
+  const matched = numberMatch?.groups?.items
 
-  const match = serveText.match(SERVE_REGEX_NUMBER)
-  const matched = match?.groups?.items || '0'
-
-  const serveTextLower = serveText.toLowerCase()
-  let bestMatch: string | null = null
-  let bestMatchLength = 0
-
-  for (const [singular, plural] of RECIPE_YIELD_TYPES) {
-    if (serveTextLower.includes(singular) || serveTextLower.includes(plural)) {
-      const matchLength = serveTextLower.includes(singular) ? singular.length : plural.length
-      if (matchLength > bestMatchLength) {
-        bestMatchLength = matchLength
-        bestMatch = `${matched} ${Number.parseFloat(matched) === 1 ? singular : plural}`
-      }
-    }
+  if (matched === undefined) {
+    return writtenText
   }
+
+  const yieldType = findYieldType(serveText, (numberMatch?.index ?? 0) + matched.length)
+  let bestMatch = yieldType
+    ? `${matched} ${Number.parseFloat(matched) === 1 ? yieldType[0] : yieldType[1]}`
+    : null
 
   // If we found the best match (e.g. "5 cups"), append any trailing
   // parentheses text. That way "5 cups (about 120...)" stays intact.
@@ -102,7 +139,8 @@ export function parseYields(element: string): string {
     return bestMatch
   }
 
-  const plural = Number.parseFloat(matched) > 1 || Number.parseFloat(matched) === 0 ? 's' : ''
+  const amount = Number.parseFloat(matched)
+  const plural = amount > 1 || amount === 0 ? 's' : ''
 
   if (SERVE_REGEX_ITEMS.test(serveText)) {
     return `${matched} item${plural}`
