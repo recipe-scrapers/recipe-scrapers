@@ -419,10 +419,10 @@ const schemaOrgOnlyScraperClasses = SCHEMA_ORG_ONLY_HOSTS.map((host) =>
 
 /**
  * Optional host aliases.
- * Example: 'bbc.co.uk': BBCGoodFood
+ * Example: 'bbc.co.uk': BBCFood
  */
 const scraperAliases = {
-  'bbc.co.uk': BBCGoodFood,
+  'bbc.co.uk': BBCFood,
 } as const satisfies Record<string, ScraperClass>
 
 function buildScraperRegistry(
