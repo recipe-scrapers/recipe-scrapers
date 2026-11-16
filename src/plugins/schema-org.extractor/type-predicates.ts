@@ -31,6 +31,10 @@ export function isSchemaOrgData(obj: unknown): obj is Graph | Thing {
   return isGraphType(obj) || isBaseType(obj)
 }
 
+/**
+ * Whether `obj`'s (first) `@type` is `type`, ignoring case: publishers
+ * write types such as `"aggregateRating"` or `"recipe"`.
+ */
 export function isThingType<T extends Thing>(
   obj: unknown,
   type: string,
@@ -39,7 +43,7 @@ export function isThingType<T extends Thing>(
 
   const thingType = Array.isArray(obj['@type']) ? obj['@type'][0] : obj['@type']
 
-  return thingType === type
+  return isString(thingType) && thingType.toLowerCase() === type.toLowerCase()
 }
 
 export function isAggregateRating(obj: unknown): obj is AggregateRating {
