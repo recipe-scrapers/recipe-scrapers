@@ -1,0 +1,114 @@
+{
+  "siteName": "McCormick Gourmet",
+  "category": ["Appetizers"],
+  "cookTime": 150,
+  "prepTime": 15,
+  "totalTime": 165,
+  "cuisine": ["Eastern European or Russian"],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "128 Calories"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "McCormick Gourmet",
+  "canonicalUrl": "https://www.mccormick.com/gourmet/recipes/appetizer/smoked-paprika-shredded-pork-with-orange-fennel-marmalade",
+  "host": "mccormick.com",
+  "language": "en",
+  "title": "Smoked Paprika Shredded Pork with Orange Fennel Marmalade",
+  "ingredients": [
+    {
+      "name": "Smoked Paprika Shredded Pork",
+      "items": [
+        {
+          "value": "1 tbsp plus 2 teaspoons McCormick Gourmet™ Organic Paprika, Smoked"
+        },
+        {
+          "value": "1 1/2 tsps McCormick Gourmet™ Organic Cinnamon, Ground Saigon"
+        },
+        {
+          "value": "1 1/2 tsps salt"
+        },
+        {
+          "value": "1 tsp McCormick Gourmet™ Organic Black Pepper, Coarse Ground"
+        },
+        {
+          "value": "1/2 tsp McCormick Gourmet™ Organic Chili Powder"
+        },
+        {
+          "value": "1/2 tsp McCormick Gourmet™ Organic Coriander, Ground"
+        },
+        {
+          "value": "1/2 tsp McCormick Gourmet™ Organic Garlic Powder"
+        },
+        {
+          "value": "1/2 tsp McCormick Gourmet™ Organic Cayenne Pepper"
+        },
+        {
+          "value": "3 pounds pork butt"
+        },
+        {
+          "value": "2 tbsps olive oil"
+        },
+        {
+          "value": "1 bag (11 ounces) bite-sized bowl-shaped tortilla chips"
+        }
+      ]
+    },
+    {
+      "name": "Orange Fennel Marmalade",
+      "items": [
+        {
+          "value": "1 large head fennel finely chopped (about 2 cups)"
+        },
+        {
+          "value": "2 cups orange juice"
+        },
+        {
+          "value": "1/4 cup firmly packed brown sugar"
+        },
+        {
+          "value": "1/4 tsp McCormick Gourmet™ Organic Ginger, Ground"
+        },
+        {
+          "value": "1 large orange"
+        },
+        {
+          "value": "1 tbsp finely chopped fresh cilantro"
+        },
+        {
+          "value": "1 tsp salt"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 325°F. Mix seasonings in small bowl. Rub entire surface of pork with seasoning mixture. Place pork in foil-lined roasting pan. Slowly pour oil over pork. Cover tightly with foil"
+        },
+        {
+          "value": "Roast 2 1/2 hours or until pork is very tender. Cool slightly. Chop and shred pork. Return to liquid in roasting pan; mix well"
+        },
+        {
+          "value": "While pork is roasting, prepare Orange Fennel Marmalade. Mix fennel, orange juice, sugar and ginger in large saucepan. Bring to boil on medium heat. Reduce heat to low; simmer 45 minutes"
+        },
+        {
+          "value": "Meanwhile, finely grate orange peel. Remove orange sections and coarsely chop. Stir grated peel and chopped orange into fennel mixture. Simmer 15 minutes longer or until mixture is reduced and somewhat thick. Stir in cilantro and salt. Cover"
+        },
+        {
+          "value": "Refrigerate until ready to serve. Serve shredded pork on tortilla chips. Top each with a small spoonful of marmalade"
+        }
+      ]
+    }
+  ],
+  "yields": "32 servings",
+  "description": "Smoked paprika adds a distinctive smoked flavor to slow roasted pork butt, which is shredded and served with Orange Fennel Marmalade on a tortilla chip.",
+  "image": "https://mccormick.widen.net/content/gc7vlhmppr/original/smoked_paprika_shredded_pork_with_orange_fennel_marmalade_2000x1125.jpg"
+}

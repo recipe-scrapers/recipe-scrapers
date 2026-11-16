@@ -1,0 +1,108 @@
+{
+  "siteName": "The Modern Proper",
+  "category": ["dinner", "30-minute-meals"],
+  "cookTime": 15,
+  "prepTime": 5,
+  "totalTime": 20,
+  "cuisine": ["American"],
+  "cookingMethod": null,
+  "ratings": 5,
+  "ratingsCount": 6,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "379 calories",
+    "fatContent": "27 grams fat",
+    "saturatedFatContent": "9 grams saturated fat",
+    "carbohydrateContent": "4 grams carbohydrates",
+    "sugarContent": "1 grams sugar",
+    "proteinContent": "30 grams protein",
+    "sodiumContent": "530 milligrams sodium",
+    "fiberContent": "0 grams fiber",
+    "cholesterolContent": "133 milligrams cholesterol"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["parmesan crusted salmon", "spring recipe", "fall recipe", "30-minute-meals"],
+  "author": "The Modern Proper",
+  "canonicalUrl": "https://themodernproper.com/parmesan-crusted-salmon",
+  "host": "themodernproper.com",
+  "language": "en-US",
+  "title": "Parmesan Crusted Salmon",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "¼ cup panko breadcrumbs"
+        },
+        {
+          "value": "½ teaspoon garlic powder"
+        },
+        {
+          "value": "1 teaspoon dried or fresh parsley"
+        },
+        {
+          "value": "½ teaspoon sea salt"
+        },
+        {
+          "value": "¼ teaspoon freshly cracked black pepper"
+        },
+        {
+          "value": "⅓ cup freshly grated parmesan cheese"
+        },
+        {
+          "value": "3 tablespoons unsalted butter, melted (or extra virgin olive oil)"
+        },
+        {
+          "value": "1 (1-pound) salmon fillet"
+        },
+        {
+          "value": "Lemon wedges, for serving"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat the oven to 400°F with a rack in the center position"
+        },
+        {
+          "value": "Line a rimmed sheet pan with parchment paper"
+        },
+        {
+          "value": "In a small mixing bowl, combine the panko, garlic powder, parsley, salt, pepper, and ¼ cup of the parmesan"
+        },
+        {
+          "value": "Add 2 tablespoons of the butter and mix until fully combined using a fork or your hands"
+        },
+        {
+          "value": "Place the salmon, skin side down, on the prepared sheet"
+        },
+        {
+          "value": "Pat dry with a paper towel"
+        },
+        {
+          "value": "Brush the salmon with the remaining 1 tablespoon of the butter and sprinkle with the parmesan mixture, gently pressing to adhere to the salmon"
+        },
+        {
+          "value": "Sprinkle with the remaining parmesan"
+        },
+        {
+          "value": "Bake until the panko is golden brown and the salmon easily flakes with a fork, 12 to 15 minutes"
+        },
+        {
+          "value": "Divide the salmon among 4 plates"
+        },
+        {
+          "value": "Serve with the lemon wedges on the side."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Parmesan-panko crusted salmon feels fancy enough for fine dining, but is easy enough for weeknight dinner at home. Ready in under a half hour, it’s one of our favorite ways to prepare salmon.",
+  "image": "https://images.themodernproper.com/billowy-turkey/production/posts/ParmesanCrustedSalmon_5.jpg?w=960&h=540&q=82&fm=jpg&fit=crop&dm=1694016297&s=1301fdb10e083524da5d2ffdd21250ec"
+}

@@ -1,0 +1,95 @@
+{
+  "siteName": "Purple Carrot",
+  "category": [],
+  "cookTime": null,
+  "prepTime": 30,
+  "totalTime": 30,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "530 cal",
+    "fatContent": "18.0 g"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Purple Carrot",
+  "canonicalUrl": "https://www.purplecarrot.com/recipe/roasted-cauliflower-lentil-bowl-with-avocado-curried-balsamic-vinaigrette",
+  "host": "purplecarrot.com",
+  "language": "en",
+  "title": "Roasted Cauliflower Lentil Bowl with Avocado & Curried Balsamic Vinaigrette",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "¾ cup brown lentils"
+        },
+        {
+          "value": "6 oz cauliflower florets"
+        },
+        {
+          "value": "1 tbsp curry powder"
+        },
+        {
+          "value": "2 mini sweet peppers"
+        },
+        {
+          "value": "4 oz red grapes"
+        },
+        {
+          "value": "1 avocado"
+        },
+        {
+          "value": "2 tbsp balsamic vinaigrette"
+        },
+        {
+          "value": "4 oz Arcadian greens"
+        },
+        {
+          "value": "1 tsp vegetable oil*"
+        },
+        {
+          "value": "Salt and pepper*"
+        },
+        {
+          "value": "*Not included"
+        },
+        {
+          "value": "For full ingredient list, see Nutrition"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 - Start the lentils."
+        },
+        {
+          "value": "2 - Roast the cauliflower ."
+        },
+        {
+          "value": "3 - Prepare the toppings."
+        },
+        {
+          "value": "4 - Make the curried balsamic vinaigrette."
+        },
+        {
+          "value": "5 - Make the salad."
+        },
+        {
+          "value": "6 - Serve."
+        }
+      ]
+    }
+  ],
+  "yields": "2 servings",
+  "description": "We think you’re going to love this beautifully balanced meal. Curry roasted cauliflower gets crispy in the oven and pairs perfectly with hearty, protein-packed lentils cooked until they’re just tender. Match creamy avocado with a splash of curried balsamic vinaigrette, and this hearty meal is ready to go.",
+  "image": "https://images.purplecarrot.com/uploads/product/image/1357/_1400_700_Vegan_TB12_RoastedCauli_Hero-4-fcfead9e8b8f0df11875ae6baae25ab0.jpg"
+}

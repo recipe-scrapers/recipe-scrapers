@@ -1,0 +1,80 @@
+{
+  "siteName": "Costco",
+  "category": [],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": null,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Costco Connection",
+  "canonicalUrl": "https://costco.com/",
+  "host": "costco.com",
+  "language": "en-us",
+  "title": "Chicken Salad with Red Grapes, Walnuts and Blue Cheese",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "6 cups rotisserie chicken, shredded"
+        },
+        {
+          "value": "3 cups red seedless grapes, halved lengthwise"
+        },
+        {
+          "value": "2 celery ribs (about 1 cup), thinly sliced"
+        },
+        {
+          "value": "1 cup walnuts, toasted and chopped"
+        },
+        {
+          "value": "½ cup blue cheese, crumbled"
+        },
+        {
+          "value": "2 cups mayonnaise"
+        },
+        {
+          "value": "2 Tbsp sherry vinegar"
+        },
+        {
+          "value": "1 Tbsp fresh thyme leaves"
+        },
+        {
+          "value": "2 tsp lemon zest"
+        },
+        {
+          "value": "½ tsp garlic powder"
+        },
+        {
+          "value": "½ tsp kosher salt, or to taste"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Combine chicken, grapes, celery, walnuts and blue cheese in a large mixing bowl."
+        },
+        {
+          "value": "In a medium-size mixing bowl, blend mayonnaise, sherry vinegar, thyme, lemon zest, garlic powder and salt."
+        },
+        {
+          "value": "Fold the dressing into the chicken-grape mixture and combine well. Adjust seasonings as desired. Serve in Bibb lettuce cups or as a sandwich filling. Makes 6 servings."
+        }
+      ]
+    }
+  ],
+  "yields": "6 servings",
+  "description": "No description provided",
+  "image": "https://mobilecontent.costco.com/live/resource/img/static-us-connection-march-23/03_23_FTT_ChickenSaladRedGrapesWalnutsBlueCheese.jpg"
+}

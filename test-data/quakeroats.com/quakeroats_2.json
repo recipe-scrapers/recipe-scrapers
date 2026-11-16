@@ -1,0 +1,126 @@
+{
+  "siteName": null,
+  "category": [],
+  "cookTime": 10,
+  "prepTime": 30,
+  "totalTime": 40,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "The Quaker Oats Company",
+  "canonicalUrl": "https://quakeroats.com/",
+  "host": "quakeroats.com",
+  "language": "en",
+  "title": "Steel Cut Oats Summer Grain Salad",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 tbsp oil, vegetable"
+        },
+        {
+          "value": "1/2 cup yellow onion, small diced"
+        },
+        {
+          "value": "1 cup zucchini, small dice"
+        },
+        {
+          "value": "1/4 cup baby lima beans, fresh (frozen if not in season)"
+        },
+        {
+          "value": "3 cloves garlic, minced"
+        },
+        {
+          "value": "1/2 cup bell peppers, small diced red/yellow/orange"
+        },
+        {
+          "value": "1/4 cup corn, fresh frozen or canned also work"
+        },
+        {
+          "value": "2 tbsp white wine vinegar; other flavor vinegar could work, such as apple cider, white balsamic, or rice vinegar"
+        },
+        {
+          "value": "Large pinch salt, kosher"
+        },
+        {
+          "value": "1/2 cup fluffy steel cut oats [sub recipe]"
+        }
+      ]
+    },
+    {
+      "name": "Fluffy Steel Cut Oats",
+      "items": [
+        {
+          "value": "1 cup Quaker® Steel Cut Oats - Traditional"
+        },
+        {
+          "value": "1 ⅓ cups water, hot (recommend using a water kettle)"
+        },
+        {
+          "value": "1/2 tsp salt"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a pan, on medium-high heat, add oil and begin to sauté the onions and zucchini."
+        },
+        {
+          "value": "Stir and sauté for 2 minutes, then add baby lime beans and garlic and sauté for another 2 minutes, stirring to prevent garlic from burning."
+        },
+        {
+          "value": "Once the garlic is aromatic, add bell peppers and corn, lowering to medium-low heat, stirring, and tossing the veggies."
+        },
+        {
+          "value": "Add the white wine vinegar and salt, creating a light sauce that will be used to flavor the oats."
+        },
+        {
+          "value": "Lower the heat to low, add the fluffy oats, and fold and stir vegetables until well incorporated together."
+        },
+        {
+          "value": "Serve and enjoy!"
+        }
+      ]
+    },
+    {
+      "name": "Fluffy Steel Cut Oats",
+      "items": [
+        {
+          "value": "Prepare a large deep bowl and aluminum foil to cover it."
+        },
+        {
+          "value": "In a dry pan (with no oil), add your ?????? ????? ??? ???? and bring to medium-low heat to toast the oats."
+        },
+        {
+          "value": "Toss and stir the oats for 5 minutes, assuring they don’t stand still too long to prevent them from burning. You are looking for a nutty and toasty smell."
+        },
+        {
+          "value": "Pour toasty oats into the bowl, add salt, and carefully add hot/boiling water from the water kettle into the bowl. The Oats will boil up with force but quickly settle down, be careful."
+        },
+        {
+          "value": "Cover with foil and let stand for 25 min."
+        },
+        {
+          "value": "When ready, uncover and fluff with a fork or spatula and use as a rice replacer or other unique ways."
+        },
+        {
+          "value": "Can be made ahead and stored refrigerated for 3 days."
+        }
+      ]
+    }
+  ],
+  "yields": "3 servings",
+  "description": "Discover a fun and delicious way to enjoy oats with our easy and delicious Steel Cut Oats Summer Grain Salad recipe made with your favorite Quaker® products.",
+  "image": "http://www.quakeroats.com/sites/quakeroats.com/files/steel-cut-oats-summer-grain-salad.jpg"
+}

@@ -1,0 +1,129 @@
+{
+  "siteName": "Sunset Magazine",
+  "category": [],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": null,
+  "cuisine": ["American", "Fusion", "Japanese"],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": [
+    "Fish Sauce",
+    "Kewpie mayonnaise",
+    "Lettuce",
+    "Miso",
+    "Mustard",
+    "Nori",
+    "Panko",
+    "Parmesan",
+    "Ponzu"
+  ],
+  "author": "Klementine Song",
+  "canonicalUrl": "https://www.sunset.com/recipe/tsubaki-caesar-salad",
+  "host": "sunset.com",
+  "title": "Tsubaki Caesar Salad",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 heads romaine lettuce, chopped"
+        },
+        {
+          "value": "1 head Salanova lettuce, chopped"
+        }
+      ]
+    },
+    {
+      "name": "For the Dressing",
+      "items": [
+        {
+          "value": "3 cloves garlic"
+        },
+        {
+          "value": "1 medium shallot"
+        },
+        {
+          "value": "⅓ cup Kewpie mayonnaise"
+        },
+        {
+          "value": "1 tbsp Dijon mustard"
+        },
+        {
+          "value": "⅓ cup white miso"
+        },
+        {
+          "value": "⅓ cup ponzu"
+        },
+        {
+          "value": "1 tbsp fish sauce"
+        },
+        {
+          "value": "1 cup Parmigiano Reggiano, microplaned or finely grated"
+        },
+        {
+          "value": "1 tbsp dark sesame oil"
+        },
+        {
+          "value": "¼ cup extra virgin olive oil"
+        }
+      ]
+    },
+    {
+      "name": "For the Fried Panko",
+      "items": [
+        {
+          "value": "1 pint neutral oil (such as grapeseed)"
+        },
+        {
+          "value": "1 pint coarse Panko breadcrumbs"
+        },
+        {
+          "value": "2 garlic cloves, microplaned or finely grated"
+        },
+        {
+          "value": "salt"
+        }
+      ]
+    },
+    {
+      "name": "For the Garnish",
+      "items": [
+        {
+          "value": "shredded nori"
+        },
+        {
+          "value": "bonito threads"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Prepare the Lettuce: Quarter romaine and Salanova lettuces lengthwise. Then slice the long pieces crosswise. You want manageable, bite-sized pieces."
+        },
+        {
+          "value": "Make the Dressing: In a blender, combine the garlic, shallot, Kewpie mayonnaise, Dijon mustard, miso, ponzu, and fish sauce. Blend until smooth. Transfer the mixture to a bowl and whisk in the Parmigiano Reggiano, dark sesame oil, and extra virgin olive oil until well-combined."
+        },
+        {
+          "value": "Prepare the Panko: Heat the neutral oil in a pot over medium heat until it reaches a temperature of 350°F (check with an instant-read thermometer). Add the panko crumbs, stirring often until they turn golden brown. Drain the panko into a colander over a bowl. Transfer panko to a tray lined with paper towels. Microplane the garlic cloves over the hot panko and season with salt."
+        },
+        {
+          "value": "Assemble the Salad: Toss the greens with a generous amount of dressing. Garnish with fried panko, shredded nori, and bonito threads."
+        }
+      ]
+    }
+  ],
+  "yields": "6 servings",
+  "description": "Tsubaki Caesar Salad",
+  "image": "https://www.sunset.com/wp-content/uploads/tsubaki-yakitori-caesar-salad-sun-20241198-0924.jpg",
+  "language": "en"
+}

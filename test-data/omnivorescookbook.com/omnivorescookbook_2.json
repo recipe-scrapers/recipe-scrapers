@@ -1,0 +1,151 @@
+{
+  "siteName": "Omnivore's Cookbook",
+  "category": ["Main"],
+  "cookTime": 15,
+  "prepTime": 20,
+  "totalTime": 35,
+  "cuisine": ["Chinese"],
+  "cookingMethod": null,
+  "ratings": 4.82,
+  "ratingsCount": 27,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "servingSize": "1 serving",
+    "calories": "341 kcal",
+    "fatContent": "18.3 g",
+    "saturatedFatContent": "4 g",
+    "carbohydrateContent": "28.1 g",
+    "sugarContent": "4.9 g",
+    "proteinContent": "16.5 g",
+    "sodiumContent": "651 mg",
+    "fiberContent": "1.8 g",
+    "cholesterolContent": "40 mg"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["restaurant-style"],
+  "author": "Maggie Zhu",
+  "canonicalUrl": "https://omnivorescookbook.com/beef-pan-fried-noodles/",
+  "host": "omnivorescookbook.com",
+  "language": "en-US",
+  "title": "Beef Pan-Fried Noodles",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "8 oz (225 g) flank steak (or skirt steak), thinly sliced against the grain"
+        },
+        {
+          "value": "8 oz (225 g) fresh Hong Kong pan fry noodles (or other type of thin noodles) (Footnote 1)"
+        }
+      ]
+    },
+    {
+      "name": "Meat & Marinade",
+      "items": [
+        {
+          "value": "2 tablespoons Shaoxing wine (or dry sherry)"
+        },
+        {
+          "value": "2 teaspoons cornstarch"
+        },
+        {
+          "value": "1/4 teaspoon salt"
+        }
+      ]
+    },
+    {
+      "name": "Sauce",
+      "items": [
+        {
+          "value": "1 cup low-sodium beef broth"
+        },
+        {
+          "value": "2 tablespoons soy sauce (*Footnote 2)"
+        },
+        {
+          "value": "2 tablespoons oyster sauce"
+        },
+        {
+          "value": "1 tablespoon Shaoxing wine (or dry sherry)"
+        },
+        {
+          "value": "2 tablespoons cornstarch"
+        },
+        {
+          "value": "1 teaspoon sugar"
+        },
+        {
+          "value": "1/4 teaspoon Chinkiang vinegar"
+        },
+        {
+          "value": "1/4 teaspoon white pepper"
+        }
+      ]
+    },
+    {
+      "name": "Stir-Fry",
+      "items": [
+        {
+          "value": "4 tablespoons peanut oil, divided"
+        },
+        {
+          "value": "4 heads baby bok choy, quartered"
+        },
+        {
+          "value": "4 cloves garlic, minced"
+        },
+        {
+          "value": "1 inch (2.5 cm) ginger, minced"
+        },
+        {
+          "value": "1/2 yellow onion, sliced"
+        },
+        {
+          "value": "1/2 carrot, sliced into strips"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Combine the beef and the marinade ingredients in a medium-sized bowl. Toss with your hands to coat the beef evenly and let marinate while preparing other ingredients."
+        },
+        {
+          "value": "Combine the sauce ingredients in a medium-sized bowl and stir to mix thoroughly."
+        },
+        {
+          "value": "Prepare the noodles according to package directions (*Footnote 3). Drain and set aside in a colander to dry."
+        },
+        {
+          "value": "Heat a large heavy-bottomed pan (nonstick or carbon steel) with 2 tablespoons of peanut oil over medium-high heat until hot. Spread the noodles into a patty shape (*Footnote 4). Cook without flipping until the bottoms turn golden. Turn the noodles to fry the other side until golden. Drizzle in a bit more oil to help with the frying, if needed. Once done, transfer the noodles to a big serving plate."
+        },
+        {
+          "value": "Pour 1 tablespoon of oil into the same pan. Add the beef and spread it out in a single layer using a pair of tongs or chopsticks. Let cook undisturbed for 30 seconds or so, or until the bottom turns golden brown. Flip to cook the other side until browned. Stir a few times until the beef is cooked (it’s OK if there’s a hint of pink inside), transfer to a big plate, and set aside."
+        },
+        {
+          "value": "Add the remaining 1 tablespoon of oil to the pan. Add the onion and carrots. Quickly stir a few times to mix well. Add the ginger and garlic. Stir and cook for 30 seconds to release the fragrance."
+        },
+        {
+          "value": "Add the bok choy. Cook and stir for another minute, until the veggies start to soften."
+        },
+        {
+          "value": "Stir the sauce thoroughly to dissolve the cornstarch completely and pour the sauce into the pan. Stir and cook to bring the sauce to a boil, and cook until it starts to thicken."
+        },
+        {
+          "value": "Add the cooked beef back into the pan. Stir to mix everything well. Once the sauce reaches the desired consistency, pour everything over the fried noodles. (*Footnote 5)"
+        },
+        {
+          "value": "Serve immediately as a main dish."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Turn your kitchen into a Chinese restaurant by making crispy pan fried noodles with juicy beef in a rich and savory sauce that tastes too good to be true!",
+  "image": "https://omnivorescookbook.com/wp-content/uploads/2020/06/200430_Beef-Pan-Fried-Noodles_550.jpg"
+}

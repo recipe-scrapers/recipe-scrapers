@@ -1,0 +1,104 @@
+{
+  "siteName": "Sunset Magazine",
+  "category": [],
+  "cookTime": null,
+  "prepTime": 90,
+  "totalTime": 90,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 3,
+  "ratingsCount": 30,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "164",
+    "fatContent": "4.3",
+    "saturatedFatContent": "2.6",
+    "carbohydrateContent": "25",
+    "proteinContent": "5.6",
+    "sodiumContent": "363",
+    "fiberContent": "1.4",
+    "cholesterolContent": "16"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Angela Brassinga",
+  "canonicalUrl": "https://www.sunset.com/recipe/crisp-top-sourdough-stuffing",
+  "host": "sunset.com",
+  "title": "Crisp-Top Sourdough Stuffing",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 1-pound loaf sourdough, at least 1 day old"
+        },
+        {
+          "value": "1/4 cup salted butter"
+        },
+        {
+          "value": "2 cups chopped onion (1 large)"
+        },
+        {
+          "value": "1 cup chopped celery (2 or 3 stalks)"
+        },
+        {
+          "value": "1/4 cup chopped flat-leaf parsley"
+        },
+        {
+          "value": "1 tablespoon finely chopped fresh sage"
+        },
+        {
+          "value": "About 1/2 tsp. kosher salt"
+        },
+        {
+          "value": "About 1/2 tsp. pepper"
+        },
+        {
+          "value": "About 3 cups turkey broth, reduced-sodium chicken broth, or mushroom or other vegetable broth"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Slice bread into 1 1/2-in.-thick slices and tear into irregular 1- to 2-in. pieces. Spread on a rimmed baking sheet and leave to dry at room temperature until needed (up to 2 days). For the best stuffing, the bread should be very dry."
+        },
+        {
+          "value": "Preheat oven to 350°. Melt butter in a large frying pan over medium heat. Pour out 2 tbsp. butter and set aside."
+        },
+        {
+          "value": "Add onion, celery, herbs, and 1/2 tsp. each salt and pepper to hot pan. Cook until onions are translucent and celery is tender-crisp, about 15 minutes. Transfer to a large bowl."
+        },
+        {
+          "value": "Add torn bread and broth to vegetables and mix in until bread is soaked. Add salt and pepper to taste."
+        },
+        {
+          "value": "Generously coat a 9- by 13-in. glass baking pan with 1 tsp. reserved melted butter. Pour stuffing into pan and drizzle with remaining melted butter."
+        },
+        {
+          "value": "Cover with foil; bake 25 minutes. Remove foil and bake until starting to brown on top, about 30 minutes more."
+        },
+        {
+          "value": "Make ahead: Up to 2 days, chilled. Reheat at 350°, covered, until hot (about 30 minutes). Remove foil and cook 10 more minutes for a crunchy top layer."
+        },
+        {
+          "value": "VARIATIONS"
+        },
+        {
+          "value": "Crisp-Top Sourdough Stuffing with Sausage and Greens: Add 8 oz. sautéed crumbled Italian ­sausage and 1 lb. briefly sautéed fresh spinach leaves to stuffing before baking."
+        },
+        {
+          "value": "Scandinavian Stuffing: Replace sourdough with a 1-lb. loaf of crusty rye bread, then add 1 cup chopped fresh dill and 8 oz. diced smoked pork chops to stuffing before baking. Top with 2 tbsp. fresh dill sprigs before serving."
+        }
+      ]
+    }
+  ],
+  "yields": "10 servings",
+  "description": "Although it's nearly as quick to make as boxed stuffing, this homemade version--soft in the middle and a little crunchy on the top--is prettier and certainly tastier.",
+  "image": "https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_-_900x675/public/crisp-top-sourdough-stuffing-su.jpg",
+  "language": "en"
+}

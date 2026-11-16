@@ -1,0 +1,130 @@
+{
+  "siteName": "Iowa Girl Eats",
+  "category": ["Soup"],
+  "cookTime": 20,
+  "prepTime": 5,
+  "totalTime": 25,
+  "cuisine": ["Mexican"],
+  "cookingMethod": null,
+  "ratings": 4.84,
+  "ratingsCount": 18,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "servingSize": "1 serving",
+    "calories": "417 kcal",
+    "fatContent": "22 g",
+    "saturatedFatContent": "12 g",
+    "unsaturatedFatContent": "7 g",
+    "transFatContent": "0.4 g",
+    "carbohydrateContent": "24 g",
+    "sugarContent": "7 g",
+    "proteinContent": "32 g",
+    "sodiumContent": "709 mg",
+    "fiberContent": "6 g",
+    "cholesterolContent": "100 mg"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["gluten free"],
+  "author": "Kristin Porter",
+  "canonicalUrl": "https://iowagirleats.com/cheesy-taco-soup/",
+  "host": "iowagirleats.com",
+  "language": "en-US",
+  "title": "Cheesy Taco Soup",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 lb ground beef"
+        },
+        {
+          "value": "salt and pepper"
+        },
+        {
+          "value": "10 oz can diced tomatoes with green chiles (undrained)"
+        },
+        {
+          "value": "15 oz can black beans (drained and rinsed)"
+        },
+        {
+          "value": "2 Tablespoons butter"
+        },
+        {
+          "value": "2 Tablespoons gluten free flour"
+        },
+        {
+          "value": "3 cups milk (divided, 2% or higher milk fat recommended)"
+        },
+        {
+          "value": "6 oz freshly grated sharp cheddar cheese"
+        },
+        {
+          "value": "Toppings: shredded cheese, tortilla chips, pickled jalapenos, chopped green onions, sliced black olives, pico de gallo, diced avocado, chopped cilantro"
+        }
+      ]
+    },
+    {
+      "name": "For the the Taco Seasoning",
+      "items": [
+        {
+          "value": "1 Tablespoon chili powder (I use mild)"
+        },
+        {
+          "value": "2 teaspoons cornstarch"
+        },
+        {
+          "value": "1-1/2 teaspoons cumin"
+        },
+        {
+          "value": "1/2 teaspoon paprika"
+        },
+        {
+          "value": "1/2 teaspoon garlic powder"
+        },
+        {
+          "value": "1/2 teaspoon onion powder"
+        },
+        {
+          "value": "1/2 teaspoon black pepper"
+        },
+        {
+          "value": "1/4 teaspoon dried oregano"
+        },
+        {
+          "value": "1/4 teaspoon salt"
+        },
+        {
+          "value": "1/4 teaspoon cayenne pepper (optional)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "For the Taco Seasoning",
+      "items": [
+        {
+          "value": "Add ingredients to a small bowl then stir to combine and set aside."
+        }
+      ]
+    },
+    {
+      "name": "For the Soup",
+      "items": [
+        {
+          "value": "Heat a large soup pot or Dutch oven over medium-high heat then add ground beef, season with salt and pepper, and brown, breaking it up as it cooks. Turn off heat then drain ground beef and add back into the pot along with the diced tomatoes and green chilies, black beans, taco seasoning mixture, and 1-1/2 cups milk. Stir to combine then set aside."
+        },
+        {
+          "value": "Heat a small saucepan over medium heat then add butter. Once melted, sprinkle in flour then whisk while cooking for one minute. Slowly stream in remaining 1-1/2 cups milk while whisking to create a smooth sauce. Season with salt and pepper then switch to a spatula and cook while stirring until the mixture has thickened, 3-4 minutes, being careful to not let it boil. Turn off heat then add half the shredded cheese and stir until smooth. Add remaining cheese then stir until smooth."
+        },
+        {
+          "value": "Add cheese sauce to the soup pot then stir to combine. Turn heat to medium-high then bring soup to a simmer, stirring often. Turn heat down to medium-low then simmer for 10 minutes, stirring often. Scoop into bowls then serve with toppings."
+        }
+      ]
+    }
+  ],
+  "yields": "6 servings",
+  "description": "Cheesy Taco Soup is a thick and hearty soup recipe that's loaded with taco-inspired ingredients. Filling, cozy, and totally satisfying!",
+  "image": "https://iowagirleats.com/wp-content/uploads/2015/04/Cheesy-Taco-Soup-iowagirleats-NEW-Featured2.jpg"
+}

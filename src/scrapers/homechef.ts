@@ -1,0 +1,72 @@
+import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { NoIngredientsFoundException } from '@/exceptions'
+import type { RecipeFields } from '@/types/recipe.interface'
+import { stringsToIngredients } from '@/utils/ingredients'
+import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
+import { normalizeString } from '@/utils/parsing'
+
+/**
+ * Home Chef publishes Recipe microdata whose instructions are an `ItemList`
+ * of named steps, and whose ingredients and author include icon and label
+ * text, so those fields are read from the markup instead.
+ */
+export class HomeChef extends AbstractScraper {
+  static host() {
+    return 'homechef.com'
+  }
+
+  protected override readonly extractors = {
+    author: this.author.bind(this),
+    ingredients: this.ingredients.bind(this),
+    instructions: this.instructions.bind(this),
+  } satisfies ScraperExtractors
+
+  /** Reads the chef's name, skipping the "Chef" label heading above it. */
+  protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
+    const author = normalizeString(
+      this.$('[itemprop="author"] [itemprop="name"] h4').first().text(),
+    )
+
+    if (author) return author
+    if (prevValue) return prevValue
+
+    throw new Error('Failed to extract author')
+  }
+
+  /** Drops the allergen icon's SVG title ("Info") from ingredient text. */
+  protected ingredients(): RecipeFields['ingredients'] {
+    const values = this.$('[itemprop="recipeIngredient"]')
+      .toArray()
+      .map((element) => {
+        const $item = this.$(element).clone()
+        $item.find('svg').remove()
+        return normalizeString($item.text())
+      })
+      .filter((value) => value.length > 0)
+
+    if (values.length === 0) {
+      throw new NoIngredientsFoundException()
+    }
+
+    return stringsToIngredients(values)
+  }
+
+  /** Each numbered step becomes an Instruction Group of its paragraphs. */
+  protected instructions(): RecipeFields['instructions'] {
+    return this.$('[itemprop="recipeInstructions"] [itemprop="itemListElement"]')
+      .toArray()
+      .map((element) => {
+        const $step = this.$(element)
+        const name = normalizeString($step.find('[itemprop="name"]').first().text()) || null
+        const items = $step
+          .find('[itemprop="description"] p')
+          .toArray()
+          .map((paragraph) => normalizeString(this.$(paragraph).text()))
+          .filter((value) => value.length > 0)
+          .map(createInstructionItem)
+
+        return createInstructionGroup(name, items)
+      })
+      .filter((group) => group.items.length > 0)
+  }
+}

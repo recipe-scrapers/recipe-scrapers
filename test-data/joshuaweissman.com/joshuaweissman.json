@@ -1,0 +1,306 @@
+{
+  "siteName": "Joshua Weissman",
+  "category": [],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": null,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "paytonmin",
+  "canonicalUrl": "https://www.joshuaweissman.com/post/2-dollar-burrito-but-cheaper",
+  "host": "joshuaweissman.com",
+  "language": "en",
+  "title": "2 Dollar Burrito (But Cheaper)",
+  "ingredients": [
+    {
+      "name": "Tortillas",
+      "items": [
+        {
+          "value": "2 cups (300 g) all-purpose flour"
+        },
+        {
+          "value": "1/2 tsp (2 g) baking powder"
+        },
+        {
+          "value": "1 tsp (4 g) fine sea salt"
+        },
+        {
+          "value": "3/4 cup (180 ml) warm water"
+        },
+        {
+          "value": "1/4 cup (60 ml) vegetable oil"
+        }
+      ]
+    },
+    {
+      "name": "Rice",
+      "items": [
+        {
+          "value": "1 cup (200 g) medium-grain rice"
+        },
+        {
+          "value": "1 cup (240 ml) water"
+        },
+        {
+          "value": "Salt to taste"
+        },
+        {
+          "value": "2 Tbsp (30 g) unsalted butter"
+        },
+        {
+          "value": "1/4 cup (15 g) cilantro, finely chopped"
+        },
+        {
+          "value": "1 lime, juiced"
+        }
+      ]
+    },
+    {
+      "name": "Chicken",
+      "items": [
+        {
+          "value": "2lbs (900 g) boneless chicken thighs"
+        },
+        {
+          "value": "2 Tbsp (28 g) kosher salt"
+        },
+        {
+          "value": "1 tsp (4 g) onion powder"
+        },
+        {
+          "value": "1 Tbsp (8 g) garlic powder"
+        },
+        {
+          "value": "2 tsp (6 g) ground cumin"
+        },
+        {
+          "value": "1 Tbsp (8 g) smoked paprika"
+        },
+        {
+          "value": "1 tsp (5 g) fresh ground black pepper"
+        },
+        {
+          "value": "1/2 can chipotle chiles in adobo (optional)"
+        },
+        {
+          "value": "2 Tbsp vegetable oil"
+        }
+      ]
+    },
+    {
+      "name": "Beans",
+      "items": [
+        {
+          "value": "2 Tbsp (30 g) unsalted butter"
+        },
+        {
+          "value": "1 sweet onion, sliced"
+        },
+        {
+          "value": "Salt to taste"
+        },
+        {
+          "value": "Pepper to taste"
+        },
+        {
+          "value": "2 jalapenos, thinly sliced"
+        },
+        {
+          "value": "1 can of black beans"
+        },
+        {
+          "value": "2 Tbsp (30 ml) hot sauce"
+        },
+        {
+          "value": "3 slices bacon, chopped"
+        }
+      ]
+    },
+    {
+      "name": "Fajita Veggies",
+      "items": [
+        {
+          "value": "1 red bell pepper, thinly sliced"
+        },
+        {
+          "value": "1 sweet onion, thinly sliced"
+        },
+        {
+          "value": "2 jalapenos, thinly sliced"
+        },
+        {
+          "value": "Salt to taste"
+        },
+        {
+          "value": "2 garlic cloves, finely chopped"
+        }
+      ]
+    },
+    {
+      "name": "Aioli Ingredients",
+      "items": [
+        {
+          "value": "1 cup (220 g) mayonnaise"
+        },
+        {
+          "value": "1 Tbsp (8 g) smoked paprika"
+        },
+        {
+          "value": "2 Tbsp (30 ml) hot sauce"
+        },
+        {
+          "value": "2 Tbsp (30 ml) lime juice"
+        },
+        {
+          "value": "3 garlic cloves, grated"
+        },
+        {
+          "value": "Salt to taste"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "Tortillas Method",
+      "items": [
+        {
+          "value": "In a medium bowl, add in all-purpose flour, baking powder, and fine sea salt. Whisk together until combined."
+        },
+        {
+          "value": "Add vegetable oil to the water. Stream the oil-water mixture into the flour while continuously mixing until a shaggy dough forms."
+        },
+        {
+          "value": "Immediately turn the dough out onto a work surface. Knead for 2 minutes or until smooth."
+        },
+        {
+          "value": "Wrap in plastic wrap and let rest for 30-60 minutes."
+        },
+        {
+          "value": "Heat a cast-iron skillet over medium-high heat."
+        },
+        {
+          "value": "Divide dough into 6 even pieces. Roll each piece into a rough ball."
+        },
+        {
+          "value": "On a generously floured work surface, flatten the dough into a small disc. Roll out until a disc a little thinner than a ¼-inch thick."
+        },
+        {
+          "value": "Gently lay into the skillet and cook for 20-30 seconds on each side."
+        }
+      ]
+    },
+    {
+      "name": "Rice Method",
+      "items": [
+        {
+          "value": "Add rice to a fine-mesh strainer and wash 2x with water."
+        },
+        {
+          "value": "Place rice into a rice cooker with equal parts water and cook."
+        },
+        {
+          "value": "Once finished cooking, add salt to taste and unsalted butter. Stir until fully melted and incorporated."
+        },
+        {
+          "value": "Add in finely chopped cilantro and the juice of one lime. Stir until combined."
+        }
+      ]
+    },
+    {
+      "name": "Chicken Method",
+      "items": [
+        {
+          "value": "Place chicken thighs into a bowl and coat thoroughly with all ingredients."
+        },
+        {
+          "value": "In a medium skillet, heat enough vegetable oil to coat the bottom of the pan, and once hot add the chicken. Sear for 2-3 minutes. Flip and sear for 1-2 more minutes."
+        },
+        {
+          "value": "Add chicken pieces to a baking sheet and bake in a preheated oven set to 400F for 10-15 minutes or until internal temperature is 165F."
+        },
+        {
+          "value": "Cut chicken into bite-sized pieces and toss in its own juices."
+        }
+      ]
+    },
+    {
+      "name": "Beans Method",
+      "items": [
+        {
+          "value": "In a medium saucepan, add unsalted butter over medium heat."
+        },
+        {
+          "value": "Once the butter has melted, add in sliced sweet onion, salt, and pepper, sliced jalapenos, and stir to coat with the butter."
+        },
+        {
+          "value": "Let cook, stirring occasionally until vegetables begin to soften."
+        },
+        {
+          "value": "Add in a can of black beans, hot sauce, and salt to taste. Stir until incorporated."
+        },
+        {
+          "value": "Continue to cook, while stirring often, until everything is hot."
+        },
+        {
+          "value": "In a separate cold pan, add sliced bacon and set to medium heat. Let cook and stir often until it's rendered fat and cooked through and crisp."
+        },
+        {
+          "value": "Remove the bacon from the fat, drain with a paper towel, and once drained finely chop."
+        },
+        {
+          "value": "Add chopped bacon to the beans and stir until incorporated."
+        }
+      ]
+    },
+    {
+      "name": "Fajitas Vegetables Method",
+      "items": [
+        {
+          "value": "In a medium bowl, toss together the sliced red bell pepper, sliced sweet onion, and sliced jalapenos until evenly mixed."
+        },
+        {
+          "value": "In the same pan, the bacon is cooked in, heat until medium-high and add in the sliced veggies, and season with salt."
+        },
+        {
+          "value": "Cook tossing occasionally for 3-5 minutes or until lightly charred and just beginning to soften."
+        },
+        {
+          "value": "Turn off the heat and add in chopped garlic, toss together, and season with salt to taste."
+        }
+      ]
+    },
+    {
+      "name": "Aioli Method",
+      "items": [
+        {
+          "value": "Add all ingredients into a medium bowl."
+        },
+        {
+          "value": "Mix until thoroughly combined and incorporated."
+        }
+      ]
+    },
+    {
+      "name": "Assembly Method",
+      "items": [
+        {
+          "value": "On a warm tortilla, lay down a layer of rice, hot beans, generous amounts of chicken, a drizzle of aioli, a layer of fajita veggies, an optional sprig of cilantro, and a grating of cheddar cheese."
+        },
+        {
+          "value": "Grab the sides and fold towards the center, grab the bottom and roll over the filling and over the folded insides nice and tight all the way up until fully wrapped."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "You can go to the freezer section and get a burrito for $1, $2, or $2.50 but does it honestly taste that good? NO! Not to mention when eating out these plump boys are $15 and that's just not right! Do not worry though, we're going to fix that with the perfect 2 dollar burrito.",
+  "image": "https://i.ytimg.com/vi/1Dd7GNm68hI/maxresdefault.jpg"
+}

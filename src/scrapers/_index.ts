@@ -1,47 +1,65 @@
 import { AbstractScraper } from '@/abstract-scraper'
 import type { ScraperOptions } from '@/types/scraper.interface'
 
+import { ACoupleCooks } from './acouplecooks'
 import { AmbitiousKitchen } from './ambitiouskitchen'
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BarefootContessa } from './barefootcontessa'
 import { BBCFood } from './bbcfood'
 import { BBCGoodFood } from './bbcgoodfood'
 import { BettyCrocker } from './bettycrocker'
+import { BigOven } from './bigoven'
 import { BongEats } from './bongeats'
 import { BrianLagerstrom } from './brianlagerstrom'
 import { CookingCircle } from './cookingcircle'
+import { CookingLight } from './cookinglight'
 import { CooksCountry } from './cookscountry'
 import { CooksIllustrated } from './cooksillustrated'
+import { Costco } from './costco'
 import { DamnDelicious } from './damndelicious'
 import { Delish } from './delish'
 import { DomesticateMe } from './domesticateme'
 import { Epicurious } from './epicurious'
 import { FoodAndWine } from './foodandwine'
+import { ForksOverKnives } from './forksoverknives'
 import { GoodHousekeeping } from './goodhousekeeping'
 import { GreatBritishChefs } from './greatbritishchefs'
 import { HELLOFRESH_COUNTRY_HOSTS, HelloFresh } from './hellofresh'
+import { HersheyLand } from './hersheyland'
+import { HomeChef } from './homechef'
 import { InspiredTaste } from './inspiredtaste'
+import { IowaGirlEats } from './iowagirleats'
 import { JamieOliver } from './jamieoliver'
+import { JoshuaWeissman } from './joshuaweissman'
 import { JustOneCookbook } from './justonecookbook'
 import { KingArthur } from './kingarthur'
 import { LoveAndLemons } from './loveandlemons'
 import { Maangchi } from './maangchi'
+import { McCormick } from './mccormick'
 import { MyPlate } from './myplate'
 import { NYTimes } from './nytimes'
 import { OnceUponAChef } from './onceuponachef'
+import { PopSugar } from './popsugar'
+import { PurpleCarrot } from './purplecarrot'
+import { QuakerOats } from './quakeroats'
 import { SaboresAjinomoto } from './saboresajinomoto'
 import { SimplyRecipes } from './simplyrecipes'
 import { Skinnytaste } from './skinnytaste'
 import { SouthernLiving } from './southernliving'
 import { SpisBedre } from './spisbedre'
+import { Sunset } from './sunset'
 import { TasteAU } from './tasteau'
 import { TasteOfHome } from './tasteofhome'
+import { TastingHistory } from './tastinghistory'
 import { TheCleverCarrot } from './theclevercarrot'
 import { TheKitchn } from './thekitchn'
+import { TheModernProper } from './themodernproper'
 import { ThePioneerWoman } from './thepioneerwoman'
 import { TheSpruceEats } from './thespruceeats'
 import { TudoGostoso } from './tudogostoso'
 import { WeightWatchers } from './weightwatchers'
+import { WholeFoodsMarket } from './wholefoodsmarket'
+import { WilliamsSonoma } from './williamssonoma'
 
 /**
  * Constructor type for scraper classes.
@@ -57,47 +75,65 @@ type ScraperClass = {
  * Adding a new scraper only requires adding it to this list.
  */
 const customScraperClasses = [
+  ACoupleCooks,
   AmbitiousKitchen,
   AmericasTestKitchen,
   BarefootContessa,
   BBCFood,
   BBCGoodFood,
   BettyCrocker,
+  BigOven,
   BongEats,
   BrianLagerstrom,
   CookingCircle,
+  CookingLight,
   CooksCountry,
   CooksIllustrated,
+  Costco,
   DamnDelicious,
   Delish,
   DomesticateMe,
   Epicurious,
   FoodAndWine,
+  ForksOverKnives,
   GoodHousekeeping,
   GreatBritishChefs,
   HelloFresh,
+  HersheyLand,
+  HomeChef,
   InspiredTaste,
+  IowaGirlEats,
   JamieOliver,
+  JoshuaWeissman,
   JustOneCookbook,
   KingArthur,
   LoveAndLemons,
   Maangchi,
+  McCormick,
   MyPlate,
-  SimplyRecipes,
   NYTimes,
   OnceUponAChef,
+  PopSugar,
+  PurpleCarrot,
+  QuakerOats,
   SaboresAjinomoto,
+  SimplyRecipes,
   Skinnytaste,
   SouthernLiving,
   SpisBedre,
+  Sunset,
   TasteAU,
   TasteOfHome,
+  TastingHistory,
   TheCleverCarrot,
   TheKitchn,
+  TheModernProper,
   ThePioneerWoman,
   TheSpruceEats,
   TudoGostoso,
   WeightWatchers,
+  WholeFoodsMarket,
+  WilliamsSonoma,
 ] as const satisfies readonly ScraperClass[]
 
 /**
@@ -152,6 +188,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'unsophisticook.com',
   'wellplated.com',
   'zestfulkitchen.com',
+  '101cookbooks.com',
   '365daysofbakingandmore.com',
   'abeautifulmess.com',
   'acozykitchen.com',
@@ -182,6 +219,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'cakemehometonight.com',
   'cakewhiz.com',
   'cambreabakes.com',
+  'carlsbadcravings.com',
   'castironketo.net',
   'castironskilletcooking.com',
   'celebratingsweets.com',
@@ -200,6 +238,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'cookpad.com',
   'cookwithdana.com',
   'copykat.com',
+  'countryliving.com',
   'crazyforcrust.com',
   'creativecanning.com',
   'cucchiaio.it',
@@ -246,8 +285,10 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'goodstuff.recipes',
   'gousto.co.uk',
   'grandbaby-cakes.com',
+  'handletheheat.com',
   'healthywithachanceofsprinkles.com',
   'heatherchristo.com',
+  'heb.com',
   'homeandplate.com',
   'hostthetoast.com',
   'houseofnasheats.com',
@@ -314,6 +355,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'nourishedbynutrition.com',
   'nutritionfacts.org',
   'ohsheglows.com',
+  'omnivorescookbook.com',
   'onesweetappetite.com',
   'ourbestbites.com',
   'paleorunningmomma.com',
@@ -362,6 +404,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'spicysouthernkitchen.com',
   'springlane.de',
   'stacyling.com',
+  'steamykitchen.com',
   'sudachirecipes.com',
   'sugarhero.com',
   'sugarmaplefarmhouse.com',
