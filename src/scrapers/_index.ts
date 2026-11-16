@@ -19,6 +19,7 @@ import { Epicurious } from './epicurious'
 import { FoodAndWine } from './foodandwine'
 import { GoodHousekeeping } from './goodhousekeeping'
 import { GreatBritishChefs } from './greatbritishchefs'
+import { HELLOFRESH_COUNTRY_HOSTS, HelloFresh } from './hellofresh'
 import { InspiredTaste } from './inspiredtaste'
 import { JamieOliver } from './jamieoliver'
 import { JustOneCookbook } from './justonecookbook'
@@ -74,6 +75,7 @@ const customScraperClasses = [
   FoodAndWine,
   GoodHousekeeping,
   GreatBritishChefs,
+  HelloFresh,
   InspiredTaste,
   JamieOliver,
   JustOneCookbook,
@@ -246,7 +248,6 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'grandbaby-cakes.com',
   'healthywithachanceofsprinkles.com',
   'heatherchristo.com',
-  'hellofresh.com',
   'homeandplate.com',
   'hostthetoast.com',
   'houseofnasheats.com',
@@ -421,9 +422,10 @@ const schemaOrgOnlyScraperClasses = SCHEMA_ORG_ONLY_HOSTS.map((host) =>
  * Optional host aliases.
  * Example: 'bbc.co.uk': BBCFood
  */
-const scraperAliases = {
+const scraperAliases: Readonly<Record<string, ScraperClass>> = {
   'bbc.co.uk': BBCFood,
-} as const satisfies Record<string, ScraperClass>
+  ...Object.fromEntries(HELLOFRESH_COUNTRY_HOSTS.map((host) => [host, HelloFresh])),
+}
 
 function buildScraperRegistry(
   classes: readonly ScraperClass[],
