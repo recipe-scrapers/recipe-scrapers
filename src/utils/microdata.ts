@@ -41,6 +41,9 @@ const extractValueFromElement = <T extends Element>(element: Cheerio<T>): string
   return element.text().trim()
 }
 
+/** Properties whose value is a Person or Organization rather than text. */
+const PERSON_PROPERTIES = new Set(['author', 'creator', 'publisher'])
+
 const extractSchemaType = (itemType: string): string | undefined => {
   const typeMatch = itemType.match(/schema\.org\/(\w+)/)
   return typeMatch?.[1]
@@ -122,6 +125,10 @@ export function extractMicrodata($: CheerioAPI, selector: string): MicrodataObje
         })
 
         propValue = nestedObject
+      } else if (PERSON_PROPERTIES.has(propName) && $prop.is('a') && $prop.text().trim()) {
+        // `<a itemprop="author" href="/chefs/rob">Rob Burns</a>`: the link's
+        // microdata value is its URL, but the Person is named by the text.
+        propValue = { name: $prop.text().trim(), url: $prop.attr('href') }
       } else {
         // Handle simple property values
         propValue = extractValueFromElement($prop)
