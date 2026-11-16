@@ -1,0 +1,106 @@
+{
+  "siteName": "A Couple Cooks",
+  "category": ["Breakfast"],
+  "cookTime": 10,
+  "prepTime": 15,
+  "totalTime": 25,
+  "cuisine": ["American"],
+  "cookingMethod": "Stovetop",
+  "ratings": 5,
+  "ratingsCount": 1,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": ["VegetarianDiet"],
+  "keywords": ["Brown butter pancakes", "maple caramel", "maple caramel syrup"],
+  "author": "Sonja Overhiser",
+  "canonicalUrl": "https://www.acouplecooks.com/brown-butter-pancakes-maple-caramel/",
+  "host": "acouplecooks.com",
+  "language": "en-US",
+  "title": "Brown Butter Pancakes with Maple Caramel Syrup",
+  "ingredients": [
+    {
+      "name": "Brown Butter Pancakes",
+      "items": [
+        {
+          "value": "¼ cup unsalted butter"
+        },
+        {
+          "value": "¾ cup all purpose flour"
+        },
+        {
+          "value": "¼ cup whole wheat flour"
+        },
+        {
+          "value": "2 tablespoons brown sugar"
+        },
+        {
+          "value": "1 tablespoon baking powder"
+        },
+        {
+          "value": "½ teaspoon kosher salt"
+        },
+        {
+          "value": "1 cup milk of choice"
+        },
+        {
+          "value": "1 large egg"
+        },
+        {
+          "value": "1 teaspoon vanilla extract"
+        },
+        {
+          "value": "½ teaspoon apple cider vinegar"
+        }
+      ]
+    },
+    {
+      "name": "Salted Maple Butter Drizzle",
+      "items": [
+        {
+          "value": "¼ cup pure maple syrup"
+        },
+        {
+          "value": "2 tablespoons unsalted butter"
+        },
+        {
+          "value": "2 tablespoons heavy whipping cream"
+        },
+        {
+          "value": "¼ teaspoon kosher salt"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "To make the drizzle, combine the butter and maple syrup in a saucepan. Bring it to a simmer, then simmer on low heat for 4 to 5 minutes, stirring occasionally, until it becomes very foamy and starts to turn a caramel color. Add the cream and boil for 1 minute, stirring occasionally. Remove from the heat and pour into a pitcher to cool (it will thicken more as it cools)."
+        },
+        {
+          "value": "Brown the butter: Place the butter (sliced into pieces) in a skillet over medium heat. Heat for a few minutes until it melts, turns foamy, and then starts to become golden brown and then brown in color and smells nutty. For the best flavor, you’ll want the butter to be very brown: but not burnt! Be careful because it can burn very quickly. Immediately remove from the heat and transfer to a medium mixing bowl."
+        },
+        {
+          "value": "In a medium bowl, whisk together the all purpose flour, whole wheat flour, brown sugar, baking powder, and salt."
+        },
+        {
+          "value": "In a separate bowl, whisk the egg, milk, vanilla extract, and vinegar. Once the butter is ready and slightly cooled, whisk it in."
+        },
+        {
+          "value": "Stir the wet ingredients into the dry ingredients until a smooth batter forms. (It will thicken after it sits 1 to 2 minutes.)"
+        },
+        {
+          "value": "Lightly butter a skillet or griddle and wipe off extra grease with a paper towel. Heat the skillet to medium low heat. Pour the batter onto the griddle in 1/4 cup scoops. Cook until the bubbles pop on the top and the bottoms are golden. Then flip them and cook until cooked through."
+        },
+        {
+          "value": "Place the cooked pancakes under an inverted bowl to keep them warm. Repeat with the remaining batter, adjusting the heat as necessary to maintain an even temperature, and adding additional splash of milk to the batter if necessary. Serve immediately with maple caramel syrup."
+        }
+      ]
+    }
+  ],
+  "yields": "8 servings",
+  "description": "These brown butter pancakes are irresistibly good, served a salted maple caramel syrup. This simple twist on the classic breakfast favorite takes your pancakes to a whole new level of deliciousness!",
+  "image": "https://www.acouplecooks.com/wp-content/uploads/2024/08/Brown-Butter-Pancakes-0002-225x225.jpg"
+}

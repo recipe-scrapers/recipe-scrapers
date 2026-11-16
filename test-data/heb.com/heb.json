@@ -1,0 +1,74 @@
+{
+  "siteName": "H-E-B | Here Everything's Better",
+  "category": [],
+  "cookTime": 40,
+  "prepTime": 20,
+  "totalTime": 60,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "100 calories",
+    "fatContent": "8 grams",
+    "saturatedFatContent": "4 grams",
+    "unsaturatedFatContent": "4 grams",
+    "transFatContent": "0 grams",
+    "carbohydrateContent": "8 grams",
+    "sugarContent": "3 grams",
+    "proteinContent": "1 grams",
+    "sodiumContent": "100 milligrams",
+    "fiberContent": "2 grams",
+    "cholesterolContent": "15 milligrams"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "H-E-B",
+  "canonicalUrl": "https://www.heb.com/recipe/recipe-detail/truffled-spaghetti-squash",
+  "host": "heb.com",
+  "language": "en",
+  "title": "Truffled Spaghetti Squash",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 large spaghetti squash"
+        },
+        {
+          "value": "1 tsp truffle salt"
+        },
+        {
+          "value": "4 Tbsp unsalted butter"
+        },
+        {
+          "value": "1 Tbsp white truffle oil"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 400˚F. Cut spaghetti squash in half from top to bottom (lengthwise)."
+        },
+        {
+          "value": "Place the spaghetti squash halves, cut side down onto a sheet pan. Roast for 30-45 minutes or until a knife can pierce the outside of skin easily, like a baked potato."
+        },
+        {
+          "value": "Once Squash is fully cooked and soft remove it from oven and let it cool for 10 minutes before scooping out meat of squash. In a serving bowl scoop or with a fork scrape out squash and add truffle salt, butter and truffle oil."
+        },
+        {
+          "value": "Toss all ingredients together until butter is fully melted. Season to taste if needed and serve warm."
+        }
+      ]
+    }
+  ],
+  "yields": "8 servings",
+  "description": "Easily shop for ingredients to make Truffled Spaghetti Squash. Find instructions, prep time, cook time, serving size, nutrition, and more.",
+  "image": "https://images.heb.com/is/image/HEBGrocery/Test/truffled-spaghetti-squash-recipe.jpg"
+}

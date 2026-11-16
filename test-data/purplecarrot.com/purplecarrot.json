@@ -1,0 +1,95 @@
+{
+  "siteName": "Purple Carrot",
+  "category": [],
+  "cookTime": null,
+  "prepTime": 30,
+  "totalTime": 30,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "530 cal",
+    "fatContent": "18.0 g"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Purple Carrot",
+  "canonicalUrl": "https://www.purplecarrot.com/recipe/roasted-cauliflower-lentil-bowl-with-avocado-curried-balsamic-vinaigrette",
+  "host": "purplecarrot.com",
+  "language": "en",
+  "title": "Roasted Cauliflower Lentil Bowl with Avocado & Curried Balsamic Vinaigrette",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "¾ cup brown lentils"
+        },
+        {
+          "value": "6 oz cauliflower florets"
+        },
+        {
+          "value": "1 tbsp curry powder"
+        },
+        {
+          "value": "2 mini sweet peppers"
+        },
+        {
+          "value": "4 oz red grapes"
+        },
+        {
+          "value": "1 avocado"
+        },
+        {
+          "value": "2 tbsp balsamic vinaigrette"
+        },
+        {
+          "value": "4 oz Arcadian greens"
+        },
+        {
+          "value": "1 tsp vegetable oil*"
+        },
+        {
+          "value": "Salt and pepper*"
+        },
+        {
+          "value": "*Not included"
+        },
+        {
+          "value": "For full ingredient list, see Nutrition"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat the oven to 425°F. Rinse and sort the brown lentils. In a small saucepan, combine the lentils and 1½ cups water and bring to a boil. Cover, and reduce heat to low, and simmer until all of the water is absorbed and the lentils are just tender, about 20 to 25 minutes. Season with salt."
+        },
+        {
+          "value": "Add cauliflower florets to a baking sheet and toss with 1 tsp vegetable oil, just 2 tsp curry powder, and a pinch of salt and pepper. Roast until tender and lightly browned, about 8 to 10 minutes."
+        },
+        {
+          "value": "Trim, deseed, and thinly slice the mini sweet peppers. Halve the grapes. Halve the avocado, remove the pit, and dice the flesh."
+        },
+        {
+          "value": "In a small bowl, combine the balsamic vinaigrette, just ¼ tsp curry powder and a pinch of salt. Whisk the curried balsamic vinaigrette."
+        },
+        {
+          "value": "Divide the Arcadian greens between large serving bowls and drizzle with just 1 tbsp curried balsamic vinaigrette."
+        },
+        {
+          "value": "Top the salads with cooked lentils, sliced peppers, halved grapes, diced avocado, and roasted cauliflower. Drizzle with remaining curried balsamic vinaigrette."
+        }
+      ]
+    }
+  ],
+  "yields": "2 servings",
+  "description": "We think you’re going to love this beautifully balanced meal. Curry roasted cauliflower gets crispy in the oven and pairs perfectly with hearty, protein-packed lentils cooked until they’re just tender. Match creamy avocado with a splash of curried balsamic vinaigrette, and this hearty meal is ready to go.",
+  "image": "https://images.purplecarrot.com/uploads/product/image/1357/_1400_700_Vegan_TB12_RoastedCauli_Hero-4-fcfead9e8b8f0df11875ae6baae25ab0.jpg"
+}

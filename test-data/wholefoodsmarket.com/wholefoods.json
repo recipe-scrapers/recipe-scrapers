@@ -1,0 +1,88 @@
+{
+  "siteName": "Whole Foods Market",
+  "category": [],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": 30,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "410 calories",
+    "fatContent": "22 grams",
+    "saturatedFatContent": "11 grams",
+    "carbohydrateContent": "31 grams",
+    "proteinContent": "24 grams",
+    "sodiumContent": "350 milligrams",
+    "cholesterolContent": "50 milligrams"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Whole Foods Market",
+  "canonicalUrl": "https://wholefoodsmarket.com/",
+  "host": "wholefoodsmarket.com",
+  "language": "en",
+  "title": "Grilled Cheese and Greens",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "2 tablespoons extra-virgin olive oil, divided"
+        },
+        {
+          "value": "1 clove garlic, thinly sliced"
+        },
+        {
+          "value": "1 bunch (about 8 ounces) kale, thick stems removed and leaves shredded"
+        },
+        {
+          "value": "8 slices whole grain bread"
+        },
+        {
+          "value": "8 slices Swiss or Le Gruyère cheese (about 8 ounces total)"
+        },
+        {
+          "value": "1/4 teaspoon kosher salt"
+        },
+        {
+          "value": "1/8 teaspoon ground black pepper"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "In a large skillet, heat 1 teaspoon olive oil over medium-high heat until hot."
+        },
+        {
+          "value": "Add kale, garlic, salt and pepper. Cover and cook, stirring occasionally, until kale begins to wilt, about 5 minutes."
+        },
+        {
+          "value": "Uncover, reduce heat to medium and continue to cook, stirring frequently, until kale is very soft, about 5 minutes."
+        },
+        {
+          "value": "Arrange 4 bread slices on a work surface. Top each with one slice of cheese, an even layer of the kale, another slice of cheese, and then a piece of bread."
+        },
+        {
+          "value": "Brush both sides of each sandwich with remaining olive oil."
+        },
+        {
+          "value": "Heat a large nonstick skillet over medium heat until hot."
+        },
+        {
+          "value": "Place stacked sandwiches in the pan and cook until bread is golden brown and cheese has melted, pressing flat with a spatula occasionally, 4 to 5 minutes per side. Serve immediately. Depending on the size of your skillet, you might need to cook these in batches. If so, the first batch can be kept warm in a 200°F oven while finishing the second batch."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Sneak soft cooked greens into the middle of a warm grilled cheese sandwich to add a bit of nutrition to this comforting meal. Substitute your favorite greens for kale if you like, and try with oozy Taleggio cheese for a sophisticated twist.",
+  "image": "http://assets.wholefoodsmarket.com/recipes/3604/460/290/3604-1.jpg"
+}

@@ -261,6 +261,11 @@ function normalizeData(host: string, filename: string, data: Record<string, unkn
     }
   }
 
+  // Older Python fixtures join ingredients into one newline-separated string.
+  if (isString(result.ingredients)) {
+    result.ingredients = result.ingredients.split('\n').filter((line) => line.trim())
+  }
+
   // Clean & group ingredients
   if (Array.isArray(result.ingredients)) {
     if (result.ingredients.every(isRawIngredientGroup)) {

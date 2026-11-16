@@ -1,0 +1,82 @@
+{
+  "siteName": "A Couple Cooks",
+  "category": ["Main Dish"],
+  "cookTime": 3,
+  "prepTime": 5,
+  "totalTime": 8,
+  "cuisine": ["Shrimp"],
+  "cookingMethod": "Stovetop",
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "176 calories",
+    "fatContent": "9.2 g",
+    "saturatedFatContent": "5.5 g",
+    "transFatContent": "0 g",
+    "carbohydrateContent": "0.8 g",
+    "sugarContent": "0 g",
+    "proteinContent": "23 g",
+    "sodiumContent": "427.1 mg",
+    "fiberContent": "0 g",
+    "cholesterolContent": "205.4 mg"
+  },
+  "dietaryRestrictions": ["GlutenFreeDiet"],
+  "keywords": ["Garlic Butter Shrimp"],
+  "author": "Sonja Overhiser",
+  "canonicalUrl": "https://www.acouplecooks.com/garlic-butter-shrimp/",
+  "host": "acouplecooks.com",
+  "language": "en-US",
+  "title": "Garlic Butter Shrimp (Fast & Easy Dinner!)",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 pound large shrimp, deveined (peeled or unpeeled)"
+        },
+        {
+          "value": "3 garlic cloves"
+        },
+        {
+          "value": "½ teaspoon kosher salt"
+        },
+        {
+          "value": "3 tablespoons butter"
+        },
+        {
+          "value": "2 lemon wedges"
+        },
+        {
+          "value": "Fresh cilantro or parsley, for garnish"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "If frozen, thaw the shrimp (see the notes above)."
+        },
+        {
+          "value": "Mince the garlic."
+        },
+        {
+          "value": "Pat the shrimp dry. In a medium bowl, mix the shrimp with the garlic and salt."
+        },
+        {
+          "value": "In a large skillet, heat the butter on medium high heat. Cook the shrimp for 1 to 2 minutes per side until opaque and cooked through, turning them with tongs."
+        },
+        {
+          "value": "Spritz with juice of the lemon wedges and serve immediately."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "This garlic butter shrimp has HUGE flavor in under 10 minutes! A fast and easy dinner for weeknights or entertaining, it will become your go-to.",
+  "image": "https://www.acouplecooks.com/wp-content/uploads/2019/05/Garlic-Butter-Shrimp-022-225x225.jpg"
+}

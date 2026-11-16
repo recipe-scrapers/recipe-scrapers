@@ -1,0 +1,126 @@
+{
+  "siteName": "Steamy Kitchen Recipes Giveaways",
+  "category": ["dinner", "Main Course"],
+  "cookTime": 30,
+  "prepTime": 10,
+  "totalTime": 40,
+  "cuisine": ["Vietnamese"],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": ["instant pot pho", "pho recipe", "vietnamese pho"],
+  "author": "Steamy Kitchen Team",
+  "canonicalUrl": "https://steamykitchen.com/56719-instant-pot-vietnamese-chicken-pho.html",
+  "host": "steamykitchen.com",
+  "language": "en-US",
+  "title": "Instant Pot Vietnamese Chicken Pho",
+  "ingredients": [
+    {
+      "name": "For the Pho",
+      "items": [
+        {
+          "value": "3 pounds bone-in chicken (either a whole chicken or bone-in parts: breast or thigh)"
+        },
+        {
+          "value": "1 tablespoon cooking oil"
+        },
+        {
+          "value": "2 teaspoons of whole coriander seeds (not ground coriander)"
+        },
+        {
+          "value": "2 star anise pods"
+        },
+        {
+          "value": "2\" nub of ginger (peeled and sliced a few times)"
+        },
+        {
+          "value": "1/2 onion"
+        },
+        {
+          "value": "3 whole cloves garlic"
+        },
+        {
+          "value": "3 tablespoons fish sauce"
+        },
+        {
+          "value": "1 1/2 teaspoons sugar"
+        }
+      ]
+    },
+    {
+      "name": "Noodles and Toppings",
+      "items": [
+        {
+          "value": "1 package dried rice noodles (about 10-12 ounces, prepared according to package instructions, and drained)"
+        },
+        {
+          "value": "1/2 onion (thinly sliced and soaked in cold water)"
+        },
+        {
+          "value": "1 handful fresh cilantro (chopped)"
+        },
+        {
+          "value": "few sprigs of Thai basil (or regular basil)"
+        },
+        {
+          "value": "1 lime (in wedges)"
+        },
+        {
+          "value": "1/2 pound fresh bean sprouts"
+        },
+        {
+          "value": "1 jalapeno chile (sliced)"
+        },
+        {
+          "value": "Sriracha and Hoisin Sauce"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": "Make the Broth",
+      "items": [
+        {
+          "value": "Turn the pressure cooker to \"sauté\" and heat the oil until smoking. Add the onion, ginger slices and cook until nicely browned, about 4 minutes. Add the garlic cloves, coriander, and star anise and sauté for another 2 minutes until fragrant."
+        },
+        {
+          "value": "Add in the chicken and 2 quarts of water to cover the chicken and seal the pot. Set to pressure and cook 20 minutes on high."
+        },
+        {
+          "value": "Make your rice noodles while your broth is cooking."
+        },
+        {
+          "value": "When the cooking is complete, carefully release the pressure then remove the lid once all pressure is released. Remove the chicken from the pot and transfer to a large bowl and let chicken cool off a bit. Strain all the spices from the broth and discard. Turn the pressure cooker on \"boil\" or \"sauté\" to keep the broth very hot."
+        },
+        {
+          "value": "Season broth with the fish sauce and sugar. Taste. If the broth is too bland, adjust with more fish sauce and sugar."
+        },
+        {
+          "value": "Remove the chicken meat from bones, shred with fingers. Set aside."
+        }
+      ]
+    },
+    {
+      "name": "Make the Pho Bowls",
+      "items": [
+        {
+          "value": "Drain the onions, Set your table with the onions, all of the herbs and condiments so that each person can customize their own bowl."
+        },
+        {
+          "value": "Divide the chicken and prepared noodles amongst the bowls."
+        },
+        {
+          "value": "Return the pho broth to a boil. Ladle the hot pho broth into each bowl, and serve."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "This Vietnamese Chicken Pho is the definition of a cozy and comforting meal. In less than 1 hour you will have a nourishing bowl of warm noodle soup!",
+  "image": "https://steamykitchen.com/wp-content/uploads/2020/12/INSTANT-POT-CHICKEN-PHO-.png"
+}

@@ -1,0 +1,128 @@
+{
+  "siteName": "The Modern Proper",
+  "category": ["lunch", "dinner", "diary-free", "gluten-free"],
+  "cookTime": 15,
+  "prepTime": 20,
+  "totalTime": 35,
+  "cuisine": ["Asian"],
+  "cookingMethod": null,
+  "ratings": 5,
+  "ratingsCount": 3,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "1125 calories",
+    "fatContent": "56 grams fat",
+    "saturatedFatContent": "36 grams saturated fat",
+    "carbohydrateContent": "106 grams carbohydrates",
+    "sugarContent": "30 grams sugar",
+    "proteinContent": "38 grams protein",
+    "sodiumContent": "1055 milligrams sodium",
+    "fiberContent": "27 grams fiber",
+    "cholesterolContent": "28 milligrams cholesterol"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [
+    "coconut rice salmon bowl",
+    "spring recipe",
+    "summer recipe",
+    "diary-free recipe",
+    "gluten-free recipe"
+  ],
+  "author": "The Modern Proper",
+  "canonicalUrl": "https://themodernproper.com/coconut-rice-salmon-bowl",
+  "host": "themodernproper.com",
+  "language": "en-US",
+  "title": "Coconut Rice Salmon Bowl",
+  "ingredients": [
+    {
+      "name": "Coconut Milk Dressing",
+      "items": [
+        {
+          "value": "1 (14-ounce) can full fat coconut milk"
+        },
+        {
+          "value": "2 tablespoons fish sauce"
+        },
+        {
+          "value": "¼ cup brown sugar"
+        },
+        {
+          "value": "1 tablespoon soy sauce"
+        },
+        {
+          "value": "1 teaspoon lime zest"
+        },
+        {
+          "value": "2 tablespoons fresh lime juice (from 1 lime)"
+        },
+        {
+          "value": "1-2 teaspoons Sriracha, plus more for serving"
+        }
+      ]
+    },
+    {
+      "name": "Salmon Bowl",
+      "items": [
+        {
+          "value": "1 (1-pound) salmon fillet"
+        },
+        {
+          "value": "½ teaspoon kosher salt"
+        },
+        {
+          "value": "4 cups Coconut Rice"
+        },
+        {
+          "value": "1 mango, peeled, pitted, and sliced"
+        },
+        {
+          "value": "3 Persian cucumbers, sliced"
+        },
+        {
+          "value": "1 avocado, sliced"
+        },
+        {
+          "value": "1 cup edamame, cooked"
+        },
+        {
+          "value": "¼ cup minced fresh cilantro, for garnish"
+        },
+        {
+          "value": "½ cup toasted coconut, for garnish"
+        },
+        {
+          "value": "Sesame seeds, for garnish (optional)"
+        },
+        {
+          "value": "1 small Fresno pepper, thinly sliced, for garnish (optional)"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat the oven to 350°F with a rack in the center position. Line a rimmed sheet pan with aluminum foil or parchment paper."
+        },
+        {
+          "value": "Make the dressing. In a small bowl, whisk together the coconut milk, fish sauce, brown sugar, soy sauce, lime zest, lime juice and sriracha. Reserve ½ cup of dressing in a separate small bowl."
+        },
+        {
+          "value": "Make the salmon. Place the salmon on the prepared sheet. Brush salmon with the reserved ½ cup dressing. Roast for 15 minutes, or until the salmon easily flakes apart with a fork."
+        },
+        {
+          "value": "Serve"
+        },
+        {
+          "value": "Divide the coconut rice among 4 bowls. Top with the salmon, mango, cucumber, avocado, and edamame. Garnish with cilantro, toasted coconut, and sesame seeds and Fresno pepper, if using. Drizzle with the remaining dressing and serve."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "These salmon bowls with fluffy coconut rice feature tender salmon paired with creamy avocado, mango, cucumber, all drizzled with an easy, zippy sauce.",
+  "image": "https://images.themodernproper.com/billowy-turkey/production/posts/CoconutRiceSalmonBowl_6.jpg?w=960&h=540&q=82&fm=jpg&fit=crop&dm=1723225323&s=3f1001a3928b0982c8b2dbebccc606ea"
+}
