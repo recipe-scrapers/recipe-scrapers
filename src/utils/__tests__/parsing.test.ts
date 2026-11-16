@@ -105,10 +105,33 @@ describe('parseMinutes', () => {
     expect(parseMinutes('45 minuten')).toBe(45)
   })
 
+  it('parses human-readable fractional amounts', () => {
+    expect(parseMinutes('1/2 hour')).toBe(30)
+    expect(parseMinutes('1 1/2 hours')).toBe(90)
+    expect(parseMinutes('2 1/2 hrs')).toBe(150)
+    expect(parseMinutes('1.5 hours')).toBe(90)
+  })
+
+  it('parses vulgar fractions with or without a space after the whole number', () => {
+    expect(parseMinutes('1½ hours')).toBe(90)
+    expect(parseMinutes('1 ½ hours')).toBe(90)
+    expect(parseMinutes('½ hour')).toBe(30)
+    expect(parseMinutes('¾ hour')).toBe(45)
+    expect(parseMinutes('1⁄2 hour')).toBe(30)
+  })
+
+  it('never reads a denominator as the amount', () => {
+    expect(parseMinutes('1/2 cup, then 2/3 hours')).toBe(40)
+    expect(() => parseMinutes('1/0 hours')).not.toThrow()
+    expect(parseMinutes('1/0 hours')).toBe(0)
+  })
+
   it('parses long unit-less input in linear time', () => {
     const started = performance.now()
 
     expect(() => parseMinutes('1'.repeat(200_000))).toThrow('invalid duration')
+    expect(() => parseMinutes('1/'.repeat(100_000))).toThrow('invalid duration')
+    expect(() => parseMinutes('1 '.repeat(100_000))).toThrow('invalid duration')
     expect(performance.now() - started).toBeLessThan(1000)
   })
 
