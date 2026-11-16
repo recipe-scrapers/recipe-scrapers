@@ -27,7 +27,7 @@ A TypeScript library that turns a caller-supplied Recipe Page (HTML plus its URL
 
 1. Decide whether the Host can be a Schema.org-only Host or needs a Scraper with Site-specific Extractors.
 2. For a Schema.org-only Host, add the hostname to `SCHEMA_ORG_ONLY_HOSTS` in `src/scrapers/_index.ts`.
-3. Otherwise create `src/scrapers/<name>.ts`, named by the repo's normalized convention rather than the literal hostname, export a class extending `AbstractScraper`, and register it in `customScraperClasses`. Alternate hostnames go in `scraperAliases`.
+3. Otherwise create `src/scrapers/<name>.ts`, named by the repo's normalized convention rather than the literal hostname, export a class extending `AbstractScraper`, and register it in `customScraperClasses`. Alternate hostnames go in `scraperAliases`. Declare `ingredientGroupStructure` and `instructionStructure` before writing an extractor for those fields, and read page text with `texts` or `textGroups` from `src/utils/dom.ts`.
 4. Add Test Fixtures in `test-data/<host>/`.
 5. When fixture output is hard to reconcile, compare with the original Python scraper at `https://github.com/hhursev/recipe-scrapers/tree/main/recipe_scrapers` before changing shared extraction behaviour. Expected JSON converted from Python output is a reference: where our output is more accurate, update the JSON and say why in the commit.
 

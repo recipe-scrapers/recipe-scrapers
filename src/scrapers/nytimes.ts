@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 import { AbstractScraper } from '@/abstract-scraper'
 import type { RecipeData } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { embeddedPayload } from '@/utils/embedded-payload'
 import { stringsToNotes } from '@/utils/notes'
 import { normalizeString } from '@/utils/parsing'
@@ -88,11 +89,7 @@ export class NYTimes extends AbstractScraper {
       return undefined
     }
 
-    const listValues = container
-      .find('li, p')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((value) => value.length > 0)
+    const listValues = texts(this.$, container.find('li, p'))
 
     if (listValues.length > 0) {
       return stringsToNotes(listValues)

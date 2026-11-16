@@ -1,7 +1,24 @@
+import type { CheerioAPI } from 'cheerio'
+
+import { ExtractionFailedException } from '@/exceptions'
 import type { InstructionGroup, InstructionItem, Instructions } from '@/types/recipe.interface'
 
+import { textGroups, type TextGroupStructure } from './dom'
 import { isPlainObject, isString } from './index'
 import { normalizeString, splitToList } from './parsing'
+
+/**
+ * The Recipe Page markup a Scraper reads steps from: each `item` is a step,
+ * and each optional `heading` names the Instruction Group of the steps after
+ * it.
+ */
+export interface InstructionStructure extends TextGroupStructure {
+  /**
+   * Read the page only when the Structured Data has no steps. By default the
+   * page's steps win, and the Structured Data is the fallback.
+   */
+  fallbackOnly?: boolean
+}
 
 /**
  * List of possible headings to remove from instructions.
@@ -70,6 +87,38 @@ export function stringsToInstructions(
 ): Instructions {
   const items = values.map(createInstructionItem)
   return [createInstructionGroup(groupName, items)]
+}
+
+/**
+ * Reads instructions from the Recipe Page markup a Scraper trusts, or keeps
+ * the previously extracted Structured Data steps, as `structure` directs.
+ *
+ * @throws {ExtractionFailedException} When neither source has any steps
+ */
+export function readPageInstructions(
+  $: CheerioAPI,
+  instructions: Instructions | undefined,
+  structure: InstructionStructure,
+): Instructions {
+  const hasSteps = instructions?.some((group) => group.items.length > 0) ?? false
+
+  if (structure.fallbackOnly && hasSteps && instructions) {
+    return instructions
+  }
+
+  const groups = textGroups($, structure)
+
+  if (groups.length > 0) {
+    return groups.map(({ name, items }) =>
+      createInstructionGroup(name, items.map(createInstructionItem)),
+    )
+  }
+
+  if (hasSteps && instructions) {
+    return instructions
+  }
+
+  throw new ExtractionFailedException('instructions')
 }
 
 /**

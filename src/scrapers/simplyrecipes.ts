@@ -1,7 +1,4 @@
-import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import type { RecipeFields } from '@/types/recipe.interface'
-import { stringsToInstructions } from '@/utils/instructions'
-import { normalizeString } from '@/utils/parsing'
+import { AbstractScraper } from '@/abstract-scraper'
 
 /**
  * SimplyRecipes JSON-LD includes Ingredient Group headers (like "For the
@@ -18,37 +15,15 @@ export class SimplyRecipes extends AbstractScraper {
     return 'simplyrecipes.com'
   }
 
-  protected override readonly extractors = {
-    instructions: this.instructions.bind(this),
-  } satisfies ScraperExtractors
-
   protected override readonly ingredientGroupStructure = {
     heading: '.structured-ingredients__list-heading',
     item: '.structured-ingredients__list-item',
     excludeSource: isGroupHeader,
   }
 
-  /**
-   * Extract and normalize each step under
-   * div.structured-project__steps > ol > li
-   */
-  protected instructions(): RecipeFields['instructions'] {
-    // select all <li> under the steps container
-    const items = this.$('div.structured-project__steps ol li').toArray()
-
-    if (items.length === 0) {
-      return []
-    }
-
-    const steps = items
-      .map((el) => {
-        // clone & strip images/figures before grabbing text
-        const $clone = this.$(el).clone()
-        $clone.find('img, picture, figure').remove()
-        return normalizeString($clone.text())
-      })
-      .filter((text) => text.length > 0)
-
-    return stringsToInstructions(steps)
+  /** Each step in the steps list, without its photos. */
+  protected override readonly instructionStructure = {
+    item: 'div.structured-project__steps ol li',
+    exclude: 'img, picture, figure',
   }
 }

@@ -1,51 +1,13 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { textGroups, texts } from '@/utils/dom'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
-import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { parseYields } from '@/utils/parse-yields'
 import { normalizeString } from '@/utils/parsing'
 
 /** Bold Wix rich-text span used for each ingredient and method heading. */
 const GROUP_HEADING = 'span[style="font-weight:700"]'
-
-interface PostSection {
-  name: string | null
-  items: string[]
-}
-
-/**
- * Splits the post's lists into sections, each named by the bold heading
- * before it, keeping only the lists matched by `listSelector`.
- */
-function postSections($: AbstractScraper['$'], listSelector: 'ul' | 'ol'): PostSection[] {
-  const sections: PostSection[] = []
-  let name: string | null = null
-
-  for (const element of $(`${GROUP_HEADING}, ul > li, ol > li`).toArray()) {
-    const $element = $(element)
-    const text = normalizeString($element.text())
-
-    if ($element.is(GROUP_HEADING)) {
-      name = text.replace(/:$/, '') || null
-      continue
-    }
-
-    if (!text || !$element.parent().is(listSelector)) {
-      continue
-    }
-
-    const current = sections.at(-1)
-
-    if (current && current.name === name) {
-      current.items.push(text)
-    } else {
-      sections.push({ name, items: [text] })
-    }
-  }
-
-  return sections
-}
 
 /**
  * Joshua Weissman's Wix blog posts carry a Recipe JSON-LD with only a title,
@@ -61,9 +23,14 @@ export class JoshuaWeissman extends AbstractScraper {
     author: this.author.bind(this),
     description: this.description.bind(this),
     ingredients: this.ingredients.bind(this),
-    instructions: this.instructions.bind(this),
     yields: this.yields.bind(this),
   } satisfies ScraperExtractors
+
+  /** Each method list's steps, named by the bold heading above it. */
+  protected override readonly instructionStructure = {
+    heading: GROUP_HEADING,
+    item: 'ol > li',
+  }
 
   /**
    * Every recipe is Joshua Weissman's. The JSON-LD author is the Wix account
@@ -86,8 +53,8 @@ export class JoshuaWeissman extends AbstractScraper {
   }
 
   protected ingredients(): RecipeFields['ingredients'] {
-    const groups = postSections(this.$, 'ul').map(({ name, items }) =>
-      createIngredientGroup(name, items.map(createIngredientItem)),
+    const groups = textGroups(this.$, { heading: GROUP_HEADING, item: 'ul > li' }).map(
+      ({ name, items }) => createIngredientGroup(name, items.map(createIngredientItem)),
     )
 
     if (groups.length === 0) {
@@ -97,20 +64,11 @@ export class JoshuaWeissman extends AbstractScraper {
     return groups
   }
 
-  protected instructions(): RecipeFields['instructions'] {
-    return postSections(this.$, 'ol').map(({ name, items }) =>
-      createInstructionGroup(name, items.map(createInstructionItem)),
-    )
-  }
-
   /** Reads the "Serving Size: 4-6" line from the post body. */
   protected yields(prevValue: RecipeFields['yields'] | undefined): RecipeFields['yields'] {
     if (prevValue) return prevValue
 
-    const servingSize = this.$('span')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .find((text) => /serving size/i.test(text))
+    const servingSize = texts(this.$, 'span').find((text) => /serving size/i.test(text))
 
     if (!servingSize) {
       throw new ExtractionFailedException('yields')

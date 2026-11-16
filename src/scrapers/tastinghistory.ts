@@ -1,6 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { groupIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
@@ -50,10 +51,7 @@ export class TastingHistory extends AbstractScraper {
   }
 
   protected category(prevValue: RecipeFields['category'] | undefined): RecipeFields['category'] {
-    const tags = this.$('a.blog-item-tag')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((tag) => tag.length > 0)
+    const tags = texts(this.$, 'a.blog-item-tag')
 
     return tags.length > 0 ? new Set(tags) : (prevValue ?? new Set())
   }
@@ -83,10 +81,7 @@ export class TastingHistory extends AbstractScraper {
 
   protected ingredients(): RecipeFields['ingredients'] {
     const itemSelector = `${INGREDIENT_COLUMN} .sqs-block-content ul li`
-    const values = this.$(itemSelector)
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((value) => value.length > 0)
+    const values = texts(this.$, itemSelector)
 
     if (values.length === 0) {
       throw new NoIngredientsFoundException()
@@ -101,12 +96,10 @@ export class TastingHistory extends AbstractScraper {
   }
 
   protected instructions(): RecipeFields['instructions'] {
-    const steps = this.$(`${INSTRUCTION_COLUMN} .sqs-block-content ol`)
-      .first()
-      .find('li')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((step) => step.length > 0)
+    const steps = texts(
+      this.$,
+      this.$(`${INSTRUCTION_COLUMN} .sqs-block-content ol`).first().find('li'),
+    )
 
     if (steps.length === 0) {
       throw new ExtractionFailedException('instructions')

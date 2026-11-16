@@ -1,8 +1,10 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
+
+/** One numbered step in the microdata `ItemList` of instructions. */
+const STEP = '[itemprop="recipeInstructions"] [itemprop="itemListElement"]'
 
 /**
  * Home Chef publishes Recipe microdata whose instructions are an `ItemList`
@@ -16,8 +18,13 @@ export class HomeChef extends AbstractScraper {
 
   protected override readonly extractors = {
     author: this.author.bind(this),
-    instructions: this.instructions.bind(this),
   } satisfies ScraperExtractors
+
+  /** Each numbered step becomes an Instruction Group of its paragraphs. */
+  protected override readonly instructionStructure = {
+    heading: `${STEP} [itemprop="name"]`,
+    item: `${STEP} [itemprop="description"] p`,
+  }
 
   /** Reads the chef's name, skipping the "Chef" label heading above it. */
   protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
@@ -29,24 +36,5 @@ export class HomeChef extends AbstractScraper {
     if (prevValue) return prevValue
 
     throw new ExtractionFailedException('author')
-  }
-
-  /** Each numbered step becomes an Instruction Group of its paragraphs. */
-  protected instructions(): RecipeFields['instructions'] {
-    return this.$('[itemprop="recipeInstructions"] [itemprop="itemListElement"]')
-      .toArray()
-      .map((element) => {
-        const $step = this.$(element)
-        const name = normalizeString($step.find('[itemprop="name"]').first().text()) || null
-        const items = $step
-          .find('[itemprop="description"] p')
-          .toArray()
-          .map((paragraph) => normalizeString(this.$(paragraph).text()))
-          .filter((value) => value.length > 0)
-          .map(createInstructionItem)
-
-        return createInstructionGroup(name, items)
-      })
-      .filter((group) => group.items.length > 0)
   }
 }

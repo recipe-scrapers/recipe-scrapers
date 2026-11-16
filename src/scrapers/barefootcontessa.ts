@@ -1,8 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { groupIngredients } from '@/utils/ingredients'
-import { stringsToInstructions } from '@/utils/instructions'
-import { normalizeString } from '@/utils/parsing'
 
 const INGREDIENT_HEADING = 'div.mb-10 > p.h29'
 const INGREDIENT_ITEM = 'div.mb-10 > ul.h29 > li'
@@ -15,8 +14,15 @@ export class BarefootContessa extends AbstractScraper {
   protected override readonly extractors = {
     author: this.author.bind(this),
     ingredients: this.ingredients.bind(this),
-    instructions: this.instructions.bind(this),
   } satisfies ScraperExtractors
+
+  /**
+   * On recipes with a sub-recipe, the Structured Data holds only the last
+   * method block, so the paragraphs of every method block are read instead.
+   */
+  protected override readonly instructionStructure = {
+    item: 'div.EntryPost__text p',
+  }
 
   /** Every recipe on the site is Ina Garten's; the Structured Data names no author. */
   protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
@@ -30,29 +36,10 @@ export class BarefootContessa extends AbstractScraper {
   protected ingredients(
     prevValue: RecipeFields['ingredients'] | undefined,
   ): RecipeFields['ingredients'] {
-    const values = this.texts(INGREDIENT_ITEM)
+    const values = texts(this.$, INGREDIENT_ITEM)
 
     return values.length > 0
       ? groupIngredients(this.$, values, INGREDIENT_HEADING, INGREDIENT_ITEM)
       : (prevValue ?? [])
-  }
-
-  /**
-   * On recipes with a sub-recipe, the Structured Data holds only the last
-   * method block, so the paragraphs of every method block are read instead.
-   */
-  protected instructions(
-    prevValue: RecipeFields['instructions'] | undefined,
-  ): RecipeFields['instructions'] {
-    const steps = this.texts('div.EntryPost__text p')
-
-    return steps.length > 0 ? stringsToInstructions(steps) : (prevValue ?? [])
-  }
-
-  private texts(selector: string): string[] {
-    return this.$(selector)
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter(Boolean)
   }
 }

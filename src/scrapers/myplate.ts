@@ -1,8 +1,8 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
+import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { stringsToIngredients } from '@/utils/ingredients'
-import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString, parseMinutes } from '@/utils/parsing'
 
 export class MyPlate extends AbstractScraper {
@@ -13,10 +13,14 @@ export class MyPlate extends AbstractScraper {
   protected override readonly extractors = {
     cookTime: this.cookTime.bind(this),
     ingredients: this.ingredients.bind(this),
-    instructions: this.instructions.bind(this),
     prepTime: this.prepTime.bind(this),
     totalTime: this.totalTime.bind(this),
   } satisfies ScraperExtractors
+
+  protected override readonly instructionStructure = {
+    item: '.field--name-field-instructions li',
+    fallbackOnly: true,
+  }
 
   protected ingredients(
     prevValue: RecipeFields['ingredients'] | undefined,
@@ -25,35 +29,13 @@ export class MyPlate extends AbstractScraper {
       return prevValue
     }
 
-    const values = this.$('.field--name-field-ingredients li.field__item')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((value) => value.length > 0)
+    const values = texts(this.$, '.field--name-field-ingredients li.field__item')
 
     if (values.length === 0) {
       throw new NoIngredientsFoundException()
     }
 
     return stringsToIngredients(values)
-  }
-
-  protected instructions(
-    prevValue: RecipeFields['instructions'] | undefined,
-  ): RecipeFields['instructions'] {
-    if (prevValue && prevValue.length > 0) {
-      return prevValue
-    }
-
-    const values = this.$('.field--name-field-instructions li')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((value) => value.length > 0)
-
-    if (values.length === 0) {
-      throw new ExtractionFailedException('instructions')
-    }
-
-    return stringsToInstructions(values)
   }
 
   protected cookTime(prevValue: RecipeFields['cookTime'] | undefined): RecipeFields['cookTime'] {
