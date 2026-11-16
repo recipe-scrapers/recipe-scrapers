@@ -30,6 +30,12 @@ export function hearstKeywords(
   )
 }
 
+/**
+ * Marks a step boundary in a directions list item: the information separator
+ * control character, which page text never contains.
+ */
+const STEP_SEPARATOR = '\u001f'
+
 /** A leading step label such as "Step 2" or "2." that the page prints before a step. */
 const STEP_LABEL = /^(?:step\s*\d+[.):]?|\d+[.)])\s*/i
 
@@ -55,9 +61,11 @@ export function hearstInstructions(
     .flatMap((item) => {
       const $item = $(item).clone()
       $item.find('style').remove()
-      $item.find('br').replaceWith('\n')
-      $item.find('p').after('\n')
-      return $item.text().split('\n')
+      // Only `<br>` and paragraph ends separate steps. Newlines in the source
+      // are just wrapping, so they become spaces in `normalizeString` below.
+      $item.find('br').replaceWith(STEP_SEPARATOR)
+      $item.find('p').after(STEP_SEPARATOR)
+      return $item.text().split(STEP_SEPARATOR)
     })
     .map((line) => normalizeString(line).replace(STEP_LABEL, ''))
     .filter(Boolean)

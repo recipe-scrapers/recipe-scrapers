@@ -34,6 +34,17 @@ describe('hearstInstructions', () => {
     expect(steps(html)).toEqual(['Beat the cream.', 'Add 2 eggs.'])
   })
 
+  it('keeps a paragraph that wraps across source lines as one step', () => {
+    const html = `<ul class="directions"><li>
+      <p>Preheat the oven
+        to 180°C.</p>
+      <p>Bake until
+        golden.</p>
+    </li></ul>`
+
+    expect(steps(html)).toEqual(['Preheat the oven to 180°C.', 'Bake until golden.'])
+  })
+
   it('reads nested list items once', () => {
     const html = '<ul class="directions"><li><ol><li>Chop.</li><li>Fry.</li></ol></li></ul>'
 
