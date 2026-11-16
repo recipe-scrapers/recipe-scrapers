@@ -56,15 +56,38 @@ const RECIPE_YIELD_TYPES: [string, string][] = [
 ]
 
 /**
- * Each yield type as whole-word patterns, so "Barbecue" is not a `bar` and
- * "cupcakes" is a `cupcake` rather than a `cup`.
+ * Every yield type name as a whole word, so "Barbecue" is not a `bar` and
+ * "cupcakes" is a `cupcake` rather than a `cup`. Longest names first, so at
+ * any one position "hamburger buns" is tried before "buns".
  */
-const RECIPE_YIELD_TYPE_PATTERNS = RECIPE_YIELD_TYPES.map(([singular, plural]) => ({
-  singular,
-  plural,
-  singularPattern: new RegExp(`\\b${singular}\\b`, 'i'),
-  pluralPattern: new RegExp(`\\b${plural}\\b`, 'i'),
-}))
+const YIELD_TYPE_PATTERN = new RegExp(
+  `\\b(?:${RECIPE_YIELD_TYPES.flat()
+    .sort((a, b) => b.length - a.length)
+    .join('|')})\\b`,
+  'gi',
+)
+
+/**
+ * Returns the yield type that names what the number counts: the first one
+ * after the number ("4 dozen cookies" is 4 dozen), or else the first one in
+ * the text ("Cookies: 24").
+ */
+function findYieldType(text: string, numberEnd: number): readonly [string, string] | undefined {
+  let firstType: readonly [string, string] | undefined
+
+  for (const match of text.matchAll(YIELD_TYPE_PATTERN)) {
+    const name = match[0].toLowerCase()
+    const type = RECIPE_YIELD_TYPES.find((names) => names.includes(name))
+
+    if (match.index >= numberEnd) {
+      return type
+    }
+
+    firstType ??= type
+  }
+
+  return firstType
+}
 
 /**
  * Returns a string of servings or items. If the recipe is for a number of
@@ -92,27 +115,17 @@ export function parseYields(element: string): string {
 
   // Not normalized: the parenthetical lookup below reads line by line.
   const serveText = element
-  const matched = serveText.match(SERVE_REGEX_NUMBER)?.groups?.items
+  const numberMatch = serveText.match(SERVE_REGEX_NUMBER)
+  const matched = numberMatch?.groups?.items
 
   if (matched === undefined) {
     return writtenText
   }
 
-  let bestMatch: string | null = null
-  let bestMatchLength = 0
-
-  for (const { singular, plural, singularPattern, pluralPattern } of RECIPE_YIELD_TYPE_PATTERNS) {
-    const matchLength = singularPattern.test(serveText)
-      ? singular.length
-      : pluralPattern.test(serveText)
-        ? plural.length
-        : 0
-
-    if (matchLength > bestMatchLength) {
-      bestMatchLength = matchLength
-      bestMatch = `${matched} ${Number.parseFloat(matched) === 1 ? singular : plural}`
-    }
-  }
+  const yieldType = findYieldType(serveText, (numberMatch?.index ?? 0) + matched.length)
+  let bestMatch = yieldType
+    ? `${matched} ${Number.parseFloat(matched) === 1 ? yieldType[0] : yieldType[1]}`
+    : null
 
   // If we found the best match (e.g. "5 cups"), append any trailing
   // parentheses text. That way "5 cups (about 120...)" stays intact.

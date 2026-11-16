@@ -70,6 +70,19 @@ describe('parseYields', () => {
     expect(parseYields('8 hamburger buns')).toBe('8 hamburger buns')
   })
 
+  it('reads the yield type that follows the number', () => {
+    expect(parseYields('4 dozen cookies')).toBe('4 dozen')
+    expect(parseYields('1 dozen cookies')).toBe('1 dozen')
+    expect(parseYields('24 cookies (2 dozen)')).toBe('24 cookies (2 dozen)')
+    expect(parseYields('2 batches of brownies')).toBe('2 batches')
+    expect(parseYields('Batch of 24 cookies')).toBe('24 cookies')
+    expect(parseYields('1 pound cake')).toBe('1 pound')
+  })
+
+  it('falls back to a yield type before the number', () => {
+    expect(parseYields('Cookies: 24')).toBe('24 cookies')
+  })
+
   it('matches yield types as whole words', () => {
     expect(parseYields('Barbecue for 4')).toBe('4 servings')
     expect(parseYields('Serves 6 (pieceful)')).toBe('6 servings')
