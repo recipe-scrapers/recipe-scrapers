@@ -63,6 +63,18 @@ describe('microdata-extractor', () => {
     })
   })
 
+  it("prefers an author link's content attribute over its text", () => {
+    const html = `
+      <div itemtype="https://schema.org/Recipe">
+        <h1 itemprop="name">Test Recipe</h1>
+        <a itemprop="author" content="Jane Doe" href="/jane">View profile</a>
+      </div>
+    `
+    const $ = cheerio.load(html)
+
+    expect(extractRecipeMicrodata($)[0]?.author).toEqual({ name: 'Jane Doe', url: '/jane' })
+  })
+
   it('should extract nested microdata objects', () => {
     const html = `
       <div itemtype="https://schema.org/Recipe">
