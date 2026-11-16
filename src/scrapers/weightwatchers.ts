@@ -2,6 +2,7 @@ import type { Cheerio } from 'cheerio'
 import type { Element } from 'domhandler'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { stringsToIngredients } from '@/utils/ingredients'
 import { normalizeString } from '@/utils/parsing'
@@ -87,7 +88,7 @@ export class WeightWatchers extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract ingredients')
+    throw new NoIngredientsFoundException()
   }
 
   /**

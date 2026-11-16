@@ -1,5 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
 import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
@@ -82,7 +82,7 @@ export class JoshuaWeissman extends AbstractScraper {
     if (description) return description
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract description')
+    throw new ExtractionFailedException('description')
   }
 
   protected ingredients(): RecipeFields['ingredients'] {
@@ -113,7 +113,7 @@ export class JoshuaWeissman extends AbstractScraper {
       .find((text) => /serving size/i.test(text))
 
     if (!servingSize) {
-      throw new Error('Failed to extract yields')
+      throw new ExtractionFailedException('yields')
     }
 
     return parseYields(servingSize)

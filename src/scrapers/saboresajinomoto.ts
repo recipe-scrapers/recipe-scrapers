@@ -1,7 +1,7 @@
 import type { Element } from 'domhandler'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
@@ -47,7 +47,7 @@ export class SaboresAjinomoto extends AbstractScraper {
       normalizeString(prevValue) || normalizeString(this.$('h1[itemprop="name"]').text())
 
     if (!value) {
-      throw new Error('Failed to extract title')
+      throw new ExtractionFailedException('title')
     }
 
     const lower = value.toLocaleLowerCase('pt-BR')
@@ -86,7 +86,7 @@ export class SaboresAjinomoto extends AbstractScraper {
       normalizeString(this.$('meta[property="og:description"]').first().attr('content'))
 
     if (!description) {
-      throw new Error('Failed to extract description')
+      throw new ExtractionFailedException('description')
     }
 
     return description
@@ -127,7 +127,7 @@ export class SaboresAjinomoto extends AbstractScraper {
       .filter((value) => value.length > 0)
 
     if (values.length === 0) {
-      throw new Error('Failed to extract instructions')
+      throw new ExtractionFailedException('instructions')
     }
 
     return stringsToInstructions(values)

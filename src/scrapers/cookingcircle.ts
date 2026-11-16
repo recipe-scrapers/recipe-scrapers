@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { IngredientGroup, RecipeFields } from '@/types/recipe.interface'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
@@ -32,7 +33,7 @@ export class CookingCircle extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract author')
+    throw new ExtractionFailedException('author')
   }
 
   /**
@@ -69,7 +70,7 @@ export class CookingCircle extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract ingredients')
+    throw new NoIngredientsFoundException()
   }
 
   /**
@@ -97,6 +98,6 @@ export class CookingCircle extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract instructions')
+    throw new ExtractionFailedException('instructions')
   }
 }

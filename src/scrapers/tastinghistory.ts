@@ -1,5 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { groupIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
@@ -35,7 +35,7 @@ export class TastingHistory extends AbstractScraper {
     if (heading) return heading
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract title')
+    throw new ExtractionFailedException('title')
   }
 
   protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
@@ -46,7 +46,7 @@ export class TastingHistory extends AbstractScraper {
     if (author) return author
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract author')
+    throw new ExtractionFailedException('author')
   }
 
   protected category(prevValue: RecipeFields['category'] | undefined): RecipeFields['category'] {
@@ -68,7 +68,7 @@ export class TastingHistory extends AbstractScraper {
     if (description) return description
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract description')
+    throw new ExtractionFailedException('description')
   }
 
   /** Uses the full-size hero photo rather than the resized share image. */
@@ -78,7 +78,7 @@ export class TastingHistory extends AbstractScraper {
     if (image) return image
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract image')
+    throw new ExtractionFailedException('image')
   }
 
   protected ingredients(): RecipeFields['ingredients'] {
@@ -109,7 +109,7 @@ export class TastingHistory extends AbstractScraper {
       .filter((step) => step.length > 0)
 
     if (steps.length === 0) {
-      throw new Error('Failed to extract instructions')
+      throw new ExtractionFailedException('instructions')
     }
 
     return stringsToInstructions(steps)

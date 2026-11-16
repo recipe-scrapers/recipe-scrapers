@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { stringsToIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
@@ -30,7 +31,7 @@ export class MyPlate extends AbstractScraper {
       .filter((value) => value.length > 0)
 
     if (values.length === 0) {
-      throw new Error('Failed to extract ingredients')
+      throw new NoIngredientsFoundException()
     }
 
     return stringsToIngredients(values)
@@ -49,7 +50,7 @@ export class MyPlate extends AbstractScraper {
       .filter((value) => value.length > 0)
 
     if (values.length === 0) {
-      throw new Error('Failed to extract instructions')
+      throw new ExtractionFailedException('instructions')
     }
 
     return stringsToInstructions(values)

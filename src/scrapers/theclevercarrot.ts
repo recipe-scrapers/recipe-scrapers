@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { normalizeString } from '@/utils/parsing'
 
@@ -27,7 +28,7 @@ export class TheCleverCarrot extends AbstractScraper {
     const normalized = normalizeString(description)
 
     if (!description || !normalized) {
-      throw new Error('Failed to extract description')
+      throw new ExtractionFailedException('description')
     }
 
     return description

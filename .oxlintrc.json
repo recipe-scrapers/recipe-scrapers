@@ -108,6 +108,34 @@
       }
     },
     {
+      "files": ["src/scrapers/**"],
+      "rules": {
+        "no-restricted-globals": [
+          "error",
+          {
+            "name": "Bun",
+            "message": "src/** must stay runtime-portable; Bun APIs belong in tests and scripts."
+          },
+          {
+            "name": "Error",
+            "message": "Throw ExtractionFailedException (or NoIngredientsFoundException) from '@/exceptions'. A plain Error becomes an ExtractionRuntimeException, which skips Structured Data values and caller fallbacks."
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/scrapers/_index.ts"],
+      "rules": {
+        "no-restricted-globals": [
+          "error",
+          {
+            "name": "Bun",
+            "message": "src/** must stay runtime-portable; Bun APIs belong in tests and scripts."
+          }
+        ]
+      }
+    },
+    {
       "files": ["src/logger.ts"],
       "rules": {
         "no-console": "off"

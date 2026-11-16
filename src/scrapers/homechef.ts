@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
@@ -27,7 +28,7 @@ export class HomeChef extends AbstractScraper {
     if (author) return author
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract author')
+    throw new ExtractionFailedException('author')
   }
 
   /** Each numbered step becomes an Instruction Group of its paragraphs. */

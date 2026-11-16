@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
@@ -36,6 +37,6 @@ export class TasteOfHome extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract instructions')
+    throw new ExtractionFailedException('instructions')
   }
 }
