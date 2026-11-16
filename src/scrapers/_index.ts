@@ -466,6 +466,7 @@ const schemaOrgOnlyScraperClasses = SCHEMA_ORG_ONLY_HOSTS.map((host) =>
  */
 const scraperAliases: Readonly<Record<string, ScraperClass>> = {
   'bbc.co.uk': BBCFood,
+  'wholefoodsmarket.co.uk': WholeFoodsMarket,
   ...Object.fromEntries(HELLOFRESH_COUNTRY_HOSTS.map((host) => [host, HelloFresh])),
 }
 
