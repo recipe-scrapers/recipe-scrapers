@@ -570,21 +570,21 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
 
     const flatIngredients = ingredients.flat()
 
-    const uniqueIngredients = new Set<string>()
+    const ingredientValues: string[] = []
 
     for (const item of flatIngredients) {
       const ingredient = unwrapIngredientNotes(this.getSchemaTextValue(item))
 
       if (ingredient) {
-        uniqueIngredients.add(ingredient)
+        ingredientValues.push(ingredient)
       }
     }
 
-    if (uniqueIngredients.size === 0) {
+    if (ingredientValues.length === 0) {
       throw new SchemaOrgException('ingredients', ingredients)
     }
 
-    return groupIngredients(this.$, [...uniqueIngredients])
+    return groupIngredients(this.$, ingredientValues)
   }
 
   public instructions(): RecipeFields['instructions'] {

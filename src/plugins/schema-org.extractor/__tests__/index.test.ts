@@ -130,8 +130,8 @@ describe('SchemaOrgPlugin', () => {
     expect(instructions).toEqual([{ name: null, items: [{ value: 'step1' }, { value: 'step2' }] }])
   })
 
-  it('deduplicates ingredient values', () => {
-    const jsonWithDupes = `
+  it('keeps repeated ingredient values, such as salt in two groups', () => {
+    const jsonWithRepeats = `
       <script type="application/ld+json">
       {
         "@type": "Recipe",
@@ -139,13 +139,19 @@ describe('SchemaOrgPlugin', () => {
         "recipeIngredient": ["salt", "pepper", "salt", "garlic", "pepper"]
       }
       </script>`
-    const dupePlugin = new SchemaOrgPlugin(load(jsonWithDupes))
-    const ingredients = dupePlugin.extract('ingredients')
+    const repeatPlugin = new SchemaOrgPlugin(load(jsonWithRepeats))
+    const ingredients = repeatPlugin.extract('ingredients')
 
     expect(ingredients).toEqual([
       {
         name: null,
-        items: [{ value: 'salt' }, { value: 'pepper' }, { value: 'garlic' }],
+        items: [
+          { value: 'salt' },
+          { value: 'pepper' },
+          { value: 'salt' },
+          { value: 'garlic' },
+          { value: 'pepper' },
+        ],
       },
     ])
   })
