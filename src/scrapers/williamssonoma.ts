@@ -1,4 +1,4 @@
-import { load } from 'cheerio'
+import { load } from 'cheerio/slim'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { ExtractionFailedException } from '@/exceptions'
