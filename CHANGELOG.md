@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.0](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.6.4...3.7.0) (2026-11-16)
+
+
+### Features
+
+* **scrapers:** add 25 hosts ([5963156](https://github.com/recipe-scrapers/recipe-scrapers/commit/5963156f3c3056dcffc69488e70009265ec06952))
+* **scrapers:** add 25 US hosts ([468b41a](https://github.com/recipe-scrapers/recipe-scrapers/commit/468b41aad2c10214a847f392fdb6cad52dd716cc))
+* **scrapers:** route wholefoodsmarket.co.uk to the Whole Foods Market scraper ([6455444](https://github.com/recipe-scrapers/recipe-scrapers/commit/6455444a51ccbbea5529a47fafa876e06c727655))
+* **scrapers:** support HelloFresh country domains ([91429e9](https://github.com/recipe-scrapers/recipe-scrapers/commit/91429e9cc9db44a419776690c3091fabfbbd4aff))
+
+
+### Bug Fixes
+
+* **plugins:** strip markup from nutrient and list values ([5963156](https://github.com/recipe-scrapers/recipe-scrapers/commit/5963156f3c3056dcffc69488e70009265ec06952))
+* **schema-org:** drop WP Recipe Maker step names ([6455444](https://github.com/recipe-scrapers/recipe-scrapers/commit/6455444a51ccbbea5529a47fafa876e06c727655))
+* **schema-org:** group ingredients at headings written into the list ([6455444](https://github.com/recipe-scrapers/recipe-scrapers/commit/6455444a51ccbbea5529a47fafa876e06c727655))
+* **schema-org:** keep repeated ingredients ([91429e9](https://github.com/recipe-scrapers/recipe-scrapers/commit/91429e9cc9db44a419776690c3091fabfbbd4aff))
+* **schema-org:** match Schema.org types regardless of case ([6455444](https://github.com/recipe-scrapers/recipe-scrapers/commit/6455444a51ccbbea5529a47fafa876e06c727655))
+* **schema-org:** split comma-joined entries in a keywords array ([91429e9](https://github.com/recipe-scrapers/recipe-scrapers/commit/91429e9cc9db44a419776690c3091fabfbbd4aff))
+* **scrapers:** read America's Test Kitchen page data without a headnote ([5963156](https://github.com/recipe-scrapers/recipe-scrapers/commit/5963156f3c3056dcffc69488e70009265ec06952))
+* **scrapers:** route bbc.co.uk to the BBC Food scraper ([5963156](https://github.com/recipe-scrapers/recipe-scrapers/commit/5963156f3c3056dcffc69488e70009265ec06952))
+* **scrapers:** throw extraction exceptions instead of plain Errors ([e8fa797](https://github.com/recipe-scrapers/recipe-scrapers/commit/e8fa797c45f871dd11b4cf73ce7acf0ba1330ab6))
+* **utils:** leave inline SVG icons out of microdata text ([6455444](https://github.com/recipe-scrapers/recipe-scrapers/commit/6455444a51ccbbea5529a47fafa876e06c727655))
+* **utils:** read a microdata author link as a named Person ([91429e9](https://github.com/recipe-scrapers/recipe-scrapers/commit/91429e9cc9db44a419776690c3091fabfbbd4aff))
+
+
+### Code Refactoring
+
+* **scrapers:** declare page instructions and read page text with shared helpers ([e8fa797](https://github.com/recipe-scrapers/recipe-scrapers/commit/e8fa797c45f871dd11b4cf73ce7acf0ba1330ab6))
+
+
+### Performance Improvements
+
+* parse Recipe Pages with cheerio/slim ([5b54647](https://github.com/recipe-scrapers/recipe-scrapers/commit/5b54647b48311af7fb6082654c9154b8f599120a))
+
 ## [3.6.4](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.6.3...3.6.4) (2026-11-16)
 
 
