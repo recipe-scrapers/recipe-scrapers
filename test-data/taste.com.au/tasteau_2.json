@@ -1,0 +1,117 @@
+{
+  "siteName": "Taste",
+  "category": ["dinner", "main"],
+  "cookTime": 65,
+  "prepTime": 60,
+  "totalTime": 125,
+  "cuisine": ["australian"],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": [
+    "cheese",
+    "egg allergy",
+    "garlic",
+    "gluten allergy",
+    "lactose allergy",
+    "lentil",
+    "milk allergy",
+    "onion",
+    "pasta",
+    "peanut allergy",
+    "pumpkin",
+    "sesame allergy",
+    "tomato",
+    "tree nut allergy",
+    "wheat allergy",
+    "zucchini",
+    "australian",
+    "dinner",
+    "main",
+    "entertaining",
+    "family friendly",
+    "weeknight",
+    "vegetarian",
+    "savoury",
+    "easy"
+  ],
+  "author": "Michelle Southan - Taste Test Kitchen",
+  "canonicalUrl": "https://www.taste.com.au/recipes/vegetarian-lasagne-roll-recipe/ektz8gdf",
+  "host": "taste.com.au",
+  "language": "en",
+  "title": "Vegetarian lasagne roll recipe",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "600g fresh ricotta (see note)"
+        },
+        {
+          "value": "Good pinch ground nutmeg"
+        },
+        {
+          "value": "3 (3-4cm thick) zucchini, peeled into ribbons"
+        },
+        {
+          "value": "375g pkt fresh lasagne sheets"
+        },
+        {
+          "value": "60g pkt baby spinach"
+        }
+      ]
+    },
+    {
+      "name": "Pumpkin & lentil filling",
+      "items": [
+        {
+          "value": "700g butternut pumpkin, peeled, deseeded, cut into 2cm pieces"
+        },
+        {
+          "value": "36.40 gm olive oil"
+        },
+        {
+          "value": "1 brown onion, finely chopped"
+        },
+        {
+          "value": "2 garlic cloves, crushed"
+        },
+        {
+          "value": "400g brown lentils, rinsed, drained"
+        },
+        {
+          "value": "250ml (1 cup) tomato passata"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "To make the filling, preheat oven to 200C/180C fan forced. Line 2 baking trays with baking paper. Arrange the pumpkin on 1 lined tray, drizzle with 1 tbsp oil and season. Bake for 30 minutes or until tender and golden."
+        },
+        {
+          "value": "Meanwhile, heat the remaining oil in a frying pan over medium heat. Cook the onion, stirring, for 5 minutes or until soft and lightly golden. Add the garlic and cook for 1 minute. Add lentils and passata. Cook, stirring occasionally, for 2-3 minutes or until thickened slightly."
+        },
+        {
+          "value": "Add the pumpkin to the lentil mixture and mix gently to combine. Transfer to a large bowl and set aside to cool slightly."
+        },
+        {
+          "value": "Combine the ricotta and nutmeg in a bowl. Set aside."
+        },
+        {
+          "value": "Cut a piece of baking paper about 50cm long and place on a work surface. Arrange half the zucchini strips, side-by-side, across the paper diagonally (You should end up with a square about 30 x 45cm). Arrange remaining strips side-by-side in the opposite direction, weaving to create a lattice pattern. Top with the lasagne sheets, slightly overlapping. Top with ricotta mixture and spread to cover, leaving a 2cm gap on 1 of the longer sides. Top with the lentil mixture and spinach. Starting with the longest side, use the baking paper to help roll up to form a log. Trim the ends. Place log on the baking paper on the remaining lined tray. Spray with olive oil spray. Bake for 30-35 minutes or until light golden. Set aside for 10 minutes before slicing and serving."
+        }
+      ]
+    }
+  ],
+  "yields": "Yield not specified",
+  "description": "Pumpkin and lentils make this a substantial meat-free main that is perfect for any occasion. So easy, there’s even no need to cook the lasagne sheets – they will simply absorb the moisture from the spinach and zucchini. Not only is this delicious, but the lattice-style zucchini strips turn the vegetarian lasagne roll into a savoury centrepiece. More meat-free lasagnes we’ll be making Cut costs by cutting down on meat! If you’re having a dinner dilemma, lasagne is a great option. Many of the meat-free lasagnes we love to make use pantry staples and crisper-cleanout veggies. For a one-pan lasagne this mushroom lasagne (which comes with a super easy bechamel sauce recipe) is our other go-to vegetarian lasagne recipe. For something a little lazier, but undeniably delicious, give this silverbeet, pumpkin and blue cheese frying pan lazy lasagne a try!",
+  "image": "https://img.taste.com.au/KWZms0_h/taste/2023/10/vegetarian-lasagne-roll-192855-1.jpg"
+}

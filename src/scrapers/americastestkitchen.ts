@@ -10,7 +10,7 @@ import {
   recoverIngredientGroups,
 } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
-import { normalizeString } from '@/utils/parsing'
+import { normalizeString, parseMinutes } from '@/utils/parsing'
 
 // Use wildcard selectors to handle dynamic class name suffixes
 const INGREDIENT_GROUPS: IngredientGroupStructure = {
@@ -52,10 +52,9 @@ const recipeInstructionSchema = z.object({
 })
 
 const recipeDataSchema = z.object({
-  totalCookTime: z.number(),
   recipeTimeNote: z.string().optional(),
   ingredientGroups: z.array(recipeIngredientGroupSchema),
-  headnote: z.string().optional(),
+  headnote: z.string().nullish(),
   instructions: z.array(recipeInstructionSchema),
   metaData: z.object({
     fields: z.object({
@@ -93,10 +92,33 @@ export class AmericasTestKitchen extends AbstractScraper {
     ingredients: this.ingredients.bind(this),
     instructions: this.instructions.bind(this),
     siteName: this.siteName.bind(this),
+    totalTime: this.totalTime.bind(this),
   } satisfies ScraperExtractors
 
   protected siteName(): RecipeFields['siteName'] {
     return "America's Test Kitchen"
+  }
+
+  /**
+   * Cook's Country and Cook's Illustrated pages publish no Schema.org total
+   * time; their page data has a human-readable note such as "1¼ hours".
+   */
+  protected totalTime(prevValue: RecipeFields['totalTime'] | undefined): RecipeFields['totalTime'] {
+    if (prevValue) {
+      return prevValue
+    }
+
+    const timeNote = this.getRecipeData()?.recipeTimeNote
+
+    if (!timeNote) {
+      return null
+    }
+
+    try {
+      return parseMinutes(timeNote)
+    } catch {
+      return null
+    }
   }
 
   protected image(prevValue: RecipeFields['image'] | undefined): RecipeFields['image'] {

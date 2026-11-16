@@ -1,0 +1,151 @@
+{
+  "siteName": "Ambitious Kitchen",
+  "category": ["Dinner", "Pasta", "Vegetarian"],
+  "cookTime": 40,
+  "prepTime": 30,
+  "totalTime": 70,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 4.86,
+  "ratingsCount": 54,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "servingSize": "1 slice",
+    "calories": "311 kcal",
+    "fatContent": "12.1 g",
+    "saturatedFatContent": "5.3 g",
+    "carbohydrateContent": "31.3 g",
+    "sugarContent": "4 g",
+    "proteinContent": "19.1 g",
+    "fiberContent": "4.4 g"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["pumpkin lasagna"],
+  "author": "Monique of AmbitiousKitchen.com",
+  "canonicalUrl": "https://www.ambitiouskitchen.com/vegetarian-spinach-pumpkin-lasagna/",
+  "host": "ambitiouskitchen.com",
+  "language": "en",
+  "title": "Vegetarian Spinach Pumpkin Lasagna",
+  "ingredients": [
+    {
+      "name": "For the noodles",
+      "items": [
+        {
+          "value": "10 lasagna noodles"
+        }
+      ]
+    },
+    {
+      "name": "For the ricotta mixture",
+      "items": [
+        {
+          "value": "1/2 tablespoon olive oil"
+        },
+        {
+          "value": "6 ounces spinach (from 1 bag spinach)"
+        },
+        {
+          "value": "1 (15 ounce) container part skim ricotta"
+        },
+        {
+          "value": "1 egg"
+        },
+        {
+          "value": "½ teaspoon garlic powder"
+        },
+        {
+          "value": "1/2 teaspoon salt"
+        },
+        {
+          "value": "Freshly ground black pepper"
+        }
+      ]
+    },
+    {
+      "name": "For the pumpkin layer",
+      "items": [
+        {
+          "value": "2 (15 ounce) cans pumpkin puree"
+        },
+        {
+          "value": "½ cup milk (I like unsweetened almond milk, but any milk will work)"
+        },
+        {
+          "value": "¼ teaspoon cinnamon"
+        },
+        {
+          "value": "¼ teaspoon nutmeg"
+        },
+        {
+          "value": "¼ teaspoon ginger"
+        },
+        {
+          "value": "¼ teaspoon allspice"
+        },
+        {
+          "value": "3/4 teaspoon salt"
+        },
+        {
+          "value": "Freshly ground black pepper"
+        }
+      ]
+    },
+    {
+      "name": "For the layers",
+      "items": [
+        {
+          "value": "3 cups shredded mozzarella cheese, divided (approximately 12 ounces)"
+        },
+        {
+          "value": "1 cup grated parmesan cheese, divided"
+        }
+      ]
+    },
+    {
+      "name": "To garnish",
+      "items": [
+        {
+          "value": "Fresh chopped parsley or small sage leaves"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 400 degrees F. Grease a 9x13 inch baking pan with nonstick cooking spray."
+        },
+        {
+          "value": "Bring a large pot of water to a boil. Cook the lasagna noodles for 5-6 minutes, then drain. Immediately lay the noodles flat on an oiled baking sheet or cutting board so you can easily assemble the lasagna when ready. Another option is to soak the lasagna noodles in very warm (hot) water for 20-30 minutes if you do not want to boil them. (You can also use no cook lasagna noodles, but they aren't my favorite!)"
+        },
+        {
+          "value": "While the lasagna noodles are boiling, cook the spinach: add ½ tablespoon olive oil to a medium pan or skillet and place over medium heat. Add spinach, season with a little salt and pepper and cook until spinach wilts down. Add to a medium bowl and allow to cool for a minute or two."
+        },
+        {
+          "value": "In the small bowl, add the spinach, ricotta, egg, garlic powder, salt and pepper. Set aside."
+        },
+        {
+          "value": "Next make the pumpkin mixture: add pumpkin, milk, cinnamon, nutmeg, ginger, allspice, salt and pepper to a large bowl. Mix to combine."
+        },
+        {
+          "value": "To assemble the lasagna, spread 1 heaping cup of pumpkin mixture over the bottom of the baking dish. Place 5 of the cooked lasagna noodles on top laying 4 vertically and 1 horizontally. Spread half of the spinach-ricotta cheese mixture on top of the noodles, then top with ¾ cup shredded mozzarella."
+        },
+        {
+          "value": "Next, add 1 heaping cup of the pumpkin mixture on top of the mozzarella and then sprinkle with 1/2 cup of parmesan cheese."
+        },
+        {
+          "value": "Repeat layers once more: adding remaining noodles, remaining spinach-ricotta mixture, ¾ cup shredded mozzarella, then top with any remaining pumpkin and ½ cup parmesan cheese. Finally, top with remaining 1 ½ cups shredded mozzarella cheese."
+        },
+        {
+          "value": "Cover with foil and bake covered for 25 minutes. Remove foil and bake another 15-20 minutes until cheese starts to brown just a bit. Garnish with extra parmesan and either chopped sage or parsley. Cool for 15 minutes before cutting and serving. Serves 12."
+        }
+      ]
+    }
+  ],
+  "yields": "12 servings",
+  "description": "Incredible vegetarian spinach pumpkin lasagna with layers of melty cheese and pumpkin flavors. This healthy pumpkin lasagna recipe has a full bag of spinach for extra veggies and makes the best freezer-friendly dinner!",
+  "image": "https://www.ambitiouskitchen.com/wp-content/uploads/2019/10/Vegetarian-Spinach-Pumpkin-Lasagna-5sq.jpg"
+}

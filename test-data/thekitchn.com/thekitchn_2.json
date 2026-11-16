@@ -1,0 +1,157 @@
+{
+  "siteName": "The Kitchn",
+  "category": ["Main dish", "Dinner"],
+  "cookTime": 30,
+  "prepTime": 20,
+  "totalTime": 50,
+  "cuisine": ["Southern", "United states"],
+  "cookingMethod": null,
+  "ratings": 5,
+  "ratingsCount": 1,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "servingSize": "Serves 4",
+    "calories": "929 cal",
+    "fatContent": "65.4 g",
+    "saturatedFatContent": "9.9 g",
+    "unsaturatedFatContent": "0.0 g",
+    "carbohydrateContent": "48.1 g",
+    "sugarContent": "8.0 g",
+    "proteinContent": "36.3 g",
+    "sodiumContent": "886.9 mg",
+    "fiberContent": "1.7 g",
+    "cholesterolContent": "0 mg"
+  },
+  "dietaryRestrictions": [],
+  "keywords": [
+    "Beef",
+    "Chicken",
+    "Cooking Lessons from The Kitchn",
+    "dinner",
+    "How To",
+    "Ingredient",
+    "Main Dish",
+    "Recipe",
+    "southern",
+    "video",
+    "Meat",
+    "stovetop",
+    "children",
+    "Cooking with Kids",
+    "team:recipes",
+    "purpose:applenews",
+    "purpose:facebook",
+    "purpose:flipboard",
+    "purpose:search",
+    "platform:newsfeeds",
+    "platform:search",
+    "platform:social",
+    "course:main dish",
+    "cuisine:southern",
+    "cuisine:united states",
+    "mainingredients:beef",
+    "mainingredients:meat",
+    "mainingredients:steak",
+    "occasion:timing",
+    "occasion:weekday",
+    "timing:extended",
+    "method:stovetop",
+    "lifestyle:kid-friendly",
+    "meal:dinner",
+    "updated:2024-02-05"
+  ],
+  "author": "Meghan Splawn",
+  "canonicalUrl": "https://www.thekitchn.com/chicken-fried-steak-23002756",
+  "host": "thekitchn.com",
+  "language": "en",
+  "title": "Southern Chicken Fried Steak with Gravy",
+  "ingredients": [
+    {
+      "name": "For the chicken fried steak",
+      "items": [
+        {
+          "value": "4 beef cube steaks (about 4 ounces each)"
+        },
+        {
+          "value": "2 teaspoons kosher salt, divided"
+        },
+        {
+          "value": "1 1/2 cups all-purpose flour"
+        },
+        {
+          "value": "2 tablespoons cornstarch"
+        },
+        {
+          "value": "1 teaspoon freshly ground black pepper"
+        },
+        {
+          "value": "1/2 teaspoon garlic powder"
+        },
+        {
+          "value": "1/2 teaspoon onion powder"
+        },
+        {
+          "value": "1/2 teaspoon smoked paprika"
+        },
+        {
+          "value": "1/2 cup low-fat buttermilk"
+        },
+        {
+          "value": "1 large egg"
+        },
+        {
+          "value": "1 cup vegetable oil, for frying"
+        }
+      ]
+    },
+    {
+      "name": "For the gravy",
+      "items": [
+        {
+          "value": "2 cups whole milk"
+        },
+        {
+          "value": "1/2 teaspoon kosher salt"
+        },
+        {
+          "value": "1/2 teaspoon freshly ground black pepper"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Fit a wire rack inside a baking sheet. Pat 4 cube steaks dry with paper towels. Season the steaks on both sides with 1 teaspoon of the kosher salt. Place the steaks on the rack."
+        },
+        {
+          "value": "Place the remaining 1 teaspoon kosher salt, 1 1/2 cups all-purpose flour, 2 tablespoons cornstarch, 1 teaspoon black pepper, 1/2 teaspoon garlic powder, 1/2 teaspoon onion powder, and 1/2 teaspoon smoked paprika in a large shallow bowl or pie dish, and whisk to combine. Place 1/2 cup buttermilk and 1 large egg in a second shallow bowl or pie plate and whisk until smooth."
+        },
+        {
+          "value": "Working with one steak at a time, dip into the buttermilk mixture to coat, then press into the flour mixture until thoroughly coated. Return the steaks to the rack and let sit for 10 minutes. Meanwhile, reserve 1/4 cup of the flour mixture for the gravy. Heat the oven and prepare for frying."
+        },
+        {
+          "value": "Arrange a rack in the middle of the oven and heat the oven to warm or 225°F. Fit a wire rack onto a baking sheet."
+        },
+        {
+          "value": "Heat 1 cup vegetable oil in a large regular or cast iron skillet over medium-high heat until about 350ºF, about 8 minutes. You can test the oil by dropping a pinch of the breading into the oil — it should sizzle and brown quickly."
+        },
+        {
+          "value": "Using tongs, carefully add 2 of the steaks to the oil and fry until golden-brown on the bottom with no remaining flour or batter lumps, 3 to 4 minutes. Flip the steaks and fry until the second is browned, 2 to 3 minutes more. Transfer the steaks to the clean wire rack and place in the oven. Fry the remaining steaks."
+        },
+        {
+          "value": "Carefully pour the frying oil into a heatproof bowl (do not discard). Don't scrape or clean the skillet. Return 1/4 cup of the oil to the skillet over medium-high heat. Whisk in the reserved 1/4 cup flour mixture and cook, whisking continuously, until golden-brown, about 3 minutes. Add 2 cups whole milk and whisk to combine. Bring to a simmer and cook, stirring occasionally, until thickened, 5 to 6 minutes. Season with 1/2 teaspoon kosher salt and 1/2 teaspoon black pepper."
+        },
+        {
+          "value": "Serve the steaks with a generous ladling of the gravy."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Thanks to a few staple ingredients and a quick pan fry, chicken fried steak is surprisingly easy to make at home.",
+  "image": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_16:9/k%2FPhoto%2FRecipes%2F2020-03-How-to-Make-Southern-Fried-Steak-with-Gravy%2F2020-02_How-to-Make-the-Ultimate-Southern-Fried-Steak-with-Gravy_206"
+}

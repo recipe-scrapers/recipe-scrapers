@@ -1,0 +1,99 @@
+{
+  "siteName": "Good Housekeeping",
+  "category": ["vegetarian", "dinner"],
+  "cookTime": 20,
+  "prepTime": 10,
+  "totalTime": 30,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "508cals",
+    "fatContent": "35g",
+    "saturatedFatContent": "21g",
+    "carbohydrateContent": "14g",
+    "sugarContent": "13g",
+    "proteinContent": "31g",
+    "fiberContent": "5g"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["dinner", "vegetarian", "fajitas", "vegetarian fajitas", "halloumi"],
+  "author": "Ailsa Burt",
+  "canonicalUrl": "https://www.goodhousekeeping.com/uk/food/recipes/a25318183/vegetarian-fajitas/",
+  "host": "goodhousekeeping.com",
+  "language": "en-GB",
+  "title": "Vegetarian fajitas",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 tsp. garlic granules"
+        },
+        {
+          "value": "1 tsp. ground cumin"
+        },
+        {
+          "value": "3/4 tsp. ground coriander"
+        },
+        {
+          "value": "1 tsp. smoked paprika"
+        },
+        {
+          "value": "1/2 tsp. mild chilli powder"
+        },
+        {
+          "value": "1 tsp. dried oregano"
+        },
+        {
+          "value": "250 g block halloumi, cut into strips"
+        },
+        {
+          "value": "1 red onion, sliced thickly"
+        },
+        {
+          "value": "2 peppers, cut into strips"
+        },
+        {
+          "value": "1 tbsp. vegetable oil"
+        }
+      ]
+    },
+    {
+      "name": "To serve",
+      "items": [
+        {
+          "value": "Tortilla wraps"
+        },
+        {
+          "value": "Soured cream"
+        },
+        {
+          "value": "Guacamole"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Preheat oven to 200°C (180°C fan) mark 6. In a small bowl mix together the garlic granules, cumin, coriander, paprika, chilli powder and oregano."
+        },
+        {
+          "value": "Add the halloumi, red onion and peppers to a large baking tray. Toss with the vegetable oil and the spice mix. Cook for 20min or until the halloumi is evenly browned."
+        },
+        {
+          "value": "Serve with tortillas, sour cream and guacamole."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "These veggie fajitas are packed full of halloumi, and are SUPER easy to throw together!",
+  "image": "https://hips.hearstapps.com/hmg-prod/images/vegetarian-fajitas-1545043586.jpg?crop=0.497xw:0.884xh;0,0.0638xh&resize=1200:*"
+}
