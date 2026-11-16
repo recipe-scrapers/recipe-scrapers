@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.3](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.6.2...3.6.3) (2026-11-16)
+
+
+### Bug Fixes
+
+* **utils:** parse fractional amounts in human-readable durations ([#67](https://github.com/recipe-scrapers/recipe-scrapers/issues/67)) ([97178db](https://github.com/recipe-scrapers/recipe-scrapers/commit/97178dbcd5fc69b5c3abb5a2caa5ce2e14466cf6))
+
 ## [3.6.2](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.6.1...3.6.2) (2026-11-12)
 
 
