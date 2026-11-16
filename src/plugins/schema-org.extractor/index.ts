@@ -35,6 +35,15 @@ import {
   isWebSite,
 } from './type-predicates'
 
+/**
+ * Whether a HowToStep comes from WP Recipe Maker, whose step URLs end in an
+ * anchor such as `#wprm-recipe-123-step-0-1`. WP Recipe Maker publishes a
+ * step's optional name ("Mix", "Preheat") only in Structured Data, never on
+ * the page, so the name is not a step of its own.
+ */
+const isWprmStep = (step: object): boolean =>
+  'url' in step && isString(step.url) && /#wprm-recipe-\d+-step-/.test(step.url)
+
 export class SchemaOrgException extends ExtractionFailedException {
   constructor(field: string, value?: unknown) {
     super(field, value)
@@ -430,7 +439,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       if (isString(item)) {
         currentGroup.items.push(normalizeString(item))
       } else if (isHowToStep(item)) {
-        if (name && text && !isRedundantStepName(name, text)) {
+        if (name && text && !isWprmStep(item) && !isRedundantStepName(name, text)) {
           currentGroup.items.push(name)
         }
 

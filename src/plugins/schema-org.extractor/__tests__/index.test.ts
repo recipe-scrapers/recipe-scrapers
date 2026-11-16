@@ -130,6 +130,43 @@ describe('SchemaOrgPlugin', () => {
     expect(instructions).toEqual([{ name: null, items: [{ value: 'step1' }, { value: 'step2' }] }])
   })
 
+  it('drops WP Recipe Maker step names, which the page never shows', () => {
+    const jsonWithStepNames = `
+      <script type="application/ld+json">
+      {
+        "@type": "Recipe",
+        "name": "Tacos",
+        "recipeInstructions": [
+          {
+            "@type": "HowToStep",
+            "name": "Mix",
+            "text": "Add the seasonings to a bowl.",
+            "url": "https://example.com/tacos/#wprm-recipe-146816-step-0-0"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Combine",
+            "text": "Stir in the broth.",
+            "url": "https://example.com/tacos/#step-2"
+          }
+        ]
+      }
+      </script>`
+
+    const stepNamePlugin = new SchemaOrgPlugin(load(jsonWithStepNames))
+
+    expect(stepNamePlugin.extract('instructions')).toEqual([
+      {
+        name: null,
+        items: [
+          { value: 'Add the seasonings to a bowl.' },
+          { value: 'Combine' },
+          { value: 'Stir in the broth.' },
+        ],
+      },
+    ])
+  })
+
   it('keeps repeated ingredient values, such as salt in two groups', () => {
     const jsonWithRepeats = `
       <script type="application/ld+json">

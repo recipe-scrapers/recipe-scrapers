@@ -28,7 +28,6 @@ import { HELLOFRESH_COUNTRY_HOSTS, HelloFresh } from './hellofresh'
 import { HersheyLand } from './hersheyland'
 import { HomeChef } from './homechef'
 import { InspiredTaste } from './inspiredtaste'
-import { IowaGirlEats } from './iowagirleats'
 import { JamieOliver } from './jamieoliver'
 import { JoshuaWeissman } from './joshuaweissman'
 import { JustOneCookbook } from './justonecookbook'
@@ -102,7 +101,6 @@ const customScraperClasses = [
   HersheyLand,
   HomeChef,
   InspiredTaste,
-  IowaGirlEats,
   JamieOliver,
   JoshuaWeissman,
   JustOneCookbook,
@@ -300,6 +298,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'ica.se',
   'im-worthy.com',
   'inspiralized.com',
+  'iowagirleats.com',
   'izzycooking.com',
   'jimcooksfoodgood.com',
   'jocooks.com',
