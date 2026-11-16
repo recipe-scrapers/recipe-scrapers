@@ -7,7 +7,11 @@ import { Logger, type LogLevel } from '@/logger'
 import type { RecipeEvidence, RecipeEvidenceReason } from '@/types/recipe-evidence.interface'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { isFunction, isNumber, isPlainObject, isString, resolveErrorMessage } from '@/utils'
-import { groupIngredients, unwrapIngredientNotes } from '@/utils/ingredients'
+import {
+  groupIngredients,
+  splitAtIngredientHeadings,
+  unwrapIngredientNotes,
+} from '@/utils/ingredients'
 import {
   createInstructionGroup,
   createInstructionItem,
@@ -593,7 +597,7 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       throw new SchemaOrgException('ingredients', ingredients)
     }
 
-    return groupIngredients(this.$, ingredientValues)
+    return splitAtIngredientHeadings(ingredientValues) ?? groupIngredients(this.$, ingredientValues)
   }
 
   public instructions(): RecipeFields['instructions'] {

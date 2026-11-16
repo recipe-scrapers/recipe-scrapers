@@ -2,7 +2,6 @@ import { AbstractScraper } from '@/abstract-scraper'
 import type { ScraperOptions } from '@/types/scraper.interface'
 
 import { ACoupleCooks } from './acouplecooks'
-import { AmbitiousKitchen } from './ambitiouskitchen'
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BarefootContessa } from './barefootcontessa'
 import { BBCFood } from './bbcfood'
@@ -75,7 +74,6 @@ type ScraperClass = {
  */
 const customScraperClasses = [
   ACoupleCooks,
-  AmbitiousKitchen,
   AmericasTestKitchen,
   BarefootContessa,
   BBCFood,
@@ -194,6 +192,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'alexandracooks.com',
   'amazingribs.com',
   'amberskitchencooks.com',
+  'ambitiouskitchen.com',
   'anitalianinmykitchen.com',
   'asweetpeachef.com',
   'aubreyskitchen.com',
