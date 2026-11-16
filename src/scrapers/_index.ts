@@ -1,15 +1,29 @@
 import { AbstractScraper } from '@/abstract-scraper'
 import type { ScraperOptions } from '@/types/scraper.interface'
 
+import { AmbitiousKitchen } from './ambitiouskitchen'
 import { AmericasTestKitchen } from './americastestkitchen'
+import { BarefootContessa } from './barefootcontessa'
+import { BBCFood } from './bbcfood'
 import { BBCGoodFood } from './bbcgoodfood'
+import { BettyCrocker } from './bettycrocker'
 import { BongEats } from './bongeats'
 import { BrianLagerstrom } from './brianlagerstrom'
 import { CookingCircle } from './cookingcircle'
+import { CooksCountry } from './cookscountry'
+import { CooksIllustrated } from './cooksillustrated'
 import { DamnDelicious } from './damndelicious'
+import { Delish } from './delish'
 import { DomesticateMe } from './domesticateme'
 import { Epicurious } from './epicurious'
+import { FoodAndWine } from './foodandwine'
+import { GoodHousekeeping } from './goodhousekeeping'
+import { GreatBritishChefs } from './greatbritishchefs'
 import { InspiredTaste } from './inspiredtaste'
+import { JamieOliver } from './jamieoliver'
+import { JustOneCookbook } from './justonecookbook'
+import { KingArthur } from './kingarthur'
+import { LoveAndLemons } from './loveandlemons'
 import { Maangchi } from './maangchi'
 import { MyPlate } from './myplate'
 import { NYTimes } from './nytimes'
@@ -17,8 +31,14 @@ import { OnceUponAChef } from './onceuponachef'
 import { SaboresAjinomoto } from './saboresajinomoto'
 import { SimplyRecipes } from './simplyrecipes'
 import { Skinnytaste } from './skinnytaste'
+import { SouthernLiving } from './southernliving'
 import { SpisBedre } from './spisbedre'
+import { TasteAU } from './tasteau'
+import { TasteOfHome } from './tasteofhome'
 import { TheCleverCarrot } from './theclevercarrot'
+import { TheKitchn } from './thekitchn'
+import { ThePioneerWoman } from './thepioneerwoman'
+import { TheSpruceEats } from './thespruceeats'
 import { TudoGostoso } from './tudogostoso'
 import { WeightWatchers } from './weightwatchers'
 
@@ -36,15 +56,29 @@ type ScraperClass = {
  * Adding a new scraper only requires adding it to this list.
  */
 const customScraperClasses = [
+  AmbitiousKitchen,
   AmericasTestKitchen,
+  BarefootContessa,
+  BBCFood,
   BBCGoodFood,
+  BettyCrocker,
   BongEats,
   BrianLagerstrom,
   CookingCircle,
+  CooksCountry,
+  CooksIllustrated,
   DamnDelicious,
+  Delish,
   DomesticateMe,
   Epicurious,
+  FoodAndWine,
+  GoodHousekeeping,
+  GreatBritishChefs,
   InspiredTaste,
+  JamieOliver,
+  JustOneCookbook,
+  KingArthur,
+  LoveAndLemons,
   Maangchi,
   MyPlate,
   SimplyRecipes,
@@ -52,8 +86,14 @@ const customScraperClasses = [
   OnceUponAChef,
   SaboresAjinomoto,
   Skinnytaste,
+  SouthernLiving,
   SpisBedre,
+  TasteAU,
+  TasteOfHome,
   TheCleverCarrot,
+  TheKitchn,
+  ThePioneerWoman,
+  TheSpruceEats,
   TudoGostoso,
   WeightWatchers,
 ] as const satisfies readonly ScraperClass[]
@@ -143,6 +183,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'castironketo.net',
   'castironskilletcooking.com',
   'celebratingsweets.com',
+  'chefkoch.de',
   'chefsavvy.com',
   'ciaoflorentina.com',
   'closetcooking.com',
@@ -154,6 +195,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'cookingclassy.com',
   'cookinglsl.com',
   'cookingwithjanica.com',
+  'cookpad.com',
   'cookwithdana.com',
   'copykat.com',
   'crazyforcrust.com',
@@ -204,6 +246,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'grandbaby-cakes.com',
   'healthywithachanceofsprinkles.com',
   'heatherchristo.com',
+  'hellofresh.com',
   'homeandplate.com',
   'hostthetoast.com',
   'houseofnasheats.com',
@@ -297,6 +340,8 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'reciperunner.com',
   'redhousespice.com',
   'relish.com',
+  'ricette.giallozafferano.it',
+  'sallysbakingaddiction.com',
   'sandwichtribunal.com',
   'saveur.com',
   'savoringthegood.com',

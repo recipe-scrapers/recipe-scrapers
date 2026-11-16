@@ -1,0 +1,65 @@
+{
+  "siteName": "The Pioneer Woman",
+  "category": ["dessert", "main dish"],
+  "cookTime": null,
+  "prepTime": 10,
+  "totalTime": 10,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": ["icing", "frosting", "dessert"],
+  "author": "Erica Kastner",
+  "canonicalUrl": "https://www.thepioneerwoman.com/food-cooking/recipes/a98271/how-to-make-cream-cheese-whipped-cream/",
+  "host": "thepioneerwoman.com",
+  "language": "en-US",
+  "title": "How to Make Cream Cheese Whipped Cream",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "8 oz. weight Cream Cheese, Softened"
+        },
+        {
+          "value": "2 tbsp. Pure Maple Syrup, Or More To Taste"
+        },
+        {
+          "value": "2 c. Heavy Whipping Cream"
+        },
+        {
+          "value": "1 tsp. Lemon Zest"
+        },
+        {
+          "value": "1/4 tsp. Pure Vanilla Extract"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Place the cream cheese and maple syrup in a large bowl. Beat until completely smooth. Scrape down the sides of the bowl."
+        },
+        {
+          "value": "Pour 1/4 of the cream into the cream cheese mixture. Beat until completely smooth. Scrape down the sides of the bowl. Repeat 3 more times for a total of 4 additions."
+        },
+        {
+          "value": "Add the lemon zest and vanilla and beat until smooth. Store in the refrigerator until ready to use. If you want the cream cheese whipped cream to be soft, make sure to take out of the refrigerator for about 15 minutes and give it a good whisk before serving."
+        },
+        {
+          "value": "Makes enough to frost a layer cake made with two 6-inch layers."
+        }
+      ]
+    }
+  ],
+  "yields": "8 servings",
+  "description": "I’ll bet just reading the title of this post made you say, “Cream cheese whipped cream?",
+  "image": "https://hips.hearstapps.com/thepioneerwoman/wp-content/uploads/2018/06/cream-cheese-whipped-cream-01.jpg?crop=0.6668334167083542xw:1xh;center,top&resize=1200:*"
+}

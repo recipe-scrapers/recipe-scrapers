@@ -1,0 +1,94 @@
+{
+  "siteName": "HelloFresh",
+  "category": ["Plat principal"],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": 35,
+  "cuisine": ["Middle Eastern"],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "servingSize": "484"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["Végétarien"],
+  "author": "HelloFresh",
+  "canonicalUrl": "https://www.hellofresh.fr/recipes/chakchouka-au-chevre-frais-5eb41aa7d5418a482a67b864",
+  "host": "hellofresh.com",
+  "language": "fr-FR",
+  "title": "Chakchouka au chèvre frais avec du piment, des œufs et du persil",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1 pièce(s) Oignon"
+        },
+        {
+          "value": "2 pièce(s) Gousse d'ail"
+        },
+        {
+          "value": "½ pièce(s) Piment"
+        },
+        {
+          "value": "1 pièce(s) Poivron rouge"
+        },
+        {
+          "value": "4 pièce(s) Tomate"
+        },
+        {
+          "value": "5 g Persil"
+        },
+        {
+          "value": "4 pièce(s) Œuf"
+        },
+        {
+          "value": "75 g Fromage de chèvre frais"
+        },
+        {
+          "value": "2 pièce(s) Baguette"
+        },
+        {
+          "value": "1 cs Huile d'olive"
+        },
+        {
+          "value": "½ pièce(s) Cube de bouillon de légumes"
+        },
+        {
+          "value": "selon le goût Poivre et sel"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Préchauffez le four à 210 degrés. Hachez l'oignon et écrasez ou émincez l'ail. Épépinez le piment rouge et le poivron rouge et coupez-les en lanières. Coupez les tomates prunes en petits dés et ciselez finement le persil frisé.CONSEIL: LE SAVIEZ-VOUS ? Ce plat contient plus de 250 g de légumes, et plus de l'apport journalier recommandé en vitamine C grâce à la tomate et au poivron."
+        },
+        {
+          "value": "Faites chauffer l’huile d’olive dans un wok ou une sauteuse avec couvercle et faites-y revenir l’oignon, l’ail et le piment rouge 2 minutes à feu moyen-vif. Puis, ajoutez le poivron, la tomate et la moitié du persil."
+        },
+        {
+          "value": "Ajoutez ensuite 30 ml d’eau par personne dans le wok ou la sauteuse, puis émiettez le cube de bouillon par-dessus. Portez à ébullition tout en remuant, puis laissez mijoter 5 minutes à couvert sur feu moyen-vif. Salez et poivrez."
+        },
+        {
+          "value": "Pour chaque œuf, faites un petit cratère dans le mélange de légumes, puis cassez-y les œufs. Saupoudrez-les de sel et de poivre. Disposez le chèvre frais émietté sur l’ensemble, couvrez et laissez les œufs cuire pendant 10 minutes (voir CONSEIL). Lors des 4 dernières minutes, retirez le couvercle, augmentez un peu le feu et laissez l’excédent d’eau s’évaporer.CONSEIL: CONSEIL : La cuisson de l’œuf dépend de la hauteur de votre poêle. Elle durera plus longtemps avec une poêle profonde à bord haut, contrairement à une poêle à bord bas ou un wok."
+        },
+        {
+          "value": "Pendant ce temps, enfournez les demi-baguettes 6 à 8 minutes ou jusqu’à ce qu’elles soient dorées."
+        },
+        {
+          "value": "Servez le chakchouka dans les assiettes. Garnissez du reste de persil et présentez les demi-baguettes en accompagnement."
+        }
+      ]
+    }
+  ],
+  "yields": "2 servings",
+  "description": "La chakchouka est l'un de nos plats végétariens préférés. Vous avez énormément de possibilité avec ce plat, par exemple en variant le type de fromage utilisé. Les œufs sont pleins de bons nutriments, tels que des vitamines, des minéraux et bien sûr des protéines - un choix végétarien nutritif.",
+  "image": "https://img.hellofresh.com/f_auto,fl_lossy,h_640,q_auto,w_1200/hellofresh_s3/image/HF170522_R03_W25_NL_MAIN_low-fa391294.jpg"
+}

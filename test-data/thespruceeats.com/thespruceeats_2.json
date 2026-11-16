@@ -1,0 +1,135 @@
+{
+  "siteName": "The Spruce Eats",
+  "category": ["Dessert"],
+  "cookTime": 30,
+  "prepTime": 15,
+  "totalTime": 45,
+  "cuisine": ["American"],
+  "cookingMethod": null,
+  "ratings": 3.5,
+  "ratingsCount": 15,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "calories": "386 kcal",
+    "fatContent": "22 g",
+    "saturatedFatContent": "13 g",
+    "unsaturatedFatContent": "0 g",
+    "carbohydrateContent": "41 g",
+    "sugarContent": "29 g",
+    "proteinContent": "6 g",
+    "sodiumContent": "229 mg",
+    "fiberContent": "1 g",
+    "cholesterolContent": "118 mg"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["peppermint", "brownies"],
+  "author": "Jessie Sheehan",
+  "canonicalUrl": "https://www.thespruceeats.com/peppermint-swirl-brownies-recipe-6745411",
+  "host": "thespruceeats.com",
+  "language": "en",
+  "title": "Peppermint Swirl Brownies",
+  "ingredients": [
+    {
+      "name": "For the Peppermint Swirl",
+      "items": [
+        {
+          "value": "1 tablespoon unsalted butter, softened"
+        },
+        {
+          "value": "8 ounces cream cheese, room temperature"
+        },
+        {
+          "value": "1/3 cup confectioners' sugar"
+        },
+        {
+          "value": "1/4 teaspoon fine sea salt"
+        },
+        {
+          "value": "1 large egg"
+        },
+        {
+          "value": "1 teaspoon peppermint extract"
+        },
+        {
+          "value": "2 to 3 drops liquid or gel red food coloring"
+        }
+      ]
+    },
+    {
+      "name": "For the Brownies",
+      "items": [
+        {
+          "value": "4 ounces (1/2 cup) unsalted butter, melted"
+        },
+        {
+          "value": "2/3 cup (53 grams) Dutch process cocoa powder"
+        },
+        {
+          "value": "1 cup (200 grams) granulated sugar"
+        },
+        {
+          "value": "1/2 teaspoon peppermint extract"
+        },
+        {
+          "value": "2 large eggs, room temperature"
+        },
+        {
+          "value": "1/4 teaspoon fine salt"
+        },
+        {
+          "value": "2/3 cup (87 grams) all-purpose flour"
+        },
+        {
+          "value": "2/3 cup crushed peppermint candies, such as Star Brite mints or candy canes, divided"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Gather the ingredients."
+        },
+        {
+          "value": "Position a rack in the center of the oven and heat to 350 F. Grease an 8-inch square cake pan with softened butter. Line the bottom with a large sheet of parchment paper that extends up and over two opposite sides of the pan."
+        },
+        {
+          "value": "To make the peppermint swirl, place the cream cheese, confectioners' sugar, salt, egg, extract, and food coloring in a medium bowl and beat with a hand mixer on medium to medium high speed until combined and fluffy. You can also use a stand mixer."
+        },
+        {
+          "value": "To make the brownies, microwave the butter, cocoa powder, and sugar on high in a large microwave-safe bowl in a few 30-second bursts, whisking after each, until combined. The batter will be quite thick and fudgy-looking. If you do not have a microwave, you may place the ingredients in a heat-proof bowl over a pot of simmering water on the stovetop until combined."
+        },
+        {
+          "value": "Whisk in the extract. Gently whisk in the eggs one at a time."
+        },
+        {
+          "value": "Sprinkle the salt over the wet ingredients and whisk it in."
+        },
+        {
+          "value": "Finally, fold in the flour and 1/3 cup of the crushed candy until the last streak of flour disappears. Don’t overmix."
+        },
+        {
+          "value": "Scrape the batter into the prepared pan, reserving 3/4 cup of it."
+        },
+        {
+          "value": "Dollop the swirl mixture over the brownie batter in the pan—about 9 dollops, using a 1 1/2 tablespoon portion scoop, if you have it."
+        },
+        {
+          "value": "Dollop the reserved brownie batter in between the swirl dollops. Run a long wooden skewer through both the brownie batter and the pink cream cheese mixture, until the top is completely covered in decorative swirls. Don’t swirl too much: big swirls are what you want, as they are most dramatic. And don’t swirl too deep or the swirl can get lost in the batter."
+        },
+        {
+          "value": "Bake for 30 to 35 minutes, rotating the pan at the halfway point. At the 25 minute mark, sprinkle the remaining 1/3 cup of candy over the top of the brownies. The brownies are ready when a cake tester inserted into the brownie—not the swirl—comes out with a few moist crumbs—do not over bake."
+        },
+        {
+          "value": "Let cool to room temperature. Lift the brownies out of the pan by the parchment handles. Run a butter knife around the edges not covered by the paper, if there’s resistance. Slice into 9 equal sized squares and serve room-temperature, or refrigerate for an hour and serve chilled (my preference)."
+        }
+      ]
+    }
+  ],
+  "yields": "9 servings",
+  "description": "A deeply chocolate-y, fudgy brownie with a bright pink swirl of peppermint deliciousness. Gorgeous to look at and scrumptious to eat.",
+  "image": "https://www.thespruceeats.com/thmb/ACSQpDA6gMM5sqOI58di9oHkbnM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/peppermint-swirl-brownies-hero-01-00280-7d6d862ae03f4aecab0639e457946a55.jpg"
+}

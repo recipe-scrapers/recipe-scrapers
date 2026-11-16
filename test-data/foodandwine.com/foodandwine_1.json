@@ -1,0 +1,68 @@
+{
+  "siteName": "Food & Wine",
+  "category": [],
+  "cookTime": null,
+  "prepTime": null,
+  "totalTime": 20,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 0,
+  "ratingsCount": 0,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {},
+  "dietaryRestrictions": [],
+  "keywords": [],
+  "author": "Kwame Onwuachi",
+  "canonicalUrl": "https://www.foodandwine.com/recipes/kwames-pepper-shrimp",
+  "host": "foodandwine.com",
+  "language": "en",
+  "title": "Kwame's Pepper Shrimp",
+  "ingredients": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "1/2 cup unsalted butter (4 ounces)"
+        },
+        {
+          "value": "5 large garlic cloves, minced"
+        },
+        {
+          "value": "1 fresh Scotch bonnet chile, stemmed, unseeded, and minced (about 1 tablespoon)"
+        },
+        {
+          "value": "1 1/2 teaspoons minced peeled fresh ginger"
+        },
+        {
+          "value": "1/2 cup fresh lime juice"
+        },
+        {
+          "value": "1/2 cup distilled white vinegar"
+        },
+        {
+          "value": "1 thyme sprig"
+        },
+        {
+          "value": "3 pounds unpeeled head-on raw large shrimp, deveined"
+        },
+        {
+          "value": "1 teaspoon kosher salt"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Melt butter in a large pot over medium. Add garlic, chile, and ginger; cook, stirring often, until aromatic and tender, about 5 minutes. Add lime juice, vinegar, and thyme; bring to a simmer over medium. Increase heat to medium-high; add shrimp, and cook, stirring often, until shrimp are opaque and cooked through, about 5 minutes. Remove from heat. Sprinkle with salt, and serve immediately."
+        }
+      ]
+    }
+  ],
+  "yields": "4 servings",
+  "description": "Kwame Onwuachi's Pepper Shrimp, a beloved Jamaican street food, has a subtle heat and fragrance from Scothch bonnet chiles and fresh ginger.",
+  "image": "https://www.foodandwine.com/thmb/BZ8hhoqmF0B8KlP_pHSEsxjhxnQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/pepper-shrimp-FT-RECIPE0920-9b30018088cc419f88c91fa33564075c.jpg"
+}

@@ -1,0 +1,99 @@
+{
+  "siteName": "BettyCrocker.com",
+  "category": ["Dessert"],
+  "cookTime": null,
+  "prepTime": 20,
+  "totalTime": 400,
+  "cuisine": [],
+  "cookingMethod": null,
+  "ratings": 4.5,
+  "ratingsCount": 96,
+  "equipment": [],
+  "reviews": {},
+  "nutrients": {
+    "servingSize": "1 Serving",
+    "calories": "480",
+    "fatContent": "4 1/2",
+    "saturatedFatContent": "14 g",
+    "transFatContent": "1/2 g",
+    "carbohydrateContent": "66 g",
+    "sugarContent": "53 g",
+    "proteinContent": "4 g",
+    "sodiumContent": "360 mg",
+    "fiberContent": "2 g",
+    "cholesterolContent": "50 mg"
+  },
+  "dietaryRestrictions": [],
+  "keywords": ["strawberry-pretzel salad"],
+  "author": "Jessica Walker",
+  "canonicalUrl": "https://www.bettycrocker.com/recipes/strawberry-pretzel-salad/376aa27c-19a2-4114-9c80-20a431fc269b",
+  "host": "bettycrocker.com",
+  "language": "en",
+  "title": "Strawberry-Pretzel Salad",
+  "ingredients": [
+    {
+      "name": "Topping",
+      "items": [
+        {
+          "value": "2 packages (4-serving size each) Jell-O® strawberry-flavored gelatin"
+        },
+        {
+          "value": "2 cups boiling water"
+        },
+        {
+          "value": "2 boxes (16 oz each) frozen sweetened strawberries, thawed"
+        }
+      ]
+    },
+    {
+      "name": "Crust",
+      "items": [
+        {
+          "value": "2 cups pretzels, crushed"
+        },
+        {
+          "value": "3/4 cup butter, melted"
+        },
+        {
+          "value": "3 tablespoons sugar"
+        }
+      ]
+    },
+    {
+      "name": "Filling",
+      "items": [
+        {
+          "value": "1 container (8 oz) Cool Whip frozen whipped topping, thawed"
+        },
+        {
+          "value": "1 package (8 oz) cream cheese, softened"
+        },
+        {
+          "value": "1 cup sugar"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "name": null,
+      "items": [
+        {
+          "value": "Dissolve gelatin in boiling water. Stir in strawberries; refrigerate until partially set, about 1 hour 45 minutes."
+        },
+        {
+          "value": "Heat oven to 350° F. In medium bowl, mix Crust ingredients. Press into ungreased 13 x 9-inch baking dish. Bake 10 minutes. Cool on cooling rack."
+        },
+        {
+          "value": "In medium bowl, beat Filling ingredients with electric mixer on medium speed until smooth. Spread over cooled crust. Cover and refrigerate until cool and gelatin topping in bowl is partially set."
+        },
+        {
+          "value": "Carefully spoon gelatin topping over filling. Refrigerate 4 to 6 hours or until firm. To serve, cut into 4 rows by 3 rows."
+        }
+      ]
+    }
+  ],
+  "yields": "12 servings",
+  "description": "This phenomenal berry dish is a great option if you need a sweet treat and your oven is already full of tasty dishes. The irresistible blend of creamy, crunchy, sweet and salty makes it a hit for any season and occasion. With a little prep and refrigeration time, you'll be enjoying your Strawberry Pretzel Salad as the perfect after-meal dessert.",
+  "image": "https://images-gmi-pmc.edge-generalmills.com/6ec084f7-ffd9-4df2-8302-877825ecc321.jpg"
+}
