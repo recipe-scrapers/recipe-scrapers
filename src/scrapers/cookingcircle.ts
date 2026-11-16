@@ -1,5 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { IngredientGroup, RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
@@ -32,7 +34,7 @@ export class CookingCircle extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract author')
+    throw new ExtractionFailedException('author')
   }
 
   /**
@@ -51,11 +53,7 @@ export class CookingCircle extends AbstractScraper {
       .map((element): IngredientGroup => {
         const item = this.$(element)
         const name = normalizeString(item.find('.single-ingredients__title').first().text())
-        const values = item
-          .find('.single-ingredients__list li')
-          .toArray()
-          .map((li) => normalizeString(this.$(li).text()))
-          .filter((value) => value.length > 0)
+        const values = texts(this.$, item.find('.single-ingredients__list li'))
 
         return createIngredientGroup(name || null, values.map(createIngredientItem))
       })
@@ -69,7 +67,7 @@ export class CookingCircle extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract ingredients')
+    throw new NoIngredientsFoundException()
   }
 
   /**
@@ -78,16 +76,11 @@ export class CookingCircle extends AbstractScraper {
   protected instructions(
     prevValue: RecipeFields['instructions'] | undefined,
   ): RecipeFields['instructions'] {
-    const values = this.$('ul.single-method__method')
-      .first()
-      .children('li')
-      .toArray()
-      .map((element) => {
-        const step = this.$(element).clone()
-        step.find('h1, h2, h3, h4, h5, h6').remove()
-        return normalizeString(step.text())
-      })
-      .filter((value) => value.length > 0)
+    const values = texts(
+      this.$,
+      this.$('ul.single-method__method').first().children('li'),
+      'h1, h2, h3, h4, h5, h6',
+    )
 
     if (values.length > 0) {
       return stringsToInstructions(values)
@@ -97,6 +90,6 @@ export class CookingCircle extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract instructions')
+    throw new ExtractionFailedException('instructions')
   }
 }

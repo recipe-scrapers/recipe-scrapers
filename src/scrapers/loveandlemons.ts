@@ -1,7 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { recoverIngredientGroups, stringsToIngredients } from '@/utils/ingredients'
-import { normalizeString } from '@/utils/parsing'
 
 const INGREDIENT_GROUPS = {
   heading: '.wprm-recipe-ingredient-group-name',
@@ -24,10 +24,7 @@ export class LoveAndLemons extends AbstractScraper {
    * parentheses where the page shows them after a comma.
    */
   protected ingredients(): RecipeFields['ingredients'] {
-    const values = this.$(INGREDIENT_GROUPS.item)
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter(Boolean)
+    const values = texts(this.$, INGREDIENT_GROUPS.item)
 
     return recoverIngredientGroups(this.$, stringsToIngredients(values), INGREDIENT_GROUPS)
   }

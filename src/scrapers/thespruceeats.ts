@@ -1,7 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { recoverIngredientGroups, stringsToIngredients } from '@/utils/ingredients'
-import { normalizeString } from '@/utils/parsing'
 
 const INGREDIENT_GROUP_STRUCTURE = {
   heading: '.structured-ingredients__list-heading',
@@ -24,10 +24,7 @@ export class TheSpruceEats extends AbstractScraper {
   protected ingredients(
     prevValue: RecipeFields['ingredients'] | undefined,
   ): RecipeFields['ingredients'] {
-    const values = this.$(INGREDIENT_GROUP_STRUCTURE.item)
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((value) => value.length > 0)
+    const values = texts(this.$, INGREDIENT_GROUP_STRUCTURE.item)
 
     return recoverIngredientGroups(
       this.$,

@@ -1,6 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { groupIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
@@ -35,7 +36,7 @@ export class TastingHistory extends AbstractScraper {
     if (heading) return heading
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract title')
+    throw new ExtractionFailedException('title')
   }
 
   protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
@@ -46,14 +47,11 @@ export class TastingHistory extends AbstractScraper {
     if (author) return author
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract author')
+    throw new ExtractionFailedException('author')
   }
 
   protected category(prevValue: RecipeFields['category'] | undefined): RecipeFields['category'] {
-    const tags = this.$('a.blog-item-tag')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((tag) => tag.length > 0)
+    const tags = texts(this.$, 'a.blog-item-tag')
 
     return tags.length > 0 ? new Set(tags) : (prevValue ?? new Set())
   }
@@ -68,7 +66,7 @@ export class TastingHistory extends AbstractScraper {
     if (description) return description
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract description')
+    throw new ExtractionFailedException('description')
   }
 
   /** Uses the full-size hero photo rather than the resized share image. */
@@ -78,15 +76,12 @@ export class TastingHistory extends AbstractScraper {
     if (image) return image
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract image')
+    throw new ExtractionFailedException('image')
   }
 
   protected ingredients(): RecipeFields['ingredients'] {
     const itemSelector = `${INGREDIENT_COLUMN} .sqs-block-content ul li`
-    const values = this.$(itemSelector)
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((value) => value.length > 0)
+    const values = texts(this.$, itemSelector)
 
     if (values.length === 0) {
       throw new NoIngredientsFoundException()
@@ -101,15 +96,13 @@ export class TastingHistory extends AbstractScraper {
   }
 
   protected instructions(): RecipeFields['instructions'] {
-    const steps = this.$(`${INSTRUCTION_COLUMN} .sqs-block-content ol`)
-      .first()
-      .find('li')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter((step) => step.length > 0)
+    const steps = texts(
+      this.$,
+      this.$(`${INSTRUCTION_COLUMN} .sqs-block-content ol`).first().find('li'),
+    )
 
     if (steps.length === 0) {
-      throw new Error('Failed to extract instructions')
+      throw new ExtractionFailedException('instructions')
     }
 
     return stringsToInstructions(steps)

@@ -1,7 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { normalizeString } from '@/utils/parsing'
+import { texts } from '@/utils/dom'
 
 const SITE_NAME = 'Hersheyland'
 
@@ -31,10 +31,7 @@ export class HersheyLand extends AbstractScraper {
 
   /** Reads the "Equipment Needed" list above the directions. */
   protected equipment(): RecipeFields['equipment'] {
-    const names = this.$('.equipment-item span.h6')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter(Boolean)
+    const names = texts(this.$, '.equipment-item span.h6')
 
     if (names.length === 0) {
       throw new ExtractionFailedException('equipment')

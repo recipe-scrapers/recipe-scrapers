@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { NoIngredientsFoundException } from '@/exceptions'
 import type { Ingredients, RecipeFields } from '@/types/recipe.interface'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
 import { normalizeString } from '@/utils/parsing'
@@ -49,6 +50,6 @@ export class JustOneCookbook extends AbstractScraper {
       return prevValue
     }
 
-    throw new Error('Failed to extract ingredients')
+    throw new NoIngredientsFoundException()
   }
 }

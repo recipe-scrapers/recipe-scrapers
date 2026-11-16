@@ -1,7 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { recoverIngredientGroups, stringsToIngredients } from '@/utils/ingredients'
-import { normalizeString } from '@/utils/parsing'
 
 const INGREDIENT_GROUPS = {
   heading: '.tasty-recipes-ingredients-body p b',
@@ -24,10 +24,7 @@ export class ACoupleCooks extends AbstractScraper {
    * shows ("½ teaspoon").
    */
   protected ingredients(): RecipeFields['ingredients'] {
-    const values = this.$(INGREDIENT_GROUPS.item)
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter(Boolean)
+    const values = texts(this.$, INGREDIENT_GROUPS.item)
 
     return recoverIngredientGroups(this.$, stringsToIngredients(values), INGREDIENT_GROUPS)
   }

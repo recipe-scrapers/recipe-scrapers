@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'bun:test'
 
+import * as cheerio from 'cheerio'
+
+import { ExtractionFailedException } from '@/exceptions'
+
 import {
   createInstructionGroup,
   createInstructionItem,
@@ -8,6 +12,7 @@ import {
   isInstructionItem,
   isInstructions,
   isRedundantStepName,
+  readPageInstructions,
   splitInstructions,
   splitNumberedInstructions,
   stringsToInstructions,
@@ -233,5 +238,34 @@ describe('isRedundantStepName', () => {
     )
     expect(isRedundantStepName('Serve', 'Divide the rice among 4 bowls.')).toBe(false)
     expect(isRedundantStepName('350 degrees', 'Bake until golden.')).toBe(false)
+  })
+})
+
+describe('readPageInstructions', () => {
+  const structuredSteps = stringsToInstructions(['Structured step.'])
+
+  it('throws when neither the page nor the Structured Data has steps', () => {
+    const $ = cheerio.load('<p>No steps here.</p>')
+
+    expect(() => readPageInstructions($, undefined, { item: '.step' })).toThrow(
+      ExtractionFailedException,
+    )
+    expect(() =>
+      readPageInstructions($, [createInstructionGroup(null)], { item: '.step' }),
+    ).toThrow(ExtractionFailedException)
+  })
+
+  it('reads the page only when the Structured Data has no steps if fallbackOnly is set', () => {
+    const $ = cheerio.load('<p class="step">Page step.</p>')
+
+    expect(readPageInstructions($, structuredSteps, { item: '.step', fallbackOnly: true })).toBe(
+      structuredSteps,
+    )
+    expect(readPageInstructions($, undefined, { item: '.step', fallbackOnly: true })).toEqual(
+      stringsToInstructions(['Page step.']),
+    )
+    expect(readPageInstructions($, structuredSteps, { item: '.step' })).toEqual(
+      stringsToInstructions(['Page step.']),
+    )
   })
 })

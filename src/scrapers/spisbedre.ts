@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { IngredientGroup, InstructionGroup, RecipeFields } from '@/types/recipe.interface'
 import { embeddedPayload } from '@/utils/embedded-payload'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
@@ -187,7 +188,7 @@ export class SpisBedre extends AbstractScraper {
       .filter((group) => group.items.length > 0)
 
     if (groups.length === 0) {
-      throw new Error('Failed to extract ingredients')
+      throw new NoIngredientsFoundException()
     }
 
     return groups
@@ -211,7 +212,7 @@ export class SpisBedre extends AbstractScraper {
       .filter((group) => group.items.length > 0)
 
     if (groups.length === 0) {
-      throw new Error('Failed to extract instructions')
+      throw new ExtractionFailedException('instructions')
     }
 
     return groups
@@ -257,7 +258,7 @@ export class SpisBedre extends AbstractScraper {
         return prevValue
       }
 
-      throw new Error('Failed to extract yields')
+      throw new ExtractionFailedException('yields')
     }
 
     const count = Math.trunc(servings)

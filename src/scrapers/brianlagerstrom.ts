@@ -1,5 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
 import {
@@ -40,7 +40,7 @@ export class BrianLagerstrom extends AbstractScraper {
 
     if (prevValue) return stripSiteSuffix(prevValue)
 
-    throw new Error('Failed to extract title')
+    throw new ExtractionFailedException('title')
   }
 
   protected author(prevValue: RecipeFields['author'] | undefined): RecipeFields['author'] {
@@ -81,7 +81,7 @@ export class BrianLagerstrom extends AbstractScraper {
 
     if (prevValue) return prevValue
 
-    throw new Error('Failed to extract description')
+    throw new ExtractionFailedException('description')
   }
 
   private recipeContentBlocks() {

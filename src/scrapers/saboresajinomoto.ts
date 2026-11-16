@@ -1,10 +1,8 @@
-import type { Element } from 'domhandler'
-
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { flattenIngredients, groupIngredients } from '@/utils/ingredients'
-import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 const INGREDIENT_HEADING_SELECTOR = '.ingredients p'
@@ -30,10 +28,14 @@ export class SaboresAjinomoto extends AbstractScraper {
     category: this.category.bind(this),
     description: this.description.bind(this),
     ingredients: this.ingredients.bind(this),
-    instructions: this.instructions.bind(this),
     siteName: this.siteName.bind(this),
     title: this.title.bind(this),
   } satisfies ScraperExtractors
+
+  protected override readonly instructionStructure = {
+    item: '.steps li',
+    fallbackOnly: true,
+  }
 
   protected siteName(): RecipeFields['siteName'] {
     return 'Sabores Ajinomoto'
@@ -47,7 +49,7 @@ export class SaboresAjinomoto extends AbstractScraper {
       normalizeString(prevValue) || normalizeString(this.$('h1[itemprop="name"]').text())
 
     if (!value) {
-      throw new Error('Failed to extract title')
+      throw new ExtractionFailedException('title')
     }
 
     const lower = value.toLocaleLowerCase('pt-BR')
@@ -86,7 +88,7 @@ export class SaboresAjinomoto extends AbstractScraper {
       normalizeString(this.$('meta[property="og:description"]').first().attr('content'))
 
     if (!description) {
-      throw new Error('Failed to extract description')
+      throw new ExtractionFailedException('description')
     }
 
     return description
@@ -100,40 +102,12 @@ export class SaboresAjinomoto extends AbstractScraper {
   ): RecipeFields['ingredients'] {
     const structuredValues = flattenIngredients(prevValue ?? [])
     const values =
-      structuredValues.length > 0
-        ? structuredValues
-        : this.$(INGREDIENT_ITEM_SELECTOR)
-            .toArray()
-            .map((element) => this.elementText(element))
-            .filter((value) => value.length > 0)
+      structuredValues.length > 0 ? structuredValues : texts(this.$, INGREDIENT_ITEM_SELECTOR)
 
     if (values.length === 0) {
       throw new NoIngredientsFoundException()
     }
 
     return groupIngredients(this.$, values, INGREDIENT_HEADING_SELECTOR, INGREDIENT_ITEM_SELECTOR)
-  }
-
-  protected instructions(
-    prevValue: RecipeFields['instructions'] | undefined,
-  ): RecipeFields['instructions'] {
-    if (prevValue && prevValue.length > 0) {
-      return prevValue
-    }
-
-    const values = this.$('.steps li')
-      .toArray()
-      .map((element) => this.elementText(element))
-      .filter((value) => value.length > 0)
-
-    if (values.length === 0) {
-      throw new Error('Failed to extract instructions')
-    }
-
-    return stringsToInstructions(values)
-  }
-
-  private elementText(element: Element): string {
-    return normalizeString(this.$(element).text())
   }
 }

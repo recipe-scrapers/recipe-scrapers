@@ -31,6 +31,7 @@ import type { ScraperOptions } from './types/scraper.interface'
 import { isPlainObject, isString } from './utils'
 import { extractWprmNotes } from './utils/extract-wprm-notes'
 import { type IngredientGroupStructure, recoverIngredientGroups } from './utils/ingredients'
+import { type InstructionStructure, readPageInstructions } from './utils/instructions'
 import { reconcileRecipeRatings, type RecipeRatings } from './utils/ratings'
 import { reconcileRecipeTimes, type RecipeTimes } from './utils/times'
 
@@ -111,26 +112,39 @@ export abstract class AbstractScraper {
    */
   protected readonly ingredientGroupStructure?: IngredientGroupStructure
 
+  /**
+   * Recipe Page markup to read steps and Instruction Groups from, for Hosts
+   * whose Structured Data steps are missing, joined, or incomplete. Ignored
+   * when the subclass defines its own instructions extractor.
+   */
+  protected readonly instructionStructure?: InstructionStructure
+
   #siteExtractors: ScraperExtractors | null = null
 
   /**
-   * Site-specific extractors, including Ingredient Group recovery when the
-   * subclass declares an `ingredientGroupStructure`.
+   * Site-specific extractors, including Ingredient Group recovery and page
+   * instructions when the subclass declares an `ingredientGroupStructure` or
+   * `instructionStructure`.
    */
   get #resolvedExtractors(): ScraperExtractors {
     if (this.#siteExtractors) {
       return this.#siteExtractors
     }
 
-    const structure = this.ingredientGroupStructure
+    const extractors: ScraperExtractors = { ...this.extractors }
+    const { ingredientGroupStructure: ingredientStructure, instructionStructure } = this
 
-    this.#siteExtractors =
-      structure && !this.extractors.ingredients
-        ? {
-            ...this.extractors,
-            ingredients: (prevValue) => recoverIngredientGroups(this.$, prevValue, structure),
-          }
-        : this.extractors
+    if (ingredientStructure && !this.extractors.ingredients) {
+      extractors.ingredients = (prevValue) =>
+        recoverIngredientGroups(this.$, prevValue, ingredientStructure)
+    }
+
+    if (instructionStructure && !this.extractors.instructions) {
+      extractors.instructions = (prevValue) =>
+        readPageInstructions(this.$, prevValue, instructionStructure)
+    }
+
+    this.#siteExtractors = extractors
 
     return this.#siteExtractors
   }

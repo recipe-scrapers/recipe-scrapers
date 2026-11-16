@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException } from '@/exceptions'
 import type { Ingredients, RecipeFields } from '@/types/recipe.interface'
 import { embeddedPayload } from '@/utils/embedded-payload'
 import {
@@ -128,7 +129,7 @@ export class AmericasTestKitchen extends AbstractScraper {
       if (prevValue) {
         return prevValue
       }
-      throw new Error('Failed to extract image')
+      throw new ExtractionFailedException('image')
     }
 
     return data.metaData.fields.photo.url
@@ -150,7 +151,7 @@ export class AmericasTestKitchen extends AbstractScraper {
       if (prevValue) {
         return prevValue
       }
-      throw new Error('Failed to extract instructions')
+      throw new ExtractionFailedException('instructions')
     }
 
     const { headnote } = data

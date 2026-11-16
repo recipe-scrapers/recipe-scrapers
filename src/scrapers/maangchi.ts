@@ -1,5 +1,6 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { createIngredientGroup, createIngredientItem } from '@/utils/ingredients'
 import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
@@ -84,13 +85,7 @@ export class Maangchi extends AbstractScraper {
         continue
       }
 
-      items.push(
-        ...this.$(element)
-          .find('li')
-          .toArray()
-          .map((item) => normalizeString(this.$(item).text()))
-          .filter((value) => value.length > 0),
-      )
+      items.push(...texts(this.$, this.$(element).find('li')))
     }
 
     if (items.length > 0) groups.push({ name, items })

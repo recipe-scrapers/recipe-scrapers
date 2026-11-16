@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { normalizeString } from '@/utils/parsing'
 
@@ -22,7 +23,7 @@ export class OnceUponAChef extends AbstractScraper {
     )
 
     if (!author) {
-      throw new Error('Failed to extract author')
+      throw new ExtractionFailedException('author')
     }
 
     return author

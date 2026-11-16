@@ -13,7 +13,7 @@ import { Logger } from '@/logger'
 import type { RecipeFields, RecipeObject } from '@/types/recipe.interface'
 import type { ScraperOptions } from '@/types/scraper.interface'
 import { stringsToIngredients } from '@/utils/ingredients'
-import { stringsToInstructions } from '@/utils/instructions'
+import { type InstructionStructure, stringsToInstructions } from '@/utils/instructions'
 import { stringsToNotes } from '@/utils/notes'
 
 class DummyScraper extends AbstractScraper {
@@ -736,5 +736,74 @@ describe('AbstractScraper.ingredientGroupStructure', () => {
     const scraper = new OverridingScraper(html, 'https://grouped.test/pie')
 
     expect(await scraper.extract('ingredients')).toEqual(stringsToIngredients(['custom']))
+  })
+})
+
+describe('AbstractScraper.instructionStructure', () => {
+  const html = `
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": "Pie",
+        "recipeInstructions": "Make the crust. Fill and bake."
+      }
+    </script>
+    <h3 class="method">Crust:</h3>
+    <p class="step">Make the crust.</p>
+    <h3 class="method">Filling</h3>
+    <p class="step">Fill and bake.</p>
+  `
+
+  class PageStepsScraper extends AbstractScraper {
+    static host() {
+      return 'steps.test'
+    }
+
+    protected override readonly instructionStructure: InstructionStructure = {
+      heading: '.method',
+      item: '.step',
+    }
+  }
+
+  class FallbackScraper extends PageStepsScraper {
+    protected override readonly instructionStructure = { item: '.step', fallbackOnly: true }
+  }
+
+  class OverridingScraper extends PageStepsScraper {
+    protected override readonly extractors = {
+      instructions: () => stringsToInstructions(['custom']),
+    }
+  }
+
+  it('reads steps and Instruction Groups from the declared structure', async () => {
+    const scraper = new PageStepsScraper(html, 'https://steps.test/pie')
+
+    expect(await scraper.extract('instructions')).toEqual([
+      { name: 'Crust', items: [{ value: 'Make the crust.' }] },
+      { name: 'Filling', items: [{ value: 'Fill and bake.' }] },
+    ])
+  })
+
+  it('keeps Structured Data steps when the structure is a fallback only', async () => {
+    const scraper = new FallbackScraper(html, 'https://steps.test/pie')
+
+    expect(await scraper.extract('instructions')).toEqual(
+      stringsToInstructions(['Make the crust.', 'Fill and bake.']),
+    )
+  })
+
+  it('falls back to Structured Data steps when the page has none', async () => {
+    const scraper = new PageStepsScraper(html.replace(/<h3[\s\S]*$/, ''), 'https://steps.test/pie')
+
+    expect(await scraper.extract('instructions')).toEqual(
+      stringsToInstructions(['Make the crust.', 'Fill and bake.']),
+    )
+  })
+
+  it('prefers a site-specific instructions extractor over the declared structure', async () => {
+    const scraper = new OverridingScraper(html, 'https://steps.test/pie')
+
+    expect(await scraper.extract('instructions')).toEqual(stringsToInstructions(['custom']))
   })
 })

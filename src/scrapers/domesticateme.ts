@@ -1,5 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { NoIngredientsFoundException } from '@/exceptions'
+import { ExtractionFailedException, NoIngredientsFoundException } from '@/exceptions'
 import type { IngredientGroup, RecipeFields } from '@/types/recipe.interface'
 import { createIngredientGroup } from '@/utils/ingredients'
 import { normalizeString } from '@/utils/parsing'
@@ -69,7 +69,7 @@ export class DomesticateMe extends AbstractScraper {
     const author = this.metaContent('meta[name="author"]')
 
     if (!author) {
-      throw new Error('Failed to extract author')
+      throw new ExtractionFailedException('author')
     }
 
     return author
@@ -87,7 +87,7 @@ export class DomesticateMe extends AbstractScraper {
       this.metaContent('meta[property="og:description"]')
 
     if (!description) {
-      throw new Error('Failed to extract description')
+      throw new ExtractionFailedException('description')
     }
 
     return description

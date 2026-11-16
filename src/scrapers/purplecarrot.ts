@@ -1,7 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
-import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { stringsToInstructions } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
 /**
@@ -14,31 +12,12 @@ export class PurpleCarrot extends AbstractScraper {
   }
 
   protected override readonly extractors = {
-    instructions: this.instructions.bind(this),
     siteName: this.siteName.bind(this),
   } satisfies ScraperExtractors
 
-  /**
-   * Reads each step's paragraphs under its numbered title, falling back to
-   * the Structured Data titles when the page has none.
-   */
-  protected instructions(
-    prevValue: RecipeFields['instructions'] | undefined,
-  ): RecipeFields['instructions'] {
-    const steps = this.$('.c-recipe-step > p')
-      .toArray()
-      .map((paragraph) => normalizeString(this.$(paragraph).text()))
-      .filter(Boolean)
-
-    if (steps.length > 0) {
-      return stringsToInstructions(steps)
-    }
-
-    if (prevValue) {
-      return prevValue
-    }
-
-    throw new ExtractionFailedException('instructions')
+  /** Each step's paragraph under its numbered title. */
+  protected override readonly instructionStructure = {
+    item: '.c-recipe-step > p',
   }
 
   /**

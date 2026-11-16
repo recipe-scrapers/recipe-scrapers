@@ -1,4 +1,5 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
+import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import { parseYields } from '@/utils/parse-yields'
 import { normalizeString } from '@/utils/parsing'
@@ -28,7 +29,7 @@ export class ForksOverKnives extends AbstractScraper {
     )
 
     if (!author) {
-      throw new Error('Failed to extract author')
+      throw new ExtractionFailedException('author')
     }
 
     return author
@@ -46,7 +47,7 @@ export class ForksOverKnives extends AbstractScraper {
     const value = normalizeString(this.$('.add-info li:has(.icon-serving)').first().text())
 
     if (!value) {
-      throw new Error('Failed to extract yields')
+      throw new ExtractionFailedException('yields')
     }
 
     return parseYields(value)

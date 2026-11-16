@@ -1,6 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { ExtractionFailedException } from '@/exceptions'
 import type { InstructionGroup, RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { createInstructionGroup, createInstructionItem } from '@/utils/instructions'
 import { normalizeString } from '@/utils/parsing'
 
@@ -25,10 +26,7 @@ export class BigOven extends AbstractScraper {
   }
 
   protected instructions(): RecipeFields['instructions'] {
-    const paragraphs = this.$('div.instructions p')
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter(Boolean)
+    const paragraphs = texts(this.$, 'div.instructions p')
 
     let current = createInstructionGroup(null)
     const groups: InstructionGroup[] = [current]

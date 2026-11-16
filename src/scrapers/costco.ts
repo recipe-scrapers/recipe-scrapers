@@ -1,6 +1,7 @@
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
+import { texts } from '@/utils/dom'
 import { groupIngredients } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
 import { parseYields } from '@/utils/parse-yields'
@@ -68,7 +69,7 @@ export class Costco extends AbstractScraper {
 
   /** Reads the ingredient list, grouped under any bold heading above it. */
   protected ingredients(): RecipeFields['ingredients'] {
-    const values = this.texts(INGREDIENT_ITEM)
+    const values = texts(this.$, INGREDIENT_ITEM)
 
     if (values.length > 0) {
       return groupIngredients(this.$, values, INGREDIENT_HEADING, INGREDIENT_ITEM)
@@ -111,12 +112,5 @@ export class Costco extends AbstractScraper {
         return text.length > 0 && text !== normalizeString(paragraph.children('strong').text())
       })
       .map((element) => normalizeString(this.$(element).text()))
-  }
-
-  private texts(selector: string): string[] {
-    return this.$(selector)
-      .toArray()
-      .map((element) => normalizeString(this.$(element).text()))
-      .filter(Boolean)
   }
 }
