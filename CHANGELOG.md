@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.4](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.6.3...3.6.4) (2026-11-16)
+
+
+### Bug Fixes
+
+* **utils:** keep yield text without a number instead of a 0 yield ([010886b](https://github.com/recipe-scrapers/recipe-scrapers/commit/010886bfcdc706507d328a739a8fd1f3834cf1eb))
+* **utils:** read the yield type that follows the number ([010886b](https://github.com/recipe-scrapers/recipe-scrapers/commit/010886bfcdc706507d328a739a8fd1f3834cf1eb))
+
 ## [3.6.3](https://github.com/recipe-scrapers/recipe-scrapers/compare/3.6.2...3.6.3) (2026-11-16)
 
 
