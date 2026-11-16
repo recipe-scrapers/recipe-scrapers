@@ -57,9 +57,9 @@ describe('hearstInstructions', () => {
 })
 
 describe('hearstKeywords', () => {
-  it('drops CMS metadata and splits comma-joined keywords', () => {
-    const keywords = new Set(['locale: US', 'icing, frosting', 'TOTALTIME: 00:10:00', 'dessert'])
+  it('drops CMS metadata', () => {
+    const keywords = new Set(['locale: US', 'icing', 'TOTALTIME: 00:10:00', 'dessert'])
 
-    expect([...hearstKeywords(keywords)]).toEqual(['icing', 'frosting', 'dessert'])
+    expect([...hearstKeywords(keywords)]).toEqual(['icing', 'dessert'])
   })
 })

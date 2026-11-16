@@ -162,6 +162,21 @@ describe('SchemaOrgPlugin', () => {
     expect(Array.from(plugin.extract('keywords'))).toEqual(['kw1', 'kw2'])
   })
 
+  it('splits comma-joined entries in a keywords array', () => {
+    const joinedPlugin = new SchemaOrgPlugin(
+      load(`<script type="application/ld+json">
+        {"@type": "Recipe", "name": "Test", "keywords": ["icing, frosting, dessert", "cake"]}
+      </script>`),
+    )
+
+    expect(Array.from(joinedPlugin.extract('keywords'))).toEqual([
+      'icing',
+      'frosting',
+      'dessert',
+      'cake',
+    ])
+  })
+
   it('extracts ratings and counts correctly', () => {
     expect(plugin.extract('ratings')).toBe(4.5)
     expect(plugin.extract('ratingsCount')).toBe(10)

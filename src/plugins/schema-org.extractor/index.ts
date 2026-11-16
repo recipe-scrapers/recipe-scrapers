@@ -746,7 +746,11 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       throw new SchemaOrgException('keywords')
     }
 
-    return this.schemaValueToList(keywords)
+    // Keywords is a comma-separated text, and some sites also join several
+    // into one array entry (["icing, frosting, dessert"]).
+    return new Set(
+      [...this.schemaValueToList(keywords)].flatMap((keyword) => splitToList(keyword, ',')),
+    )
   }
 
   public dietaryRestrictions(): RecipeFields['dietaryRestrictions'] {
