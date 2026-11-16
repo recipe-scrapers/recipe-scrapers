@@ -94,6 +94,11 @@
               {
                 "name": "bun:test",
                 "message": "Test helpers belong in __tests__/."
+              },
+              {
+                "name": "cheerio",
+                "allowTypeImports": true,
+                "message": "Import runtime values from 'cheerio/slim': the full entry adds parse5 to consumers' browser bundles. Type imports from 'cheerio' are fine."
               }
             ],
             "patterns": [
