@@ -15,6 +15,7 @@ import {
   isIngredients,
   recoverIngredientGroups,
   scoreSentenceSimilarity,
+  splitAtIngredientHeadings,
   stringsToIngredients,
   unwrapIngredientNotes,
 } from '../ingredients'
@@ -214,6 +215,33 @@ describe('findSelectors', () => {
 
     expect(result).toHaveLength(1)
     expect(result[0].name).toBe('Custom Group')
+  })
+})
+
+describe('splitAtIngredientHeadings', () => {
+  it('starts an Ingredient Group at each heading written into the list', () => {
+    expect(
+      splitAtIngredientHeadings([
+        'Non-stick cooking spray',
+        'For the pasta:',
+        '1 lb spaghetti',
+        'For the avocado lime ranch dressing:',
+        '1 avocado',
+      ]),
+    ).toEqual([
+      { name: null, items: [{ value: 'Non-stick cooking spray' }] },
+      { name: 'For the pasta', items: [{ value: '1 lb spaghetti' }] },
+      { name: 'For the avocado lime ranch dressing', items: [{ value: '1 avocado' }] },
+    ])
+  })
+
+  it('returns null when no entry is a heading', () => {
+    expect(
+      splitAtIngredientHeadings([
+        '2 tbsp butter:',
+        'Salt and freshly ground black pepper to taste, plus more for the finished sauce:',
+      ]),
+    ).toBeNull()
   })
 })
 

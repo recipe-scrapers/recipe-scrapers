@@ -16,6 +16,16 @@ const addProperty = (obj: Record<string, unknown>, key: string, value: unknown) 
   }
 }
 
+/**
+ * An element's visible text. Inline `<svg>` icons are left out: their
+ * `<title>` ("Info") is a tooltip, not part of the value.
+ */
+const textOf = <T extends Element>(element: Cheerio<T>): string => {
+  const svg = element.find('svg')
+  const text = svg.length > 0 ? element.clone().find('svg').remove().end().text() : element.text()
+  return text.trim()
+}
+
 const extractValueFromElement = <T extends Element>(element: Cheerio<T>): string | undefined => {
   // HTML only defines `content` on <meta>, but sites (and schema.org's own
   // examples) put it on <time>, <span>, and others. A `content` attribute is
@@ -27,7 +37,7 @@ const extractValueFromElement = <T extends Element>(element: Cheerio<T>): string
   }
 
   if (element.is('time')) {
-    return element.attr('datetime') || element.text().trim()
+    return element.attr('datetime') || textOf(element)
   }
 
   if (element.is('img')) {
@@ -38,7 +48,7 @@ const extractValueFromElement = <T extends Element>(element: Cheerio<T>): string
     return element.attr('href')
   }
 
-  return element.text().trim()
+  return textOf(element)
 }
 
 /** Properties whose value is a Person or Organization rather than text. */
@@ -49,7 +59,7 @@ const PERSON_PROPERTIES = new Set(['author', 'creator', 'publisher'])
  * for any element, otherwise its visible text.
  */
 const personName = <T extends Element>(element: Cheerio<T>): string =>
-  element.attr('content')?.trim() || element.text().trim()
+  element.attr('content')?.trim() || textOf(element)
 
 const extractSchemaType = (itemType: string): string | undefined => {
   const typeMatch = itemType.match(/schema\.org\/(\w+)/)

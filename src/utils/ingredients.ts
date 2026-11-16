@@ -106,6 +106,45 @@ export function stringsToIngredients(
 }
 
 /**
+ * A heading written into an ingredient list, such as "For the pasta:": it
+ * ends in a colon and has no quantity. Short, so a long ingredient line
+ * that happens to end in a colon is not taken for one.
+ */
+const INGREDIENT_LIST_HEADING = /^[^\d:]+:$/
+
+/**
+ * Splits an ingredient list into Ingredient Groups at headings written into
+ * the list itself, such as `["For the pasta:", "1 lb spaghetti"]`. Returns
+ * `null` when the list has no such heading.
+ */
+export function splitAtIngredientHeadings(values: string[]): Ingredients | null {
+  const isHeading = (value: string) =>
+    INGREDIENT_LIST_HEADING.test(value) && value.split(/\s+/).length <= 8
+
+  if (!values.some(isHeading)) {
+    return null
+  }
+
+  const groups: Ingredients = []
+  let name: string | null = null
+  let items: IngredientItem[] = []
+
+  for (const value of values) {
+    if (isHeading(value)) {
+      if (items.length > 0) groups.push(createIngredientGroup(name, items))
+      name = value.slice(0, -1).trim()
+      items = []
+    } else {
+      items.push(createIngredientItem(value))
+    }
+  }
+
+  if (items.length > 0) groups.push(createIngredientGroup(name, items))
+
+  return groups
+}
+
+/**
  * Removes the extra parentheses WP Recipe Maker wraps around ingredient notes
  * in JSON-LD when the notes already start with a comma or their own
  * parentheses, matching how the notes are displayed on the page.

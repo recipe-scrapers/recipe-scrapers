@@ -77,6 +77,11 @@ describe('type-predicates', () => {
       expect(isThingType(make('Other'), 'Custom')).toBe(false)
     })
 
+    it('isThingType ignores the case publishers write the type in', () => {
+      expect(isAggregateRating(make('aggregateRating'))).toBe(true)
+      expect(isRecipe(make('recipe'))).toBe(true)
+    })
+
     it('isAggregateRating recognizes type', () => {
       expect(isAggregateRating(make('AggregateRating'))).toBe(true)
       expect(isAggregateRating(make('Recipe'))).toBe(false)

@@ -1,41 +1,16 @@
-import { z } from 'zod'
-
 import { AbstractScraper, type ScraperExtractors } from '@/abstract-scraper'
 import type { RecipeFields } from '@/types/recipe.interface'
-import { embeddedPayload } from '@/utils/embedded-payload'
 import { parseYields } from '@/utils/parse-yields'
 import { normalizeString } from '@/utils/parsing'
 
-const ratingValue = z.union([z.string(), z.number()]).optional()
-
-/**
- * The Recipe JSON-LD types its rating as `aggregateRating` (lowercase), which
- * is not the Schema.org `AggregateRating` type, so it is read here directly.
- */
-const recipeRatingSchema = z.object({
-  aggregateRating: z.object({
-    ratingValue,
-    ratingCount: ratingValue,
-    reviewCount: ratingValue,
-  }),
-})
-
+/** Scraper for forksoverknives.com: author and yield from the Recipe Page. */
 export class ForksOverKnives extends AbstractScraper {
-  private readonly recipeRating = embeddedPayload(this.$, {
-    selector: 'script[type="application/ld+json"]',
-    name: 'Forks Over Knives Recipe JSON-LD',
-    parse: (data) => recipeRatingSchema.parse(data).aggregateRating,
-    logger: this.logger,
-  })
-
   static host() {
     return 'forksoverknives.com'
   }
 
   protected override readonly extractors = {
     author: this.author.bind(this),
-    ratings: this.ratings.bind(this),
-    ratingsCount: this.ratingsCount.bind(this),
     yields: this.yields.bind(this),
   } satisfies ScraperExtractors
 
@@ -57,29 +32,6 @@ export class ForksOverKnives extends AbstractScraper {
     }
 
     return author
-  }
-
-  protected ratings(prevValue: RecipeFields['ratings'] | undefined): RecipeFields['ratings'] {
-    if (prevValue) {
-      return prevValue
-    }
-
-    const value = Number.parseFloat(String(this.recipeRating()?.ratingValue ?? ''))
-
-    return Number.isFinite(value) ? Math.round(value * 100) / 100 : 0
-  }
-
-  protected ratingsCount(
-    prevValue: RecipeFields['ratingsCount'] | undefined,
-  ): RecipeFields['ratingsCount'] {
-    if (prevValue) {
-      return prevValue
-    }
-
-    const rating = this.recipeRating()
-    const count = Number.parseFloat(String(rating?.ratingCount ?? rating?.reviewCount ?? ''))
-
-    return Number.isFinite(count) ? Math.floor(count) : 0
   }
 
   /**

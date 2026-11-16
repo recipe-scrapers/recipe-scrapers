@@ -2,7 +2,6 @@ import { AbstractScraper } from '@/abstract-scraper'
 import type { ScraperOptions } from '@/types/scraper.interface'
 
 import { ACoupleCooks } from './acouplecooks'
-import { AmbitiousKitchen } from './ambitiouskitchen'
 import { AmericasTestKitchen } from './americastestkitchen'
 import { BarefootContessa } from './barefootcontessa'
 import { BBCFood } from './bbcfood'
@@ -28,7 +27,6 @@ import { HELLOFRESH_COUNTRY_HOSTS, HelloFresh } from './hellofresh'
 import { HersheyLand } from './hersheyland'
 import { HomeChef } from './homechef'
 import { InspiredTaste } from './inspiredtaste'
-import { IowaGirlEats } from './iowagirleats'
 import { JamieOliver } from './jamieoliver'
 import { JoshuaWeissman } from './joshuaweissman'
 import { JustOneCookbook } from './justonecookbook'
@@ -76,7 +74,6 @@ type ScraperClass = {
  */
 const customScraperClasses = [
   ACoupleCooks,
-  AmbitiousKitchen,
   AmericasTestKitchen,
   BarefootContessa,
   BBCFood,
@@ -102,7 +99,6 @@ const customScraperClasses = [
   HersheyLand,
   HomeChef,
   InspiredTaste,
-  IowaGirlEats,
   JamieOliver,
   JoshuaWeissman,
   JustOneCookbook,
@@ -196,6 +192,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'alexandracooks.com',
   'amazingribs.com',
   'amberskitchencooks.com',
+  'ambitiouskitchen.com',
   'anitalianinmykitchen.com',
   'asweetpeachef.com',
   'aubreyskitchen.com',
@@ -300,6 +297,7 @@ const SCHEMA_ORG_ONLY_HOSTS = [
   'ica.se',
   'im-worthy.com',
   'inspiralized.com',
+  'iowagirleats.com',
   'izzycooking.com',
   'jimcooksfoodgood.com',
   'jocooks.com',
@@ -467,6 +465,7 @@ const schemaOrgOnlyScraperClasses = SCHEMA_ORG_ONLY_HOSTS.map((host) =>
  */
 const scraperAliases: Readonly<Record<string, ScraperClass>> = {
   'bbc.co.uk': BBCFood,
+  'wholefoodsmarket.co.uk': WholeFoodsMarket,
   ...Object.fromEntries(HELLOFRESH_COUNTRY_HOSTS.map((host) => [host, HelloFresh])),
 }
 

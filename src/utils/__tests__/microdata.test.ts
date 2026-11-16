@@ -75,6 +75,21 @@ describe('microdata-extractor', () => {
     expect(extractRecipeMicrodata($)[0]?.author).toEqual({ name: 'Jane Doe', url: '/jane' })
   })
 
+  it("leaves an inline icon's SVG title out of a property's text", () => {
+    const html = `
+      <div itemtype="https://schema.org/Recipe">
+        <li itemprop="recipeIngredient">
+          <svg><title>Info</title><path d=""></path></svg>
+          6 oz. Linguine
+        </li>
+      </div>
+    `
+    const $ = cheerio.load(html)
+
+    expect(extractRecipeMicrodata($)[0]?.recipeIngredient).toBe('6 oz. Linguine')
+    expect($('svg title').text()).toBe('Info')
+  })
+
   it('should extract nested microdata objects', () => {
     const html = `
       <div itemtype="https://schema.org/Recipe">
