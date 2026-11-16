@@ -4,7 +4,7 @@ import { ExtractionFailedException } from '@/exceptions'
 import type { RecipeFields } from '@/types/recipe.interface'
 import type { IngredientGroupStructure } from '@/utils/ingredients'
 import { stringsToInstructions } from '@/utils/instructions'
-import { normalizeString, splitToList } from '@/utils/parsing'
+import { normalizeString } from '@/utils/parsing'
 
 /**
  * Ingredient Group markup shared by Hearst Hosts (Delish, Good Housekeeping,
@@ -17,17 +17,12 @@ export const HEARST_INGREDIENT_GROUPS: IngredientGroupStructure = {
 
 /**
  * Drops the `label: value` CMS metadata Hearst mixes into Structured Data
- * keywords (such as "locale: US" or "TOTALTIME: 00:10:00") and splits
- * comma-joined entries like "icing, frosting, dessert".
+ * keywords, such as "locale: US" or "TOTALTIME: 00:10:00".
  */
 export function hearstKeywords(
   prevValue: RecipeFields['keywords'] | undefined,
 ): RecipeFields['keywords'] {
-  return new Set(
-    [...(prevValue ?? [])]
-      .filter((keyword) => !keyword.includes(': '))
-      .flatMap((keyword) => splitToList(keyword, ',')),
-  )
+  return new Set([...(prevValue ?? [])].filter((keyword) => !keyword.includes(': ')))
 }
 
 /**

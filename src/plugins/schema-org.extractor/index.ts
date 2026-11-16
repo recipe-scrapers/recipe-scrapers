@@ -570,21 +570,21 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
 
     const flatIngredients = ingredients.flat()
 
-    const uniqueIngredients = new Set<string>()
+    const ingredientValues: string[] = []
 
     for (const item of flatIngredients) {
       const ingredient = unwrapIngredientNotes(this.getSchemaTextValue(item))
 
       if (ingredient) {
-        uniqueIngredients.add(ingredient)
+        ingredientValues.push(ingredient)
       }
     }
 
-    if (uniqueIngredients.size === 0) {
+    if (ingredientValues.length === 0) {
       throw new SchemaOrgException('ingredients', ingredients)
     }
 
-    return groupIngredients(this.$, [...uniqueIngredients])
+    return groupIngredients(this.$, ingredientValues)
   }
 
   public instructions(): RecipeFields['instructions'] {
@@ -746,7 +746,11 @@ export class SchemaOrgPlugin extends ExtractorPlugin {
       throw new SchemaOrgException('keywords')
     }
 
-    return this.schemaValueToList(keywords)
+    // Keywords is a comma-separated text, and some sites also join several
+    // into one array entry (["icing, frosting, dessert"]).
+    return new Set(
+      [...this.schemaValueToList(keywords)].flatMap((keyword) => splitToList(keyword, ',')),
+    )
   }
 
   public dietaryRestrictions(): RecipeFields['dietaryRestrictions'] {
