@@ -48,11 +48,40 @@ describe('parseYields', () => {
     ).toBe('5 cups (about 120 crackers)')
   })
 
+  it('throws for whitespace-only input', () => {
+    expect(() => parseYields(' \n ')).toThrow()
+  })
+
+  it('returns text without a number as written rather than a 0 yield', () => {
+    expect(parseYields('Tablespoon')).toBe('Tablespoon')
+    expect(parseYields('dozen')).toBe('dozen')
+    expect(parseYields('Makes a batch')).toBe('Makes a batch')
+    expect(parseYields('Serves a crowd')).toBe('Serves a crowd')
+    expect(parseYields('Makes two loaves')).toBe('Makes two loaves')
+    expect(parseYields('Barbecue for friends')).toBe('Barbecue for friends')
+    expect(parseYields('  Makes\n a batch ')).toBe('Makes a batch')
+  })
+
+  it('still reads the yield type when the text has a number', () => {
+    expect(parseYields('Makes 2 loaves')).toBe('2 loaves')
+    expect(parseYields('1 loaf')).toBe('1 loaf')
+    expect(parseYields('2 dozen')).toBe('2 dozen')
+    expect(parseYields('12 Cupcakes')).toBe('12 cupcakes')
+    expect(parseYields('8 hamburger buns')).toBe('8 hamburger buns')
+  })
+
+  it('matches yield types as whole words', () => {
+    expect(parseYields('Barbecue for 4')).toBe('4 servings')
+    expect(parseYields('Serves 6 (pieceful)')).toBe('6 servings')
+    expect(parseYields('16 bars')).toBe('16 bars')
+  })
+
   it('parses long input in linear time', () => {
     const started = performance.now()
 
     expect(parseYields(`5 cups ${'('.repeat(200_000)}`)).toBe('5 cups')
-    expect(parseYields('a'.repeat(200_000))).toBe('0 servings')
+    expect(parseYields('a'.repeat(200_000))).toBe('a'.repeat(200_000))
+    expect(parseYields(`4 ${'a'.repeat(200_000)}`)).toBe('4 servings')
     expect(performance.now() - started).toBeLessThan(1000)
   })
 

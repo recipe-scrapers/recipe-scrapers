@@ -56,6 +56,17 @@ const RECIPE_YIELD_TYPES: [string, string][] = [
 ]
 
 /**
+ * Each yield type as whole-word patterns, so "Barbecue" is not a `bar` and
+ * "cupcakes" is a `cupcake` rather than a `cup`.
+ */
+const RECIPE_YIELD_TYPE_PATTERNS = RECIPE_YIELD_TYPES.map(([singular, plural]) => ({
+  singular,
+  plural,
+  singularPattern: new RegExp(`\\b${singular}\\b`, 'i'),
+  pluralPattern: new RegExp(`\\b${plural}\\b`, 'i'),
+}))
+
+/**
  * Returns a string of servings or items. If the recipe is for a number of
  * items (not servings), it returns "x item(s)" where x is the quantity.
  * This function handles cases where the yield is in dozens,
@@ -63,30 +74,43 @@ const RECIPE_YIELD_TYPES: [string, string][] = [
  * Additionally accommodates yields specified in batches
  * (e.g., "2 batches of brownies"), returning the yield as stated.
  *
+ * Text without a number, such as "Makes a batch", is returned as written
+ * (whitespace collapsed) rather than as a "0" yield, which would read as a
+ * recipe that makes nothing.
+ *
  * @param value The yield string from the recipe
  * @returns The number of servings, items, dozen, batches, etc...
  */
 export function parseYields(element: string): string {
-  if (!element) {
+  // Collapsed inline rather than with `normalizeString`: importing
+  // `./parsing` would pull the duration parser into the `utils` entry.
+  const writtenText = element.replace(/\s+/g, ' ').trim()
+
+  if (!writtenText) {
     throw new Error('Element is required')
   }
 
+  // Not normalized: the parenthetical lookup below reads line by line.
   const serveText = element
+  const matched = serveText.match(SERVE_REGEX_NUMBER)?.groups?.items
 
-  const match = serveText.match(SERVE_REGEX_NUMBER)
-  const matched = match?.groups?.items || '0'
+  if (matched === undefined) {
+    return writtenText
+  }
 
-  const serveTextLower = serveText.toLowerCase()
   let bestMatch: string | null = null
   let bestMatchLength = 0
 
-  for (const [singular, plural] of RECIPE_YIELD_TYPES) {
-    if (serveTextLower.includes(singular) || serveTextLower.includes(plural)) {
-      const matchLength = serveTextLower.includes(singular) ? singular.length : plural.length
-      if (matchLength > bestMatchLength) {
-        bestMatchLength = matchLength
-        bestMatch = `${matched} ${Number.parseFloat(matched) === 1 ? singular : plural}`
-      }
+  for (const { singular, plural, singularPattern, pluralPattern } of RECIPE_YIELD_TYPE_PATTERNS) {
+    const matchLength = singularPattern.test(serveText)
+      ? singular.length
+      : pluralPattern.test(serveText)
+        ? plural.length
+        : 0
+
+    if (matchLength > bestMatchLength) {
+      bestMatchLength = matchLength
+      bestMatch = `${matched} ${Number.parseFloat(matched) === 1 ? singular : plural}`
     }
   }
 
@@ -102,7 +126,8 @@ export function parseYields(element: string): string {
     return bestMatch
   }
 
-  const plural = Number.parseFloat(matched) > 1 || Number.parseFloat(matched) === 0 ? 's' : ''
+  const amount = Number.parseFloat(matched)
+  const plural = amount > 1 || amount === 0 ? 's' : ''
 
   if (SERVE_REGEX_ITEMS.test(serveText)) {
     return `${matched} item${plural}`
